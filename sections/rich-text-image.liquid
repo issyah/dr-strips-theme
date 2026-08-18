@@ -29,22 +29,46 @@
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'eyebrow' -%}
-              <p class="rich-text-image__eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+              <p
+                class="rich-text-image__eyebrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {{ block.settings.text | escape }}
+              </p>
             {%- when 'heading' -%}
               <h2
-                class="rich-text-image__heading inline-richtext {{ block.settings.heading_size }}"
+                class="rich-text-image__heading inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
               >
                 {{ block.settings.heading }}
               </h2>
             {%- when 'text' -%}
-              <div class="rich-text-image__text rte" {{ block.shopify_attributes }}>
+              <div
+                class="rich-text-image__text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
                 {{ block.settings.text }}
               </div>
             {%- when 'buttons' -%}
               <div
-                class="rich-text-image__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} rich-text-image__buttons--multiple{% endif %}"
+                class="rich-text-image__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} rich-text-image__buttons--multiple{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
               >
                 {%- if block.settings.button_label_1 != blank -%}
                   <a
@@ -72,19 +96,34 @@
                 {%- endif -%}
               </div>
             {%- when 'disclaimer' -%}
-              <p class="rich-text-image__disclaimer" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+              <p
+                class="rich-text-image__disclaimer{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {{ block.settings.text | escape }}
+              </p>
           {%- endcase -%}
         {%- endfor -%}
 
         {%- if badge_blocks.size > 0 -%}
-          <div class="rich-text-image__badges">
+          <div
+            class="rich-text-image__badges{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ section.blocks.size | plus: 1 }};"
+            {% endif %}
+          >
             {%- for block in badge_blocks -%}
               <span class="rich-text-image__badge" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>
             {%- endfor -%}
           </div>
         {%- endif -%}
       </div>
-      <div class="rich-text-image__media">
+      <div class="rich-text-image__media{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
         <div class="rich-text-image__media-inner{% if section.settings.image == blank %} placeholder{% endif %}">
           {%- if section.settings.image != blank -%}
             {{

@@ -47,8 +47,8 @@
         ".banner {margin-top: -62px;}"
       ],
       "settings": {
-        "image": "shopify://shop_images/a-woman-waking-up-in-bed-feeling-fresh-its-the-start-of-the-day.png",
-        "image_mobile": "shopify://shop_images/a-woman-waking-up-in-bed-feeling-fresh-its-the-start-of-the-day_cea754c5-40df-4798-bcf4-ab2daa13a3f3.png",
+        "image": "shopify://shop_images/banner_4d8922a2-2a67-4f1e-bb2d-12d4584cfa8e.png",
+        "image_mobile": "shopify://shop_images/banner.png",
         "image_overlay_opacity": 20,
         "image_height": "large",
         "image_behavior": "none",
@@ -112,6 +112,83 @@
         "padding_bottom": 36
       }
     },
+    "rich_text_image_Ta3bQt": {
+      "type": "rich-text-image",
+      "blocks": {
+        "eyebrow_AiDnRz": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "For Singapore's always-on generation"
+          }
+        },
+        "heading_Re8aRH": {
+          "type": "heading",
+          "settings": {
+            "heading": "Still awake at 2am? You're not the only one.",
+            "heading_size": "h0"
+          }
+        },
+        "text_WQpacx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Dr.Strips Sleep is a mint-thin strip that dissolves under your tongue in about 60 seconds — crafted for deep, restorative rest, so you can downshift easily and wake up feeling refreshed.</p>"
+          }
+        },
+        "buttons_K3YnUM": {
+          "type": "buttons",
+          "settings": {
+            "button_label_1": "Help me sleep tonight",
+            "button_link_1": "shopify://pages/contact",
+            "button_style_secondary_1": false,
+            "button_label_2": "See how it works",
+            "button_link_2": "",
+            "button_style_secondary_2": true
+          }
+        },
+        "disclaimer_ekgTkM": {
+          "type": "disclaimer",
+          "settings": {
+            "text": "Free islandwide delivery over S$50 · PayNow accepted · 14-night guarantee"
+          }
+        },
+        "badge_inYXdW": {
+          "type": "badge",
+          "settings": {
+            "text": "Zero sugar"
+          }
+        },
+        "badge_zbUXEa": {
+          "type": "badge",
+          "settings": {
+            "text": "Plant-derived"
+          }
+        },
+        "badge_AAXxB3": {
+          "type": "badge",
+          "settings": {
+            "text": "Non-habit-forming"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_AiDnRz",
+        "heading_Re8aRH",
+        "text_WQpacx",
+        "buttons_K3YnUM",
+        "disclaimer_ekgTkM",
+        "badge_inYXdW",
+        "badge_zbUXEa",
+        "badge_AAXxB3"
+      ],
+      "name": "Rich text with image",
+      "settings": {
+        "image": "shopify://shop_images/ChatGPTImageAug13_2026_10_16_19PM_1.png",
+        "image_position": "right",
+        "color_scheme": "",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
@@ -123,7 +200,7 @@
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
-        "enable_desktop_slider": false,
+        "enable_desktop_slider": true,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
@@ -134,9 +211,131 @@
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "columns_mobile": "2",
-        "swipe_on_mobile": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
         "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_image_LaTJwT": {
+      "type": "rich-text-image",
+      "blocks": {
+        "eyebrow_H46qty": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Meet Dr Strips"
+          }
+        },
+        "heading_tqt4tP": {
+          "type": "heading",
+          "settings": {
+            "heading": "Downtime to dreamtime.",
+            "heading_size": "h0"
+          }
+        },
+        "text_jREXjF": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A mint-thin strip you place under your tongue before bed. It dissolves in about 60 seconds, delivering a calm, plant-derived blend — phytomelatonin, GABA, valerian, passion flower and chamomile — to support restful, natural sleep.</p>"
+          }
+        },
+        "badge_A4giGg": {
+          "type": "badge",
+          "settings": {
+            "text": "Downshift easily"
+          }
+        },
+        "badge_CeaGPw": {
+          "type": "badge",
+          "settings": {
+            "text": "Deep, restorative rest"
+          }
+        },
+        "badge_dcCYt3": {
+          "type": "badge",
+          "settings": {
+            "text": "Wake refreshed, not groggy"
+          }
+        },
+        "disclaimer_q3Bbr7": {
+          "type": "disclaimer",
+          "settings": {
+            "text": "S$35.90 · 30 nights per box - about $1.20 per night"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_H46qty",
+        "heading_tqt4tP",
+        "text_jREXjF",
+        "badge_A4giGg",
+        "badge_CeaGPw",
+        "badge_dcCYt3",
+        "disclaimer_q3Bbr7"
+      ],
+      "name": "Rich text with image",
+      "settings": {
+        "image": "shopify://shop_images/d183f6dd-1cb7-493f-acfb-25b5cbde885e.png",
+        "image_position": "left",
+        "color_scheme": "",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
+    },
+    "multicolumn_naWzWG": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_aCkMDx": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/image-of-dissolving-strip.png",
+            "title": "Dissolves in ~60 seconds",
+            "text": "<p>No water, no fuss — even when you're already half asleep with the lights off.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_tgYJrt": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2026-08-19_at_12.23.49_AM.png",
+            "title": "The signal, not a sedative",
+            "text": "<p>100mg pistachio extract — a plant source of phytomelatonin that reinforces the sleep signal your body already makes</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_JMchUL": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/rest.jpg",
+            "title": "Your brain's brake pedal",
+            "text": "<p>10mg GABA quiets the racing, looping thoughts — while 10mg valerian root helps deepen the rest that follows.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_aCkMDx",
+        "column_tgYJrt",
+        "column_JMchUL"
+      ],
+      "name": "t:sections.multicolumn.presets.name",
+      "settings": {
+        "title": "Why <strong>Dr Strips</strong>",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "square",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
         "padding_bottom": 36
       }
     }
@@ -144,6 +343,9 @@
   "order": [
     "image_banner",
     "press_marquee",
-    "featured_collection"
+    "rich_text_image_Ta3bQt",
+    "featured_collection",
+    "rich_text_image_LaTJwT",
+    "multicolumn_naWzWG"
   ]
 }
