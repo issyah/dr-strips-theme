@@ -1012,12 +1012,6 @@
         "image": {
           "label": "Obraz 1"
         },
-        "image_2": {
-          "label": "Obraz 2"
-        },
-        "stack_images_on_mobile": {
-          "label": "Układaj obrazy w stosy"
-        },
         "show_text_box": {
           "label": "Kontener"
         },

@@ -1012,12 +1012,6 @@
         "image": {
           "label": "Image 1"
         },
-        "image_2": {
-          "label": "Image 2"
-        },
-        "stack_images_on_mobile": {
-          "label": "Empiler les images"
-        },
         "show_text_box": {
           "label": "Conteneur"
         },

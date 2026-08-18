@@ -1,10 +1,66 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "main-404"
+      "type": "main-404",
+      "settings": {}
+    },
+    "rich_text_image_preview": {
+      "type": "rich-text-image",
+      "blocks": {
+        "eyebrow": {
+          "type": "eyebrow",
+          "settings": {}
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {}
+        },
+        "text": {
+          "type": "text",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        },
+        "disclaimer": {
+          "type": "disclaimer",
+          "settings": {}
+        },
+        "badge1": {
+          "type": "badge",
+          "settings": {
+            "text": "Zero sugar"
+          }
+        },
+        "badge2": {
+          "type": "badge",
+          "settings": {
+            "text": "Plant-derived"
+          }
+        },
+        "badge3": {
+          "type": "badge",
+          "settings": {
+            "text": "Non-habit-forming"
+          }
+        }
+      },
+      "block_order": ["eyebrow", "heading", "text", "buttons", "disclaimer", "badge1", "badge2", "badge3"],
+      "settings": {}
     }
   },
   "order": [
-    "main"
+    "main",
+    "rich_text_image_preview"
   ]
 }

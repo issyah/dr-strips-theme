@@ -1012,12 +1012,6 @@
         "image": {
           "label": "Obrázek 1"
         },
-        "image_2": {
-          "label": "Obrázek 2"
-        },
-        "stack_images_on_mobile": {
-          "label": "Vrstvit obrázky"
-        },
         "show_text_box": {
           "label": "Kontejner"
         },

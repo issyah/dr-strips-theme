@@ -1,0 +1,26 @@
+{%- liquid
+  assign badge_text = block.settings.badge
+  if badge_text == blank
+    assign badge_text = block.settings.label | slice: 0, 1
+  endif
+
+  assign tag = 'div'
+  if block.settings.link != blank
+    assign tag = 'a'
+  endif
+-%}
+<{{ tag }}
+  class="press-marquee__item"
+  {%- if block.settings.link != blank %}
+    href="{{ block.settings.link }}"
+  {%- endif %}
+  {%- if duplicate %}
+    tabindex="-1"
+    aria-hidden="true"
+  {%- else %}
+    {{ block.shopify_attributes }}
+  {%- endif %}
+>
+  <span class="press-marquee__badge" aria-hidden="true">{{ badge_text | escape }}</span>
+  <span class="press-marquee__text">{{ block.settings.label | escape }}</span>
+</{{ tag }}>

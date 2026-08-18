@@ -1012,12 +1012,6 @@
         "image": {
           "label": "圖片 1"
         },
-        "image_2": {
-          "label": "圖片 2"
-        },
-        "stack_images_on_mobile": {
-          "label": "堆疊圖片"
-        },
         "show_text_box": {
           "label": "容器"
         },

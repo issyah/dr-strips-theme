@@ -1,0 +1,352 @@
+{{ 'section-rich-text-image.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign fetch_priority = 'auto'
+  if section.index == 1
+    assign fetch_priority = 'high'
+  endif
+  assign badge_blocks = section.blocks | where: 'type', 'badge'
+-%}
+
+<div class="rich-text-image color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="page-width">
+    <div class="rich-text-image__grid{% if section.settings.image_position == 'left' %} rich-text-image__grid--image-left{% endif %}">
+      <div class="rich-text-image__content">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'eyebrow' -%}
+              <p class="rich-text-image__eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+            {%- when 'heading' -%}
+              <h2
+                class="rich-text-image__heading inline-richtext {{ block.settings.heading_size }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.heading }}
+              </h2>
+            {%- when 'text' -%}
+              <div class="rich-text-image__text rte" {{ block.shopify_attributes }}>
+                {{ block.settings.text }}
+              </div>
+            {%- when 'buttons' -%}
+              <div
+                class="rich-text-image__buttons{% if block.settings.button_label_1 != blank and block.settings.button_label_2 != blank %} rich-text-image__buttons--multiple{% endif %}"
+                {{ block.shopify_attributes }}
+              >
+                {%- if block.settings.button_label_1 != blank -%}
+                  <a
+                    {% if block.settings.button_link_1 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_1 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_1 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_1 | escape -}}
+                  </a>
+                {%- endif -%}
+                {%- if block.settings.button_label_2 != blank -%}
+                  <a
+                    {% if block.settings.button_link_2 == blank %}
+                      role="link" aria-disabled="true"
+                    {% else %}
+                      href="{{ block.settings.button_link_2 }}"
+                    {% endif %}
+                    class="button{% if block.settings.button_style_secondary_2 %} button--secondary{% else %} button--primary{% endif %}"
+                  >
+                    {{- block.settings.button_label_2 | escape -}}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- when 'disclaimer' -%}
+              <p class="rich-text-image__disclaimer" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</p>
+          {%- endcase -%}
+        {%- endfor -%}
+
+        {%- if badge_blocks.size > 0 -%}
+          <div class="rich-text-image__badges">
+            {%- for block in badge_blocks -%}
+              <span class="rich-text-image__badge" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="rich-text-image__media">
+        <div class="rich-text-image__media-inner{% if section.settings.image == blank %} placeholder{% endif %}">
+          {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image
+              | image_url: width: 1500
+              | image_tag:
+                sizes: '(min-width: 750px) 45vw, 90vw',
+                widths: '350, 500, 750, 1000, 1500',
+                fetchpriority: fetch_priority
+            }}
+          {%- else -%}
+            {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich text with image",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "options": [
+        {
+          "value": "right",
+          "label": "Right"
+        },
+        {
+          "value": "left",
+          "label": "Left"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 52
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 52
+    }
+  ],
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "For Singapore's always-on generation"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Still awake at 2am? You're not the only one."
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "hxxl",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "h0",
+          "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Dr.Strips Sleep is a mint-thin strip that dissolves under your tongue in about 60 seconds — crafted for deep, restorative rest, so you can downshift easily and wake up feeling refreshed.</p>"
+        }
+      ]
+    },
+    {
+      "type": "buttons",
+      "name": "Buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "First button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_1",
+          "label": "Label",
+          "default": "Help me sleep tonight"
+        },
+        {
+          "type": "url",
+          "id": "button_link_1",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_1",
+          "label": "Use outline style",
+          "default": false
+        },
+        {
+          "type": "header",
+          "content": "Second button"
+        },
+        {
+          "type": "text",
+          "id": "button_label_2",
+          "label": "Label",
+          "default": "See how it works"
+        },
+        {
+          "type": "url",
+          "id": "button_link_2",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "button_style_secondary_2",
+          "label": "Use outline style",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "disclaimer",
+      "name": "Disclaimer",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Free islandwide delivery over S$50 · PayNow accepted · 14-night guarantee"
+        }
+      ]
+    },
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Zero sugar"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich text with image",
+      "blocks": [
+        {
+          "type": "eyebrow"
+        },
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "buttons"
+        },
+        {
+          "type": "disclaimer"
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Zero sugar"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Plant-derived"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "text": "Non-habit-forming"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

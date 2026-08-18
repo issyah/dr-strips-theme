@@ -1012,12 +1012,6 @@
         "image": {
           "label": "이미지 1"
         },
-        "image_2": {
-          "label": "이미지 2"
-        },
-        "stack_images_on_mobile": {
-          "label": "스택 이미지"
-        },
         "show_text_box": {
           "label": "컨테이너"
         },

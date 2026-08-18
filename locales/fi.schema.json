@@ -1012,12 +1012,6 @@
         "image": {
           "label": "Kuva 1"
         },
-        "image_2": {
-          "label": "Kuva 2"
-        },
-        "stack_images_on_mobile": {
-          "label": "Pinoa kuvat"
-        },
         "show_text_box": {
           "label": "Säiliö"
         },
