@@ -9,6 +9,63 @@
  */
 {
   "sections": {
+    "two_column_banner_BHUKQt": {
+      "type": "two-column-banner",
+      "blocks": {
+        "eyebrow_EeVfNb": {
+          "type": "eyebrow",
+          "settings": {
+            "text": "Dr strips"
+          }
+        },
+        "heading_zXac4c": {
+          "type": "heading",
+          "settings": {
+            "heading": "Power down.",
+            "heading_size": "hxxl"
+          }
+        },
+        "text_3pCRma": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A mint-thin strip under your tongue — crafted for deep, restorative rest and better mornings.</p>"
+          }
+        },
+        "button_CTNG8n": {
+          "type": "button",
+          "settings": {
+            "button_label": "Help me sleep tonight",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false
+          }
+        },
+        "caption_keJF76": {
+          "type": "caption",
+          "settings": {
+            "text": "30 individually wrapped oral strips"
+          }
+        }
+      },
+      "block_order": [
+        "eyebrow_EeVfNb",
+        "heading_zXac4c",
+        "text_3pCRma",
+        "button_CTNG8n",
+        "caption_keJF76"
+      ],
+      "custom_css": [
+        ".two-column-banner {margin-top: 24px;}"
+      ],
+      "name": "Two column banner",
+      "settings": {
+        "image": "shopify://shop_images/banner-3.png",
+        "image_position": "right",
+        "height": "medium",
+        "color_scheme": "scheme-7ead139f-ea9a-4641-aa05-7b22f29edcf8",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -43,6 +100,7 @@
         "text_UJdDmK",
         "button"
       ],
+      "disabled": true,
       "custom_css": [
         ".banner {margin-top: -62px;}"
       ],
@@ -184,7 +242,7 @@
       "settings": {
         "image": "shopify://shop_images/ChatGPTImageAug13_2026_10_16_19PM_1.png",
         "image_position": "right",
-        "color_scheme": "",
+        "color_scheme": "scheme-7ead139f-ea9a-4641-aa05-7b22f29edcf8",
         "padding_top": 52,
         "padding_bottom": 52
       }
@@ -194,8 +252,8 @@
       "settings": {
         "collection": "all",
         "products_to_show": 8,
-        "title": "Featured products",
-        "heading_size": "h2",
+        "title": "Explore the<strong> strips</strong>",
+        "heading_size": "h0",
         "description": "",
         "show_description": false,
         "description_style": "body",
@@ -341,6 +399,7 @@
     }
   },
   "order": [
+    "two_column_banner_BHUKQt",
     "image_banner",
     "press_marquee",
     "rich_text_image_Ta3bQt",
