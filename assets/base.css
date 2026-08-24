@@ -2366,7 +2366,6 @@ input[type='checkbox'] {
   display: block;
   position: relative;
   background-color: rgb(var(--color-background));
-
 }
 
 .header-wrapper--border-bottom {
@@ -3654,26 +3653,21 @@ details-disclosure>details {
 /* Dr strips css changes */
 
 .section-header.shopify-section-header-sticky {
-  /* background: rgba(255, 255, 255, .8); */
-  /* backdrop-filter: blur(16px); */
   background: transparent;
-  margin-left: auto;
-  margin-right: auto;
-  top: 24px;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  top: 16px;
   width: 100%;
-  /* padding-left: 16px; */
-  /* padding-right: 16px; */
+  padding-left: 16px;
+  padding-right: 16px;
   /* position: fixed; */
-  /* left: 16px; */
-  /* right: 16px; */
-  max-width: var(--page-width);
+  left: 16px;
+  right: 16px;
 }
 
 .section-header .header-wrapper {
   border-radius: 16px;
-  /* border: 1px solid #dddddd; */
-  background: rgba(255, 255, 255, .7);
-  backdrop-filter: blur(16px);
+  border: 1px solid #dddddd;
   box-shadow: 0 6px 24px rgba(0, 0, 0, .06);
 }
 
@@ -3689,15 +3683,4 @@ details-disclosure>details {
     rgba(255, 255, 255, 0.08) 0px -1px 1px inset;
   border: 0px;
 
-}
-
-@media screen and (max-width: 749px) {
-  .header-wrapper {
-    margin-left: var(--grid-desktop-horizontal-spacing);
-    margin-right: var(--grid-desktop-horizontal-spacing);
-  }
-}
-
-body {
-  /* background: #F0EEE9 !important; */
 }

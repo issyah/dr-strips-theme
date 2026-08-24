@@ -1,0 +1,11 @@
+.sl-section{padding:clamp(76px,9vw,140px) clamp(20px,4vw,40px)}
+.sl-container{max-width:1200px;margin:0 auto}
+.sl-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.sl-header-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4vw,64px);margin-top:24px;align-items:start}
+.sl-heading{margin:0;font-size:clamp(34px,4.4vw,62px);line-height:1.0;letter-spacing:-.04em;font-weight:500}
+.sl-body{margin:0;font-size:17px;line-height:1.7;color:#55565A;max-width:520px}
+.sl-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px 44px;margin-top:clamp(40px,5vw,68px);border-top:1px solid #E6E7E9;padding-top:30px}
+.sl-card-index{font-family:'Geist Mono',monospace;font-size:12.5px;color:#B9BABD}
+.sl-card-title{margin:12px 0 8px;font-size:19px;font-weight:500;letter-spacing:-.02em}
+.sl-card-text{margin:0;font-size:15.5px;line-height:1.65;color:#55565A}
+.sl-disclaimer{margin:36px 0 0;font-size:13px;line-height:1.7;color:#8A8C91;max-width:700px}

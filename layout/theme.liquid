@@ -15,6 +15,43 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {%- if template.name == 'index' or template.suffix == 'science' -%}
+      {%- comment -%} Dr.Strips+ Sleep landing page uses the Geist typeface via Google Fonts; gated to the home page (and the standalone Science page, which shares the same design system) since sections' {% stylesheet %} tags can't inject <link> tags into <head>. {%- endcomment -%}
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+      {%- comment -%}
+        Consolidated landing-theme CSS, split into one small asset file per
+        section (rather than one large file) so each stays easy to review
+        and diff. landing-header.css must load first — it defines the
+        shared classes (.hov-card, .plan-card, .ds-nav, etc.) that every
+        other section's file assumes already exist.
+      {%- endcomment -%}
+      <link rel="stylesheet" href="{{ 'landing-header.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-hero.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-familiar.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-how.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-format.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-formula.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-reviews.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-guarantee.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-transparency.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-offer.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-faq.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-newsletter.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-footer.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-hero.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-route.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-mucosa.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-format.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-signal.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-formula.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-standards.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-limits.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-sources.css' | asset_url }}">
+      <link rel="stylesheet" href="{{ 'landing-science-cta.css' | asset_url }}">
+    {%- endif -%}
+
     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
@@ -36,21 +73,17 @@
       customElements.define('collection-component', StandardEvents.createViewEventElement());
       customElements.define(
         'product-component',
-        StandardEvents.createViewEventElement(HTMLElement, { defaultTrigger: 'intersect' })
+        StandardEvents.createViewEventElement(HTMLElement, { defaultTrigger: 'intersect' }),
       );
 
-      document.addEventListener(
-        'DOMContentLoaded',
-        () => {
-          const template = document.querySelector('main[data-template]')?.dataset.template || '';
-          document.dispatchEvent(
-            new StandardEvents.PageViewEvent({
-              page: { template, title: document.title, url: window.location.href },
-            })
-          );
-        },
-        { once: true }
-      );
+      document.addEventListener('DOMContentLoaded', () => {
+        const template = document.querySelector('main[data-template]')?.dataset.template || '';
+        document.dispatchEvent(
+          new StandardEvents.PageViewEvent({
+            page: { template, title: document.title, url: window.location.href },
+          })
+        );
+      }, { once: true });
     </script>
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
@@ -248,8 +281,6 @@
         --variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;
         --variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;
         --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
-
-        --primary-color: rgb(2, 80, 176);
       }
 
       *,
@@ -336,7 +367,9 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
+    {%- unless template.name == 'index' or template.suffix == 'science' -%}
+      {% sections 'header-group' %}
+    {%- endunless -%}
 
     <main
       id="MainContent"
@@ -348,7 +381,9 @@
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {%- unless template.name == 'index' or template.suffix == 'science' -%}
+      {% sections 'footer-group' %}
+    {%- endunless -%}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>

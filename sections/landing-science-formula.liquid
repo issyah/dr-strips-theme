@@ -1,0 +1,107 @@
+{% comment %}
+  Section: Science page — 05 The formula, by mechanism — landing-science-formula.liquid
+{% endcomment %}
+<section id="formula" class="sfm-section">
+<div class="sfm-container">
+<div data-reveal class="sfm-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="sfm-header-grid">
+<h2 data-reveal class="sfm-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="sfm-body">{{ section.settings.body }}</p>
+</div>
+
+<div data-reveal class="sfm-media">
+{%- if section.settings.image != blank -%}
+<img src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ section.settings.image.alt | escape }}" class="sfm-media-img" loading="lazy" width="1400" height="600">
+{%- else -%}
+<div class="img-slot"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg><span>{{ section.settings.image_placeholder_text }}</span></div>
+{%- endif -%}
+</div>
+
+<div class="sfm-failures">
+{%- assign failure_blocks = section.blocks | where: "type", "failure" -%}
+{%- for block in failure_blocks -%}
+<div data-reveal class="hov-card sfm-failure-card" {{ block.shopify_attributes }}>
+<div>
+<div class="sfm-failure-eyebrow">{{ block.settings.eyebrow }}</div>
+<h3 class="sfm-failure-title">{{ block.settings.title }}</h3>
+<p class="sfm-failure-text">{{ block.settings.text }}</p>
+</div>
+<div class="sfm-ingredients">
+<div class="sfm-ingredient sfm-ingredient--first"><span class="sfm-ingredient-dose">{{ block.settings.ing1_dose }}</span><div><div class="sfm-ingredient-name">{{ block.settings.ing1_name }}</div><p class="sfm-ingredient-text">{{ block.settings.ing1_text }}</p></div></div>
+<div class="sfm-ingredient"><span class="sfm-ingredient-dose">{{ block.settings.ing2_dose }}</span><div><div class="sfm-ingredient-name">{{ block.settings.ing2_name }}</div><p class="sfm-ingredient-text">{{ block.settings.ing2_text }}</p></div></div>
+</div>
+</div>
+{%- endfor -%}
+</div>
+
+<div data-reveal class="sfm-table">
+<div class="sfm-table-head">
+<div class="sfm-table-head-cell">Per strip</div>
+<div class="sfm-table-head-cell sfm-table-head-cell--narrow">Dose</div>
+<div class="sfm-table-head-cell">Mechanism</div>
+</div>
+{%- assign ingredient_blocks = section.blocks | where: "type", "ingredient_row" -%}
+{%- for block in ingredient_blocks -%}
+<div class="sfm-table-row"><div class="sfm-table-cell">{{ block.settings.name }}</div><div class="sfm-table-cell sfm-table-cell--narrow">{{ block.settings.dose }}</div><div class="sfm-table-cell sfm-table-cell--muted">{{ block.settings.mechanism }}</div></div>
+{%- endfor -%}
+</div>
+<p data-reveal class="sfm-disclaimer">{{ section.settings.disclaimer }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Science — Formula",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "05 — The formula, by mechanism" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Three ways a night fails." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "A sleepless night is rarely one problem. There is the mind that will not stop, the body that will not drop off, and the morning that arrives heavier than it should. Each active in the strip is there for one of those three." },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Image placeholder caption", "default": "Ingredient still life — pistachios, valerian root, chamomile, single-source light" },
+    { "type": "textarea", "id": "disclaimer", "label": "Table disclaimer", "default": "Doses are per strip, as printed on the box. Other ingredients: Pullulan, Monk Fruit Extract, Cellulose, Lecithin, Mixed Berry Flavour, Sorbitol Syrup, Steviol Glycosides. Zero sugar." }
+  ],
+  "blocks": [
+    {
+      "type": "failure",
+      "name": "Failure card",
+      "settings": [
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Failure 01" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" },
+        { "type": "text", "id": "ing1_dose", "label": "Ingredient 1 — dose" },
+        { "type": "text", "id": "ing1_name", "label": "Ingredient 1 — name" },
+        { "type": "textarea", "id": "ing1_text", "label": "Ingredient 1 — text" },
+        { "type": "text", "id": "ing2_dose", "label": "Ingredient 2 — dose" },
+        { "type": "text", "id": "ing2_name", "label": "Ingredient 2 — name" },
+        { "type": "textarea", "id": "ing2_text", "label": "Ingredient 2 — text" }
+      ]
+    },
+    {
+      "type": "ingredient_row",
+      "name": "Ingredient table row",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "text", "id": "dose", "label": "Dose" },
+        { "type": "text", "id": "mechanism", "label": "Mechanism" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Science — Formula",
+      "blocks": [
+        { "type": "failure", "settings": { "eyebrow": "Failure 01", "title": "Can't switch off", "text": "Lights out, mind still running the day. This is excitation that has not been braked.", "ing1_dose": "10mg", "ing1_name": "GABA", "ing1_text": "The brain's principal inhibitory neurotransmitter — the brake on cortical activity, supplied directly rather than coaxed.", "ing2_dose": "10mg", "ing2_name": "Passion flower", "ing2_text": "Flavonoids that act on the same GABA-A receptor, traditionally used for the nights that end wired rather than tired." } },
+        { "type": "failure", "settings": { "eyebrow": "Failure 02", "title": "Can't drop off", "text": "Calm enough, but the gap between lying down and being asleep keeps stretching.", "ing1_dose": "100mg", "ing1_name": "Pistachio extract · phytomelatonin", "ing1_text": "The timing cue that opens the door. Absorbed sublingually, it reaches circulation while you are still putting your phone down.", "ing2_dose": "10mg", "ing2_name": "Valerian root", "ing2_text": "Valerenic acid interacts with GABA-A signalling. Pooled trials associate valerian with improved subjective sleep quality — Bent et al., The American Journal of Medicine, 2006." } },
+        { "type": "failure", "settings": { "eyebrow": "Failure 03", "title": "Wake up groggy", "text": "You slept. You just did not arrive in the morning with it. Usually a dose still in the system.", "ing1_dose": "10mg", "ing1_name": "Chamomile · apigenin", "ing1_text": "The flavone behind the cup, at a dose a cup cannot reach. It binds GABA-A benzodiazepine sites weakly — calming without the sedation profile of a drug.", "ing2_dose": "0mg", "ing2_name": "Synthetic melatonin", "ing2_text": "Deliberately absent. The morning is part of the product, so nothing in the formula is designed to outlast the night." } },
+        { "type": "ingredient_row", "settings": { "name": "Pistachio extract", "dose": "100mg", "mechanism": "Phytomelatonin — circadian timing cue" } },
+        { "type": "ingredient_row", "settings": { "name": "GABA", "dose": "10mg", "mechanism": "Inhibitory neurotransmitter — reduces excitation" } },
+        { "type": "ingredient_row", "settings": { "name": "Valerian root", "dose": "10mg", "mechanism": "Valerenic acid — GABA-A signalling, sleep onset" } },
+        { "type": "ingredient_row", "settings": { "name": "Passion flower", "dose": "10mg", "mechanism": "Flavonoids — GABA-A modulation" } },
+        { "type": "ingredient_row", "settings": { "name": "Chamomile", "dose": "10mg", "mechanism": "Apigenin — weak benzodiazepine-site binding" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

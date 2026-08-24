@@ -1,0 +1,87 @@
+{%- liquid
+  assign product = all_products[section.settings.product]
+  assign variant = product.selected_or_first_available_variant
+  assign sub_cents = variant.price | times: 0.85 | round
+  assign sub_per_night_cents = sub_cents | divided_by: 30.0 | round
+  assign once_per_night_cents = variant.price | divided_by: 30.0 | round
+-%}
+<section id="offer" class="offer-section">
+<div class="offer-inner">
+<div data-reveal class="offer-eyebrow">{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="offer-heading">{{ section.settings.heading | newline_to_br }}</h2>
+<p data-reveal class="offer-subheading">{{ section.settings.subheading }}</p>
+<div class="offer-layout">
+<div data-reveal class="offer-image-frame">
+{%- if section.settings.image != blank -%}
+<img src="{{ section.settings.image | image_url: width: 900 }}" alt="{{ section.settings.image.alt | escape }}" class="offer-image" loading="lazy" width="900" height="900">
+{%- else -%}
+<div class="img-slot"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg><span>{{ section.settings.image_placeholder_text }}</span></div>
+{%- endif -%}
+</div>
+<div data-reveal class="offer-options">
+<button type="button" data-plan="sub" class="plan-card selected offer-plan-btn">
+<div class="offer-plan-row">
+<div class="offer-plan-label-group"><span class="offer-plan-radio"><span class="plan-dot offer-plan-dot"></span></span><span class="offer-plan-label">{{ section.settings.sub_label }}</span></div>
+<span class="offer-badge-active">{{ section.settings.sub_badge }}</span>
+</div>
+<div class="offer-price-row"><span class="offer-price">S${{ sub_cents | money | remove: '$' }}</span><span class="offer-price-compare">S${{ variant.compare_at_price | money | remove: '$' }}</span></div>
+<div class="offer-plan-meta">30 strips a month · S${{ sub_per_night_cents | money | remove: '$' }} a night · free shipping · pause or cancel any time</div>
+</button>
+<button type="button" data-plan="once" class="plan-card offer-plan-btn">
+<div class="offer-plan-row">
+<div class="offer-plan-label-group"><span class="offer-plan-radio"><span class="plan-dot offer-plan-dot"></span></span><span class="offer-plan-label">{{ section.settings.once_label }}</span></div>
+<span class="offer-badge">{{ section.settings.once_badge }}</span>
+</div>
+<div class="offer-price-row"><span class="offer-price">S${{ variant.price | money | remove: '$' }}</span><span class="offer-price-compare">S${{ variant.compare_at_price | money | remove: '$' }}</span></div>
+<div class="offer-plan-meta">30 strips · S${{ once_per_night_cents | money | remove: '$' }} a night · free shipping above S$100</div>
+</button>
+<button type="button" data-add-to-bag class="hov-dark hov-dark-lg offer-cta"><span>{{ section.settings.cta_label }}</span> <span>·</span> <span data-cta-price>S${{ sub_cents | money | remove: '$' }} / month</span></button>
+<div class="offer-footnotes">
+{%- for block in section.blocks -%}
+<span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+{%- endfor -%}
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Landing offer",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "08 — The offer" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks preserved)", "default": "Thirty nights.\nStart tonight." },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "About a dollar a night. One strip, thirty nights, nothing else to remember." },
+    { "type": "image_picker", "id": "image", "label": "Product image" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Placeholder caption", "default": "Pack shot on white — box + open sachet" },
+    { "type": "text", "id": "sub_label", "label": "Subscribe plan label", "default": "Subscribe monthly" },
+    { "type": "text", "id": "sub_badge", "label": "Subscribe badge", "default": "Save 15%" },
+    { "type": "text", "id": "once_label", "label": "One-time plan label", "default": "One box" },
+    { "type": "text", "id": "once_badge", "label": "One-time badge", "default": "Launch price" },
+    { "type": "text", "id": "cta_label", "label": "Add-to-bag button label", "default": "Add to bag" }
+  ],
+  "blocks": [
+    {
+      "type": "footnote",
+      "name": "Trust footnote",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Ships from Singapore" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Landing offer",
+      "blocks": [
+        { "type": "footnote", "settings": { "text": "Ships from Singapore" } },
+        { "type": "footnote", "settings": { "text": "30-night guarantee" } },
+        { "type": "footnote", "settings": { "text": "Zero sugar" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

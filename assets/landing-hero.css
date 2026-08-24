@@ -1,0 +1,167 @@
+.hero-section {
+  padding: clamp(48px,7vw,92px) clamp(20px,4vw,40px) clamp(56px,6vw,84px);
+}
+.hero-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(340px,1fr));
+  gap: clamp(32px,5vw,72px);
+  align-items: center;
+}
+.hero-eyebrow {
+  font-family: 'Geist Mono',ui-monospace,monospace;
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #8A8C91;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-eyebrow-line {
+  width: 22px;
+  height: 1px;
+  background: #C9CACC;
+  display: block;
+}
+.hero-heading {
+  margin: 22px 0 0;
+  font-size: clamp(46px,6.6vw,96px);
+  line-height: .94;
+  letter-spacing: -.045em;
+  font-weight: 500;
+  color: #0B0B0C;
+}
+.hero-body {
+  margin: 26px 0 0;
+  max-width: 520px;
+  font-size: clamp(16px,1.25vw,18px);
+  line-height: 1.62;
+  color: #55565A;
+}
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+.hero-cta-primary {
+  border: 0;
+  background: #0B0B0C;
+  color: #fff;
+  font-family: 'Geist',sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 16px 26px;
+  border-radius: 9px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform .12s cubic-bezier(.22,.61,.36,1),background .22s;
+}
+.hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #DCDDDF;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 450;
+  padding: 16px 24px;
+  border-radius: 9px;
+  transition: border-color .22s,transform .22s cubic-bezier(.22,.61,.36,1);
+}
+.hero-cta-arrow {
+  font-family: 'Geist Mono',monospace;
+}
+.hero-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(110px,1fr));
+  gap: 1px;
+  margin-top: 44px;
+  background: #ECEDEE;
+  border: 1px solid #ECEDEE;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.hero-stat-tile {
+  background: #fff;
+  padding: 16px 14px;
+}
+.hero-stat-value {
+  font-family: 'Geist Mono',monospace;
+  font-size: 19px;
+  letter-spacing: -.02em;
+}
+.hero-stat-label {
+  font-family: 'Geist Mono',monospace;
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #8A8C91;
+  margin-top: 6px;
+}
+.hero-visual {
+  position: relative;
+  animation: ds-drift 9s ease-in-out infinite;
+}
+.hero-visual-frame {
+  position: relative;
+  background: #F6F6F5;
+  border: 1px solid #ECEDEE;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.hero-visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-visual-overlay {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  right: 16px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.hero-visual-overlay-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Geist Mono',monospace;
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #0B0B0C;
+}
+.hero-visual-bar-track {
+  height: 3px;
+  background: rgba(11,11,12,.12);
+  border-radius: 2px;
+  overflow: hidden;
+}
+/* Intentionally empty, CSS-only bar — Shopify's base stylesheet hides all empty divs (div:empty{display:none}) for accessibility, so this needs an explicit override to stay visible. */
+.hero-visual-bar-fill {
+  display: block !important;
+  height: 100%;
+  background: #0B0B0C;
+  animation: ds-dissolve-loop 6s cubic-bezier(.65,0,.35,1) infinite;
+}
+.hero-badge {
+  position: absolute;
+  top: -14px;
+  right: -8px;
+  background: #0B0B0C;
+  color: #fff;
+  font-family: 'Geist Mono',monospace;
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: 9px 13px;
+  border-radius: 999px;
+}

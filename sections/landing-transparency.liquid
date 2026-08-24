@@ -1,0 +1,57 @@
+<section id="transparency" class="trans-section">
+<div class="trans-inner">
+<div data-reveal class="trans-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="trans-heading-grid">
+<h2 data-reveal class="trans-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="trans-body">{{ section.settings.body }}</p>
+</div>
+<div class="trans-cards">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-card-dark trans-card" {{ block.shopify_attributes }}><div class="trans-card-num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div><h4 class="trans-card-heading">{{ block.settings.heading }}</h4><p class="trans-card-text">{{ block.settings.text }}</p></div>
+{%- endfor -%}
+</div>
+<div data-reveal class="trans-footer">
+<p class="trans-footer-text">{{ section.settings.cta_text }}</p>
+<a href="{{ section.settings.cta_link_url }}" class="trans-footer-link">{{ section.settings.cta_link_label }}</a>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Landing transparency",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "07 — Transparency" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Nothing hidden behind a blend." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Every active and every dose is printed on the box and on this page. Nothing is buried in a proprietary mix, and no batch ships without a third-party test against the label. If it is in the strip, you can read it." },
+    { "type": "textarea", "id": "cta_text", "label": "Bottom callout text", "default": "Certificate of analysis available on request — quote the batch number printed on your box and we will send the report for that batch." },
+    { "type": "text", "id": "cta_link_label", "label": "Bottom callout link label", "default": "Request a report →" },
+    { "type": "text", "id": "cta_link_url", "label": "Bottom callout link URL (anchor or URL)", "default": "#faq" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Landing transparency",
+      "blocks": [
+        { "type": "item", "settings": { "heading": "Every dose on the box", "text": "Each active listed at its milligram figure. No ranges, no asterisks pointing nowhere." } },
+        { "type": "item", "settings": { "heading": "No proprietary blends", "text": "A blend name is a way to hide a small dose behind a long list. We do not use them." } },
+        { "type": "item", "settings": { "heading": "Lab tested every batch", "text": "Third-party tested for potency and purity, batch by batch — not once at launch." } },
+        { "type": "item", "settings": { "heading": "No hidden fillers", "text": "Every excipient and flavouring is declared, down to the sweetener. Zero sugar, nothing undisclosed." } },
+        { "type": "item", "settings": { "heading": "GMP, HACCP, ISO 22000", "text": "Made in a certified facility held to pharmaceutical manufacturing standards." } },
+        { "type": "item", "settings": { "heading": "Engineered in Singapore", "text": "Formulated and engineered here, for the hours people here actually keep." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

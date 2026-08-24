@@ -9,9 +9,7 @@
  */
 {
   "current": {
-    "logo": "shopify://shop_images/Final_DrStrips.png",
-    "logo_width": 120,
-    "favicon": "shopify://shop_images/Final_DrStrips_8ed51655-ca1e-45b5-a0c7-ad48c4f0646b.png",
+    "logo_width": 90,
     "type_header_font": "inter_n6",
     "heading_scale": 100,
     "type_body_font": "inter_n4",
@@ -197,17 +195,6 @@
           "button": "#ffffff",
           "button_label": "#334fb4",
           "secondary_button_label": "#ffffff",
-          "shadow": "#121212"
-        }
-      },
-      "scheme-7ead139f-ea9a-4641-aa05-7b22f29edcf8": {
-        "settings": {
-          "background": "#F0EEE9",
-          "background_gradient": "",
-          "text": "#121212",
-          "button": "#121212",
-          "button_label": "#ffffff",
-          "secondary_button_label": "#121212",
           "shadow": "#121212"
         }
       }
@@ -405,8 +392,5 @@
         }
       }
     }
-  },
-  "platform_customizations": {
-    "custom_css": []
   }
 }

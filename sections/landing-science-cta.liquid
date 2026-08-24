@@ -1,0 +1,38 @@
+{% comment %}
+  Section: Science page — final CTA box — landing-science-cta.liquid
+{% endcomment %}
+{%- liquid
+  assign product = all_products[section.settings.product]
+  assign variant = product.selected_or_first_available_variant
+-%}
+<section class="scta-section">
+<div data-reveal class="scta-box">
+<div>
+<div class="scta-label">{{ section.settings.label }}</div>
+<h3 class="scta-heading">{{ section.settings.heading | newline_to_br }}</h3>
+<p class="scta-body">{{ section.settings.body }}</p>
+</div>
+<div class="scta-right">
+<div class="scta-price-row"><span class="scta-price">S${{ variant.price | money | remove: '$' }}</span><span class="scta-qty-label">{{ section.settings.qty_label }}</span></div>
+<button type="button" data-add-to-bag class="hov-header-cta scta-cta-btn">{{ section.settings.cta_label }}</button>
+<div class="scta-guarantee"><span>{{ section.settings.guarantee_text }}</span></div>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Science — Final CTA",
+  "tag": "section",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "label", "label": "Small label", "default": "The whole point" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks become <br>)", "default": "Read it once.\nThen just sleep." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Thirty strips, thirty nights. Ten minutes before bed, one on your tongue, and none of this to think about again." },
+    { "type": "text", "id": "qty_label", "label": "Quantity label", "default": "30 strips" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Add to bag" },
+    { "type": "text", "id": "guarantee_text", "label": "Guarantee text", "default": "30-night guarantee" }
+  ],
+  "presets": [{ "name": "Science — Final CTA" }]
+}
+{% endschema %}

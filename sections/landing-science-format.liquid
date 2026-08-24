@@ -1,0 +1,150 @@
+{% comment %}
+  Section: Science page — 03 Format (bar-chart comparison) — landing-science-format.liquid
+{% endcomment %}
+<section id="format" class="sf-section">
+<div class="sf-glow"></div>
+<div class="sf-container">
+<div data-reveal class="sf-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="sf-header-grid">
+<h2 data-reveal class="sf-heading">{{ section.settings.heading | newline_to_br }}</h2>
+<p data-reveal class="sf-body">{{ section.settings.body }}</p>
+</div>
+
+<div data-reveal data-bars class="sf-bars-panel">
+<div class="sf-bars-head"><span class="sf-bars-caption">{{ section.settings.bars_caption }}</span><span class="sf-bars-legend">{{ section.settings.bars_legend }}</span></div>
+<div class="sf-bars-list">
+{%- for block in section.blocks -%}
+{%- unless forloop.first -%}<div class="sf-bar-divider"></div>{%- endunless -%}
+<div class="sf-bar-row">
+<div><div class="sf-bar-label{% if forloop.first %} sf-bar-label--primary{% endif %}">{{ block.settings.label }}</div><div class="sf-bar-sublabel">{{ block.settings.sublabel }}</div></div>
+<div class="sf-bar-track-wrap">
+<div class="sf-bar-track"><div data-rbar="{{ block.settings.percent }}" class="sf-bar-fill{% if forloop.first %} sf-bar-fill--primary{% endif %}" style="width:0%"></div></div>
+{%- if forloop.first -%}
+<div class="sf-bar-value">≤<span data-rcount="{{ block.settings.percent }}">{{ block.settings.percent }}</span>%</div>
+{%- else -%}
+<div class="sf-bar-right-label">{{ block.settings.right_label }}</div>
+{%- endif -%}
+</div>
+</div>
+{%- endfor -%}
+</div>
+<div data-reveal class="sf-media">
+{%- if section.settings.image != blank -%}
+<img src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ section.settings.image.alt | escape }}" class="sf-media-img" loading="lazy" width="1400" height="600">
+{%- else -%}
+<div class="img-slot sf-media-placeholder"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg><span>{{ section.settings.image_placeholder_text }}</span></div>
+{%- endif -%}
+</div>
+<p class="sf-footnote">{{ section.settings.footnote }}</p>
+</div>
+</div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  var EASE = 'cubic-bezier(.22,.61,.36,1)';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rise = !reduced;
+
+  var panel = document.querySelector('#format [data-bars]');
+  if (!panel) return;
+
+  function barsList(el){ return Array.prototype.slice.call(el.querySelectorAll('[data-rbar]')); }
+  function barsCountUp(el, from, to, ms){
+    if (!el) return;
+    var t0 = performance.now();
+    function tick(now){
+      var q = Math.min(1, (now - t0) / ms);
+      el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - q, 3)));
+      if (q < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function barsEnd(el){
+    barsList(el).forEach(function(b){ b.style.transition = 'none'; b.style.width = b.getAttribute('data-rbar') + '%'; });
+    var c = el.querySelector('[data-rcount]');
+    if (c) c.textContent = c.getAttribute('data-rcount');
+  }
+  var barTimers = [];
+  function barsRun(el){
+    barTimers.forEach(clearTimeout);
+    barTimers = [];
+    var bars = barsList(el);
+    var c = el.querySelector('[data-rcount]');
+    if (!bars.length) return;
+    if (!rise) { barsEnd(el); return; }
+    bars.forEach(function(b){ b.style.transition = 'none'; b.style.width = '0%'; });
+    if (c) c.textContent = '0';
+    bars.forEach(function(b, i){
+      barTimers.push(setTimeout(function(){
+        b.style.transition = 'width 1.1s ' + EASE;
+        b.style.width = b.getAttribute('data-rbar') + '%';
+        if (i === 0 && c) barsCountUp(c, 0, parseFloat(c.getAttribute('data-rcount')), 1100);
+      }, 260 + i * 420));
+    });
+  }
+  var barsOn = false, barsLoop = null;
+  function startBars(){
+    if (barsOn) return;
+    barsOn = true;
+    var run = function(){ barsRun(panel); };
+    run();
+    if (rise) barsLoop = setInterval(run, 9000);
+  }
+
+  var started = false;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting || started) return;
+      started = true;
+      io.unobserve(e.target);
+      startBars();
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+  io.observe(panel);
+
+  setTimeout(function(){ if (!started) { started = true; startBars(); } }, 4500);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Science — Format",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "03 — Format" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks become <br>)", "default": "Same actives.\nDifferent arrival." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "A capsule, a gummy and a film can carry an identical ingredient panel. Two of them take the route through the gut and the liver, so what arrives is decided by physiology rather than by the label. The third does not take that route at all." },
+    { "type": "text", "id": "bars_caption", "label": "Bar chart caption", "default": "Bar length = dose reaching the bloodstream" },
+    { "type": "text", "id": "bars_legend", "label": "Bar chart legend", "default": "Steel = the swallowed route" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Image placeholder caption", "default": "Macro — the film mid-dissolve, cobalt gel light, crushed blacks" },
+    { "type": "textarea", "id": "footnote", "label": "Footnote", "default": "The two lower bars carry no percentage on purpose. Published bioavailability for swallowed compounds spans a wide range depending on the molecule, the meal and the person, so a single tidy percentage would be a design decision rather than a fact. Ours is stated as a ceiling, with an asterisk, for the same reason." }
+  ],
+  "blocks": [
+    {
+      "type": "bar",
+      "name": "Bar row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "text", "id": "sublabel", "label": "Sublabel" },
+        { "type": "range", "id": "percent", "label": "Bar percent", "min": 0, "max": 100, "step": 1, "default": 50 },
+        { "type": "text", "id": "right_label", "label": "Right-side label (used for all rows except the first)", "default": "A fraction" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Science — Format",
+      "blocks": [
+        { "type": "bar", "settings": { "label": "Strip2Cell film", "sublabel": "Mucosa → bloodstream", "percent": 90 } },
+        { "type": "bar", "settings": { "label": "Capsule or tablet", "sublabel": "Gut → liver → bloodstream", "percent": 34, "right_label": "A fraction" } },
+        { "type": "bar", "settings": { "label": "Gummy", "sublabel": "The same route, plus sugar", "percent": 38, "right_label": "A fraction" } },
+        { "type": "bar", "settings": { "label": "Liquid", "sublabel": "Faster to the gut, same liver", "percent": 45, "right_label": "A fraction" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

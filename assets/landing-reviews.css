@@ -1,0 +1,15 @@
+.rev-section{padding:clamp(70px,8vw,130px) clamp(20px,4vw,40px);background:#FAFAF9;border-top:1px solid #ECEDEE;border-bottom:1px solid #ECEDEE}
+.rev-wrap{max-width:1200px;margin:0 auto}
+.rev-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.rev-head-row{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-top:24px}
+.rev-heading{margin:0;font-size:clamp(34px,4.4vw,62px);line-height:1.0;letter-spacing:-.04em;font-weight:500;color:#0B0B0C}
+.rev-subcaption{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#8A8C91;max-width:280px;line-height:1.9}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:40px}
+.rev-card{background:#fff;border:1px solid #E6E7E9;border-radius:14px;padding:24px;transition:transform .22s cubic-bezier(.22,.61,.36,1),box-shadow .22s}
+.rev-card-meta{display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#8A8C91}
+.rev-stars{letter-spacing:.1em;color:#0B0B0C}
+.rev-title{margin:16px 0 8px;font-size:17px;font-weight:500;letter-spacing:-.02em;color:#0B0B0C}
+.rev-text{margin:0;font-size:15.5px;line-height:1.6;color:#55565A}
+.rev-author-row{display:flex;align-items:center;gap:11px;margin-top:20px}
+.rev-avatar{width:34px;height:34px;border-radius:50%;background:#ECEDEE;color:#8A8C91;font-family:'Geist Mono',monospace;font-size:12px;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.rev-author-meta{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8A8C91}

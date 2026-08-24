@@ -1,0 +1,43 @@
+/* landing-science-format.liquid — prefix: sf- */
+
+.sf-section{background:#0B0B0C;color:#fff;padding:clamp(76px,9vw,140px) clamp(20px,4vw,40px);position:relative;overflow:hidden}
+/* Intentionally empty, CSS-only ambient glow — Shopify's base stylesheet hides all empty divs (div:empty{display:none}) for accessibility, so this needs an explicit override to stay visible. */
+.sf-glow{display:block !important;position:absolute;top:-20%;right:-10%;width:820px;height:820px;background:radial-gradient(circle,rgba(255,255,255,.05),transparent 62%);pointer-events:none}
+.sf-container{max-width:1200px;margin:0 auto;position:relative}
+.sf-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.sf-header-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4vw,64px);margin-top:24px;align-items:start}
+.sf-heading{margin:0;font-size:clamp(34px,4.4vw,62px);line-height:1.0;letter-spacing:-.04em;font-weight:500;color:#fff}
+.sf-body{margin:0;font-size:17px;line-height:1.7;color:#A9ABAF;max-width:520px}
+
+.sf-bars-panel{margin-top:clamp(44px,5vw,80px);border:1px solid #232427;border-radius:16px;background:#0F1012;padding:clamp(22px,3vw,38px)}
+.sf-bars-head{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:baseline}
+.sf-bars-caption{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A8C91}
+.sf-bars-legend{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#6E7075}
+.sf-bars-list{margin-top:32px;display:grid;gap:24px}
+/* Intentionally empty, CSS-only row divider — Shopify's base stylesheet hides all empty divs (div:empty{display:none}) for accessibility, so this needs an explicit override to stay visible. */
+.sf-bar-divider{display:block !important;height:1px;background:#232427}
+
+.sf-bar-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px 24px;align-items:center}
+
+/* bar label — base is the muted/non-primary color, modifier flips to white for the first (primary) row */
+.sf-bar-label{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#A9ABAF}
+.sf-bar-label--primary{color:#fff}
+.sf-bar-sublabel{margin-top:6px;font-size:14.5px;line-height:1.5;color:#6E7075}
+
+.sf-bar-track-wrap{grid-column:span 2;min-width:270px;display:flex;gap:18px;align-items:center}
+.sf-bar-track{flex:1;height:26px;background:#17181A;border-radius:4px;overflow:hidden}
+
+/* bar fill — base is the non-primary fill color, modifier flips to white for the first (primary) row.
+   Note: width is intentionally left as an inline style on the element (data-rbar / JS animates it at runtime).
+   Intentionally empty, CSS-only element — Shopify's base stylesheet hides all empty divs (div:empty{display:none}) for accessibility, so this needs an explicit override to stay visible. */
+.sf-bar-fill{display:block !important;height:100%;background:#A5C8DC;border-radius:4px}
+.sf-bar-fill--primary{background:#fff}
+
+.sf-bar-value{width:96px;flex:none;text-align:right;font-family:'Geist Mono',monospace;font-size:20px;letter-spacing:-.02em;color:#fff}
+.sf-bar-right-label{width:96px;flex:none;text-align:right;font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8C91}
+
+.sf-media{margin-top:32px;position:relative;aspect-ratio:21/9;background:#17181A;border:1px solid #232427;border-radius:12px;overflow:hidden}
+.sf-media-img{width:100%;height:100%;object-fit:cover;display:block}
+.sf-media-placeholder{color:#6E7075}
+
+.sf-footnote{margin:28px 0 0;font-size:13px;line-height:1.7;color:#6E7075;max-width:720px}

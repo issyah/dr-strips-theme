@@ -1,0 +1,17 @@
+.ssd-section{background:#0B0B0C;color:#fff;padding:clamp(76px,9vw,140px) clamp(20px,4vw,40px)}
+.ssd-container{max-width:1200px;margin:0 auto}
+.ssd-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.ssd-header-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4vw,64px);margin-top:24px;align-items:start}
+.ssd-heading{margin:0;font-size:clamp(34px,4.4vw,62px);line-height:1.0;letter-spacing:-.04em;font-weight:500;color:#fff}
+.ssd-body{margin:0;font-size:17px;line-height:1.7;color:#A9ABAF;max-width:520px}
+/* Was a fixed 3-column grid (repeat(3,...)), which squeezed each card down to ~120px on mobile and caused card text to wrap/overflow illegibly. Switched to auto-fit so columns collapse responsively, matching every other card grid in this theme. */
+.ssd-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:clamp(40px,5vw,72px)}
+.ssd-card{background:#111214;border:1px solid #232427;border-radius:14px;padding:28px 26px 32px}
+.ssd-card-index{font-family:'Geist Mono',monospace;font-size:12.5px;color:#6E7075}
+.ssd-card-title{margin:14px 0 8px;font-size:18px;font-weight:500;letter-spacing:-.02em;color:#fff}
+.ssd-card-text{margin:0;font-size:15.5px;line-height:1.6;color:#A9ABAF}
+.ssd-badges{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.ssd-badge{border:1px solid #2C2D30;border-radius:999px;padding:9px 16px;font-size:13.5px;letter-spacing:.02em;color:#A9ABAF}
+.ssd-image-wrap{margin-top:26px;position:relative;aspect-ratio:21/9;background:#17181A;border:1px solid #232427;border-radius:12px;overflow:hidden}
+.ssd-image{width:100%;height:100%;object-fit:cover;display:block}
+.ssd-image-placeholder{color:#6E7075}

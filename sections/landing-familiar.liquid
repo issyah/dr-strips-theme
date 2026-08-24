@@ -1,0 +1,224 @@
+<section id="familiar" class="fam-section">
+<div class="fam-wrap">
+<div data-reveal class="fam-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="fam-intro-grid">
+<h2 data-reveal class="fam-heading">{{ section.settings.heading_1 }}</h2>
+<p data-reveal class="fam-intro-body">{{ section.settings.body_1 }}</p>
+</div>
+<div class="fam-timeline">
+{% assign timeline_blocks = section.blocks | where: "type", "timeline_item" %}
+{% for block in timeline_blocks %}
+<div data-reveal class="fam-timeline-item" {{ block.shopify_attributes }}><div class="fam-timeline-time">{{ block.settings.time }}</div><p class="fam-timeline-text">{{ block.settings.text }}</p></div>
+{% endfor %}
+</div>
+<div class="fam-stats-grid">
+{% assign stat_blocks = section.blocks | where: "type", "stat" %}
+{% for block in stat_blocks %}
+<div data-reveal class="hov-card fam-card" {{ block.shopify_attributes }}><div class="fam-stat-value"><span data-count="{{ block.settings.value }}"{% if block.settings.decimals != blank and block.settings.decimals != 0 %} data-decimals="{{ block.settings.decimals }}"{% endif %}{% if block.settings.prefix != blank %} data-prefix="{{ block.settings.prefix }}"{% endif %}{% if block.settings.suffix != blank %} data-suffix="{{ block.settings.suffix }}"{% endif %}>{{ block.settings.prefix }}{{ block.settings.value }}{{ block.settings.suffix }}</span></div><p class="fam-stat-desc">{{ block.settings.description }}</p></div>
+{% endfor %}
+</div>
+<p data-reveal class="fam-sources">{{ section.settings.sources_text }}</p>
+<h3 data-reveal class="fam-heading-2">{{ section.settings.heading_2 }}</h3>
+<div class="fam-impact-grid">
+{% assign impact_blocks = section.blocks | where: "type", "impact_card" %}
+{% for block in impact_blocks %}
+<div data-reveal class="hov-card fam-card" {{ block.shopify_attributes }}><div class="fam-impact-label">{{ block.settings.label }}</div><p class="fam-impact-text">{{ block.settings.text }}</p></div>
+{% endfor %}
+</div>
+<p data-reveal class="fam-closing">{{ section.settings.closing_text }}</p>
+</div></section>
+
+{% schema %}
+{
+  "name": "Familiar problem",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "01 — The problem you know"
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "label": "Heading",
+      "default": "Your body is tired. Your mind hasn't noticed."
+    },
+    {
+      "type": "textarea",
+      "id": "body_1",
+      "label": "Intro paragraph",
+      "default": "The day ends, but the momentum doesn't. You are not lazy and you are not broken — Singapore is one of the most sleep-deprived places in the world, and the way we live makes winding down genuinely hard."
+    },
+    {
+      "type": "textarea",
+      "id": "sources_text",
+      "label": "Sources footnote",
+      "default": "Sources: YouGov Global Sleep Study, 2024 (17 markets surveyed); Singapore average nightly sleep duration, published market research."
+    },
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Second heading",
+      "default": "Sleep debt doesn't forgive. It compounds."
+    },
+    {
+      "type": "textarea",
+      "id": "closing_text",
+      "label": "Closing line",
+      "default": "Rest responds quickly. Better sleep can start tonight."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_item",
+      "name": "Timeline moment",
+      "settings": [
+        {
+          "type": "text",
+          "id": "time",
+          "label": "Time",
+          "default": "11:54 PM"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "You promised yourself an early night. You are still scrolling."
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "56"
+        },
+        {
+          "type": "number",
+          "id": "decimals",
+          "label": "Decimal places",
+          "default": 0
+        },
+        {
+          "type": "text",
+          "id": "prefix",
+          "label": "Prefix"
+        },
+        {
+          "type": "text",
+          "id": "suffix",
+          "label": "Suffix",
+          "default": "%"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Of adults here sleep less than seven hours a night. The highest rate of 17 markets surveyed."
+        }
+      ]
+    },
+    {
+      "type": "impact_card",
+      "name": "Impact card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Tonight"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Reactions slow, cravings climb and patience thins. You will not notice. Everyone around you will."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Familiar problem",
+      "blocks": [
+        {
+          "type": "timeline_item",
+          "settings": {
+            "time": "11:54 PM",
+            "text": "You promised yourself an early night. You are still scrolling."
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "time": "2:07 AM",
+            "text": "Your mind replays tomorrow's meeting, then starts the maths on how many hours are left."
+          }
+        },
+        {
+          "type": "timeline_item",
+          "settings": {
+            "time": "6:30 AM",
+            "text": "The alarm wins again. You start the day already behind on rest."
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "56",
+            "decimals": 0,
+            "prefix": "",
+            "suffix": "%",
+            "description": "Of adults here sleep less than seven hours a night. The highest rate of 17 markets surveyed."
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "value": "6.4",
+            "decimals": 1,
+            "prefix": "",
+            "suffix": "h",
+            "description": "The average Singapore night, against the seven to nine hours a body is built for."
+          }
+        },
+        {
+          "type": "impact_card",
+          "settings": {
+            "label": "Tonight",
+            "text": "Reactions slow, cravings climb and patience thins. You will not notice. Everyone around you will."
+          }
+        },
+        {
+          "type": "impact_card",
+          "settings": {
+            "label": "This week",
+            "text": "Memory dips, blood pressure sits higher, and the waste your brain clears at night backs up."
+          }
+        },
+        {
+          "type": "impact_card",
+          "settings": {
+            "label": "This month",
+            "text": "Immunity weakens, anxiety sits higher and skin recovers more slowly."
+          }
+        },
+        {
+          "type": "impact_card",
+          "settings": {
+            "label": "Six months on",
+            "text": "Research links chronic short sleep to up to three times the heart-disease risk, a 57% higher type-2 diabetes risk and roughly double the risk of depression."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

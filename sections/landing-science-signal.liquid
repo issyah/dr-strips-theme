@@ -1,0 +1,56 @@
+{% comment %}
+  Section: Science page — 04 The signal (phytomelatonin / circadian) — landing-science-signal.liquid
+{% endcomment %}
+<section id="signal" class="sg-section">
+<div class="sg-container">
+<div data-reveal class="sg-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="sg-header-grid">
+<h2 data-reveal class="sg-heading">{{ section.settings.heading }}</h2>
+<div>
+<p data-reveal class="sg-body-1">{{ section.settings.body_1 }}</p>
+<p data-reveal class="sg-body-2">{{ section.settings.body_2 }}</p>
+<div data-reveal class="sg-citation">{{ section.settings.citation }}</div>
+</div>
+</div>
+<div class="sg-cards-grid">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-card sg-card" {{ block.shopify_attributes }}><div class="sg-card-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div><h4 class="sg-card-title">{{ block.settings.title }}</h4><p class="sg-card-text">{{ block.settings.text }}</p></div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Science — The signal",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "04 — The signal" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A plant signal, not a synthetic dose." },
+    { "type": "textarea", "id": "body_1", "label": "Body text 1", "default": "Melatonin is not a sedative. It is a timing cue — the molecule that tells your body which part of the day it is. Plants make the same compound, and pistachios are among the richest natural sources of it. That plant-derived form is phytomelatonin, and it arrives with the cofactors the nut carries rather than isolated in a lab." },
+    { "type": "textarea", "id": "body_2", "label": "Body text 2", "default": "The heaviness people associate with sleep aids is largely a dosing artefact: a cue delivered too strongly, or too late, is still in your system at seven in the morning. Research on low, well-timed doses finds circadian phase shifts without next-day grogginess." },
+    { "type": "text", "id": "citation", "label": "Citation", "default": "Cell Reports Medicine, 2023" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Science — The signal",
+      "blocks": [
+        { "type": "card", "settings": { "title": "It works with the rhythm", "text": "A cue, not a switch. Your body still runs the night; the strip tells it the night has started." } },
+        { "type": "card", "settings": { "title": "Delivered with its cofactors", "text": "100mg of pistachio extract per strip, carrying phytomelatonin in the form the plant made it." } },
+        { "type": "card", "settings": { "title": "Nothing to clear at breakfast", "text": "No synthetic melatonin in the formula, and no escalating dose to keep it working on night thirty." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

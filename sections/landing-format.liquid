@@ -1,0 +1,109 @@
+<section id="format" class="fmt-section">
+<div class="fmt-wrap">
+<div data-reveal class="fmt-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="fmt-head-row">
+<h2 data-reveal class="fmt-heading">{{ section.settings.heading | newline_to_br }}</h2>
+<p data-reveal class="fmt-subheading">{{ section.settings.subheading }}</p>
+</div>
+
+<div data-reveal class="fmt-table-wrap">
+<div class="fmt-table-head">
+<div class="fmt-th-label">{{ section.settings.compared_label }}</div>
+<div class="fmt-th-brand">{{ section.settings.brand_column_label }}</div>
+<div class="fmt-th-col">{{ section.settings.pill_column_label }}</div>
+<div class="fmt-th-col">{{ section.settings.gummy_column_label }}</div>
+</div>
+{%- for block in section.blocks -%}
+<div {{ block.shopify_attributes }} class="fmt-row">
+<div class="fmt-cell-feature">{{ block.settings.feature }}</div>
+<div class="fmt-cell-brand"><span data-tick class="fmt-tick">✓</span></div>
+<div class="fmt-cell">
+{%- case block.settings.pill_value -%}
+{%- when 'check' -%}<span data-tick class="fmt-tick">✓</span>
+{%- when 'dash' -%}<span data-tick class="fmt-dash">—</span>
+{%- else -%}<span data-tick class="fmt-pill-text">{{ block.settings.pill_text }}</span>
+{%- endcase -%}
+</div>
+<div class="fmt-cell">
+{%- case block.settings.gummy_value -%}
+{%- when 'check' -%}<span data-tick class="fmt-tick">✓</span>
+{%- when 'dash' -%}<span data-tick class="fmt-dash">—</span>
+{%- else -%}<span data-tick class="fmt-pill-text">{{ block.settings.gummy_text }}</span>
+{%- endcase -%}
+</div>
+</div>
+{%- endfor -%}
+</div>
+<p class="fmt-footnote">{{ section.settings.footnote }}</p>
+<div data-reveal class="fmt-callout">
+<div class="fmt-callout-label">{{ section.settings.liquids_label }}</div>
+<div class="fmt-callout-text">{{ section.settings.liquids_text }}</div>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Landing format",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "04 — Format" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks preserved)", "default": "Same night.\nThree formats." },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Pills are legacy. Gummies are candy with a wellness label. We picked the format that gets out of the way." },
+    { "type": "text", "id": "compared_label", "label": "Table header — row label column", "default": "Compared" },
+    { "type": "text", "id": "brand_column_label", "label": "Table header — brand column", "default": "Dr.Strips+ film" },
+    { "type": "text", "id": "pill_column_label", "label": "Table header — pill column", "default": "Pill" },
+    { "type": "text", "id": "gummy_column_label", "label": "Table header — gummy column", "default": "Gummy" },
+    { "type": "text", "id": "footnote", "label": "Footnote below table", "default": "Every format can carry the same actives. What differs is how much of them ever arrives." },
+    { "type": "text", "id": "liquids_label", "label": "Callout label", "default": "And liquids" },
+    { "type": "richtext", "id": "liquids_text", "label": "Callout text", "default": "<p>A liquid shot is mostly water and flavouring. Read the panel and the actives are usually a fraction of what the bottle implies — and you still swallow it, so it still takes the long way through the gut and the liver. You pay for volume, not for dose.</p>" }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Comparison row",
+      "settings": [
+        { "type": "text", "id": "feature", "label": "Feature / row label" },
+        {
+          "type": "select",
+          "id": "pill_value",
+          "label": "Pill column value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "dash", "label": "Dash (—)" },
+            { "value": "text", "label": "Custom text" }
+          ],
+          "default": "dash"
+        },
+        { "type": "text", "id": "pill_text", "label": "Pill column custom text (used when value = Custom text)" },
+        {
+          "type": "select",
+          "id": "gummy_value",
+          "label": "Gummy column value",
+          "options": [
+            { "value": "check", "label": "Checkmark" },
+            { "value": "dash", "label": "Dash (—)" },
+            { "value": "text", "label": "Custom text" }
+          ],
+          "default": "dash"
+        },
+        { "type": "text", "id": "gummy_text", "label": "Gummy column custom text (used when value = Custom text)" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Landing format",
+      "blocks": [
+        { "type": "comparison_row", "settings": { "feature": "Dissolves in 60 seconds", "pill_value": "dash", "gummy_value": "dash" } },
+        { "type": "comparison_row", "settings": { "feature": "Strip2Cell absorption, skipping gut & liver", "pill_value": "dash", "gummy_value": "dash" } },
+        { "type": "comparison_row", "settings": { "feature": "No water needed", "pill_value": "dash", "gummy_value": "check" } },
+        { "type": "comparison_row", "settings": { "feature": "Zero sugar", "pill_value": "check", "gummy_value": "dash" } },
+        { "type": "comparison_row", "settings": { "feature": "Single dose, pocket-sized", "pill_value": "dash", "gummy_value": "dash" } },
+        { "type": "comparison_row", "settings": { "feature": "Melatonin-free, plant-derived signal", "pill_value": "text", "pill_text": "Varies", "gummy_value": "text", "gummy_text": "Varies" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

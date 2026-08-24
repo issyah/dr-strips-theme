@@ -1,0 +1,263 @@
+<script>
+(function(){
+  "use strict";
+  var EASE = 'cubic-bezier(.22,.61,.36,1)';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rise = !reduced;
+
+  var VARIANT_ID = {{ variant.id | json }};
+  var HAS_SUB_PLAN = {{ has_sub_plan | json }};
+  var SUB_PLAN_ID = {{ sub_plan_id | json }};
+  var SUB_PRICE_TEXT = "S${{ sub_cents | money | remove: '$' }} / month";
+  var ONCE_PRICE_TEXT = "S${{ variant.price | money | remove: '$' }}";
+
+  var state = { plan: 'sub', bag: 0 };
+  var bagLabelEls = document.querySelectorAll('[data-bag-label]');
+  var ctaPriceEls = document.querySelectorAll('[data-cta-price]');
+  var subCard = document.querySelector('[data-plan="sub"]');
+  var onceCard = document.querySelector('[data-plan="once"]');
+  var toastEl = document.getElementById('toast');
+  var toastTextEl = document.getElementById('toastText');
+  var toastBagEl = document.getElementById('toastBagLabel');
+  var toastTimer = null;
+
+  function renderPlan(){
+    var sub = state.plan === 'sub';
+    if (subCard) { subCard.classList.toggle('selected', sub); subCard.setAttribute('aria-pressed', String(sub)); }
+    if (onceCard) { onceCard.classList.toggle('selected', !sub); onceCard.setAttribute('aria-pressed', String(!sub)); }
+    var price = sub ? SUB_PRICE_TEXT : ONCE_PRICE_TEXT;
+    for (var i = 0; i < ctaPriceEls.length; i++) ctaPriceEls[i].textContent = price;
+  }
+  function renderBag(){
+    var label = 'Bag · ' + state.bag;
+    for (var i = 0; i < bagLabelEls.length; i++) bagLabelEls[i].textContent = label;
+  }
+  function flash(text){
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTextEl.textContent = text;
+    toastBagEl.textContent = 'Bag · ' + state.bag;
+    toastEl.classList.add('show');
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
+  }
+  function syncCartCount(){
+    fetch('/cart.js', { headers: { 'Accept': 'application/json' } })
+      .then(function(r){ return r.json(); })
+      .then(function(cart){ state.bag = cart.item_count; renderBag(); })
+      .catch(function(){});
+  }
+  function addToCart(){
+    var sub = state.plan === 'sub';
+    if (sub && !HAS_SUB_PLAN) {
+      flash('Subscriptions launch soon — try one box for now');
+      return;
+    }
+    var item = { id: VARIANT_ID, quantity: 1 };
+    if (sub) item.selling_plan = SUB_PLAN_ID;
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ items: [item] })
+    })
+    .then(function(r){
+      if (!r.ok) return r.json().then(function(e){ throw new Error((e && e.description) || 'Could not add to bag'); });
+      return r.json();
+    })
+    .then(function(){
+      flash(sub ? 'Sleep · monthly subscription added' : 'Sleep · 30 strips added');
+      syncCartCount();
+    })
+    .catch(function(err){
+      flash(err.message || 'Something went wrong — try again');
+    });
+  }
+  if (subCard) subCard.addEventListener('click', function(){ state.plan = 'sub'; renderPlan(); });
+  if (onceCard) onceCard.addEventListener('click', function(){ state.plan = 'once'; renderPlan(); });
+  var addButtons = document.querySelectorAll('[data-add-to-bag]');
+  for (var ai = 0; ai < addButtons.length; ai++) {
+    addButtons[ai].addEventListener('click', addToCart);
+  }
+  if (document.getElementById('newsletterSuccess')) {
+    setTimeout(function(){ flash('You’re on the list.'); }, 300);
+  }
+  renderPlan();
+  renderBag();
+  syncCartCount();
+
+  var faqs = document.querySelectorAll('[data-faq]');
+  for (var fi = 0; fi < faqs.length; fi++) {
+    faqs[fi].addEventListener('toggle', function(){
+      var mark = this.querySelector('[data-faq-mark]');
+      if (mark) mark.textContent = this.open ? '−' : '+';
+    });
+  }
+
+  var headerEl = document.querySelector('[data-header]');
+  if (headerEl) {
+    var onScroll = function(){
+      headerEl.style.boxShadow = window.scrollY > 40 ? '0 1px 22px rgba(11,11,12,.07)' : 'none';
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  var SEL = '[data-reveal],[data-progress],[data-count],[data-tick],[data-race]';
+  var done = new WeakSet();
+  var raceOn = false;
+  var raceTimers = [];
+  var raceLoop = null;
+
+  function finalText(el){
+    var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var pre = el.getAttribute('data-prefix') || '';
+    var suf = el.getAttribute('data-suffix') || '';
+    var n = parseFloat(el.getAttribute('data-count'));
+    return isNaN(n) ? el.textContent : pre + n.toFixed(dec) + suf;
+  }
+
+  function countUp(el){
+    var raw = finalText(el);
+    var target = parseFloat(el.getAttribute('data-count'));
+    if (isNaN(target)) return;
+    var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var pre = el.getAttribute('data-prefix') || '';
+    var suf = el.getAttribute('data-suffix') || '';
+    if (!rise) { el.textContent = raw; return; }
+    var dur = 1100, t0 = performance.now();
+    function step(now){
+      var p = Math.min(1, (now - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + (target * eased).toFixed(dec) + suf;
+      if (p < 1) requestAnimationFrame(step); else el.textContent = raw;
+    }
+    requestAnimationFrame(step);
+  }
+
+  function raceAt(fn, ms){ raceTimers.push(setTimeout(fn, ms)); }
+  function raceCount(el, from, to, ms){
+    if (!el) return;
+    var t0 = performance.now();
+    function tick(now){
+      var q = Math.min(1, (now - t0) / ms);
+      el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - q, 3)));
+      if (q < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function runRace(el){
+    raceTimers.forEach(clearTimeout);
+    raceTimers = [];
+    function q(s){ return el.querySelector(s); }
+    var a = q('[data-runner="A"]'), b = q('[data-runner="B"]');
+    var ia = q('[data-intact="A"]'), ib = q('[data-intact="B"]');
+    var ca = q('[data-clock="A"]'), cb = q('[data-clock="B"]');
+    if (!a || !b) return;
+    if (!rise) {
+      a.style.transition = 'none'; a.style.left = 'calc(100% - 44px)'; a.style.width = '44px';
+      b.style.transition = 'none'; b.style.left = 'calc(100% - 104px)'; b.style.width = '104px';
+      if (ia) ia.textContent = 35; if (ib) ib.textContent = 90;
+      if (ca) ca.textContent = 60; if (cb) cb.textContent = 5;
+      var arrivals = el.querySelectorAll('[data-arrive]');
+      for (var k = 0; k < arrivals.length; k++) arrivals[k].style.opacity = '1';
+      return;
+    }
+    [a, b].forEach(function(r){ r.style.transition = 'none'; r.style.left = '0px'; r.style.width = '116px'; });
+    if (ia) ia.textContent = 100;
+    if (ib) ib.textContent = 100;
+    if (ca) ca.textContent = 0;
+    if (cb) cb.textContent = 0;
+    var arrA = q('[data-arrive="A"]'), arrB = q('[data-arrive="B"]');
+    [arrA, arrB].forEach(function(x){ if (x) { x.style.transition = 'none'; x.style.opacity = '0'; } });
+    raceAt(function(){ if (arrB) { arrB.style.transition = 'opacity .4s'; arrB.style.opacity = '1'; } }, 1400);
+    raceAt(function(){ if (arrA) { arrA.style.transition = 'opacity .4s'; arrA.style.opacity = '1'; } }, 3700);
+    raceAt(function(){
+      b.style.transition = 'left 1.1s ' + EASE + ', width 1.1s ' + EASE;
+      b.style.left = 'calc(100% - 104px)';
+      b.style.width = '104px';
+      raceCount(ib, 100, 90, 1100);
+      raceCount(cb, 0, 5, 1100);
+      a.style.transition = 'left 1.1s ' + EASE;
+      a.style.left = '20%';
+      raceCount(ca, 0, 60, 4200);
+    }, 300);
+    raceAt(function(){
+      a.style.transition = 'left .9s ' + EASE + ', width .9s ' + EASE;
+      a.style.left = '46%';
+      a.style.width = '88px';
+      raceCount(ia, 100, 75, 900);
+    }, 1500);
+    raceAt(function(){
+      a.style.transition = 'left 1.2s ' + EASE + ', width 1.2s ' + EASE;
+      a.style.left = 'calc(100% - 44px)';
+      a.style.width = '44px';
+      raceCount(ia, 75, 35, 1200);
+    }, 2500);
+  }
+  function startRace(el){
+    if (raceOn) return;
+    raceOn = true;
+    var run = function(){ runRace(el); };
+    run();
+    raceLoop = setInterval(run, 8000);
+  }
+
+  function target(el){
+    return el.hasAttribute('data-progress') ? '100%' : '0%';
+  }
+
+  function prime(el, vh){
+    if (el.hasAttribute('data-progress')) { el.style.transition = 'none'; el.style.width = '0%'; }
+    if (el.hasAttribute('data-tick') && rise) { el.style.display = 'inline-block'; el.style.opacity = '0'; el.style.transform = 'scale(.6)'; }
+    if (el.hasAttribute('data-reveal') && el.getBoundingClientRect().top > vh * 0.9) {
+      el.style.opacity = '0';
+      if (rise) el.style.transform = 'translateY(14px)';
+    }
+  }
+
+  function activate(el){
+    done.add(el);
+    if (el.hasAttribute('data-reveal')) {
+      el.style.transition = 'opacity .7s ' + EASE + ', transform .7s ' + EASE;
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    }
+    if (el.hasAttribute('data-progress')) {
+      var t = target(el);
+      el.style.transition = 'width 1.2s ' + EASE;
+      requestAnimationFrame(function(){ el.style.width = t; });
+    }
+    if (el.hasAttribute('data-count')) countUp(el);
+    if (el.hasAttribute('data-race')) startRace(el);
+    if (el.hasAttribute('data-tick')) {
+      var row = el.parentElement && el.parentElement.parentElement;
+      var sibs = row ? Array.prototype.slice.call(row.querySelectorAll('[data-tick]')) : [el];
+      sibs.forEach(function(t, i){
+        setTimeout(function(){
+          done.add(t);
+          t.style.transition = 'opacity .35s ' + EASE + ', transform .35s ' + EASE;
+          t.style.opacity = '1';
+          t.style.transform = 'none';
+        }, i * 70);
+      });
+    }
+  }
+
+  var vh = window.innerHeight;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      activate(e.target);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+
+  var targets = document.querySelectorAll(SEL);
+  for (var ti = 0; ti < targets.length; ti++) {
+    prime(targets[ti], vh);
+    io.observe(targets[ti]);
+  }
+  setTimeout(function(){
+    var all = document.querySelectorAll(SEL);
+    for (var i = 0; i < all.length; i++) { if (!done.has(all[i])) activate(all[i]); }
+  }, 4500);
+})();
+</script>

@@ -1,0 +1,184 @@
+.offer-section {
+  padding: clamp(20px,3vw,40px) clamp(20px,4vw,40px) clamp(80px,9vw,140px);
+}
+
+.offer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.offer-eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #8A8C91;
+}
+
+.offer-heading {
+  margin: 24px 0 0;
+  font-size: clamp(34px,4.4vw,62px);
+  line-height: 1.0;
+  letter-spacing: -.04em;
+  font-weight: 500;
+  color: #0B0B0C;
+}
+
+.offer-subheading {
+  margin: 20px 0 0;
+  max-width: 520px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #55565A;
+}
+
+.offer-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  gap: clamp(20px,3vw,40px);
+  margin-top: 44px;
+  align-items: start;
+}
+
+.offer-image-frame {
+  position: relative;
+  aspect-ratio: 1/1;
+  background: #F6F6F5;
+  border: 1px solid #ECEDEE;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.offer-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.offer-options {
+  display: grid;
+  gap: 12px;
+}
+
+.offer-plan-btn {
+  text-align: left;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #E6E7E9;
+  border-radius: 14px;
+  padding: 22px 24px;
+  font-family: 'Geist', sans-serif;
+  transition: border-color .22s, box-shadow .3s cubic-bezier(.22,.61,.36,1), transform .3s cubic-bezier(.22,.61,.36,1);
+}
+
+.offer-plan-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.offer-plan-label-group {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.offer-plan-radio {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #0B0B0C;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.offer-plan-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: block;
+}
+
+.offer-plan-label {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  color: #0B0B0C;
+}
+
+.offer-badge-active {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  background: #0B0B0C;
+  color: #fff;
+  padding: 5px 9px;
+  border-radius: 999px;
+}
+
+.offer-badge {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #8A8C91;
+}
+
+.offer-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 16px;
+  padding-left: 26px;
+}
+
+.offer-price {
+  font-family: 'Geist Mono', monospace;
+  font-size: 30px;
+  letter-spacing: -.03em;
+  color: #0B0B0C;
+}
+
+.offer-price-compare {
+  font-size: 13px;
+  color: #8A8C91;
+  text-decoration: line-through;
+}
+
+.offer-plan-meta {
+  margin-top: 8px;
+  padding-left: 26px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #55565A;
+}
+
+.offer-cta {
+  margin-top: 8px;
+  border: 0;
+  background: #0B0B0C;
+  color: #fff;
+  font-family: 'Geist', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 18px 24px;
+  border-radius: 11px;
+  cursor: pointer;
+  transition: background .22s, transform .12s cubic-bezier(.22,.61,.36,1);
+}
+
+.offer-footnotes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #8A8C91;
+  padding-top: 4px;
+}

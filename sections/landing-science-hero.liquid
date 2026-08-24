@@ -1,0 +1,175 @@
+{% comment %}
+  Section: Science page hero — landing-science-hero.liquid
+  Ported from Claude Design project "Dr.Strips Sleep - The Science.dc.html"
+{% endcomment %}
+<section id="top" class="sh-hero">
+<div class="sh-glow"></div>
+<div class="sh-container">
+<div class="sh-grid">
+<div>
+<div data-reveal class="sh-eyebrow"><span class="sh-eyebrow-rule"></span>{{ section.settings.eyebrow }}</div>
+<h1 data-reveal class="sh-heading">{{ section.settings.heading | newline_to_br }}</h1>
+<p data-reveal class="sh-intro">{{ section.settings.intro_text }}</p>
+<div data-reveal class="sh-cta-row">
+<a href="{{ section.settings.cta1_url }}" class="hov-header-cta sh-cta-primary">{{ section.settings.cta1_label }} <span class="sh-cta-arrow">↓</span></a>
+<a href="{{ section.settings.cta2_url }}" class="hov-outline-inverse sh-cta-secondary">{{ section.settings.cta2_label }}</a>
+</div>
+</div>
+
+<div data-reveal data-dose class="sh-dose-panel">
+<div class="sh-panel-head">
+<span class="sh-panel-label">{{ section.settings.panel_label }}</span>
+</div>
+
+<div class="sh-panel-cols">
+<div>
+<div class="sh-bar-track">
+<div class="sh-bar-gridline sh-bar-gridline--top"></div>
+<div class="sh-bar-gridline sh-bar-gridline--25"></div>
+<div class="sh-bar-gridline sh-bar-gridline--50"></div>
+<div class="sh-bar-gridline sh-bar-gridline--75"></div>
+<div class="sh-bar-gridline sh-bar-gridline--bottom"></div>
+<div data-col="swallow" class="sh-bar-fill sh-bar-fill--swallow"></div>
+</div>
+<div class="sh-col-label">{{ section.settings.swallow_label }}</div>
+<div data-arrive="swallow" class="sh-col-text">{{ section.settings.swallow_text }}</div>
+</div>
+<div>
+<div class="sh-bar-track">
+<div class="sh-bar-gridline sh-bar-gridline--top"></div>
+<div class="sh-bar-gridline sh-bar-gridline--25"></div>
+<div class="sh-bar-gridline sh-bar-gridline--50"></div>
+<div class="sh-bar-gridline sh-bar-gridline--75"></div>
+<div class="sh-bar-gridline sh-bar-gridline--bottom"></div>
+<div data-col="film" class="sh-bar-fill sh-bar-fill--film"></div>
+</div>
+<div class="sh-col-label sh-col-label--light">{{ section.settings.film_label }}</div>
+<div class="sh-stat-row"><span class="sh-stat-value"><span data-meterval="film">90</span>%</span><span class="sh-stat-suffix">Up to*</span></div>
+</div>
+</div>
+
+<p class="sh-footnote">{{ section.settings.panel_footnote }}</p>
+</div>
+</div>
+<div data-reveal class="sh-scroll-cue"><span class="sh-scroll-arrow">↓</span> Scroll</div>
+</div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  var EASE = 'cubic-bezier(.22,.61,.36,1)';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rise = !reduced;
+
+  var panel = document.querySelector('#top [data-dose]');
+  if (!panel) return;
+
+  function doseParts(el){
+    return {
+      sw: el.querySelector('[data-col="swallow"]'),
+      fi: el.querySelector('[data-col="film"]'),
+      val: el.querySelector('[data-meterval="film"]'),
+      gates: Array.prototype.slice.call(el.querySelectorAll('[data-gate]'))
+    };
+  }
+  function doseCountUp(el, from, to, ms){
+    if (!el) return;
+    var t0 = performance.now();
+    function tick(now){
+      var q = Math.min(1, (now - t0) / ms);
+      el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - q, 3)));
+      if (q < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  function doseEnd(el){
+    var p = doseParts(el);
+    if (p.sw) p.sw.style.height = '26%';
+    if (p.fi) p.fi.style.height = '90%';
+    if (p.val) p.val.textContent = '90';
+    p.gates.forEach(function(g){ g.style.opacity = '1'; g.style.transform = 'none'; });
+  }
+  var doseTimers = [];
+  function doseAt(fn, ms){ doseTimers.push(setTimeout(fn, ms)); }
+  function doseRun(el){
+    doseTimers.forEach(clearTimeout);
+    doseTimers = [];
+    var p = doseParts(el);
+    if (!p.sw || !p.fi) return;
+    if (!rise) { doseEnd(el); return; }
+    var E = EASE;
+    [p.sw, p.fi].forEach(function(c){ c.style.transition = 'none'; c.style.height = '100%'; });
+    if (p.val) p.val.textContent = '100';
+    p.gates.forEach(function(g){ g.style.transition = 'none'; g.style.opacity = '0'; g.style.transform = 'translateY(4px)'; });
+    function gate(i, ms){ doseAt(function(){
+      var g = p.gates[i];
+      if (!g) return;
+      g.style.transition = 'opacity .35s ' + E + ', transform .35s ' + E;
+      g.style.opacity = '1';
+      g.style.transform = 'none';
+    }, ms); }
+    function drop(h, ms, dur){ doseAt(function(){
+      p.sw.style.transition = 'height ' + dur + 'ms ' + E;
+      p.sw.style.height = h;
+    }, ms); }
+    drop('74%', 500, 620); gate(0, 500);
+    drop('50%', 1250, 620); gate(1, 1250);
+    drop('26%', 2000, 700); gate(2, 2000);
+    doseAt(function(){
+      p.fi.style.transition = 'height 1s ' + E;
+      p.fi.style.height = '90%';
+      doseCountUp(p.val, 100, 90, 1000);
+      gate(3, 3300);
+    }, 3300);
+  }
+  var doseOn = false, doseLoop = null;
+  function startDose(){
+    if (doseOn) return;
+    doseOn = true;
+    var run = function(){ doseRun(panel); };
+    run();
+    if (rise) doseLoop = setInterval(run, 11000);
+  }
+
+  if (rise) {
+    var gs = panel.querySelectorAll('[data-gate]');
+    for (var gi = 0; gi < gs.length; gi++) { gs[gi].style.opacity = '0'; gs[gi].style.transform = 'translateY(4px)'; }
+  }
+
+  var started = false;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting || started) return;
+      started = true;
+      io.unobserve(e.target);
+      startDose();
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+  io.observe(panel);
+
+  setTimeout(function(){ if (!started) { started = true; startDose(); } }, 4500);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Science hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The delivery science" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks become <br>)", "default": "The dose on\nthe box,\ndelivered." },
+    { "type": "textarea", "id": "intro_text", "label": "Intro text", "default": "Every supplement is sold on what goes into it. The number that decides whether it works is how much of that ever reaches your blood. This page is the physiology of that gap, the route we take instead, and the limits of what either can tell you." },
+    { "type": "text", "id": "cta1_label", "label": "Primary button label", "default": "Start with the route" },
+    { "type": "text", "id": "cta1_url", "label": "Primary button link", "default": "#route" },
+    { "type": "text", "id": "cta2_label", "label": "Secondary button label", "default": "Jump to the sources" },
+    { "type": "text", "id": "cta2_url", "label": "Secondary button link", "default": "#sources" },
+    { "type": "text", "id": "panel_label", "label": "Panel label", "default": "Dose still intact on arrival" },
+    { "type": "text", "id": "swallow_label", "label": "Swallowed column label", "default": "Swallowed" },
+    { "type": "textarea", "id": "swallow_text", "label": "Swallowed column text", "default": "A fraction of the label. How much depends on the compound." },
+    { "type": "text", "id": "film_label", "label": "Film column label", "default": "Strip2Cell film" },
+    { "type": "textarea", "id": "panel_footnote", "label": "Panel footnote", "default": "*Up to 90% is the ceiling of the sublingual route for actives suited to it, drawn from published pharmacology — not a claim about a specific outcome. We publish no figure for pills or gummies, because it changes with the compound." }
+  ],
+  "presets": [{ "name": "Science hero" }]
+}
+{% endschema %}

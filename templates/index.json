@@ -9,402 +9,823 @@
  */
 {
   "sections": {
-    "two_column_banner_BHUKQt": {
-      "type": "two-column-banner",
+    "header": {
+      "type": "landing-header",
       "blocks": {
-        "eyebrow_EeVfNb": {
-          "type": "eyebrow",
+        "block_01": {
+          "type": "nav_link",
           "settings": {
-            "text": "Dr strips"
+            "label": "Home",
+            "url": "/#top"
           }
         },
-        "heading_zXac4c": {
-          "type": "heading",
+        "block_02": {
+          "type": "nav_link",
           "settings": {
-            "heading": "Power down.",
-            "heading_size": "hxxl"
+            "label": "Science",
+            "url": "/pages/science"
           }
         },
-        "text_3pCRma": {
-          "type": "text",
+        "block_03": {
+          "type": "nav_link",
           "settings": {
-            "text": "<p>A mint-thin strip under your tongue — crafted for deep, restorative rest and better mornings.</p>"
+            "label": "How It Works",
+            "url": "/#how"
           }
         },
-        "button_CTNG8n": {
-          "type": "button",
+        "block_04": {
+          "type": "nav_link",
           "settings": {
-            "button_label": "Help me sleep tonight",
-            "button_link": "shopify://collections/all",
-            "button_style_secondary": false
+            "label": "Reviews",
+            "url": "/#reviews"
           }
         },
-        "caption_keJF76": {
-          "type": "caption",
+        "block_05": {
+          "type": "nav_link",
           "settings": {
-            "text": "30 individually wrapped oral strips"
+            "label": "FAQ",
+            "url": "/#faq"
           }
         }
       },
       "block_order": [
-        "eyebrow_EeVfNb",
-        "heading_zXac4c",
-        "text_3pCRma",
-        "button_CTNG8n",
-        "caption_keJF76"
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05"
       ],
-      "custom_css": [
-        ".two-column-banner {margin-top: 24px;}"
-      ],
-      "name": "Two column banner",
       "settings": {
-        "image": "shopify://shop_images/banner-3.png",
-        "image_position": "right",
-        "height": "medium",
-        "color_scheme": "scheme-7ead139f-ea9a-4641-aa05-7b22f29edcf8",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "logo_alt": "Dr.Strips+ home"
       }
     },
-    "image_banner": {
-      "type": "image-banner",
+    "hero": {
+      "type": "landing-hero",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "block_01": {
+          "type": "stat",
           "settings": {
-            "heading": "Power down.",
-            "heading_size": "hxl"
+            "value": "60",
+            "decimals": 0,
+            "prefix": "",
+            "suffix": "s",
+            "label": "Dissolve"
           }
         },
-        "text_UJdDmK": {
-          "type": "text",
+        "block_02": {
+          "type": "stat",
           "settings": {
-            "text": "A mint-thin strip under your tongue — crafted for deep, restorative rest and better mornings.",
-            "text_style": "subtitle"
+            "value": "90",
+            "decimals": 0,
+            "prefix": "≤",
+            "suffix": "%",
+            "label": "Absorbed*"
           }
         },
-        "button": {
-          "type": "buttons",
+        "block_03": {
+          "type": "stat",
           "settings": {
-            "button_label_1": "Help me sleep tonight",
-            "button_link_1": "shopify://collections/all",
-            "button_style_secondary_1": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "value": "0",
+            "decimals": 0,
+            "prefix": "",
+            "suffix": "g",
+            "label": "Sugar"
+          }
+        },
+        "block_04": {
+          "type": "stat",
+          "settings": {
+            "value": "30",
+            "decimals": 0,
+            "prefix": "",
+            "suffix": "s",
+            "label": "Strips / box"
           }
         }
       },
       "block_order": [
-        "heading",
-        "text_UJdDmK",
-        "button"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".banner {margin-top: -62px;}"
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04"
       ],
       "settings": {
-        "image": "shopify://shop_images/banner_4d8922a2-2a67-4f1e-bb2d-12d4584cfa8e.png",
-        "image_mobile": "shopify://shop_images/banner.png",
-        "image_overlay_opacity": 20,
-        "image_height": "large",
-        "image_behavior": "none",
-        "desktop_content_position": "bottom-left",
-        "desktop_content_alignment": "left",
-        "show_text_box": false,
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "show_text_below": false
+        "product": "dr-strips-sleep",
+        "eyebrow": "Strip2Cell Technology",
+        "heading": "60 seconds\non your\ntongue.",
+        "body": "<p>One strip. No water, no swallowing, no waiting. It dissolves on your tongue and our Strip2Cell delivery system carries the actives straight into your bloodstream — up to 90%* of the dose, skipping the gut and the liver entirely.</p>",
+        "cta_label": "Add to bag",
+        "secondary_label": "See the science",
+        "secondary_link": "/pages/science",
+        "badge": "Melatonin-free",
+        "image_placeholder_text": "Pack shot on white — Dr.Strips+ Sleep, 30 strips"
       }
     },
-    "press_marquee": {
-      "type": "press-marquee",
+    "familiar": {
+      "type": "landing-familiar",
       "blocks": {
-        "item1": {
-          "type": "logo_item",
+        "block_01": {
+          "type": "timeline_item",
           "settings": {
-            "label": "The Morning Standard",
-            "badge": "",
-            "link": ""
+            "time": "11:54 PM",
+            "text": "You promised yourself an early night. But you are still scrolling."
           }
         },
-        "item2": {
-          "type": "logo_item",
+        "block_02": {
+          "type": "timeline_item",
           "settings": {
-            "label": "City Pulse",
-            "badge": "",
-            "link": ""
+            "time": "2:07 AM",
+            "text": "Your mind replays tomorrow's meeting, then starts the maths on how many hours are left."
           }
         },
-        "item3": {
-          "type": "logo_item",
+        "block_03": {
+          "type": "timeline_item",
           "settings": {
-            "label": "Wellness Weekly",
-            "badge": "",
-            "link": ""
+            "time": "6:30 AM",
+            "text": "The alarm wins again. You start the day already behind on rest."
           }
         },
-        "item4": {
-          "type": "logo_item",
+        "block_04": {
+          "type": "stat",
           "settings": {
-            "label": "Night Owl Journal",
-            "badge": "",
-            "link": ""
+            "value": "56",
+            "decimals": 0,
+            "prefix": "",
+            "suffix": "%",
+            "description": "Of adults here sleep less than seven hours a night. The highest rate of 17 markets surveyed."
+          }
+        },
+        "block_05": {
+          "type": "stat",
+          "settings": {
+            "value": "6.4",
+            "decimals": 1,
+            "prefix": "",
+            "suffix": "h",
+            "description": "The average Singapore night, against the 7 to 9 hours a body is built for."
+          }
+        },
+        "block_06": {
+          "type": "impact_card",
+          "settings": {
+            "label": "Day 1",
+            "text": "Reactions start to slow, cravings climb and patience thins."
+          }
+        },
+        "block_07": {
+          "type": "impact_card",
+          "settings": {
+            "label": "Day 7",
+            "text": "Memory dips, blood pressure sits higher, and the waste your brain clears at night backs up."
+          }
+        },
+        "block_08": {
+          "type": "impact_card",
+          "settings": {
+            "label": "Day 30",
+            "text": "Immunity weakens, anxiety sits higher and skin recovers more slowly."
+          }
+        },
+        "block_09": {
+          "type": "impact_card",
+          "settings": {
+            "label": "Day 180",
+            "text": "Up to 3x heart disease risk, a 57% higher type-2 diabetes risk and roughly 2x the risk of depression."
           }
         }
       },
       "block_order": [
-        "item1",
-        "item2",
-        "item3",
-        "item4"
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06",
+        "block_07",
+        "block_08",
+        "block_09"
       ],
       "settings": {
-        "label": "As seen around Singapore soon",
-        "speed": "35",
-        "direction": "left",
-        "pause_on_hover": true,
-        "color_scheme": "scheme-3",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "eyebrow": "01 — The problem you know",
+        "heading_1": "Your body is tired. Your mind hasn't noticed.",
+        "body_1": "The day ends, but the momentum doesn't. You are not lazy and you are not broken — Singapore is one of the most sleep-deprived places in the world, and the way we live makes winding down genuinely hard.",
+        "sources_text": "Sources: YouGov Global Sleep Study, 2024 (17 markets surveyed); Singapore average nightly sleep duration, published market research.",
+        "heading_2": "Sleep debt adds up.",
+        "closing_text": "Rest responds quickly. Better sleep can start tonight."
       }
     },
-    "rich_text_image_Ta3bQt": {
-      "type": "rich-text-image",
+    "how": {
+      "type": "landing-how",
       "blocks": {
-        "eyebrow_AiDnRz": {
-          "type": "eyebrow",
+        "block_01": {
+          "type": "step",
           "settings": {
-            "text": "For Singapore's always-on generation"
+            "time": "0:00",
+            "title": "Open",
+            "text": "Tear the sachet. One strip, one dose — nothing to measure, nothing to count."
           }
         },
-        "heading_Re8aRH": {
-          "type": "heading",
+        "block_02": {
+          "type": "step",
           "settings": {
-            "heading": "Still awake at 2am? You're not the only one.",
-            "heading_size": "h0"
+            "time": "0:05",
+            "title": "Place",
+            "text": "On your tongue. No water, no chewing, no aftertaste."
           }
         },
-        "text_WQpacx": {
-          "type": "text",
+        "block_03": {
+          "type": "step",
           "settings": {
-            "text": "<p>Dr.Strips Sleep is a mint-thin strip that dissolves under your tongue in about 60 seconds — crafted for deep, restorative rest, so you can downshift easily and wake up feeling refreshed.</p>"
+            "time": "0:60",
+            "title": "Dissolve",
+            "text": "Gone in under a minute, absorbed on the way."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "eyebrow": "02 — The ritual",
+        "heading": "Open. Place. Dissolve.",
+        "subheading": "Ten minutes before bedtime. One strip out of a single-dose sachet, onto your tongue. Then put your phone down.",
+        "image_wide_placeholder_text": "Macro — strip on the tongue, mid-dissolve",
+        "image_square_placeholder_text": "Real bedroom, low light, 9:16 crop ok"
+      }
+    },
+    "format": {
+      "type": "landing-format",
+      "blocks": {
+        "block_01": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Dissolves in 60 seconds",
+            "pill_value": "dash",
+            "pill_text": "",
+            "gummy_value": "dash",
+            "gummy_text": ""
           }
         },
-        "buttons_K3YnUM": {
-          "type": "buttons",
+        "block_02": {
+          "type": "comparison_row",
           "settings": {
-            "button_label_1": "Help me sleep tonight",
-            "button_link_1": "shopify://pages/contact",
-            "button_style_secondary_1": false,
-            "button_label_2": "See how it works",
-            "button_link_2": "",
-            "button_style_secondary_2": true
+            "feature": "Strip2Cell absorption, skipping gut & liver",
+            "pill_value": "dash",
+            "pill_text": "",
+            "gummy_value": "dash",
+            "gummy_text": ""
           }
         },
-        "disclaimer_ekgTkM": {
-          "type": "disclaimer",
+        "block_03": {
+          "type": "comparison_row",
           "settings": {
-            "text": "Free islandwide delivery over S$50 · PayNow accepted · 14-night guarantee"
+            "feature": "No water needed",
+            "pill_value": "dash",
+            "pill_text": "",
+            "gummy_value": "check",
+            "gummy_text": ""
           }
         },
-        "badge_inYXdW": {
-          "type": "badge",
+        "block_04": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Zero sugar",
+            "pill_value": "check",
+            "pill_text": "",
+            "gummy_value": "dash",
+            "gummy_text": ""
+          }
+        },
+        "block_05": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Single dose, pocket-sized",
+            "pill_value": "dash",
+            "pill_text": "",
+            "gummy_value": "dash",
+            "gummy_text": ""
+          }
+        },
+        "block_06": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Melatonin-free, plant-derived signal",
+            "pill_value": "text",
+            "pill_text": "Varies",
+            "gummy_value": "text",
+            "gummy_text": "Varies"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06"
+      ],
+      "settings": {
+        "eyebrow": "03 — Format",
+        "heading": "Same night.\nThree formats.",
+        "subheading": "Every format can carry the same active ingredients. What differs is how much of them ever arrives.",
+        "compared_label": "Compared",
+        "brand_column_label": "Dr.Strips+ film",
+        "pill_column_label": "Pill",
+        "gummy_column_label": "Gummy",
+        "footnote": "",
+        "liquids_label": "And liquids",
+        "liquids_text": "<p>A liquid shot is mostly water and flavouring. Read the panel and the actives are usually a fraction of what the bottle implies — and you still swallow it, so it still takes the long way through the gut and the liver. You pay for volume, not for dose.</p>"
+      }
+    },
+    "formula": {
+      "type": "landing-formula",
+      "blocks": {
+        "block_01": {
+          "type": "ingredient",
+          "settings": {
+            "dose": "10mg",
+            "name": "GABA",
+            "text": "Quietens the thoughts that keeps replaying at 1am."
+          }
+        },
+        "block_02": {
+          "type": "ingredient",
+          "settings": {
+            "dose": "10mg",
+            "name": "Valerian root extract",
+            "text": "Shortens the gap between lying down and being asleep."
+          }
+        },
+        "block_03": {
+          "type": "ingredient",
+          "settings": {
+            "dose": "10mg",
+            "name": "Passion flower",
+            "text": "For the nights that end wired rather than tired."
+          }
+        },
+        "block_04": {
+          "type": "ingredient",
+          "settings": {
+            "dose": "10mg",
+            "name": "Chamomile",
+            "text": "Apigenin, the compound behind the cup — at a dose a cup can't reach."
+          }
+        },
+        "block_05": {
+          "type": "reason",
+          "settings": {
+            "heading": "No melatonin hangover",
+            "text": "You wake up clear, not weighted. The grogginess people blame on sleep aids is a dosing artefact."
+          }
+        },
+        "block_06": {
+          "type": "reason",
+          "settings": {
+            "heading": "Plant-derived, not synthetic",
+            "text": "Phytomelatonin from pistachio, delivered with its natural cofactors rather than isolated in a lab."
+          }
+        },
+        "block_07": {
+          "type": "reason",
+          "settings": {
+            "heading": "Non-habit forming",
+            "text": "No dependency, no escalating dose. Night thirty works like night three."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06",
+        "block_07"
+      ],
+      "settings": {
+        "eyebrow": "04 — The formula",
+        "heading": "Pistachio, not a synthetic molecule.",
+        "subheading": "Five active ingredients, each chosen for a specific job.",
+        "lead_image_placeholder_text": "Ingredient still — pistachios, single-source light",
+        "lead_eyebrow": "Lead active",
+        "lead_dose": "100mg",
+        "lead_name": "Pistachio extract",
+        "lead_text": "One of the richest natural sources of phytomelatonin — the plant-derived form of the same sleep signal your body already reads. It works with your rhythm instead of overriding it.",
+        "why_label": "Why melatonin-free",
+        "disclaimer": ""
+      }
+    },
+    "reviews": {
+      "type": "landing-reviews",
+      "blocks": {
+        "block_01": {
+          "type": "testimonial",
+          "settings": {
+            "date": "8 Mar 2026",
+            "title": "Down before my scroll ended",
+            "text": "Two weeks in. I used to lie there until one in the morning rearranging tomorrow. Now the lights go off and that is the end of it.",
+            "initials": "CW",
+            "name": "Clarissa W.",
+            "category": "Sleep"
+          }
+        },
+        "block_02": {
+          "type": "testimonial",
+          "settings": {
+            "date": "19 Jan 2026",
+            "title": "No morning tax",
+            "text": "Capsules always left me heavy until lunch. This does not. Same depth of sleep, none of the drag afterwards.",
+            "initials": "HR",
+            "name": "Haziq R.",
+            "category": "Sleep"
+          }
+        },
+        "block_03": {
+          "type": "testimonial",
+          "settings": {
+            "date": "15 Mar 2026",
+            "title": "Nothing to swallow",
+            "text": "That was the whole reason I tried it. One strip, gone in a minute, no glass of water at midnight.",
+            "initials": "JT",
+            "name": "Jolene T.",
+            "category": "Sleep"
+          }
+        },
+        "block_04": {
+          "type": "testimonial",
+          "settings": {
+            "date": "16 Jul 2026",
+            "title": "Works around my shifts",
+            "text": "My hours move every week. Took one at eight in the morning after a night shift and slept straight through to the afternoon.",
+            "initials": "RL",
+            "name": "Ryan L.",
+            "category": "Sleep"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04"
+      ],
+      "settings": {
+        "eyebrow": "05 — Proof",
+        "rating": "4.7",
+        "subcaption": "Third-party lab tested, every batch"
+      }
+    },
+    "guarantee": {
+      "type": "landing-guarantee",
+      "settings": {
+        "number": "30",
+        "number_label": "Nights",
+        "heading": "Sleep better, or it's free.",
+        "text": "Take it for thirty nights — the full box. If nothing changes, we refund you — no return, no forms, no questions. All of the upside, none of the risk."
+      }
+    },
+    "transparency": {
+      "type": "landing-transparency",
+      "blocks": {
+        "block_01": {
+          "type": "item",
+          "settings": {
+            "heading": "Every dose on the box",
+            "text": "Each active listed at its milligram figure. No ranges, no asterisks pointing nowhere."
+          }
+        },
+        "block_02": {
+          "type": "item",
+          "settings": {
+            "heading": "No proprietary blends",
+            "text": "A blend name is a way to hide a small dose behind a long list. We do not use them."
+          }
+        },
+        "block_03": {
+          "type": "item",
+          "settings": {
+            "heading": "Lab tested every batch",
+            "text": "Third-party tested for potency and purity, batch by batch — not once at launch."
+          }
+        },
+        "block_04": {
+          "type": "item",
+          "settings": {
+            "heading": "No hidden fillers",
+            "text": "Every excipient and flavouring is declared, down to the sweetener. Zero sugar, nothing undisclosed."
+          }
+        },
+        "block_05": {
+          "type": "item",
+          "settings": {
+            "heading": "GMP, HACCP, ISO 22000",
+            "text": "Made in a certified facility held to pharmaceutical manufacturing standards."
+          }
+        },
+        "block_06": {
+          "type": "item",
+          "settings": {
+            "heading": "Engineered in Singapore",
+            "text": "Formulated and engineered here, for the hours people here actually keep."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06"
+      ],
+      "settings": {
+        "eyebrow": "06 — Transparency",
+        "heading": "Nothing hidden behind a blend.",
+        "body": "Every active and every dose is printed on the box and on this page. Nothing is buried in a proprietary mix, and no batch ships without a third-party test against the label. If it is in the strip, you can read it.",
+        "cta_text": "Certificate of analysis available on request — quote the batch number printed on your box and we will send the report for that batch.",
+        "cta_link_label": "Request a report →",
+        "cta_link_url": "/#faq"
+      }
+    },
+    "offer": {
+      "type": "landing-offer",
+      "blocks": {
+        "block_01": {
+          "type": "footnote",
+          "settings": {
+            "text": "Ships from Singapore"
+          }
+        },
+        "block_02": {
+          "type": "footnote",
+          "settings": {
+            "text": "30-night guarantee"
+          }
+        },
+        "block_03": {
+          "type": "footnote",
           "settings": {
             "text": "Zero sugar"
           }
-        },
-        "badge_zbUXEa": {
-          "type": "badge",
-          "settings": {
-            "text": "Plant-derived"
-          }
-        },
-        "badge_AAXxB3": {
-          "type": "badge",
-          "settings": {
-            "text": "Non-habit-forming"
-          }
         }
       },
       "block_order": [
-        "eyebrow_AiDnRz",
-        "heading_Re8aRH",
-        "text_WQpacx",
-        "buttons_K3YnUM",
-        "disclaimer_ekgTkM",
-        "badge_inYXdW",
-        "badge_zbUXEa",
-        "badge_AAXxB3"
+        "block_01",
+        "block_02",
+        "block_03"
       ],
-      "name": "Rich text with image",
       "settings": {
-        "image": "shopify://shop_images/ChatGPTImageAug13_2026_10_16_19PM_1.png",
-        "image_position": "right",
-        "color_scheme": "scheme-7ead139f-ea9a-4641-aa05-7b22f29edcf8",
-        "padding_top": 52,
-        "padding_bottom": 52
+        "product": "dr-strips-sleep",
+        "eyebrow": "07 — The offer",
+        "heading": "Thirty nights of quality sleep.\nStart tonight.",
+        "subheading": "About a dollar a night. A good night's sleep? Priceless",
+        "image_placeholder_text": "Pack shot on white — box + open sachet",
+        "sub_label": "Subscribe monthly",
+        "sub_badge": "Save 15%",
+        "once_label": "One box",
+        "once_badge": "Launch price",
+        "cta_label": "Add to bag"
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 8,
-        "title": "Explore the<strong> strips</strong>",
-        "heading_size": "h0",
-        "description": "",
-        "show_description": false,
-        "description_style": "body",
-        "columns_desktop": 4,
-        "enable_desktop_slider": true,
-        "full_width": false,
-        "show_view_all": true,
-        "view_all_style": "solid",
-        "color_scheme": "scheme-1",
-        "image_ratio": "adapt",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "quick_add": "none",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 44,
-        "padding_bottom": 36
-      }
-    },
-    "rich_text_image_LaTJwT": {
-      "type": "rich-text-image",
+    "faq": {
+      "type": "landing-faq",
       "blocks": {
-        "eyebrow_H46qty": {
-          "type": "eyebrow",
+        "block_01": {
+          "type": "faq_group",
           "settings": {
-            "text": "Meet Dr Strips"
+            "label": "Product & usage",
+            "count_label": "04"
           }
         },
-        "heading_tqt4tP": {
-          "type": "heading",
+        "block_02": {
+          "type": "faq_item",
           "settings": {
-            "heading": "Downtime to dreamtime.",
-            "heading_size": "h0"
+            "question": "What exactly is a Dr.Strips+ strip?",
+            "answer": "<p>A thin film that dissolves on your tongue in under a minute. Strip2Cell delivery carries the actives through the mucosal tissue in your mouth and into your bloodstream, rather than routing them through your gut and liver. No water, no capsule, nothing to swallow.</p>"
           }
         },
-        "text_jREXjF": {
-          "type": "text",
+        "block_03": {
+          "type": "faq_item",
           "settings": {
-            "text": "<p>A mint-thin strip you place under your tongue before bed. It dissolves in about 60 seconds, delivering a calm, plant-derived blend — phytomelatonin, GABA, valerian, passion flower and chamomile — to support restful, natural sleep.</p>"
+            "question": "When and how do I take it?",
+            "answer": "<p>Ten minutes before bedtime. One strip on your tongue, let it dissolve, no water. Avoid eating or drinking for a couple of minutes afterwards. One strip a night.</p>"
           }
         },
-        "badge_A4giGg": {
-          "type": "badge",
+        "block_04": {
+          "type": "faq_item",
           "settings": {
-            "text": "Downshift easily"
+            "question": "Will I wake up groggy?",
+            "answer": "<p>That heaviness usually comes from an overdose of synthetic melatonin still in your system past sunrise. This formula is calibrated to a plant-derived signal and clears with your own rhythm.</p>"
           }
         },
-        "badge_CeaGPw": {
-          "type": "badge",
+        "block_05": {
+          "type": "faq_item",
           "settings": {
-            "text": "Deep, restorative rest"
+            "question": "Is it habit-forming?",
+            "answer": "<p>No. There is no dependency mechanism and no need to escalate the dose. Night thirty behaves like night three.</p>"
           }
         },
-        "badge_dcCYt3": {
-          "type": "badge",
+        "block_06": {
+          "type": "faq_group",
           "settings": {
-            "text": "Wake refreshed, not groggy"
+            "label": "The formula",
+            "count_label": "04"
           }
         },
-        "disclaimer_q3Bbr7": {
-          "type": "disclaimer",
+        "block_07": {
+          "type": "faq_item",
           "settings": {
-            "text": "S$35.90 · 30 nights per box - about $1.20 per night"
+            "question": "Why pistachio instead of melatonin?",
+            "answer": "<p>Pistachio extract is one of the richest natural sources of phytomelatonin — the plant-derived form of the same signal your body already reads, delivered with its natural cofactors instead of isolated in a lab.</p>"
+          }
+        },
+        "block_08": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What does it taste like?",
+            "answer": "<p>Mixed berry, sweetened with monk fruit and steviol glycosides. Zero sugar, and it is gone in under a minute.</p>"
+          }
+        },
+        "block_09": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I take it alongside other supplements or medication?",
+            "answer": "<p>It is a health supplement for generally healthy adults, not a medicine. If you are pregnant, nursing, taking medication or managing a condition, speak to your doctor before use. Keep out of reach of children.</p>"
+          }
+        },
+        "block_10": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I see the lab report for my box?",
+            "answer": "<p>Yes. Every batch is third-party tested for potency and purity. Quote the batch number printed on your box and we will send the certificate of analysis for that batch.</p>"
+          }
+        },
+        "block_11": {
+          "type": "faq_group",
+          "settings": {
+            "label": "Shipping & delivery",
+            "count_label": "03"
+          }
+        },
+        "block_12": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What does shipping cost?",
+            "answer": "<p>Free on one-time orders above S$100, and free on every subscription. Below that, standard Singapore delivery is charged at checkout.</p>"
+          }
+        },
+        "block_13": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How quickly does it arrive?",
+            "answer": "<p>Orders placed before the daily cut-off leave the same or next working day and usually land within one to three working days.</p>"
+          }
+        },
+        "block_14": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you ship outside Singapore?",
+            "answer": "<p>Not yet. Singapore only for now.</p>"
+          }
+        },
+        "block_15": {
+          "type": "faq_group",
+          "settings": {
+            "label": "Guarantee & orders",
+            "count_label": "04"
+          }
+        },
+        "block_16": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does the 30-night guarantee work?",
+            "answer": "<p>Take it for thirty nights — the full box. If nothing changes, email us and we refund it. No return, no forms, no questions.</p>"
+          }
+        },
+        "block_17": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I pause or cancel a subscription?",
+            "answer": "<p>Any time, from your account. No notice period and no fee.</p>"
+          }
+        },
+        "block_18": {
+          "type": "faq_item",
+          "settings": {
+            "question": "My box arrived damaged or wrong.",
+            "answer": "<p>Send us your order number and a photo within seven days of delivery and we will replace it or refund it at no cost to you.</p>"
+          }
+        },
+        "block_19": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How is my personal data handled?",
+            "answer": "<p>We follow Singapore's Personal Data Protection Act. You can ask us to access, correct or delete your data at any time.</p>"
           }
         }
       },
       "block_order": [
-        "eyebrow_H46qty",
-        "heading_tqt4tP",
-        "text_jREXjF",
-        "badge_A4giGg",
-        "badge_CeaGPw",
-        "badge_dcCYt3",
-        "disclaimer_q3Bbr7"
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06",
+        "block_07",
+        "block_08",
+        "block_09",
+        "block_10",
+        "block_11",
+        "block_12",
+        "block_13",
+        "block_14",
+        "block_15",
+        "block_16",
+        "block_17",
+        "block_18",
+        "block_19"
       ],
-      "name": "Rich text with image",
       "settings": {
-        "image": "shopify://shop_images/d183f6dd-1cb7-493f-acfb-25b5cbde885e.png",
-        "image_position": "left",
-        "color_scheme": "",
-        "padding_top": 52,
-        "padding_bottom": 52
+        "eyebrow": "08 — Questions",
+        "heading": "Frequently asked.",
+        "subheading": "Everything people want to know before the first box. If there's anything we might have missed, please drop us a message.",
+        "disclaimer": "Health supplements in Singapore are sold without a licence but must comply with HSA guidelines, which we follow. Not intended to diagnose, treat, cure or prevent any disease."
       }
     },
-    "multicolumn_naWzWG": {
-      "type": "multicolumn",
+    "newsletter": {
+      "type": "landing-newsletter",
+      "settings": {
+        "heading": "Get the delivery science, once a month.",
+        "text": "What we tested, what we shipped, and never the word \"biohack.\" One email, unsubscribe any time.",
+        "email_placeholder": "you@email.com",
+        "button_label": "Join"
+      }
+    },
+    "footer": {
+      "type": "landing-footer",
       "blocks": {
-        "column_aCkMDx": {
-          "type": "column",
+        "block_01": {
+          "type": "link_column",
           "settings": {
-            "image": "shopify://shop_images/image-of-dissolving-strip.png",
-            "title": "Dissolves in ~60 seconds",
-            "text": "<p>No water, no fuss — even when you're already half asleep with the lights off.</p>",
-            "link_label": "",
-            "link": ""
+            "link_1_label": "Science",
+            "link_1_url": "/pages/science",
+            "link_2_label": "How it works",
+            "link_2_url": "/#how",
+            "link_3_label": "Formula",
+            "link_3_url": "/#formula",
+            "link_4_label": "Buy",
+            "link_4_url": "/#offer"
           }
         },
-        "column_tgYJrt": {
-          "type": "column",
+        "block_02": {
+          "type": "link_column",
           "settings": {
-            "image": "shopify://shop_images/Screenshot_2026-08-19_at_12.23.49_AM.png",
-            "title": "The signal, not a sedative",
-            "text": "<p>100mg pistachio extract — a plant source of phytomelatonin that reinforces the sleep signal your body already makes</p>",
-            "link_label": "",
-            "link": ""
-          }
-        },
-        "column_JMchUL": {
-          "type": "column",
-          "settings": {
-            "image": "shopify://shop_images/rest.jpg",
-            "title": "Your brain's brake pedal",
-            "text": "<p>10mg GABA quiets the racing, looping thoughts — while 10mg valerian root helps deepen the rest that follows.</p>",
-            "link_label": "",
-            "link": ""
+            "link_1_label": "FAQ",
+            "link_1_url": "/#faq",
+            "link_2_label": "Shipping",
+            "link_2_url": "/#offer",
+            "link_3_label": "Refunds",
+            "link_3_url": "/#offer",
+            "link_4_label": "Contact",
+            "link_4_url": "/#top"
           }
         }
       },
       "block_order": [
-        "column_aCkMDx",
-        "column_tgYJrt",
-        "column_JMchUL"
+        "block_01",
+        "block_02"
       ],
-      "name": "t:sections.multicolumn.presets.name",
       "settings": {
-        "title": "Why <strong>Dr Strips</strong>",
-        "heading_size": "h0",
-        "image_width": "full",
-        "image_ratio": "square",
-        "button_label": "",
-        "button_link": "",
-        "columns_desktop": 3,
-        "column_alignment": "left",
-        "background_style": "primary",
-        "color_scheme": "",
-        "columns_mobile": "1",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "tagline": "absorbed, not swallowed. <br>precision, delivered. <br>science, dissolved.",
+        "copyright": "© 2026 DR.strips+ · Singapore",
+        "disclaimer": "Not intended to diagnose, treat, cure or prevent any disease"
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
       }
     }
   },
   "order": [
-    "two_column_banner_BHUKQt",
-    "image_banner",
-    "press_marquee",
-    "rich_text_image_Ta3bQt",
-    "featured_collection",
-    "rich_text_image_LaTJwT",
-    "multicolumn_naWzWG"
+    "header",
+    "hero",
+    "familiar",
+    "how",
+    "format",
+    "formula",
+    "reviews",
+    "guarantee",
+    "transparency",
+    "offer",
+    "faq",
+    "newsletter",
+    "footer",
+    "script"
   ]
 }

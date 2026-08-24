@@ -1,0 +1,25 @@
+<section class="gtee-section">
+<div data-reveal class="hov-card gtee-card">
+<div class="gtee-number-row"><span data-count="{{ section.settings.number }}" class="gtee-number">{{ section.settings.number }}</span><span class="gtee-number-label">{{ section.settings.number_label }}</span></div>
+<div>
+<h3 class="gtee-heading">{{ section.settings.heading }}</h3>
+<p class="gtee-text">{{ section.settings.text }}</p>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Landing guarantee",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "number", "label": "Number (animated)", "default": "30" },
+    { "type": "text", "id": "number_label", "label": "Number label", "default": "Nights" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Sleep better, or it's free." },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Take it for thirty nights — the full box. If nothing changes, we refund you — no return, no forms, no questions. All of the upside, none of the risk." }
+  ],
+  "presets": [
+    { "name": "Landing guarantee" }
+  ]
+}
+{% endschema %}

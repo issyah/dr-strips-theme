@@ -1,0 +1,32 @@
+<section id="offer" style="padding:clamp(20px,3vw,40px) clamp(20px,4vw,40px) clamp(80px,9vw,140px)">
+<div style="max-width:1200px;margin:0 auto">
+<div data-reveal style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91">08 — The offer</div>
+<h2 data-reveal style="margin:24px 0 0;font-size:clamp(34px,4.4vw,62px);line-height:1.0;letter-spacing:-.04em;font-weight:500">Thirty nights.<br>Start tonight.</h2>
+<p data-reveal style="margin:20px 0 0;max-width:520px;font-size:17px;line-height:1.65;color:#55565A">About a dollar a night. One strip, thirty nights, nothing else to remember.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,3vw,40px);margin-top:44px;align-items:start">
+<div data-reveal style="position:relative;aspect-ratio:1/1;background:#F6F6F5;border:1px solid #ECEDEE;border-radius:16px;overflow:hidden"><div class="img-slot"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg><span>Pack shot on white — box + open sachet</span></div></div>
+<div data-reveal style="display:grid;gap:12px">
+<button type="button" data-plan="sub" class="plan-card selected" style="text-align:left;cursor:pointer;background:#fff;border:1px solid #E6E7E9;border-radius:14px;padding:22px 24px;font-family:'Geist',sans-serif;transition:border-color .22s,box-shadow .22s">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+<div style="display:flex;align-items:center;gap:11px"><span style="width:15px;height:15px;border-radius:50%;border:1px solid #0B0B0C;display:inline-flex;align-items:center;justify-content:center"><span class="plan-dot" style="width:7px;height:7px;border-radius:50%;display:block"></span></span><span style="font-size:17px;font-weight:500;letter-spacing:-.02em;color:#0B0B0C">Subscribe monthly</span></div>
+<span style="font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;background:#0B0B0C;color:#fff;padding:5px 9px;border-radius:999px">Save 15%</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:10px;margin-top:16px;padding-left:26px"><span style="font-family:'Geist Mono',monospace;font-size:30px;letter-spacing:-.03em;color:#0B0B0C">S${{ sub_cents | money | remove: '$' }}</span><span style="font-size:13px;color:#8A8C91;text-decoration:line-through">S${{ variant.compare_at_price | money | remove: '$' }}</span></div>
+<div style="margin-top:8px;padding-left:26px;font-size:14px;line-height:1.6;color:#55565A">30 strips a month · S${{ sub_per_night_cents | money | remove: '$' }} a night · free shipping · pause or cancel any time</div>
+</button>
+<button type="button" data-plan="once" class="plan-card" style="text-align:left;cursor:pointer;background:#fff;border:1px solid #E6E7E9;border-radius:14px;padding:22px 24px;font-family:'Geist',sans-serif;transition:border-color .22s,box-shadow .22s">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+<div style="display:flex;align-items:center;gap:11px"><span style="width:15px;height:15px;border-radius:50%;border:1px solid #0B0B0C;display:inline-flex;align-items:center;justify-content:center"><span class="plan-dot" style="width:7px;height:7px;border-radius:50%;display:block"></span></span><span style="font-size:17px;font-weight:500;letter-spacing:-.02em;color:#0B0B0C">One box</span></div>
+<span style="font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A8C91">Launch price</span>
+</div>
+<div style="display:flex;align-items:baseline;gap:10px;margin-top:16px;padding-left:26px"><span style="font-family:'Geist Mono',monospace;font-size:30px;letter-spacing:-.03em;color:#0B0B0C">S${{ variant.price | money | remove: '$' }}</span><span style="font-size:13px;color:#8A8C91;text-decoration:line-through">S${{ variant.compare_at_price | money | remove: '$' }}</span></div>
+<div style="margin-top:8px;padding-left:26px;font-size:14px;line-height:1.6;color:#55565A">30 strips · S${{ once_per_night_cents | money | remove: '$' }} a night · free shipping above S$100</div>
+</button>
+<button type="button" data-add-to-bag class="hov-dark hov-dark-lg" style="margin-top:8px;border:0;background:#0B0B0C;color:#fff;font-family:'Geist',sans-serif;font-size:16px;font-weight:500;padding:18px 24px;border-radius:11px;cursor:pointer;transition:background .22s,transform .12s cubic-bezier(.22,.61,.36,1)"><span>Add to bag</span> <span>·</span> <span data-cta-price>S${{ sub_cents | money | remove: '$' }} / month</span></button>
+<div style="display:flex;flex-wrap:wrap;gap:18px;font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8C91;padding-top:4px">
+<span>Ships from Singapore</span><span>30-night guarantee</span><span>Zero sugar</span>
+</div>
+</div>
+</div>
+</div>
+</section>

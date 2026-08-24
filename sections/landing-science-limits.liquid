@@ -1,0 +1,53 @@
+{% comment %}
+  Section: Science page — 07 Limits (what we don't claim) — landing-science-limits.liquid
+{% endcomment %}
+<section id="limits" class="sl-section">
+<div class="sl-container">
+<div data-reveal class="sl-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="sl-header-grid">
+<h2 data-reveal class="sl-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="sl-body">{{ section.settings.body }}</p>
+</div>
+<div class="sl-cards-grid">
+{%- for block in section.blocks -%}
+<div data-reveal {{ block.shopify_attributes }}><div class="sl-card-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div><h4 class="sl-card-title">{{ block.settings.title }}</h4><p class="sl-card-text">{{ block.settings.text }}</p></div>
+{%- endfor -%}
+</div>
+<p data-reveal class="sl-disclaimer">{{ section.settings.disclaimer }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Science — Limits",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "07 — Limits" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What we don't claim." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "A science page that only argues one way is marketing. Here is the other half — the things the evidence does not let us say, stated plainly so you can weigh the rest." },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer", "default": "Dr.Strips+ Sleep is a health supplement, not a medicine, and is not intended to diagnose, treat, cure or prevent any disease. Statements on this page have not been evaluated by the HSA. If you are pregnant, breastfeeding, on medication or under medical care, speak to your doctor first." }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Science — Limits",
+      "blocks": [
+        { "type": "card", "settings": { "title": "It is not a sedative", "text": "The strip supports the body's own wind-down. It does not switch you off, and it is not a treatment for insomnia or any medical condition." } },
+        { "type": "card", "settings": { "title": "Up to 90% is a ceiling", "text": "It describes what the sublingual route can reach for compounds suited to it, from published pharmacology. It is not a measurement of one person on one night." } },
+        { "type": "card", "settings": { "title": "The route is studied; this formula is not a trial", "text": "The evidence we cite is on delivery and on individual actives. We have not run a clinical trial on the finished strip, and we will not imply that we have." } },
+        { "type": "card", "settings": { "title": "Nights differ, people differ", "text": "Caffeine, stress, screens and shift work all outweigh a supplement. The strip is the easy part of a night, not the whole of it." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

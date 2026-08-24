@@ -1,0 +1,107 @@
+.trans-section {
+  padding: clamp(80px,9vw,140px) clamp(20px,4vw,40px);
+  background: #0B0B0C;
+  color: #fff;
+}
+
+.trans-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.trans-eyebrow {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: #8A8C91;
+}
+
+.trans-heading-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap: clamp(28px,4vw,64px);
+  margin-top: 26px;
+  align-items: start;
+}
+
+.trans-heading {
+  margin: 0;
+  font-size: clamp(34px,4.4vw,62px);
+  line-height: 1.0;
+  letter-spacing: -.04em;
+  font-weight: 500;
+  color: #fff;
+}
+
+.trans-body {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #A9ABAF;
+  max-width: 520px;
+}
+
+.trans-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 1px;
+  margin-top: clamp(40px,5vw,72px);
+  background: #232427;
+  border: 1px solid #232427;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.trans-card {
+  background: #111214;
+  padding: 28px 26px 32px;
+}
+
+.trans-card-num {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12.5px;
+  color: #6E7075;
+}
+
+.trans-card-heading {
+  margin: 14px 0 8px;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  color: #fff;
+}
+
+.trans-card-text {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: #A9ABAF;
+}
+
+.trans-footer {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.trans-footer-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #A9ABAF;
+  max-width: 620px;
+}
+
+.trans-footer-link {
+  color: #fff;
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #3E4044;
+  padding-bottom: 3px;
+}

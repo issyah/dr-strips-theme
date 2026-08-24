@@ -1,0 +1,81 @@
+{% comment %}
+  Section: Science page — 06 Manufacturing & testing — landing-science-standards.liquid
+{% endcomment %}
+<section id="standards" class="ssd-section">
+<div class="ssd-container">
+<div data-reveal class="ssd-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="ssd-header-grid">
+<h2 data-reveal class="ssd-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="ssd-body">{{ section.settings.body }}</p>
+</div>
+<div class="ssd-cards-grid">
+{%- assign card_blocks = section.blocks | where: "type", "card" -%}
+{%- for block in card_blocks -%}
+<div data-reveal class="hov-card-dark ssd-card" {{ block.shopify_attributes }}><div class="ssd-card-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div><h4 class="ssd-card-title">{{ block.settings.title }}</h4><p class="ssd-card-text">{{ block.settings.text }}</p></div>
+{%- endfor -%}
+</div>
+<div data-reveal class="ssd-badges">
+{%- assign badge_blocks = section.blocks | where: "type", "badge" -%}
+{%- for block in badge_blocks -%}
+<span {{ block.shopify_attributes }} class="ssd-badge">{{ block.settings.label }}</span>
+{%- endfor -%}
+</div>
+<div data-reveal class="ssd-image-wrap">
+{%- if section.settings.image != blank -%}
+<img src="{{ section.settings.image | image_url: width: 1400 }}" alt="{{ section.settings.image.alt | escape }}" class="ssd-image" loading="lazy" width="1400" height="600">
+{%- else -%}
+<div class="img-slot ssd-image-placeholder"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg><span>{{ section.settings.image_placeholder_text }}</span></div>
+{%- endif -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Science — Standards",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "06 — Manufacturing & testing" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Held to the dose on the box." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "A delivery claim is only worth what the manufacturing behind it is worth. Every batch is made in a certified facility, cast and cut so each strip carries the same dose, and tested by a third party against the printed panel before it ships." },
+    { "type": "image_picker", "id": "image", "label": "Facility image" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Image placeholder caption", "default": "Manufacturing — film casting or cutting line, clinical light" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    },
+    {
+      "type": "badge",
+      "name": "Certification badge",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" }
+      ]
+    }
+  ],
+  "max_blocks": 14,
+  "presets": [
+    {
+      "name": "Science — Standards",
+      "blocks": [
+        { "type": "card", "settings": { "title": "GMP, HACCP, ISO 22000", "text": "Manufactured to pharmaceutical process standards, not food-supplement minimums." } },
+        { "type": "card", "settings": { "title": "Third-party tested, every batch", "text": "Potency and purity, batch by batch — not once at launch and quoted forever." } },
+        { "type": "card", "settings": { "title": "Dose uniformity by design", "text": "The film is cast to a fixed thickness and cut to a fixed area, so strip thirty matches strip one." } },
+        { "type": "card", "settings": { "title": "Single-dose sachets", "text": "Each strip is sealed on its own. No open bottle slowly oxidising on a bedside table." } },
+        { "type": "card", "settings": { "title": "No proprietary blends", "text": "Every active is listed at its milligram figure. A blend name is a way to hide a small dose." } },
+        { "type": "card", "settings": { "title": "Certificate of analysis on request", "text": "Quote the batch number printed on your box and we send the report for that batch." } },
+        { "type": "badge", "settings": { "label": "GMP certified" } },
+        { "type": "badge", "settings": { "label": "HACCP" } },
+        { "type": "badge", "settings": { "label": "ISO 22000:2018" } },
+        { "type": "badge", "settings": { "label": "Zero sugar" } },
+        { "type": "badge", "settings": { "label": "Engineered in Singapore" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,53 @@
+{% comment %}
+  Section: Science page — 08 Sources (citations) — landing-science-sources.liquid
+{% endcomment %}
+<section id="sources" class="ssrc-section">
+<div class="ssrc-container">
+<div data-reveal class="ssrc-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="ssrc-header-grid">
+<h2 data-reveal class="ssrc-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="ssrc-body">{{ section.settings.body }}</p>
+</div>
+<div class="ssrc-citations">
+{%- for block in section.blocks -%}
+<div data-reveal {{ block.shopify_attributes }} class="ssrc-citation-row"><div class="ssrc-citation-claim">{{ block.settings.claim }}</div><div class="ssrc-citation-source">{{ block.settings.source }}</div></div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Science — Sources",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "08 — The receipts" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Where the science comes from." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Each claim above, and the published work it rests on. Bioavailability figures are compound-dependent ranges from the literature, not outcomes measured on this product." }
+  ],
+  "blocks": [
+    {
+      "type": "citation",
+      "name": "Citation",
+      "settings": [
+        { "type": "text", "id": "claim", "label": "Claim" },
+        { "type": "text", "id": "source", "label": "Source" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Science — Sources",
+      "blocks": [
+        { "type": "citation", "settings": { "claim": "First-pass metabolism reduces the dose reaching circulation", "source": "Goodman & Gilman · The Pharmacological Basis of Therapeutics" } },
+        { "type": "citation", "settings": { "claim": "Sublingual delivery reaches up to 90% bioavailability for suited compounds", "source": "British Journal of Clinical Pharmacology, 2018" } },
+        { "type": "citation", "settings": { "claim": "Low, well-timed melatonin cues circadian phase without next-day grogginess", "source": "Cell Reports Medicine, 2023" } },
+        { "type": "citation", "settings": { "claim": "Valerian is associated with improved subjective sleep quality across pooled trials", "source": "Bent et al. · The American Journal of Medicine, 2006" } },
+        { "type": "citation", "settings": { "claim": "Apigenin binds benzodiazepine sites on the GABA-A receptor with low affinity", "source": "Viola et al. · Planta Medica, 1995" } },
+        { "type": "citation", "settings": { "claim": "Pistachios are among the richest dietary sources of plant melatonin", "source": "Published phytomelatonin content analyses" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

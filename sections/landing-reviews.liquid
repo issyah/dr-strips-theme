@@ -1,0 +1,46 @@
+<section id="reviews" class="rev-section">
+<div class="rev-wrap">
+<div data-reveal class="rev-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="rev-head-row">
+<h2 data-reveal class="rev-heading"><span data-count="{{ section.settings.rating }}" data-decimals="1">{{ section.settings.rating }}</span> ★ from<br>early testers.</h2>
+<div data-reveal class="rev-subcaption">{{ section.settings.subcaption | newline_to_br }}</div>
+</div>
+<div class="rev-grid">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-review rev-card" {{ block.shopify_attributes }}>
+<div class="rev-card-meta"><span class="rev-stars">★★★★★</span><span>{{ block.settings.date }}</span></div>
+<h4 class="rev-title">{{ block.settings.title }}</h4>
+<p class="rev-text">{{ block.settings.text }}</p>
+<div class="rev-author-row"><span class="rev-avatar">{{ block.settings.initials }}</span><div class="rev-author-meta">{{ block.settings.name }} · {{ block.settings.category }}</div></div>
+</div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Landing reviews",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "06 — Proof" },
+    { "type": "text", "id": "rating", "label": "Rating", "default": "4.7" },
+    { "type": "textarea", "id": "subcaption", "label": "Subcaption (line breaks preserved)", "default": "Singapore testers · placeholder copy\nThird-party lab tested, every batch" }
+  ],
+  "blocks": [
+    { "type": "testimonial", "name": "Testimonial", "settings": [ { "type": "text", "id": "date", "label": "Date", "default": "8 Mar 2026" }, { "type": "text", "id": "title", "label": "Title" }, { "type": "textarea", "id": "text", "label": "Quote text" }, { "type": "text", "id": "initials", "label": "Initials", "default": "CW" }, { "type": "text", "id": "name", "label": "Name" }, { "type": "text", "id": "category", "label": "Category", "default": "Sleep" } ] }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Landing reviews",
+      "blocks": [
+        { "type": "testimonial", "settings": { "date": "8 Mar 2026", "title": "Down before my scroll ended", "text": "Two weeks in. I used to lie there until one in the morning rearranging tomorrow. Now the lights go off and that is the end of it.", "initials": "CW", "name": "Clarissa W.", "category": "Sleep" } },
+        { "type": "testimonial", "settings": { "date": "19 Jan 2026", "title": "No morning tax", "text": "Capsules always left me heavy until lunch. This does not. Same depth of sleep, none of the drag afterwards.", "initials": "HR", "name": "Haziq R.", "category": "Sleep" } },
+        { "type": "testimonial", "settings": { "date": "15 Mar 2026", "title": "Nothing to swallow", "text": "That was the whole reason I tried it. One strip, gone in a minute, no glass of water at midnight.", "initials": "JT", "name": "Jolene T.", "category": "Sleep" } },
+        { "type": "testimonial", "settings": { "date": "16 Jul 2026", "title": "Works around my shifts", "text": "My hours move every week. Took one at eight in the morning after a night shift and slept straight through to the afternoon.", "initials": "RL", "name": "Ryan L.", "category": "Sleep" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,63 @@
+{% comment %}
+  Section: Science page — 01 The problem (first-pass metabolism) — landing-science-route.liquid
+{% endcomment %}
+<section id="route" class="sr-section">
+<div class="sr-container">
+<div data-reveal class="sr-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="sr-intro-grid">
+<h2 data-reveal class="sr-heading">{{ section.settings.heading }}</h2>
+<div>
+<p data-reveal class="sr-body">{{ section.settings.body_1 }}</p>
+<p data-reveal class="sr-body--second">{{ section.settings.body_2 }}</p>
+<div data-reveal class="sr-citation">{{ section.settings.citation }}</div>
+</div>
+</div>
+
+<div data-reveal class="sr-divider"><div data-progress class="sr-progress"></div></div>
+<div class="sr-cards">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-card sr-card" {{ block.shopify_attributes }}>
+<div class="sr-card-head"><span>{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span><span>{{ block.settings.label }}</span></div>
+<h3 class="sr-card-title">{{ block.settings.title }}</h3>
+<p class="sr-card-text">{{ block.settings.text }}</p>
+</div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Science — The problem",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "01 — The problem" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Your liver gets first pick." },
+    { "type": "textarea", "id": "body_1", "label": "Body text 1", "default": "Anything you swallow takes the long route. It has to survive the stomach, cross the wall of the small intestine, and then pass through the liver — where enzymes metabolise a share of it — before a single molecule reaches general circulation. Pharmacologists call that last step first-pass metabolism." },
+    { "type": "textarea", "id": "body_2", "label": "Body text 2", "default": "It is why the figure printed on a panel and the figure in your blood are two different numbers. Not a defect in the formula. A property of the route." },
+    { "type": "text", "id": "citation", "label": "Citation", "default": "Goodman & Gilman · The Pharmacological Basis of Therapeutics" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Science — The problem",
+      "blocks": [
+        { "type": "card", "settings": { "label": "Stomach", "title": "Acid, then enzymes", "text": "Breakdown starts before absorption does. Botanicals and peptides are the least forgiving of this stage." } },
+        { "type": "card", "settings": { "label": "Small intestine", "title": "Only part crosses", "text": "What survives has to pass the gut wall. What it finds there — food, timing, your own gut — changes the answer nightly." } },
+        { "type": "card", "settings": { "label": "Liver, then blood", "title": "The first pass", "text": "Everything absorbed from the gut is routed to the liver first, where enzymes metabolise a share of the dose. What survives that is the only part that ever had a job to do — an hour or more after you swallowed it." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

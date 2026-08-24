@@ -1,0 +1,65 @@
+<section id="faq" class="faq-section">
+<div class="faq-container">
+<div data-reveal class="faq-eyebrow">{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="faq-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="faq-subheading">{{ section.settings.subheading }}</p>
+
+{%- for block in section.blocks -%}
+  {%- if block.type == 'faq_group' -%}
+    {%- unless forloop.first -%}</div></div>{%- endunless -%}
+    <div class="faq-group" {{ block.shopify_attributes }}>
+    <div data-reveal class="faq-group-label"><span>{{ block.settings.label }}</span><span class="faq-group-count">{{ block.settings.count_label }}</span></div>
+    <div data-reveal class="faq-items">
+  {%- elsif block.type == 'faq_item' -%}
+    <details data-faq class="faq-item" {{ block.shopify_attributes }}><summary class="faq-question">{{ block.settings.question }}<span data-faq-mark class="faq-mark">+</span></summary><p class="faq-answer">{{ block.settings.answer }}</p></details>
+  {%- endif -%}
+  {%- if forloop.last -%}</div></div>{%- endif -%}
+{%- endfor -%}
+
+<p data-reveal class="faq-disclaimer">{{ section.settings.disclaimer }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Landing FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "09 — Questions" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked." },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Everything people want to know before the first box. Anything we have missed, message us." },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer", "default": "Health supplements in Singapore are sold without a licence but must comply with HSA guidelines, which we follow. Not intended to diagnose, treat, cure or prevent any disease." }
+  ],
+  "blocks": [
+    { "type": "faq_group", "name": "FAQ group heading", "settings": [ { "type": "text", "id": "label", "label": "Group label", "default": "Product & usage" }, { "type": "text", "id": "count_label", "label": "Count label", "default": "04" } ] },
+    { "type": "faq_item", "name": "FAQ question", "settings": [ { "type": "text", "id": "question", "label": "Question" }, { "type": "richtext", "id": "answer", "label": "Answer" } ] }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "Landing FAQ",
+      "blocks": [
+        { "type": "faq_group", "settings": { "label": "Product & usage", "count_label": "04" } },
+        { "type": "faq_item", "settings": { "question": "What exactly is a Dr.Strips+ strip?", "answer": "<p>A thin film that dissolves on your tongue in under a minute. Strip2Cell delivery carries the actives through the mucosal tissue in your mouth and into your bloodstream, rather than routing them through your gut and liver. No water, no capsule, nothing to swallow.</p>" } },
+        { "type": "faq_item", "settings": { "question": "When and how do I take it?", "answer": "<p>Ten minutes before bedtime. One strip on your tongue, let it dissolve, no water. Avoid eating or drinking for a couple of minutes afterwards. One strip a night.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Will I wake up groggy?", "answer": "<p>That heaviness usually comes from an overdose of synthetic melatonin still in your system past sunrise. This formula is calibrated to a plant-derived signal and clears with your own rhythm.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Is it habit-forming?", "answer": "<p>No. There is no dependency mechanism and no need to escalate the dose. Night thirty behaves like night three.</p>" } },
+        { "type": "faq_group", "settings": { "label": "The formula", "count_label": "04" } },
+        { "type": "faq_item", "settings": { "question": "Why pistachio instead of melatonin?", "answer": "<p>Pistachio extract is one of the richest natural sources of phytomelatonin — the plant-derived form of the same signal your body already reads, delivered with its natural cofactors instead of isolated in a lab.</p>" } },
+        { "type": "faq_item", "settings": { "question": "What does it taste like?", "answer": "<p>Mixed berry, sweetened with monk fruit and steviol glycosides. Zero sugar, and it is gone in under a minute.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Can I take it alongside other supplements or medication?", "answer": "<p>It is a health supplement for generally healthy adults, not a medicine. If you are pregnant, nursing, taking medication or managing a condition, speak to your doctor before use. Keep out of reach of children.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Can I see the lab report for my box?", "answer": "<p>Yes. Every batch is third-party tested for potency and purity. Quote the batch number printed on your box and we will send the certificate of analysis for that batch.</p>" } },
+        { "type": "faq_group", "settings": { "label": "Shipping & delivery", "count_label": "03" } },
+        { "type": "faq_item", "settings": { "question": "What does shipping cost?", "answer": "<p>Free on one-time orders above S$100, and free on every subscription. Below that, standard Singapore delivery is charged at checkout.</p>" } },
+        { "type": "faq_item", "settings": { "question": "How quickly does it arrive?", "answer": "<p>Orders placed before the daily cut-off leave the same or next working day and usually land within one to three working days.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Do you ship outside Singapore?", "answer": "<p>Not yet. Singapore only for now.</p>" } },
+        { "type": "faq_group", "settings": { "label": "Guarantee & orders", "count_label": "04" } },
+        { "type": "faq_item", "settings": { "question": "How does the 30-night guarantee work?", "answer": "<p>Take it for thirty nights — the full box. If nothing changes, email us and we refund it. No return, no forms, no questions.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Can I pause or cancel a subscription?", "answer": "<p>Any time, from your account. No notice period and no fee.</p>" } },
+        { "type": "faq_item", "settings": { "question": "My box arrived damaged or wrong.", "answer": "<p>Send us your order number and a photo within seven days of delivery and we will replace it or refund it at no cost to you.</p>" } },
+        { "type": "faq_item", "settings": { "question": "How is my personal data handled?", "answer": "<p>We follow Singapore's Personal Data Protection Act. You can ask us to access, correct or delete your data at any time.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

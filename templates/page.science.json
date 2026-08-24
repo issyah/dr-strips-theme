@@ -1,0 +1,565 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "landing-header",
+      "blocks": {
+        "block_01": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Home",
+            "url": "/#top"
+          }
+        },
+        "block_02": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Science",
+            "url": "/pages/science"
+          }
+        },
+        "block_03": {
+          "type": "nav_link",
+          "settings": {
+            "label": "How It Works",
+            "url": "/#how"
+          }
+        },
+        "block_04": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Reviews",
+            "url": "/#reviews"
+          }
+        },
+        "block_05": {
+          "type": "nav_link",
+          "settings": {
+            "label": "FAQ",
+            "url": "/#faq"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05"
+      ],
+      "settings": {
+        "logo_alt": "Dr.Strips+ home"
+      }
+    },
+    "science_hero": {
+      "type": "landing-science-hero",
+      "settings": {}
+    },
+    "science_route": {
+      "type": "landing-science-route",
+      "blocks": {
+        "block_01": {
+          "type": "card",
+          "settings": {
+            "label": "Stomach",
+            "title": "Acid, then enzymes",
+            "text": "Breakdown starts before absorption does. Botanicals and peptides are the least forgiving of this stage."
+          }
+        },
+        "block_02": {
+          "type": "card",
+          "settings": {
+            "label": "Small intestine",
+            "title": "Only part crosses",
+            "text": "What survives has to pass the gut wall. What it finds there — food, timing, your own gut — changes the answer nightly."
+          }
+        },
+        "block_03": {
+          "type": "card",
+          "settings": {
+            "label": "Liver, then blood",
+            "title": "The first pass",
+            "text": "Everything absorbed from the gut is routed to the liver first, where enzymes metabolise a share of the dose. What survives that is the only part that ever had a job to do — an hour or more after you swallowed it."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {}
+    },
+    "science_mucosa": {
+      "type": "landing-science-mucosa",
+      "blocks": {
+        "block_01": {
+          "type": "point",
+          "settings": {
+            "title": "Thin, non-keratinised membrane",
+            "text": "Nothing like the barrier lining your gut. It is built to let things through."
+          }
+        },
+        "block_02": {
+          "type": "point",
+          "settings": {
+            "title": "A dense capillary bed beneath it",
+            "text": "Blood sits millimetres from the surface, which is why absorption starts in minutes rather than an hour."
+          }
+        },
+        "block_03": {
+          "type": "point",
+          "settings": {
+            "title": "Straight into systemic circulation",
+            "text": "The veins draining your mouth do not route through the liver, so nothing is metabolised before it can work."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {}
+    },
+    "science_format": {
+      "type": "landing-science-format",
+      "blocks": {
+        "block_01": {
+          "type": "bar",
+          "settings": {
+            "label": "Strip2Cell film",
+            "sublabel": "Mucosa → bloodstream",
+            "percent": 90
+          }
+        },
+        "block_02": {
+          "type": "bar",
+          "settings": {
+            "label": "Capsule or tablet",
+            "sublabel": "Gut → liver → bloodstream",
+            "percent": 34,
+            "right_label": "A fraction"
+          }
+        },
+        "block_03": {
+          "type": "bar",
+          "settings": {
+            "label": "Gummy",
+            "sublabel": "The same route, plus sugar",
+            "percent": 38,
+            "right_label": "A fraction"
+          }
+        },
+        "block_04": {
+          "type": "bar",
+          "settings": {
+            "label": "Liquid",
+            "sublabel": "Faster to the gut, same liver",
+            "percent": 45,
+            "right_label": "A fraction"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04"
+      ],
+      "settings": {}
+    },
+    "science_signal": {
+      "type": "landing-science-signal",
+      "blocks": {
+        "block_01": {
+          "type": "card",
+          "settings": {
+            "title": "It works with the rhythm",
+            "text": "A cue, not a switch. Your body still runs the night; the strip tells it the night has started."
+          }
+        },
+        "block_02": {
+          "type": "card",
+          "settings": {
+            "title": "Delivered with its cofactors",
+            "text": "100mg of pistachio extract per strip, carrying phytomelatonin in the form the plant made it."
+          }
+        },
+        "block_03": {
+          "type": "card",
+          "settings": {
+            "title": "Nothing to clear at breakfast",
+            "text": "No synthetic melatonin in the formula, and no escalating dose to keep it working on night thirty."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {}
+    },
+    "science_formula": {
+      "type": "landing-science-formula",
+      "blocks": {
+        "block_01": {
+          "type": "failure",
+          "settings": {
+            "eyebrow": "Failure 01",
+            "title": "Can't switch off",
+            "text": "Lights out, mind still running the day. This is excitation that has not been braked.",
+            "ing1_dose": "10mg",
+            "ing1_name": "GABA",
+            "ing1_text": "The brain's principal inhibitory neurotransmitter — the brake on cortical activity, supplied directly rather than coaxed.",
+            "ing2_dose": "10mg",
+            "ing2_name": "Passion flower",
+            "ing2_text": "Flavonoids that act on the same GABA-A receptor, traditionally used for the nights that end wired rather than tired."
+          }
+        },
+        "block_02": {
+          "type": "failure",
+          "settings": {
+            "eyebrow": "Failure 02",
+            "title": "Can't drop off",
+            "text": "Calm enough, but the gap between lying down and being asleep keeps stretching.",
+            "ing1_dose": "100mg",
+            "ing1_name": "Pistachio extract · phytomelatonin",
+            "ing1_text": "The timing cue that opens the door. Absorbed sublingually, it reaches circulation while you are still putting your phone down.",
+            "ing2_dose": "10mg",
+            "ing2_name": "Valerian root",
+            "ing2_text": "Valerenic acid interacts with GABA-A signalling. Pooled trials associate valerian with improved subjective sleep quality — Bent et al., The American Journal of Medicine, 2006."
+          }
+        },
+        "block_03": {
+          "type": "failure",
+          "settings": {
+            "eyebrow": "Failure 03",
+            "title": "Wake up groggy",
+            "text": "You slept. You just did not arrive in the morning with it. Usually a dose still in the system.",
+            "ing1_dose": "10mg",
+            "ing1_name": "Chamomile · apigenin",
+            "ing1_text": "The flavone behind the cup, at a dose a cup cannot reach. It binds GABA-A benzodiazepine sites weakly — calming without the sedation profile of a drug.",
+            "ing2_dose": "0mg",
+            "ing2_name": "Synthetic melatonin",
+            "ing2_text": "Deliberately absent. The morning is part of the product, so nothing in the formula is designed to outlast the night."
+          }
+        },
+        "block_04": {
+          "type": "ingredient_row",
+          "settings": {
+            "name": "Pistachio extract",
+            "dose": "100mg",
+            "mechanism": "Phytomelatonin — circadian timing cue"
+          }
+        },
+        "block_05": {
+          "type": "ingredient_row",
+          "settings": {
+            "name": "GABA",
+            "dose": "10mg",
+            "mechanism": "Inhibitory neurotransmitter — reduces excitation"
+          }
+        },
+        "block_06": {
+          "type": "ingredient_row",
+          "settings": {
+            "name": "Valerian root",
+            "dose": "10mg",
+            "mechanism": "Valerenic acid — GABA-A signalling, sleep onset"
+          }
+        },
+        "block_07": {
+          "type": "ingredient_row",
+          "settings": {
+            "name": "Passion flower",
+            "dose": "10mg",
+            "mechanism": "Flavonoids — GABA-A modulation"
+          }
+        },
+        "block_08": {
+          "type": "ingredient_row",
+          "settings": {
+            "name": "Chamomile",
+            "dose": "10mg",
+            "mechanism": "Apigenin — weak benzodiazepine-site binding"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06",
+        "block_07",
+        "block_08"
+      ],
+      "settings": {}
+    },
+    "science_standards": {
+      "type": "landing-science-standards",
+      "blocks": {
+        "block_01": {
+          "type": "card",
+          "settings": {
+            "title": "GMP, HACCP, ISO 22000",
+            "text": "Manufactured to pharmaceutical process standards, not food-supplement minimums."
+          }
+        },
+        "block_02": {
+          "type": "card",
+          "settings": {
+            "title": "Third-party tested, every batch",
+            "text": "Potency and purity, batch by batch — not once at launch and quoted forever."
+          }
+        },
+        "block_03": {
+          "type": "card",
+          "settings": {
+            "title": "Dose uniformity by design",
+            "text": "The film is cast to a fixed thickness and cut to a fixed area, so strip thirty matches strip one."
+          }
+        },
+        "block_04": {
+          "type": "card",
+          "settings": {
+            "title": "Single-dose sachets",
+            "text": "Each strip is sealed on its own. No open bottle slowly oxidising on a bedside table."
+          }
+        },
+        "block_05": {
+          "type": "card",
+          "settings": {
+            "title": "No proprietary blends",
+            "text": "Every active is listed at its milligram figure. A blend name is a way to hide a small dose."
+          }
+        },
+        "block_06": {
+          "type": "card",
+          "settings": {
+            "title": "Certificate of analysis on request",
+            "text": "Quote the batch number printed on your box and we send the report for that batch."
+          }
+        },
+        "block_07": {
+          "type": "badge",
+          "settings": {
+            "label": "GMP certified"
+          }
+        },
+        "block_08": {
+          "type": "badge",
+          "settings": {
+            "label": "HACCP"
+          }
+        },
+        "block_09": {
+          "type": "badge",
+          "settings": {
+            "label": "ISO 22000:2018"
+          }
+        },
+        "block_10": {
+          "type": "badge",
+          "settings": {
+            "label": "Zero sugar"
+          }
+        },
+        "block_11": {
+          "type": "badge",
+          "settings": {
+            "label": "Engineered in Singapore"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06",
+        "block_07",
+        "block_08",
+        "block_09",
+        "block_10",
+        "block_11"
+      ],
+      "settings": {}
+    },
+    "science_limits": {
+      "type": "landing-science-limits",
+      "blocks": {
+        "block_01": {
+          "type": "card",
+          "settings": {
+            "title": "It is not a sedative",
+            "text": "The strip supports the body's own wind-down. It does not switch you off, and it is not a treatment for insomnia or any medical condition."
+          }
+        },
+        "block_02": {
+          "type": "card",
+          "settings": {
+            "title": "Up to 90% is a ceiling",
+            "text": "It describes what the sublingual route can reach for compounds suited to it, from published pharmacology. It is not a measurement of one person on one night."
+          }
+        },
+        "block_03": {
+          "type": "card",
+          "settings": {
+            "title": "The route is studied; this formula is not a trial",
+            "text": "The evidence we cite is on delivery and on individual actives. We have not run a clinical trial on the finished strip, and we will not imply that we have."
+          }
+        },
+        "block_04": {
+          "type": "card",
+          "settings": {
+            "title": "Nights differ, people differ",
+            "text": "Caffeine, stress, screens and shift work all outweigh a supplement. The strip is the easy part of a night, not the whole of it."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04"
+      ],
+      "settings": {}
+    },
+    "science_sources": {
+      "type": "landing-science-sources",
+      "blocks": {
+        "block_01": {
+          "type": "citation",
+          "settings": {
+            "claim": "First-pass metabolism reduces the dose reaching circulation",
+            "source": "Goodman & Gilman · The Pharmacological Basis of Therapeutics"
+          }
+        },
+        "block_02": {
+          "type": "citation",
+          "settings": {
+            "claim": "Sublingual delivery reaches up to 90% bioavailability for suited compounds",
+            "source": "British Journal of Clinical Pharmacology, 2018"
+          }
+        },
+        "block_03": {
+          "type": "citation",
+          "settings": {
+            "claim": "Low, well-timed melatonin cues circadian phase without next-day grogginess",
+            "source": "Cell Reports Medicine, 2023"
+          }
+        },
+        "block_04": {
+          "type": "citation",
+          "settings": {
+            "claim": "Valerian is associated with improved subjective sleep quality across pooled trials",
+            "source": "Bent et al. · The American Journal of Medicine, 2006"
+          }
+        },
+        "block_05": {
+          "type": "citation",
+          "settings": {
+            "claim": "Apigenin binds benzodiazepine sites on the GABA-A receptor with low affinity",
+            "source": "Viola et al. · Planta Medica, 1995"
+          }
+        },
+        "block_06": {
+          "type": "citation",
+          "settings": {
+            "claim": "Pistachios are among the richest dietary sources of plant melatonin",
+            "source": "Published phytomelatonin content analyses"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06"
+      ],
+      "settings": {}
+    },
+    "science_cta": {
+      "type": "landing-science-cta",
+      "settings": {
+        "product": "dr-strips-sleep"
+      }
+    },
+    "footer": {
+      "type": "landing-footer",
+      "blocks": {
+        "block_01": {
+          "type": "link_column",
+          "settings": {
+            "link_1_label": "Science",
+            "link_1_url": "/pages/science",
+            "link_2_label": "How it works",
+            "link_2_url": "/#how",
+            "link_3_label": "Formula",
+            "link_3_url": "/#formula",
+            "link_4_label": "Buy",
+            "link_4_url": "/#offer"
+          }
+        },
+        "block_02": {
+          "type": "link_column",
+          "settings": {
+            "link_1_label": "FAQ",
+            "link_1_url": "/#faq",
+            "link_2_label": "Shipping",
+            "link_2_url": "/#offer",
+            "link_3_label": "Refunds",
+            "link_3_url": "/#offer",
+            "link_4_label": "Contact",
+            "link_4_url": "/#top"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02"
+      ],
+      "settings": {
+        "tagline": "absorbed, not swallowed. <br>precision, delivered. <br>science, dissolved.",
+        "copyright": "© 2026 DR.strips+ · Singapore",
+        "disclaimer": "Not intended to diagnose, treat, cure or prevent any disease"
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "science_hero",
+    "science_route",
+    "science_mucosa",
+    "science_format",
+    "science_signal",
+    "science_formula",
+    "science_standards",
+    "science_limits",
+    "science_sources",
+    "science_cta",
+    "footer",
+    "script"
+  ]
+}
