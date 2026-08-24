@@ -7,76 +7,447 @@
    Do NOT rename, restructure, or otherwise "clean up" this block. */
 
 /* This stylesheet only loads on pages that include the landing-header section (the home page and the Science page), so page-wide selectors below are safe and won't leak onto product/collection/cart pages. */
-main#MainContent{padding:0}
-body{margin:0;background:#fff;color:#0B0B0C;font-family:'Geist',-apple-system,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;text-wrap:pretty;overflow-x:hidden}
-html{scroll-behavior:smooth}
-#MainContent a{color:#0B0B0C;text-decoration:none}
-#MainContent a:hover{color:#55565A}
-#MainContent summary::-webkit-details-marker{display:none}
-#MainContent summary{list-style:none;cursor:pointer}
-#MainContent ::selection{background:#0B0B0C;color:#fff}
-#MainContent button{font:inherit}
-@keyframes ds-dissolve-loop{0%{width:100%;opacity:1;filter:blur(0)}70%{width:8%;opacity:.9;filter:blur(0)}88%{width:0%;opacity:.2;filter:blur(3px)}100%{width:0%;opacity:0;filter:blur(6px)}}
-@keyframes ds-drift{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-10px,0)}100%{transform:translate3d(0,0,0)}}
-@media (prefers-reduced-motion:reduce){#MainContent *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-.hov-header-cta:hover{background:#E6E7E9 !important;transform:translateY(-1px) !important}
-.hov-header-cta:active{transform:scale(.97) !important}
-.hov-dark:hover{background:#2A2B2E !important;transform:translateY(-1px) !important}
-.hov-dark-sm:active{transform:scale(.98) !important}
-.hov-dark-lg:active{transform:scale(.99) !important}
-.hov-outline:hover{border-color:#0B0B0C !important;transform:translateY(-2px) !important}
-.hov-step:hover{background:#FAFAF9 !important}
-.hov-ingredient:hover{transform:translateY(-3px) !important;border-color:#0B0B0C !important;box-shadow:0 16px 34px rgba(11,11,12,.09) !important}
-.hov-review:hover{transform:translateY(-4px) !important;box-shadow:0 20px 40px rgba(11,11,12,.10) !important}
-.hov-input:focus{border-color:#0B0B0C !important;box-shadow:0 0 0 3px rgba(11,11,12,.08) !important;outline:none}
-.plan-card{border-color:#E6E7E9}
-.plan-card:hover{transform:translateY(-3px) !important;box-shadow:0 18px 38px rgba(11,11,12,.09)}
-.plan-card.selected{border-color:#0B0B0C}
-.plan-dot{background:transparent}
-.plan-card.selected .plan-dot{background:#0B0B0C}
+main#MainContent {
+  padding: 0
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #0B0B0C;
+  font-family: 'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+  overflow-x: hidden
+}
+
+html {
+  scroll-behavior: smooth
+}
+
+#MainContent a {
+  text-decoration: none
+}
+
+#MainContent a:hover {
+  color: #55565A
+}
+
+#MainContent summary::-webkit-details-marker {
+  display: none
+}
+
+#MainContent summary {
+  list-style: none;
+  cursor: pointer
+}
+
+#MainContent ::selection {
+  background: #0B0B0C;
+  color: #fff
+}
+
+#MainContent button {
+  font: inherit
+}
+
+@keyframes ds-dissolve-loop {
+  0% {
+    width: 100%;
+    opacity: 1;
+    filter: blur(0)
+  }
+
+  70% {
+    width: 8%;
+    opacity: .9;
+    filter: blur(0)
+  }
+
+  88% {
+    width: 0%;
+    opacity: .2;
+    filter: blur(3px)
+  }
+
+  100% {
+    width: 0%;
+    opacity: 0;
+    filter: blur(6px)
+  }
+}
+
+@keyframes ds-drift {
+  0% {
+    transform: translate3d(0, 0, 0)
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0)
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0)
+  }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  #MainContent * {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important
+  }
+}
+
+.hov-header-cta:hover {
+  background: #E6E7E9 !important;
+  transform: translateY(-1px) !important
+}
+
+.hov-header-cta:active {
+  transform: scale(.97) !important
+}
+
+.hov-dark:hover {
+  background: #2A2B2E !important;
+  transform: translateY(-1px) !important
+}
+
+.hov-dark-sm:active {
+  transform: scale(.98) !important
+}
+
+.hov-dark-lg:active {
+  transform: scale(.99) !important
+}
+
+.hov-outline:hover {
+  border-color: #0B0B0C !important;
+  transform: translateY(-2px) !important
+}
+
+.hov-step:hover {
+  background: #FAFAF9 !important
+}
+
+.hov-ingredient:hover {
+  transform: translateY(-3px) !important;
+  border-color: #0B0B0C !important;
+  box-shadow: 0 16px 34px rgba(11, 11, 12, .09) !important
+}
+
+.hov-review:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 20px 40px rgba(11, 11, 12, .10) !important
+}
+
+.hov-input:focus {
+  border-color: #0B0B0C !important;
+  box-shadow: 0 0 0 3px rgba(11, 11, 12, .08) !important;
+  outline: none
+}
+
+.plan-card {
+  border-color: #E6E7E9
+}
+
+.plan-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 18px 38px rgba(11, 11, 12, .09)
+}
+
+.plan-card.selected {
+  border-color: #0B0B0C
+}
+
+.plan-dot {
+  background: transparent
+}
+
+.plan-card.selected .plan-dot {
+  background: #0B0B0C
+}
+
 /* Apple-style soft-shadow hover lift for key information cards. Use .hov-card on light/white cards, .hov-card-dark on cards that sit on a dark section background. */
-.hov-card{transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s cubic-bezier(.22,.61,.36,1),border-color .3s cubic-bezier(.22,.61,.36,1)}
-.hov-card:hover{transform:translateY(-4px) !important;box-shadow:0 22px 44px rgba(11,11,12,.11),0 3px 10px rgba(11,11,12,.05)}
-.hov-card-dark{transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s cubic-bezier(.22,.61,.36,1),border-color .3s cubic-bezier(.22,.61,.36,1)}
-.hov-card-dark:hover{transform:translateY(-4px) !important;border-color:#3E4044;box-shadow:0 22px 44px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.06)}
-.img-slot{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:18px;color:#B9BABD;background:
-  repeating-linear-gradient(135deg,rgba(11,11,12,.035) 0 2px,transparent 2px 14px)}
-.img-slot svg{opacity:.55}
-.img-slot span{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;line-height:1.6;max-width:220px}
-.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,12px);z-index:80;background:#0B0B0C;color:#fff;border-radius:11px;padding:14px 20px;display:flex;align-items:center;gap:14px;box-shadow:0 14px 40px rgba(11,11,12,.28);opacity:0;pointer-events:none;transition:opacity .28s cubic-bezier(.22,.61,.36,1),transform .28s cubic-bezier(.22,.61,.36,1)}
-.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.hov-card {
+  transition: transform .3s cubic-bezier(.22, .61, .36, 1), box-shadow .3s cubic-bezier(.22, .61, .36, 1), border-color .3s cubic-bezier(.22, .61, .36, 1)
+}
+
+.hov-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 22px 44px rgba(11, 11, 12, .11), 0 3px 10px rgba(11, 11, 12, .05)
+}
+
+.hov-card-dark {
+  transition: transform .3s cubic-bezier(.22, .61, .36, 1), box-shadow .3s cubic-bezier(.22, .61, .36, 1), border-color .3s cubic-bezier(.22, .61, .36, 1)
+}
+
+.hov-card-dark:hover {
+  transform: translateY(-4px) !important;
+  border-color: #3E4044;
+  box-shadow: 0 22px 44px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .06)
+}
+
+.img-slot {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 18px;
+  color: #B9BABD;
+  background:
+    repeating-linear-gradient(135deg, rgba(11, 11, 12, .035) 0 2px, transparent 2px 14px)
+}
+
+.img-slot svg {
+  opacity: .55
+}
+
+.img-slot span {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  max-width: 220px
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 26px;
+  transform: translate(-50%, 12px);
+  z-index: 80;
+  background: #0B0B0C;
+  color: #fff;
+  border-radius: 11px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 14px 40px rgba(11, 11, 12, .28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .28s cubic-bezier(.22, .61, .36, 1), transform .28s cubic-bezier(.22, .61, .36, 1)
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto
+}
+
 /* Header: icon buttons, bag badge, hamburger and mobile nav drawer */
-.ds-nav{display:flex}
-.ds-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;color:#fff !important;position:relative;flex:none;transition:background .2s}
-.ds-icon-btn:hover{background:rgba(255,255,255,.08)}
-.ds-badge{position:absolute;top:1px;right:1px;min-width:15px;height:15px;padding:0 3px;border-radius:8px;background:#fff;color:#0B0B0C;font-family:'Geist Mono',monospace;font-size:10px;line-height:15px;text-align:center;font-weight:600}
-.ds-burger{display:none;flex:none;width:36px;height:36px;border:0;background:transparent;border-radius:8px;cursor:pointer;align-items:center;justify-content:center;flex-direction:column;transition:background .2s}
-.ds-burger:hover{background:rgba(255,255,255,.08)}
-.ds-burger .bar{display:block;width:18px;height:2px;background:#fff;margin:3px 0;transition:transform .25s cubic-bezier(.22,.61,.36,1),opacity .2s ease}
-.ds-burger.open .bar:nth-child(1){transform:translateY(5px) rotate(45deg)}
-.ds-burger.open .bar:nth-child(2){opacity:0}
-.ds-burger.open .bar:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
-.ds-mobile-nav{display:none;position:fixed;top:64px;left:0;right:0;max-height:0;overflow:hidden;background:#0B0B0C;border-bottom:1px solid #232427;transition:max-height .32s cubic-bezier(.22,.61,.36,1);z-index:59}
-.ds-mobile-link{display:block;padding:15px 2px;font-family:'Geist Mono',monospace;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:#fff !important;border-top:1px solid #1D1E20}
-.ds-mobile-link:first-child{border-top:0}
-.ds-mobile-link:hover{color:#A9ABAF !important}
-@media (max-width:1024px){
-  .ds-nav{display:none}
-  .ds-burger{display:inline-flex}
-  .ds-mobile-nav{display:block}
-  .ds-mobile-nav.open{max-height:540px}
+.ds-nav {
+  display: flex
+}
+
+.ds-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: #fff !important;
+  position: relative;
+  flex: none;
+  transition: background .2s
+}
+
+.ds-icon-btn:hover {
+  background: rgba(255, 255, 255, .08)
+}
+
+.ds-badge {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  border-radius: 8px;
+  background: #fff;
+  color: #0B0B0C;
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  line-height: 15px;
+  text-align: center;
+  font-weight: 600
+}
+
+.ds-burger {
+  display: none;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: background .2s
+}
+
+.ds-burger:hover {
+  background: rgba(255, 255, 255, .08)
+}
+
+.ds-burger .bar {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  margin: 3px 0;
+  transition: transform .25s cubic-bezier(.22, .61, .36, 1), opacity .2s ease
+}
+
+.ds-burger.open .bar:nth-child(1) {
+  transform: translateY(5px) rotate(45deg)
+}
+
+.ds-burger.open .bar:nth-child(2) {
+  opacity: 0
+}
+
+.ds-burger.open .bar:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg)
+}
+
+.ds-mobile-nav {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  background: #0B0B0C;
+  border-bottom: 1px solid #232427;
+  transition: max-height .32s cubic-bezier(.22, .61, .36, 1);
+  z-index: 59
+}
+
+.ds-mobile-link {
+  display: block;
+  padding: 15px 2px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 14px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #fff !important;
+  border-top: 1px solid #1D1E20
+}
+
+.ds-mobile-link:first-child {
+  border-top: 0
+}
+
+.ds-mobile-link:hover {
+  color: #A9ABAF !important
+}
+
+@media (max-width:1024px) {
+  .ds-nav {
+    display: none
+  }
+
+  .ds-burger {
+    display: inline-flex
+  }
+
+  .ds-mobile-nav {
+    display: block
+  }
+
+  .ds-mobile-nav.open {
+    max-height: 540px
+  }
 }
 
 /* ---- landing-header.liquid own styles ---- */
 
-.hdr-bar{position:sticky;top:0;z-index:60;background:rgba(11,11,12,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid #232427;transition:box-shadow .22s cubic-bezier(.22,.61,.36,1)}
-.hdr-inner{max-width:1200px;margin:0 auto;padding:0 clamp(18px,4vw,40px);height:64px;display:flex;align-items:center;gap:20px}
-.hdr-logo-link{display:flex;align-items:center;flex:none}
-.hdr-logo-mark{height:19px;display:block}
-.hdr-nav{gap:26px;margin-left:8px;font-family:'Geist Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#A9ABAF}
-.hdr-nav-link{color:inherit}
+.hdr-bar {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: rgba(11, 11, 12, .88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid #232427;
+  transition: box-shadow .22s cubic-bezier(.22, .61, .36, 1)
+}
+
+.hdr-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 40px);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 20px
+}
+
+.hdr-logo-link {
+  display: flex;
+  align-items: center;
+  flex: none
+}
+
+.hdr-logo-mark {
+  height: 19px;
+  display: block
+}
+
+.hdr-nav {
+  gap: 26px;
+  margin-left: 8px;
+  font-family: 'Geist Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #A9ABAF
+}
+
+.hdr-nav-link {
+  color: inherit
+}
+
 /* .hdr-spacer is an intentionally empty flex spacer that pushes the icon/CTA cluster to the far right. Shopify's base stylesheet hides all empty <div>s for accessibility (div:empty{display:none}), which collapses this spacer to nothing — override it back to a normal block-level flex item so it keeps doing its job. */
-.hdr-spacer{flex:1;display:block !important}
-.hdr-actions{display:flex;align-items:center;gap:8px}
-.hdr-cta-btn{border:0;background:#fff;color:#0B0B0C;font-family:'Geist',sans-serif;font-size:13px;font-weight:500;letter-spacing:-.01em;padding:10px 18px;border-radius:8px;cursor:pointer;transition:transform .12s cubic-bezier(.22,.61,.36,1),background .22s;white-space:nowrap}
-.hdr-mobile-nav-inner{display:flex;flex-direction:column;padding:4px clamp(18px,4vw,40px) 20px}
+.hdr-spacer {
+  flex: 1;
+  display: block !important
+}
+
+.hdr-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
+
+.hdr-cta-btn {
+  border: 0;
+  background: #fff;
+  color: #0B0B0C;
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform .12s cubic-bezier(.22, .61, .36, 1), background .22s;
+  white-space: nowrap
+}
+
+.hdr-mobile-nav-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 4px clamp(18px, 4vw, 40px) 20px
+}

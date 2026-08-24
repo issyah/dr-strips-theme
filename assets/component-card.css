@@ -593,3 +593,15 @@
     clip-path: polygon(var(--shape--blob-5));
   }
 }
+
+/* Soft shadow-on-hover to match the site's Geist-based design system's .hov-card
+   effect (used on the home and Science pages). The lift itself is already handled
+   by Dawn's built-in "vertical-lift" hover animation (Theme settings > Animations);
+   this only adds the shadow that setting doesn't provide. */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .animate--hover-vertical-lift .card-wrapper:hover .card--card:after,
+  .animate--hover-vertical-lift .card-wrapper:hover .card--standard .card__inner:after {
+    transition: box-shadow var(--duration-medium) var(--ease-out-slow);
+    box-shadow: 0 2.2rem 4.4rem rgba(var(--color-shadow), 0.11), 0 0.3rem 1rem rgba(var(--color-shadow), 0.05);
+  }
+}
