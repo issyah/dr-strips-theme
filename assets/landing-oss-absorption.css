@@ -1,0 +1,16 @@
+.oss-abs-section{background:#FAFAF9;padding:clamp(64px,9vw,96px) 24px;border-top:1px solid #ECEDEE;border-bottom:1px solid #ECEDEE}
+.oss-abs-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:start}
+.oss-abs-copy p{font-size:15.5px;line-height:1.75;color:#55565A;margin:0 0 22px}
+.oss-abs-copy p:last-child{margin-bottom:0}
+.oss-abs-head{font-size:clamp(26px,3vw,34px);line-height:1.18;font-weight:700;letter-spacing:-.01em;color:#0B0B0C;margin:0 0 14px}
+.oss-abs-head b{color:#3E6E86;font-weight:700}
+.oss-abs-sub{font-size:14px;line-height:1.6;color:#8A8C91;margin:0 0 34px;max-width:460px}
+.oss-abs-caption{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 16px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8A8C91}
+.oss-abs-legend{display:flex;gap:18px}
+.oss-abs-legend span{display:inline-flex;align-items:center;gap:6px}
+.oss-abs-legend i{width:14px;height:2px;display:inline-block;background:#3E6E86}
+.oss-abs-legend i.oss-dash{background:none;border-top:2px dashed #B9BABD}
+.oss-abs-footnote{margin:14px 0 0;font-size:11.5px;line-height:1.6;color:#8A8C91}
+@media (max-width:860px){
+  .oss-abs-grid{grid-template-columns:1fr;gap:40px}
+}

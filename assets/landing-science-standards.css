@@ -7,7 +7,8 @@
 /* Was a fixed 3-column grid (repeat(3,...)), which squeezed each card down to ~120px on mobile and caused card text to wrap/overflow illegibly. Switched to auto-fit so columns collapse responsively, matching every other card grid in this theme. */
 .ssd-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:clamp(40px,5vw,72px)}
 .ssd-card{background:#111214;border:1px solid #232427;border-radius:14px;padding:28px 26px 32px}
-.ssd-card-index{font-family:'Geist Mono',monospace;font-size:12.5px;color:#6E7075}
+/* Steel-blue accent (see landing-header.css) — the numbered index on each Standards card. */
+.ssd-card-index{font-family:'Geist Mono',monospace;font-size:12.5px;color:#A5C8DC}
 .ssd-card-title{margin:14px 0 8px;font-size:18px;font-weight:500;letter-spacing:-.02em;color:#fff}
 .ssd-card-text{margin:0;font-size:15.5px;line-height:1.6;color:#A9ABAF}
 .ssd-badges{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}

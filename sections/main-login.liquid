@@ -1,0 +1,87 @@
+{% comment %}
+  Section: Customer login — main-login.liquid
+  Renders at /account/login. Two native forms live in this template:
+  customer_login (sign in) and recover_customer_password (forgot password),
+  toggled with a small vanilla-JS show/hide — the standard Shopify pattern.
+{% endcomment %}
+<section class="acct-section">
+
+<div class="acct-auth-card" id="login-card">
+<h1 class="acct-auth-heading">Sign in</h1>
+{% form 'customer_login', novalidate: 'novalidate' %}
+{%- if form.errors -%}
+<p class="acct-form-error">{{ form.errors | default_errors }}</p>
+{%- endif -%}
+<div class="acct-field">
+<label for="CustomerEmail">Email</label>
+<input type="email" name="customer[email]" id="CustomerEmail" class="hov-input acct-input" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+</div>
+{%- if form.password_needed -%}
+<div class="acct-field">
+<label for="CustomerPassword">Password</label>
+<input type="password" name="customer[password]" id="CustomerPassword" class="hov-input acct-input" autocomplete="current-password" required>
+</div>
+{%- endif -%}
+<button type="submit" class="acct-submit">Sign in</button>
+<a href="#recover" id="RecoverPassword" class="acct-link acct-recover-link">Forgot your password?</a>
+{% endform %}
+</div>
+
+<div class="acct-auth-card acct-recover-card" id="recover">
+<h2 class="acct-auth-heading">Reset your password</h2>
+<p class="acct-auth-subtext">We'll send you an email to reset your password.</p>
+{% form 'recover_customer_password' %}
+{%- if form.posted_successfully? -%}
+<p class="acct-form-success">If that email address exists, you'll receive an email with instructions on how to reset your password.</p>
+<script>document.addEventListener('DOMContentLoaded',function(){document.getElementById('recover').style.display='block';document.getElementById('login-card').style.display='none';});</script>
+{%- endif -%}
+{%- if form.errors -%}
+<p class="acct-form-error">{{ form.errors | default_errors }}</p>
+<script>document.addEventListener('DOMContentLoaded',function(){document.getElementById('recover').style.display='block';document.getElementById('login-card').style.display='none';});</script>
+{%- endif -%}
+<div class="acct-field">
+<label for="RecoverEmail">Email</label>
+<input type="email" name="email" id="RecoverEmail" class="hov-input acct-input" autocomplete="email" required>
+</div>
+<button type="submit" class="acct-submit">Submit</button>
+{% endform %}
+<a href="#login" id="HideRecoverPasswordLink" class="acct-link">Cancel</a>
+</div>
+
+</section>
+
+<p class="acct-auth-footer">New here? <a href="/account/register" class="acct-link">Create an account</a></p>
+
+<script>
+(function () {
+  var recover = document.getElementById('recover');
+  var loginCard = document.getElementById('login-card');
+  var showLink = document.getElementById('RecoverPassword');
+  var hideLink = document.getElementById('HideRecoverPasswordLink');
+  if (showLink) {
+    showLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      recover.style.display = 'block';
+      loginCard.style.display = 'none';
+    });
+  }
+  if (hideLink) {
+    hideLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      recover.style.display = 'none';
+      loginCard.style.display = 'block';
+    });
+  }
+  if (window.location.hash === '#recover') {
+    recover.style.display = 'block';
+    loginCard.style.display = 'none';
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Login page",
+  "tag": "section"
+}
+{% endschema %}

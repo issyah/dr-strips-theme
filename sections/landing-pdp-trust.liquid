@@ -1,0 +1,53 @@
+{% comment %}
+  Section: Product page — trust bar — landing-pdp-trust.liquid
+{% endcomment %}
+<section class="pdpt-section">
+<div class="pdpt-track">
+<div class="pdpt-group">
+{%- for block in section.blocks -%}
+<div class="pdpt-item" {{ block.shopify_attributes }}>
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pdpt-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+<span>{{ block.settings.text }}</span>
+</div>
+{%- endfor -%}
+</div>
+<div class="pdpt-group" aria-hidden="true">
+{%- for block in section.blocks -%}
+<div class="pdpt-item">
+<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pdpt-check" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>
+<span>{{ block.settings.text }}</span>
+</div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "PDP — Trust bar",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "PDP — Trust bar",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Science-informed formulation" } },
+        { "type": "item", "settings": { "text": "Transparent ingredients" } },
+        { "type": "item", "settings": { "text": "Quality-controlled manufacturing" } },
+        { "type": "item", "settings": { "text": "Convenient oral-strip format" } },
+        { "type": "item", "settings": { "text": "GMP, HACCP, ISO 22000-certified facility" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

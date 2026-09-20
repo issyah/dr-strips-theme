@@ -1,0 +1,520 @@
+/* ==========================================================================
+   Cart reskin — /cart page (sections/main-cart-items.liquid,
+   sections/main-cart-footer.liquid) and the site-wide cart drawer
+   (snippets/cart-drawer.liquid). CSS-only: targets Dawn's stock markup and
+   class names directly, no Liquid/markup changes.
+
+   Cascade note: in layout/theme.liquid this file is the LAST stylesheet in
+   the landing-* <head> group, but Dawn's own cart CSS (component-cart.css,
+   component-cart-items.css, component-cart-drawer.css, component-totals.css,
+   component-price.css, component-discounts.css, quantity-popover.css) is
+   linked in <head> AFTER the whole landing-* group, and each cart section
+   also re-declares component-cart.css etc. inline as it renders. That means
+   Dawn's rules win every equal-specificity tie against this file, so nearly
+   everything below carries !important on purpose — consistent with how the
+   rest of this theme already has to fight the cascade (see landing-header.css
+   and landing-footer.css's #MainContent-a workaround, same reasoning below).
+
+   Fix carried over from landing-header.css: `#MainContent a{color:#0B0B0C}`
+   is an ID selector, so it beats any class-level <a> color rule regardless
+   of load order. Every colored <a> rule in this file uses !important so it
+   isn't silently overridden back to inherited black/no-color.
+
+   Strategy: Dawn's cart/drawer markup reads color, radius and border values
+   from CSS custom properties (--color-background, --color-foreground,
+   --color-button, --inputs-radius, --buttons-radius, etc.) rather than
+   hardcoding them, and those properties inherit down the DOM. So instead of
+   overriding dozens of individual Dawn rules (and risking the grid/table
+   layout those rules also carry), the bulk of the reskin is done by
+   re-declaring those custom properties at the top of the cart/drawer
+   containers to the site's near-black/white palette — Dawn's own layout,
+   spacing and interaction CSS is left completely untouched and just repaints
+   itself with the new values. Structural properties (display, grid-template,
+   grid-column/row, transform, position, visibility) are never touched here,
+   since cart-drawer.js and the quantity-stepper/remove/discount Liquid logic
+   depend on them.
+   ========================================================================== */
+
+/* ---- palette + radius tokens, scoped to the three cart surfaces ---- */
+cart-items,
+#main-cart-footer,
+cart-drawer,
+.drawer__inner {
+  --color-background: 255, 255, 255 !important;
+  --color-foreground: 11, 11, 12 !important;
+  --color-shadow: 11, 11, 12 !important;
+  --color-button: 11, 11, 12 !important;
+  --color-button-text: 255, 255, 255 !important;
+  --color-secondary-button: 255, 255, 255 !important;
+  --color-secondary-button-text: 11, 11, 12 !important;
+  --gradient-background: #fff !important;
+
+  --inputs-radius: 9px !important;
+  --inputs-radius-outset: 9px !important;
+  --inputs-border-width: 1px !important;
+  --inputs-border-opacity: 0.14 !important;
+  --inputs-shadow-opacity: 0 !important;
+
+  --buttons-radius: 9px !important;
+  --buttons-radius-outset: 9px !important;
+  --buttons-border-width: 0px !important;
+  --buttons-border-opacity: 0 !important;
+  --buttons-shadow-opacity: 0 !important;
+}
+
+/* Base surfaces: `.gradient` paints via --gradient-background/--color-background,
+   but it's applied on the outer element (cart-items / .drawer__inner / the
+   footer's own id'd div), so it's safe to also just force the literal
+   background here for belt-and-suspenders clarity. */
+cart-items.gradient,
+#main-cart-footer.gradient,
+.drawer__inner.gradient {
+  background: #fff !important;
+}
+
+cart-items,
+#main-cart-footer,
+.drawer__inner {
+  font-family: 'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+/* ==========================================================================
+   Shared line-item styling — same markup/classes on the /cart page
+   (main-cart-items.liquid) and in the drawer (cart-drawer.liquid), so one
+   set of rules covers both. Only colors/type/spacing/borders are touched;
+   Dawn's own display:grid / display:table-row / grid-template rules that
+   drive the responsive layout are left completely alone.
+   ========================================================================== */
+
+/* Product image: give it the same rounded, bordered, tinted-placeholder
+   treatment as product imagery elsewhere on the site (see landing-pdp-hero.css
+   .pdph-thumb / .pdph-gallery-main). */
+.cart-item__image {
+  border-radius: 10px !important;
+  border: 1px solid #ECEDEE !important;
+  background: #FAFAF9 !important;
+}
+
+.cart-item__image-container {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+/* Vendor caption + table headers share this class; Geist Mono uppercase
+   micro-label treatment matches acct-field label / pdph-eyebrow elsewhere. */
+.caption-with-letter-spacing {
+  font-family: 'Geist Mono', ui-monospace, monospace !important;
+  letter-spacing: 0.08em !important;
+  color: #8A8C91 !important;
+}
+
+/* Product title link. Near-black, not the steel-blue accent — matches how
+   product titles read elsewhere on the site (accent is reserved for actual
+   calls-to-action / discounts). !important needed: see #MainContent note. */
+.cart-item__name {
+  color: #0B0B0C !important;
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.cart-item__name:hover {
+  color: #55565A !important;
+}
+
+/* Pricing */
+.cart-item__old-price {
+  color: #8A8C91 !important;
+  opacity: 1 !important;
+}
+
+.cart-item__final-price {
+  color: #0B0B0C !important;
+  font-weight: 500 !important;
+}
+
+.price {
+  color: #0B0B0C !important;
+  font-weight: 500 !important;
+}
+
+.price--on-sale .price-item--regular {
+  color: #8A8C91 !important;
+}
+
+.unit-price {
+  color: #8A8C91 !important;
+}
+
+.product-option {
+  color: #0B0B0C !important;
+}
+
+.product-option dt {
+  color: #8A8C91 !important;
+}
+
+/* Discount tags: steel-blue accent so a savings line actually reads as a
+   positive/branded signal rather than plain body text. */
+.discounts__discount {
+  color: #4682B4 !important;
+  font-weight: 500 !important;
+}
+
+.discounts__discount svg,
+.discounts__discount .icon {
+  color: #4682B4 !important;
+}
+
+/* Quantity stepper. Dawn paints the pill's fill/border via ::before/::after
+   pseudo-elements that already read the --inputs-* tokens set above, so this
+   only needs to add the interaction polish (hover) Dawn doesn't provide out
+   of the box, plus killing the native number-input spinner look. */
+.quantity__button {
+  color: #0B0B0C !important;
+  transition: background-color 0.16s ease !important;
+}
+
+.quantity__button:hover {
+  background-color: #F0F0EE !important;
+}
+
+.quantity__input {
+  color: #0B0B0C !important;
+  font-family: 'Geist Mono', ui-monospace, monospace !important;
+  opacity: 1 !important;
+}
+
+/* Remove button (cart-remove-button wraps an <a> on the /cart page, a
+   <button> in the drawer — both carry .button/.button--tertiary, so one
+   selector covers both). Hover shifts to the site's error red, matching
+   acct-delete-btn's hover treatment. */
+cart-remove-button .button {
+  color: #8A8C91 !important;
+  transition: background-color 0.16s ease, color 0.16s ease !important;
+}
+
+cart-remove-button .button:not([disabled]):hover {
+  color: #B24545 !important;
+  background-color: #FBF3F3 !important;
+}
+
+/* Quantity-rules / volume-pricing info button: keep it neutral (not red —
+   that treatment is reserved for the destructive remove action). */
+.quantity-popover__info-button {
+  color: #8A8C91 !important;
+}
+
+.quantity-popover__info-button:hover {
+  color: #0B0B0C !important;
+}
+
+.quantity-popover__info.global-settings-popup {
+  border: 1px solid #ECEDEE !important;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 34px rgba(11, 11, 12, 0.12) !important;
+}
+
+.quantity__rules,
+.volume-pricing-label {
+  color: #8A8C91 !important;
+}
+
+quantity-popover volume-pricing li:nth-child(odd) {
+  background: #FAFAF9 !important;
+}
+
+.cart-item__error-text {
+  color: #B24545 !important;
+}
+
+.cart-item__error svg,
+.cart-item__error .icon {
+  color: #B24545 !important;
+}
+
+/* Divider between line items. Dawn only borders the table header row, not
+   individual items, so this is additive. .cart-item__media and
+   .cart-item__quantity are the two cells that always close out the visual
+   row in every layout mode (mobile grid, drawer grid, and desktop table),
+   so bordering just those two draws one continuous line under each item
+   without adding a stray line mid-card. */
+.cart-item__media,
+.cart-item__quantity {
+  border-bottom: 1px solid #ECEDEE !important;
+  padding-bottom: 20px !important;
+}
+
+/* Desktop /cart page only: at this breakpoint Dawn switches .cart-item to a
+   plain table row (all four cells side by side at equal height), so the
+   other two cells need the same border to keep the line continuous. The
+   drawer never switches to table layout (component-cart-drawer.css pins it
+   to display:block/grid at every width), so this is scoped to the page. */
+@media screen and (min-width: 750px) {
+  #main-cart-items .cart-item__details,
+  #main-cart-items .cart-item__totals {
+    border-bottom: 1px solid #ECEDEE !important;
+    padding-bottom: 20px !important;
+  }
+}
+
+/* ==========================================================================
+   /cart page chrome — sections/main-cart-items.liquid
+   ========================================================================== */
+
+#main-cart-items .title--primary {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.03em !important;
+  color: #0B0B0C !important;
+}
+
+#main-cart-items .underlined-link {
+  color: #4682B4 !important;
+  text-underline-offset: 3px !important;
+}
+
+#main-cart-items .underlined-link:hover {
+  color: #2F5E82 !important;
+}
+
+#main-cart-items .cart__empty-text {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  color: #0B0B0C !important;
+}
+
+#main-cart-items .cart__warnings .button {
+  margin-top: 8px !important;
+}
+
+#main-cart-items .cart__login-title {
+  font-family: 'Geist', sans-serif !important;
+  color: #0B0B0C !important;
+}
+
+#main-cart-items .cart__login-paragraph {
+  color: #55565A !important;
+}
+
+#main-cart-items .cart__login-paragraph a {
+  color: #4682B4 !important;
+}
+
+#main-cart-items .cart__login-paragraph a:hover {
+  color: #2F5E82 !important;
+}
+
+#main-cart-items .cart-items thead th {
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+
+/* ==========================================================================
+   /cart page footer — sections/main-cart-footer.liquid
+   ========================================================================== */
+
+#main-cart-footer .cart__note label {
+  font-family: 'Geist Mono', ui-monospace, monospace !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  color: #8A8C91 !important;
+  opacity: 1 !important;
+}
+
+#main-cart-footer .cart__note .field__input {
+  font-family: 'Geist', sans-serif !important;
+  color: #0B0B0C !important;
+}
+
+#main-cart-footer .cart__note .field__input:focus {
+  box-shadow: 0 0 0 3px rgba(165, 200, 220, 0.35) !important;
+}
+
+#main-cart-footer .totals {
+  border-top: 1px solid #ECEDEE !important;
+  padding-top: 18px !important;
+}
+
+#main-cart-footer .totals__total {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  color: #0B0B0C !important;
+}
+
+#main-cart-footer .totals__total-value {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 600 !important;
+  color: #0B0B0C !important;
+}
+
+#main-cart-footer .tax-note {
+  color: #8A8C91 !important;
+}
+
+#main-cart-footer .tax-note a {
+  color: #4682B4 !important;
+}
+
+#main-cart-footer .tax-note a:hover {
+  color: #2F5E82 !important;
+}
+
+#main-cart-footer .cart__checkout-button {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  transition: transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1), background-color 0.2s ease !important;
+}
+
+#main-cart-footer .cart__checkout-button:not(:disabled):hover {
+  background-color: #232427 !important;
+  transform: translateY(-1px) !important;
+}
+
+#main-cart-footer .cart__checkout-button:disabled {
+  opacity: 0.45 !important;
+}
+
+/* ==========================================================================
+   Cart drawer — snippets/cart-drawer.liquid
+   ========================================================================== */
+
+/* Scrim: .drawer's own background-color is rgba(var(--color-foreground),.5),
+   which now resolves to a near-black scrim automatically from the token
+   override above — this just adds a touch of blur for polish. */
+.drawer {
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+}
+
+.drawer__inner {
+  box-shadow: -8px 0 40px rgba(11, 11, 12, 0.16) !important;
+  border-color: #ECEDEE !important;
+}
+
+.drawer__header {
+  border-bottom: 1px solid #ECEDEE !important;
+}
+
+.drawer__heading {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  font-size: 18px !important;
+  color: #0B0B0C !important;
+}
+
+.drawer__close {
+  border-radius: 8px !important;
+  color: #55565A !important;
+  transition: background-color 0.18s ease, color 0.18s ease !important;
+}
+
+.drawer__close:hover {
+  background-color: #F0F0EE !important;
+  color: #0B0B0C !important;
+}
+
+.cart-drawer__empty-content .cart__empty-text {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  color: #0B0B0C !important;
+}
+
+.cart-drawer__empty-content .cart__login-title {
+  font-family: 'Geist', sans-serif !important;
+  color: #0B0B0C !important;
+}
+
+.cart-drawer__empty-content .cart__login-paragraph {
+  color: #55565A !important;
+}
+
+.cart-drawer__empty-content .cart__login-paragraph a {
+  color: #4682B4 !important;
+}
+
+.cart-drawer__empty-content .cart__login-paragraph a:hover {
+  color: #2F5E82 !important;
+}
+
+/* "Continue shopping" button inside the empty-drawer state — give it the
+   same solid near-black treatment as the checkout CTA rather than Dawn's
+   bordered default, since it's the only action available here. */
+.cart-drawer__empty-content .button {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  transition: transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1), background-color 0.2s ease !important;
+}
+
+.cart-drawer__empty-content .button:hover {
+  background-color: #232427 !important;
+  transform: translateY(-1px) !important;
+}
+
+#Details-CartDrawer summary {
+  font-family: 'Geist Mono', ui-monospace, monospace !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-size: 11px !important;
+  color: #8A8C91 !important;
+}
+
+#Details-CartDrawer .cart__note .field__input {
+  font-family: 'Geist', sans-serif !important;
+  color: #0B0B0C !important;
+}
+
+#Details-CartDrawer .cart__note .field__input:focus {
+  box-shadow: 0 0 0 3px rgba(165, 200, 220, 0.35) !important;
+}
+
+.cart-drawer__footer .totals {
+  border-top: 1px solid #ECEDEE !important;
+  padding-top: 18px !important;
+}
+
+.cart-drawer__footer .totals__total {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  color: #0B0B0C !important;
+}
+
+.cart-drawer__footer .totals__total-value {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 600 !important;
+  color: #0B0B0C !important;
+}
+
+.cart-drawer .tax-note {
+  color: #8A8C91 !important;
+}
+
+.cart-drawer .tax-note a {
+  color: #4682B4 !important;
+}
+
+.cart-drawer .tax-note a:hover {
+  color: #2F5E82 !important;
+}
+
+.cart-drawer .cart__checkout-button {
+  font-family: 'Geist', sans-serif !important;
+  font-weight: 500 !important;
+  transition: transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1), background-color 0.2s ease !important;
+}
+
+.cart-drawer .cart__checkout-button:not(:disabled):hover {
+  background-color: #232427 !important;
+  transform: translateY(-1px) !important;
+}
+
+.cart-drawer .cart__checkout-button:disabled {
+  opacity: 0.45 !important;
+}
+
+/* Scrollbar thumb already reads rgba(var(--color-foreground),.7), which now
+   resolves to the near-black tone automatically — just thin the track. */
+cart-drawer-items::-webkit-scrollbar-thumb {
+  border-radius: 100px !important;
+}

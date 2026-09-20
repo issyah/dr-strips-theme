@@ -26,11 +26,17 @@ html {
 }
 
 #MainContent a {
+  color: #0B0B0C;
   text-decoration: none
 }
 
 #MainContent a:hover {
   color: #55565A
+}
+
+/* Fix: the global `#MainContent a{color:#0B0B0C}` rule above (an ID selector) also hijacks stock Dawn `<a class="button">` links back to near-black text — invisible against the button's own near-black (#121212) background, e.g. the empty-cart "Continue shopping" button on /cart. Restore the intended white label for primary Dawn buttons; button--secondary/button--tertiary already sit on light backgrounds and are unaffected. */
+#MainContent a.button:not(.button--secondary):not(.button--tertiary) {
+  color: #fff !important
 }
 
 #MainContent summary::-webkit-details-marker {
@@ -121,8 +127,9 @@ html {
   transform: scale(.99) !important
 }
 
+/* Steel-blue brand accent (#A5C8DC — the same tone already used for the Science page's comparison bar chart and the password page's success message) used sparingly as the hover cue for outline/secondary CTAs and focused form fields across the site. */
 .hov-outline:hover {
-  border-color: #0B0B0C !important;
+  border-color: #A5C8DC !important;
   transform: translateY(-2px) !important
 }
 
@@ -142,8 +149,8 @@ html {
 }
 
 .hov-input:focus {
-  border-color: #0B0B0C !important;
-  box-shadow: 0 0 0 3px rgba(11, 11, 12, .08) !important;
+  border-color: #A5C8DC !important;
+  box-shadow: 0 0 0 3px rgba(165, 200, 220, .35) !important;
   outline: none
 }
 
@@ -317,7 +324,7 @@ html {
 }
 
 .ds-burger.open .bar:nth-child(3) {
-  transform: translateY(-5px) rotate(-45deg)
+  transform: translateY(-11px) rotate(-45deg)
 }
 
 .ds-mobile-nav {
@@ -401,7 +408,7 @@ html {
 }
 
 .hdr-logo-mark {
-  height: 19px;
+  height: 38px;
   display: block
 }
 
@@ -412,11 +419,17 @@ html {
   font-size: 12px;
   letter-spacing: .16em;
   text-transform: uppercase;
-  color: #A9ABAF
+  color: #A9ABAF;
+  align-items: center
 }
 
+/* Fix: the global `#MainContent a{color:#0B0B0C}` rule above (an ID selector) otherwise beats this class-level color, silently turning the nav text invisible — black on the dark, near-black header. !important restores the intended light gray; the steel-blue hover ties it into the site's accent language. */
 .hdr-nav-link {
-  color: inherit
+  color: inherit !important
+}
+
+.hdr-nav-link:hover {
+  color: #A5C8DC !important
 }
 
 /* .hdr-spacer is an intentionally empty flex spacer that pushes the icon/CTA cluster to the far right. Shopify's base stylesheet hides all empty <div>s for accessibility (div:empty{display:none}), which collapses this spacer to nothing — override it back to a normal block-level flex item so it keeps doing its job. */
@@ -450,4 +463,88 @@ html {
   display: flex;
   flex-direction: column;
   padding: 4px clamp(18px, 4vw, 40px) 20px
+}
+
+/* ---- "Learn" nav dropdown (added Aug 2026 for the Learn menu: Why Sleep Matters / Sleep Academy / Science / Ingredient Library / Why Oral Strips) ---- */
+.hdr-dropdown {
+  position: relative;
+  display: flex;
+  align-items: center
+}
+
+.hdr-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer
+}
+
+.hdr-caret {
+  transition: transform .2s cubic-bezier(.22, .61, .36, 1)
+}
+
+.hdr-dropdown:hover .hdr-caret,
+.hdr-dropdown:focus-within .hdr-caret {
+  transform: rotate(180deg)
+}
+
+.hdr-dropdown-panel {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 6px);
+  min-width: 220px;
+  padding: 10px;
+  margin-top: 14px;
+  background: #16171A;
+  border: 1px solid #2A2B2E;
+  border-radius: 12px;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, .4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s cubic-bezier(.22, .61, .36, 1), transform .2s cubic-bezier(.22, .61, .36, 1);
+  z-index: 70
+}
+
+.hdr-dropdown:hover .hdr-dropdown-panel,
+.hdr-dropdown:focus-within .hdr-dropdown-panel {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0)
+}
+
+.hdr-dropdown-link {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 7px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: none;
+  color: #D5D6D9 !important;
+  white-space: nowrap
+}
+
+.hdr-dropdown-link:hover {
+  background: #1F2023;
+  color: #A5C8DC !important
+}
+
+.ds-mobile-dropdown {
+  border-top: 1px solid #1D1E20
+}
+
+.ds-mobile-dropdown-heading {
+  padding: 15px 2px 4px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 14px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #6E7075
+}
+
+.ds-mobile-sublink {
+  padding: 11px 2px 11px 14px !important;
+  font-size: 13px;
+  border-top: 0 !important
 }

@@ -1,0 +1,66 @@
+{% comment %}
+  Section: Sleep Academy — article reader — landing-article.liquid
+  Replaces Dawn's block-based main-article for this theme's branded design
+  system. Renders the article title/meta/content, then a "More from the
+  Academy" row pulling up to 3 other articles from the same blog.
+{% endcomment %}
+<article class="art-section">
+<div class="art-wrap">
+<a href="{{ blog.url }}" class="art-back">← Back to {{ blog.title }}</a>
+<div data-reveal class="art-eyebrow"><span class="art-eyebrow-line"></span>{{ blog.title }}</div>
+<h1 data-reveal class="art-heading">{{ article.title }}</h1>
+{%- assign word_count = article.content | strip_html | split: ' ' | size -%}
+{%- assign read_minutes = word_count | divided_by: 200 -%}
+{%- if read_minutes < 1 -%}{%- assign read_minutes = 1 -%}{%- endif -%}
+<div data-reveal class="art-meta">
+{%- if section.settings.show_author and article.author != blank -%}<span>{{ article.author }}</span><span class="art-meta-dot"></span>{%- endif -%}
+<span>{{ article.published_at | date: '%B %d, %Y' }}</span>
+<span class="art-meta-dot"></span>
+<span>{{ read_minutes }} min read</span>
+</div>
+<div data-reveal class="acy-prose">
+{{ article.content }}
+</div>
+</div>
+</article>
+
+{%- assign related_count = 0 -%}
+<section class="art-related-section">
+<div class="art-related-wrap">
+<div class="art-related-heading">More from {{ blog.title }}</div>
+<div class="acy-cards">
+{%- for related in blog.articles -%}
+{%- if related.id != article.id and related_count < section.settings.related_count -%}
+{%- assign related_count = related_count | plus: 1 -%}
+{%- assign r_word_count = related.content | strip_html | split: ' ' | size -%}
+{%- assign r_read_minutes = r_word_count | divided_by: 200 -%}
+{%- if r_read_minutes < 1 -%}{%- assign r_read_minutes = 1 -%}{%- endif -%}
+<a data-reveal href="{{ related.url }}" class="acy-card">
+<h3 class="acy-card-title">{{ related.title }}</h3>
+<p class="acy-card-excerpt">
+{%- if related.excerpt.size > 0 -%}{{ related.excerpt | strip_html }}{%- else -%}{{ related.content | strip_html | truncatewords: 22 }}{%- endif -%}
+</p>
+<div class="acy-card-meta"><span>{{ r_read_minutes }} min read</span></div>
+<span class="acy-card-link">Read article →</span>
+</a>
+{%- endif -%}
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+<script type="application/ld+json">
+{{ article | structured_data }}
+</script>
+
+{% schema %}
+{
+  "name": "Academy — Article",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "show_author", "label": "Show author byline", "default": true },
+    { "type": "range", "id": "related_count", "label": "\"More from the Academy\" — number of related articles", "min": 0, "max": 6, "step": 1, "default": 3 }
+  ],
+  "presets": [{ "name": "Academy — Article" }]
+}
+{% endschema %}

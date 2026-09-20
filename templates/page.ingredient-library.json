@@ -1,0 +1,79 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "landing-header",
+      "blocks": {
+        "block_01": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
+          }
+        },
+        "block_02": {
+          "type": "nav_dropdown",
+          "settings": {
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
+          }
+        },
+        "block_03": {
+          "type": "nav_link",
+          "settings": {
+            "label": "FAQ",
+            "url": "/#faq"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "logo_alt": "Dr.Strips+ home"
+      }
+    },
+    "coming_soon": {
+      "type": "landing-coming-soon",
+      "settings": {
+        "eyebrow": "Learn — Ingredient Library",
+        "heading": "The Ingredient Library is on its way.",
+        "body": "A full breakdown of every active — dose, mechanism and the evidence behind it — is coming here. In the meantime, see the current formula on the Science page.",
+        "cta_label": "See the Science page",
+        "cta_url": "/pages/science"
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "coming_soon",
+    "script"
+  ]
+}

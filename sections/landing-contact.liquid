@@ -1,0 +1,155 @@
+{% comment %}
+  Section: Contact / Help Center page — landing-contact.liquid
+{% endcomment %}
+<section class="cnt-hero">
+<div class="cnt-hero-wrap">
+<div data-reveal class="cnt-eyebrow"><span class="cnt-eyebrow-line"></span>{{ section.settings.eyebrow }}</div>
+<h1 data-reveal class="cnt-heading">{{ section.settings.heading }}</h1>
+<div data-reveal class="cnt-questions">
+<p>{{ section.settings.question_1 }}</p>
+<p>{{ section.settings.question_2 }}</p>
+<p>{{ section.settings.question_3 }}</p>
+<p>{{ section.settings.question_4 }}</p>
+</div>
+</div>
+</section>
+
+<section class="cnt-channels-section">
+<div data-reveal class="cnt-channels-wrap">
+<h2 class="cnt-channels-heading">{{ section.settings.channels_heading }}</h2>
+<div class="cnt-channels-grid">
+<div class="cnt-channel">
+<div class="cnt-channel-label">Email</div>
+<a href="mailto:{{ section.settings.email }}" class="cnt-channel-value">{{ section.settings.email }}</a>
+</div>
+<div class="cnt-channel">
+<div class="cnt-channel-label">WhatsApp</div>
+{%- if section.settings.whatsapp_number != blank -%}
+<a href="https://wa.me/{{ section.settings.whatsapp_number }}" class="cnt-channel-value" target="_blank" rel="noopener">{{ section.settings.whatsapp_display }}</a>
+{%- else -%}
+<span class="cnt-channel-value cnt-channel-todo">{{ section.settings.whatsapp_display }}</span>
+{%- endif -%}
+</div>
+<div class="cnt-channel">
+<div class="cnt-channel-label">Business hours</div>
+<span class="cnt-channel-value">{{ section.settings.hours }}</span>
+</div>
+</div>
+<p class="cnt-response-time">{{ section.settings.response_time }}</p>
+</div>
+</section>
+
+<section class="cnt-before-section">
+<div data-reveal class="cnt-before-wrap">
+<h2 class="cnt-before-heading">{{ section.settings.before_heading }}</h2>
+<div class="cnt-before-links">
+<a href="{{ section.settings.faq_url }}" class="cnt-before-link">FAQ</a>
+<a href="{{ section.settings.shipping_url }}" class="cnt-before-link">Shipping & Delivery</a>
+<a href="{{ section.settings.returns_url }}" class="cnt-before-link">Returns & Refunds</a>
+<a href="{{ section.settings.ingredient_url }}" class="cnt-before-link">Ingredient Library</a>
+<a href="{{ section.settings.science_url }}" class="cnt-before-link">Science Hub</a>
+</div>
+</div>
+</section>
+
+<section class="cnt-help-section">
+<div class="cnt-help-wrap">
+<h2 data-reveal class="cnt-help-heading">{{ section.settings.help_heading }}</h2>
+<div class="cnt-help-grid">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-card cnt-help-card" {{ block.shopify_attributes }}>
+<div class="cnt-help-title">{{ block.settings.title }}</div>
+<p class="cnt-help-text">{{ block.settings.text }}</p>
+</div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+<section class="cnt-form-section">
+<div data-reveal class="cnt-form-wrap">
+<h2 class="cnt-form-heading">{{ section.settings.form_heading }}</h2>
+<p class="cnt-form-subtext">{{ section.settings.form_subtext }}</p>
+{% form 'contact', class: 'cnt-form' %}
+{%- if form.posted_successfully? -%}
+<p class="cnt-form-success">{{ section.settings.form_success }}</p>
+{%- endif -%}
+{%- if form.errors -%}
+<p class="cnt-form-error">{{ form.errors | default_errors }}</p>
+{%- endif -%}
+<div class="cnt-form-row">
+<div class="cnt-form-field">
+<label for="ContactFormName">Name</label>
+<input type="text" id="ContactFormName" name="contact[name]" class="hov-input cnt-input" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+</div>
+<div class="cnt-form-field">
+<label for="ContactFormEmail">Email</label>
+<input type="email" id="ContactFormEmail" name="contact[email]" required class="hov-input cnt-input" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+</div>
+</div>
+<div class="cnt-form-field">
+<label for="ContactFormMessage">Message</label>
+<textarea id="ContactFormMessage" name="contact[body]" rows="5" required class="hov-input cnt-input cnt-textarea">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+</div>
+<button type="submit" class="cnt-form-submit">{{ section.settings.form_button_label }}</button>
+{% endform %}
+</div>
+</section>
+{% schema %}
+{
+  "name": "Contact page",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Help Center" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "We're here to help." },
+    { "type": "text", "id": "question_1", "label": "Question 1", "default": "Questions about your order?" },
+    { "type": "text", "id": "question_2", "label": "Question 2", "default": "Want to understand an ingredient?" },
+    { "type": "text", "id": "question_3", "label": "Question 3", "default": "Not sure how to use your strips?" },
+    { "type": "text", "id": "question_4", "label": "Question 4", "default": "Just want to talk to someone?" },
+    { "type": "header", "content": "Contact channels" },
+    { "type": "text", "id": "channels_heading", "label": "Heading", "default": "Send us a message." },
+    { "type": "text", "id": "email", "label": "Support email", "default": "support@drstrips.sg", "info": "Draft placeholder — confirm this inbox is set up and monitored before publishing." },
+    { "type": "text", "id": "whatsapp_number", "label": "WhatsApp number (digits only, with country code, e.g. 6591234567)", "info": "Leave blank until you have a real number — the page will show a placeholder instead of a working link." },
+    { "type": "text", "id": "whatsapp_display", "label": "WhatsApp display text", "default": "Add your WhatsApp number in the theme editor" },
+    { "type": "text", "id": "hours", "label": "Business hours", "default": "Mon–Fri, 9am–6pm (SGT)" },
+    { "type": "text", "id": "response_time", "label": "Response time note", "default": "We aim to respond within 1 business day." },
+    { "type": "header", "content": "Before you contact us" },
+    { "type": "text", "id": "before_heading", "label": "Heading", "default": "Before you contact us" },
+    { "type": "text", "id": "faq_url", "label": "FAQ link", "default": "/#faq" },
+    { "type": "text", "id": "shipping_url", "label": "Shipping & Delivery link", "default": "/pages/shipping-returns" },
+    { "type": "text", "id": "returns_url", "label": "Returns & Refunds link", "default": "/pages/shipping-returns#returns" },
+    { "type": "text", "id": "ingredient_url", "label": "Ingredient Library link", "default": "/pages/ingredient-library" },
+    { "type": "text", "id": "science_url", "label": "Science Hub link", "default": "/pages/science" },
+    { "type": "header", "content": "Need help? card grid" },
+    { "type": "text", "id": "help_heading", "label": "Heading", "default": "Need help?" },
+    { "type": "header", "content": "Message form" },
+    { "type": "text", "id": "form_heading", "label": "Heading", "default": "Still need help?" },
+    { "type": "text", "id": "form_subtext", "label": "Subtext", "default": "We're one message away." },
+    { "type": "text", "id": "form_button_label", "label": "Button label", "default": "Send message" },
+    { "type": "text", "id": "form_success", "label": "Success message", "default": "Thanks — we've got your message and will get back to you shortly." }
+  ],
+  "blocks": [
+    {
+      "type": "help_card",
+      "name": "Help card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Contact page",
+      "blocks": [
+        { "type": "help_card", "settings": { "title": "Orders", "text": "Track an order, update delivery information or get help with an order." } },
+        { "type": "help_card", "settings": { "title": "Product", "text": "Learn how to use Dr.Strips+ Sleep and understand what's inside." } },
+        { "type": "help_card", "settings": { "title": "Shipping", "text": "Find information about delivery times and locations." } },
+        { "type": "help_card", "settings": { "title": "Returns", "text": "Understand our return and refund process." } },
+        { "type": "help_card", "settings": { "title": "Product questions", "text": "Explore ingredients, directions and frequently asked questions." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

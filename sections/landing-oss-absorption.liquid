@@ -1,0 +1,78 @@
+<section id="oss-absorption" class="oss-abs-section">
+<div class="oss-abs-grid">
+<div data-reveal class="oss-abs-copy">
+<p>{{ section.settings.para_1 }}</p>
+<p>{{ section.settings.para_2 }}</p>
+<p>{{ section.settings.para_3 }}</p>
+<p>{{ section.settings.para_4 }}</p>
+</div>
+
+<div data-reveal class="oss-abs-chart-col">
+<h2 class="oss-abs-head">{{ section.settings.heading_before }} <b>{{ section.settings.heading_highlight }}</b> {{ section.settings.heading_after }}</h2>
+<p class="oss-abs-sub">{{ section.settings.subheading }}</p>
+
+<div class="oss-abs-caption">
+<span>Blood concentration (% of peak)</span>
+<span class="oss-abs-legend"><span><i></i>Strip</span><span><i class="oss-dash"></i>Swallowed</span></span>
+</div>
+
+<svg viewBox="0 0 700 340" width="100%" style="overflow:visible" aria-hidden="true">
+<line x1="50" y1="10" x2="50" y2="270" stroke="#DADBDD" stroke-width="1"></line>
+<line x1="50" y1="270" x2="660" y2="270" stroke="#DADBDD" stroke-width="1"></line>
+<line x1="50" y1="218" x2="660" y2="218" stroke="#ECEDEE" stroke-width="1"></line>
+<line x1="50" y1="166" x2="660" y2="166" stroke="#ECEDEE" stroke-width="1"></line>
+<line x1="50" y1="114" x2="660" y2="114" stroke="#ECEDEE" stroke-width="1"></line>
+<line x1="50" y1="62" x2="660" y2="62" stroke="#ECEDEE" stroke-width="1"></line>
+
+<text x="42" y="273" text-anchor="end" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">0%</text>
+<text x="42" y="221" text-anchor="end" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">20%</text>
+<text x="42" y="169" text-anchor="end" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">40%</text>
+<text x="42" y="117" text-anchor="end" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">60%</text>
+<text x="42" y="65" text-anchor="end" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">80%</text>
+<text x="42" y="14" text-anchor="end" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">100%</text>
+
+<text x="50" y="290" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">0</text>
+<text x="151" y="290" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">15</text>
+<text x="253" y="290" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">30</text>
+<text x="355" y="290" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">45</text>
+<text x="457" y="290" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">60</text>
+<text x="558" y="290" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">75</text>
+<text x="660" y="290" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" fill="#8A8C91">90</text>
+<text x="355" y="312" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10" letter-spacing="1" fill="#8A8C91">MINUTES AFTER USE</text>
+
+<polyline points="50,270 152,249 253,205 355,145 457,93 558,49 660,23" fill="none" stroke="#B9BABD" stroke-width="2.5" stroke-dasharray="5 5"></polyline>
+<circle cx="558" cy="49" r="4" fill="#FAFAF9" stroke="#B9BABD" stroke-width="2"></circle>
+<rect x="500" y="8" width="150" height="26" rx="13" fill="#F0F0EE"></rect>
+<text x="575" y="25" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10.5" letter-spacing=".02em" fill="#6E7075">~30–45 MIN ONSET</text>
+
+<polyline points="50,270 64,166 84,75 118,31 152,15 186,10 253,10 355,10 457,10 558,10 660,10" fill="none" stroke="#3E6E86" stroke-width="3"></polyline>
+<circle cx="118" cy="31" r="4.5" fill="#3E6E86"></circle>
+<rect x="118" y="98" width="128" height="26" rx="13" fill="#3E6E86"></rect>
+<text x="182" y="115" text-anchor="middle" font-family="Geist Mono, monospace" font-size="10.5" letter-spacing=".02em" fill="#FAFAF9">~1–2 MIN ONSET</text>
+</svg>
+
+<p class="oss-abs-footnote">{{ section.settings.footnote }}</p>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "OSS — Absorption speed",
+  "tag": "section",
+  "settings": [
+    { "type": "textarea", "id": "para_1", "label": "Paragraph 1", "default": "The floor of your mouth is one of the most permeable surfaces in the body. Unlike skin, the oral mucosa has no thick outer barrier — it's thin enough for small molecules to pass straight through." },
+    { "type": "textarea", "id": "para_2", "label": "Paragraph 2", "default": "Just beneath it sits a dense bed of capillaries that drain into the jugular vein — a direct line into circulation that never touches the stomach or the liver." },
+    { "type": "textarea", "id": "para_3", "label": "Paragraph 3", "default": "A swallowed dose takes the longer route. Everything absorbed in the gut passes through the liver first, where enzymes break down a variable share of it before it reaches the bloodstream — oral melatonin is a well-documented example of just how variable that loss can be." },
+    { "type": "textarea", "id": "para_4", "label": "Paragraph 4", "default": "An oral strip is built to dissolve on the tongue in about 60 seconds, releasing its dose straight onto the mucosa — skipping that route, and that variability, entirely." },
+    { "type": "text", "id": "heading_before", "label": "Heading — before highlight", "default": "Reaches your bloodstream in" },
+    { "type": "text", "id": "heading_highlight", "label": "Heading — highlighted word", "default": "minutes" },
+    { "type": "text", "id": "heading_after", "label": "Heading — after highlight", "default": "— not after digestion." },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Blood concentration over time: an oral strip vs. a typical swallowed dose." },
+    { "type": "textarea", "id": "footnote", "label": "Chart footnote", "default": "Curve shapes are illustrative — drawn from published onset-time ranges for sublingual vs. swallowed dosing, not lab-measured on any specific product. Sources: J Clin Endocrinol Metab, 1985 · N Engl J Med, 1997." }
+  ],
+  "presets": [
+    { "name": "OSS — Absorption speed" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,63 @@
+{% comment %}
+  Section: Sleep Academy hub — dynamic article grid — landing-academy-articles.liquid
+  Works two ways so it can be reused on both templates that need it:
+  - On the native Blog listing template (templates/blog.json), the `blog` object
+    is already in Liquid scope, so it's used directly.
+  - On a custom Page (e.g. the Sleep Academy hub Page), there's no `blog` object,
+    so it looks up the blog by the `blog_handle` setting instead.
+  New articles added later in Shopify Admin (Online Store > Blog posts) show up
+  here automatically — no code changes needed to publish a new article.
+{% endcomment %}
+{%- liquid
+  if blog
+    assign target_blog = blog
+  else
+    assign target_blog = blogs[section.settings.blog_handle]
+  endif
+-%}
+<section id="articles" class="acy-grid-section">
+<div class="acy-grid-wrap">
+{%- if section.settings.heading != blank or section.settings.subheading != blank -%}
+<div data-reveal class="acy-grid-head">
+{%- if section.settings.heading != blank -%}<h2 class="acy-grid-heading">{{ section.settings.heading }}</h2>{%- endif -%}
+{%- if section.settings.subheading != blank -%}<p class="acy-grid-sub">{{ section.settings.subheading }}</p>{%- endif -%}
+</div>
+{%- endif -%}
+
+{%- if target_blog and target_blog.articles.size > 0 -%}
+<div class="acy-cards">
+{%- for article in target_blog.articles limit: section.settings.limit -%}
+{%- assign word_count = article.content | strip_html | split: ' ' | size -%}
+{%- assign read_minutes = word_count | divided_by: 200 -%}
+{%- if read_minutes < 1 -%}{%- assign read_minutes = 1 -%}{%- endif -%}
+<a data-reveal href="{{ article.url }}" class="acy-card">
+<div class="acy-card-num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div>
+<h3 class="acy-card-title">{{ article.title }}</h3>
+<p class="acy-card-excerpt">
+{%- if article.excerpt.size > 0 -%}{{ article.excerpt | strip_html }}{%- else -%}{{ article.content | strip_html | truncatewords: 26 }}{%- endif -%}
+</p>
+<div class="acy-card-meta"><span>{{ article.published_at | date: '%b %d, %Y' }}</span><span class="acy-card-meta-dot"></span><span>{{ read_minutes }} min read</span></div>
+<span class="acy-card-link">Read article →</span>
+</a>
+{%- endfor -%}
+</div>
+{%- else -%}
+<div data-reveal class="acy-empty">{{ section.settings.empty_text }}</div>
+{%- endif -%}
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Academy — Article grid",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "blog_handle", "label": "Blog handle (used only when placed on a Page, not the Blog template)", "default": "sleep-academy" },
+    { "type": "text", "id": "heading", "label": "Heading (optional)" },
+    { "type": "text", "id": "subheading", "label": "Subheading (optional)" },
+    { "type": "range", "id": "limit", "label": "Max articles to show", "min": 3, "max": 24, "step": 1, "default": 12 },
+    { "type": "text", "id": "empty_text", "label": "Empty-state text", "default": "New articles are on their way — check back soon." }
+  ],
+  "presets": [{ "name": "Academy — Article grid" }]
+}
+{% endschema %}

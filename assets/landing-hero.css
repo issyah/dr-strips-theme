@@ -60,20 +60,28 @@
   overflow: hidden;
   transition: transform .12s cubic-bezier(.22,.61,.36,1),background .22s;
 }
+/* Solid steel-blue secondary CTA — the resting state (not just hover) is now filled with the brand's steel-blue accent, so "See the science" reads as a clear, deliberate second action next to the black primary button, rather than a plain outline that only turns steel-blue on hover. */
 .hero-cta-secondary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #DCDDDF;
-  background: #fff;
+  border: 1px solid #A5C8DC;
+  background: #A5C8DC;
+  color: #0B0B0C;
   font-size: 15px;
   font-weight: 450;
   padding: 16px 24px;
   border-radius: 9px;
-  transition: border-color .22s,transform .22s cubic-bezier(.22,.61,.36,1);
+  transition: background .22s,border-color .22s,transform .22s cubic-bezier(.22,.61,.36,1);
+}
+.hero-cta-secondary:hover {
+  background: #8FB8D2 !important;
+  border-color: #8FB8D2 !important;
+  transform: translateY(-2px) !important;
 }
 .hero-cta-arrow {
   font-family: 'Geist Mono',monospace;
+  transition: color .22s;
 }
 .hero-stats-grid {
   display: grid;
@@ -89,10 +97,12 @@
   background: #fff;
   padding: 16px 14px;
 }
+/* Steel-blue accent (see landing-header.css) — the homepage's flagship quick-stat numbers (60s / ≤90% / 0g / 30 strips). */
 .hero-stat-value {
   font-family: 'Geist Mono',monospace;
   font-size: 19px;
   letter-spacing: -.02em;
+  color: #A5C8DC;
 }
 .hero-stat-label {
   font-family: 'Geist Mono',monospace;
@@ -164,4 +174,9 @@
   text-transform: uppercase;
   padding: 9px 13px;
   border-radius: 999px;
+}
+
+/* Mobile: repeat(auto-fit,minmax(110px,1fr)) wraps unevenly at phone widths (3 tiles fit per row, the 4th falls alone onto its own row). Force a clean, deterministic 2x2 grid instead. */
+@media (max-width:640px){
+  .hero-stats-grid{grid-template-columns:repeat(2,1fr)}
 }

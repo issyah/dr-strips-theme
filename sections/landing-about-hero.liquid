@@ -1,0 +1,56 @@
+{% comment %}
+  Section: About page — hero / origin story — landing-about-hero.liquid
+{% endcomment %}
+<section id="top" class="ab-hero-section">
+<div class="ab-hero-wrap">
+<div data-reveal class="ab-eyebrow"><span class="ab-eyebrow-line"></span>{{ section.settings.eyebrow }}</div>
+<h1 data-reveal class="ab-hero-heading">{{ section.settings.heading }}</h1>
+<p data-reveal class="ab-lead">{{ section.settings.lead_1 }}</p>
+<p data-reveal class="ab-lead">{{ section.settings.lead_2 }}</p>
+<div data-reveal class="ab-pullquote">{{ section.settings.pullquote }}</div>
+<p data-reveal class="ab-resolve">{{ section.settings.resolve }}</p>
+<div data-reveal class="ab-no-list">
+{%- for block in section.blocks -%}
+<div class="ab-no-row" {{ block.shopify_attributes }}><span class="ab-no-tag">{{ block.settings.tag }}</span><span class="ab-no-text">{{ block.settings.text }}</span></div>
+{%- endfor -%}
+</div>
+<p data-reveal class="ab-closing">{{ section.settings.closing }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "About — Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "About Dr.Strips+" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The future of supplementation." },
+    { "type": "textarea", "id": "lead_1", "label": "Lead paragraph 1", "default": "Supplementation hasn't changed much. For decades, we've been given bottles, capsules, tablets and powders — then asked to build our lives around them." },
+    { "type": "textarea", "id": "lead_2", "label": "Lead paragraph 2", "default": "But modern life has changed. Our routines are faster. We're constantly connected. We travel more. We work later. We carry less. We expect products to be simpler, smarter and easier to use." },
+    { "type": "textarea", "id": "pullquote", "label": "Pull-quote", "default": "So we asked a simple question: what if supplementation was designed for the way we actually live today?" },
+    { "type": "textarea", "id": "resolve", "label": "Resolution paragraph", "default": "That's why we created Dr.Strips+ — a new generation of supplementation, built around thoughtful formulations, modern delivery formats and science you can actually understand." },
+    { "type": "textarea", "id": "closing", "label": "Closing line", "default": "Just purposeful products, thoughtfully designed for everyday life." }
+  ],
+  "blocks": [
+    {
+      "type": "no_item",
+      "name": "\"No\" line",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "No" },
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "About — Hero",
+      "blocks": [
+        { "type": "no_item", "settings": { "tag": "No", "text": "Unnecessary complexity." } },
+        { "type": "no_item", "settings": { "tag": "No", "text": "Exaggerated promises." } },
+        { "type": "no_item", "settings": { "tag": "No", "text": "Marketing tricks disguised as science." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,73 @@
+{% comment %}
+  Section: About page — mission, vision & values — landing-about-mission.liquid
+{% endcomment %}
+<section id="mission" class="ab-mission-section">
+<div class="ab-mission-wrap">
+<div data-reveal class="ab-eyebrow"><span class="ab-eyebrow-line"></span>{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="ab-mission-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="ab-mission-note">{{ section.settings.note }}</p>
+
+<div data-reveal class="ab-mv-grid">
+  <div class="ab-mv-card">
+    <div class="ab-mv-label">{{ section.settings.mission_label }}</div>
+    <p class="ab-mv-body">{{ section.settings.mission_body }}</p>
+  </div>
+  <div class="ab-mv-card">
+    <div class="ab-mv-label">{{ section.settings.vision_label }}</div>
+    <p class="ab-mv-body">{{ section.settings.vision_body }}</p>
+  </div>
+</div>
+
+<h3 data-reveal class="ab-values-heading">{{ section.settings.values_heading }}</h3>
+<div class="ab-values-grid">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-card ab-value-card" {{ block.shopify_attributes }}>
+  <div class="ab-value-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div>
+  <div class="ab-value-title">{{ block.settings.title }}</div>
+  <p class="ab-value-text">{{ block.settings.text }}</p>
+</div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "About — Mission",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our foundation" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built around three things: science, design and simplicity." },
+    { "type": "textarea", "id": "note", "label": "Note under heading", "default": "Not because they sound good together — because none of them work without the other two." },
+    { "type": "text", "id": "mission_label", "label": "Mission label", "default": "Our mission" },
+    { "type": "textarea", "id": "mission_body", "label": "Mission body", "default": "To make supplementation smarter, simpler and more trustworthy — products people understand, that fit naturally into their routines, and a brand that treats customers like intelligent people, not targets." },
+    { "type": "text", "id": "vision_label", "label": "Vision label", "default": "Our vision" },
+    { "type": "textarea", "id": "vision_body", "label": "Vision body", "default": "A future where better health habits are easier to build — defined not by how many products people take, but by how intelligently those products fit into their lives. Dr.Strips+ aims to be part of that future, one thoughtful product at a time." },
+    { "type": "text", "id": "values_heading", "label": "Values heading", "default": "What we believe." }
+  ],
+  "blocks": [
+    {
+      "type": "value_item",
+      "name": "Value",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "About — Mission",
+      "blocks": [
+        { "type": "value_item", "settings": { "title": "Stay curious", "text": "Ask better questions." } },
+        { "type": "value_item", "settings": { "title": "Follow the evidence", "text": "Science comes before storytelling." } },
+        { "type": "value_item", "settings": { "title": "Make it simple", "text": "Complexity isn't sophistication." } },
+        { "type": "value_item", "settings": { "title": "Be transparent", "text": "If there's something you should know, we'll tell you." } },
+        { "type": "value_item", "settings": { "title": "Design with purpose", "text": "Everything should have a reason." } },
+        { "type": "value_item", "settings": { "title": "Never overpromise", "text": "A product doesn't need impossible claims to be valuable." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

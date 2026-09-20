@@ -1,0 +1,74 @@
+{% comment %}
+  Section: Order detail — main-order.liquid
+  Renders at /account/orders/{id}. Shopify handles the customer-owns-order
+  auth check natively for this template.
+{% endcomment %}
+<section class="acct-section">
+<div class="acct-dashboard">
+<nav class="acct-sidenav">
+<a href="{{ routes.account_url }}" class="acct-sidenav-link">Account</a>
+<a href="{{ routes.account_addresses_url }}" class="acct-sidenav-link">Addresses</a>
+<a href="{{ routes.account_logout_url }}" class="acct-sidenav-link">Sign out</a>
+</nav>
+<div class="acct-main">
+<a href="{{ routes.account_url }}" class="acct-link acct-back-link">&larr; Back to account</a>
+<h1 class="acct-heading">Order {{ order.name }}</h1>
+<p class="acct-order-meta">Placed on {{ order.created_at | date: "%b %d, %Y" }}</p>
+<div class="acct-order-status-row">
+<span class="acct-badge">{{ order.financial_status | capitalize }}</span>
+<span class="acct-badge">{{ order.fulfillment_status | capitalize | default: "Unfulfilled" }}</span>
+</div>
+
+<div class="acct-card">
+<h2 class="acct-card-title">Items</h2>
+<div class="acct-line-items">
+{%- for line_item in order.line_items -%}
+<div class="acct-line-item-row">
+{%- if line_item.image -%}
+<img src="{{ line_item.image | image_url: width: 100 }}" alt="{{ line_item.image.alt | escape }}" class="acct-line-item-img" width="60" height="60" loading="lazy">
+{%- endif -%}
+<div class="acct-line-item-info">
+<div class="acct-line-item-title">{{ line_item.title }}</div>
+{%- if line_item.variant_title -%}
+<div class="acct-line-item-variant">{{ line_item.variant_title }}</div>
+{%- endif -%}
+<div class="acct-line-item-qty">Qty {{ line_item.quantity }}</div>
+</div>
+<div class="acct-line-item-price">{{ line_item.final_line_price | money }}</div>
+</div>
+{%- endfor -%}
+</div>
+</div>
+
+<div class="acct-card">
+<h2 class="acct-card-title">Shipping address</h2>
+{%- if order.shipping_address -%}
+<address class="acct-address-text">
+{{ order.shipping_address.name }}<br>
+{{ order.shipping_address.address1 }}<br>
+{%- if order.shipping_address.address2 != blank %}{{ order.shipping_address.address2 }}<br>{% endif -%}
+{{ order.shipping_address.city }}{% if order.shipping_address.province_code != blank %}, {{ order.shipping_address.province_code }}{% endif %} {{ order.shipping_address.zip }}<br>
+{{ order.shipping_address.country }}
+</address>
+{%- else -%}
+<p class="acct-card-text">No shipping address on file.</p>
+{%- endif -%}
+</div>
+
+<div class="acct-card acct-order-totals">
+<div class="acct-total-row"><span>Subtotal</span><span>{{ order.subtotal_price | money }}</span></div>
+<div class="acct-total-row"><span>Shipping</span><span>{{ order.total_shipping_price | money }}</span></div>
+<div class="acct-total-row"><span>Tax</span><span>{{ order.tax_price | money }}</span></div>
+<div class="acct-total-row acct-total-final"><span>Total</span><span>{{ order.total_price | money }}</span></div>
+</div>
+
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Order detail",
+  "tag": "section"
+}
+{% endschema %}

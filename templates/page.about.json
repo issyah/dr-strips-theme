@@ -1,0 +1,260 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "landing-header",
+      "blocks": {
+        "block_01": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
+          }
+        },
+        "block_02": {
+          "type": "nav_dropdown",
+          "settings": {
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
+          }
+        },
+        "block_03": {
+          "type": "nav_link",
+          "settings": {
+            "label": "FAQ",
+            "url": "/#faq"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "logo_alt": "Dr.Strips+ home"
+      }
+    },
+    "about_hero": {
+      "type": "landing-about-hero",
+      "blocks": {
+        "block_01": {
+          "type": "no_item",
+          "settings": {
+            "tag": "No",
+            "text": "Unnecessary complexity."
+          }
+        },
+        "block_02": {
+          "type": "no_item",
+          "settings": {
+            "tag": "No",
+            "text": "Exaggerated promises."
+          }
+        },
+        "block_03": {
+          "type": "no_item",
+          "settings": {
+            "tag": "No",
+            "text": "Marketing tricks disguised as science."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "eyebrow": "About Dr.Strips+",
+        "heading": "The future of supplementation.",
+        "lead_1": "Supplementation hasn't changed much. For decades, we've been given bottles, capsules, tablets and powders — then asked to build our lives around them.",
+        "lead_2": "But modern life has changed. Our routines are faster. We're constantly connected. We travel more. We work later. We carry less. We expect products to be simpler, smarter and easier to use.",
+        "pullquote": "So we asked a simple question: what if supplementation was designed for the way we actually live today?",
+        "resolve": "That's why we created Dr.Strips+ — a new generation of supplementation, built around thoughtful formulations, modern delivery formats and science you can actually understand.",
+        "closing": "Just purposeful products, thoughtfully designed for everyday life."
+      }
+    },
+    "about_philosophy": {
+      "type": "landing-about-philosophy",
+      "blocks": {
+        "block_01": {
+          "type": "not_item",
+          "settings": {
+            "tag": "Not by",
+            "text": "Making louder claims."
+          }
+        },
+        "block_02": {
+          "type": "not_item",
+          "settings": {
+            "tag": "Not by",
+            "text": "Adding unnecessary ingredients."
+          }
+        },
+        "block_03": {
+          "type": "not_item",
+          "settings": {
+            "tag": "Not by",
+            "text": "Pretending there's a shortcut to health."
+          }
+        },
+        "block_04": {
+          "type": "question",
+          "settings": {
+            "text": "Why this ingredient?"
+          }
+        },
+        "block_05": {
+          "type": "question",
+          "settings": {
+            "text": "Why this dosage?"
+          }
+        },
+        "block_06": {
+          "type": "question",
+          "settings": {
+            "text": "Why this format?"
+          }
+        },
+        "block_07": {
+          "type": "question",
+          "settings": {
+            "text": "Why does this product exist?"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06",
+        "block_07"
+      ],
+      "settings": {
+        "eyebrow": "Our philosophy",
+        "heading": "Supplementation deserves an upgrade.",
+        "lead": "Science has moved forward. The way we supplement hasn't. We're still swallowing pills from plastic bottles, carrying bulky containers through airports, and trying to remember whether we've already taken today's dose. We think there's a better way.",
+        "statement": "Dr.Strips+ was created to rethink the everyday experience of supplementation.",
+        "but_tag": "But",
+        "but_text": "By asking better questions.",
+        "callout_label": "Most importantly",
+        "callout_text": "Does it genuinely make someone's life better?",
+        "final_statement": "Because the future of wellness isn't about doing more. It's about doing what matters — better.",
+        "final_sign": "Dr.Strips+ — the future of supplementation starts here."
+      }
+    },
+    "about_mission": {
+      "type": "landing-about-mission",
+      "blocks": {
+        "block_01": {
+          "type": "value_item",
+          "settings": {
+            "title": "Stay curious",
+            "text": "Ask better questions."
+          }
+        },
+        "block_02": {
+          "type": "value_item",
+          "settings": {
+            "title": "Follow the evidence",
+            "text": "Science comes before storytelling."
+          }
+        },
+        "block_03": {
+          "type": "value_item",
+          "settings": {
+            "title": "Make it simple",
+            "text": "Complexity isn't sophistication."
+          }
+        },
+        "block_04": {
+          "type": "value_item",
+          "settings": {
+            "title": "Be transparent",
+            "text": "If there's something you should know, we'll tell you."
+          }
+        },
+        "block_05": {
+          "type": "value_item",
+          "settings": {
+            "title": "Design with purpose",
+            "text": "Everything should have a reason."
+          }
+        },
+        "block_06": {
+          "type": "value_item",
+          "settings": {
+            "title": "Never overpromise",
+            "text": "A product doesn't need impossible claims to be valuable."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06"
+      ],
+      "settings": {
+        "eyebrow": "Our foundation",
+        "heading": "Built around three things: science, design and simplicity.",
+        "note": "Not because they sound good together — because none of them work without the other two.",
+        "mission_label": "Our mission",
+        "mission_body": "To make supplementation smarter, simpler and more trustworthy — products people understand, that fit naturally into their routines, and a brand that treats customers like intelligent people, not targets.",
+        "vision_label": "Our vision",
+        "vision_body": "A future where better health habits are easier to build — defined not by how many products people take, but by how intelligently those products fit into their lives. Dr.Strips+ aims to be part of that future, one thoughtful product at a time.",
+        "values_heading": "What we believe."
+      }
+    },
+    "about_cta": {
+      "type": "landing-science-cta",
+      "settings": {
+        "product": "dr-strips-sleep",
+        "label": "Try it yourself",
+        "heading": "One strip.\nNo routines to rebuild.",
+        "body": "Everything above is why Dr.Strips+ exists. The easiest way to know if it's for you is to try a box.",
+        "qty_label": "30 strips",
+        "cta_label": "Add to bag",
+        "guarantee_text": "30-night guarantee"
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "about_hero",
+    "about_philosophy",
+    "about_mission",
+    "about_cta",
+    "script"
+  ]
+}

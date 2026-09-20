@@ -1,0 +1,8 @@
+.pdpt-section{padding:14px 0;overflow:hidden;background:#4682B4}
+.pdpt-track{display:flex;width:max-content;animation:pdpt-scroll 30s linear infinite}
+.pdpt-section:hover .pdpt-track{animation-play-state:paused}
+.pdpt-group{display:flex;align-items:center;flex:none}
+.pdpt-item{display:flex;align-items:center;gap:8px;padding:0 28px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.pdpt-check{flex:none;color:rgba(255,255,255,.85)}
+@keyframes pdpt-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.pdpt-track{animation:none}}

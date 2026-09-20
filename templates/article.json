@@ -7,45 +7,4 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
-  "sections": {
-    "main": {
-      "type": "main-article",
-      "blocks": {
-        "featured_image": {
-          "type": "featured_image",
-          "settings": {
-            "image_height": "adapt"
-          }
-        },
-        "title": {
-          "type": "title",
-          "settings": {
-            "blog_show_date": true,
-            "blog_show_author": false
-          }
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
-          }
-        },
-        "content": {
-          "type": "content",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "featured_image",
-        "title",
-        "share",
-        "content"
-      ],
-      "settings": {}
-    }
-  },
-  "order": [
-    "main"
-  ]
-}
+{"sections":{"header":{"type":"landing-header","blocks":{"block_01":{"type":"nav_link","settings":{"label":"Shop","url":"/products/dr-strips-sleep"}},"block_02":{"type":"nav_dropdown","settings":{"label":"Learn","link_1_label":"Why Sleep Matters","link_1_url":"/pages/why-sleep-matters","link_2_label":"Sleep Academy","link_2_url":"/pages/sleep-academy","link_3_label":"Science","link_3_url":"/pages/science","link_4_label":"Ingredient Library","link_4_url":"/pages/ingredient-library","link_5_label":"Why Oral Strips","link_5_url":"/pages/why-oral-strips","link_6_label":"How Oral Strips Work","link_6_url":"/pages/oral-strip-science"}},"block_03":{"type":"nav_link","settings":{"label":"FAQ","url":"/#faq"}}},"block_order":["block_01","block_02","block_03"],"settings":{"logo_alt":"Dr.Strips+ home"}},"main":{"type":"landing-article","settings":{"show_author":true,"related_count":3}},"cta":{"type":"landing-science-cta","settings":{"product":"dr-strips-sleep","label":"Put it into practice","heading":"Better nights start tonight.","body":"Everything above is easier with the right nightly habit already built in — Dr.Strips+ Sleep.","qty_label":"30 strips","cta_label":"Add to bag","guarantee_text":"30-night guarantee"}},"footer":{"type":"landing-footer","blocks":{"block_01":{"type":"link_column","settings":{"heading":"Shop","link_1_label":"Dr.Strips+ Sleep","link_1_url":"/products/dr-strips-sleep"}},"block_02":{"type":"link_column","settings":{"heading":"Learn","link_1_label":"Why Sleep Matters","link_1_url":"/pages/why-sleep-matters","link_2_label":"Academy","link_2_url":"/pages/sleep-academy","link_3_label":"Science","link_3_url":"/pages/science","link_4_label":"Ingredient Library","link_4_url":"/pages/ingredient-library"}},"block_03":{"type":"link_column","settings":{"heading":"About","link_1_label":"Our Story","link_1_url":"/pages/about","link_2_label":"Mission & Vision","link_2_url":"/pages/about#mission"}},"block_04":{"type":"link_column","settings":{"heading":"Help","link_1_label":"FAQ","link_1_url":"/#faq","link_2_label":"Contact","link_2_url":"/pages/contact","link_3_label":"Shipping & Returns","link_3_url":"/pages/shipping-returns","link_4_label":"Order Tracking","link_4_url":"/account"}},"block_05":{"type":"link_column","settings":{"heading":"Legal","link_1_label":"Privacy Policy","link_1_url":"/pages/privacy-policy","link_2_label":"Terms & Conditions","link_2_url":"/pages/terms-conditions","link_3_label":"Refund Policy","link_3_url":"/pages/refund-policy","link_4_label":"Shipping Policy","link_4_url":"/pages/shipping-policy","link_5_label":"Cookie Policy","link_5_url":"/pages/cookie-policy"}}},"block_order":["block_01","block_02","block_03","block_04","block_05"],"settings":{"tagline":"science, dissolved.","copyright":"© 2026 DR.strips+ · Singapore","disclaimer":"Not intended to diagnose, treat, cure or prevent any disease"}},"script":{"type":"landing-script","settings":{"product":"dr-strips-sleep"}}},"order":["header","main","cta","footer","script"]}

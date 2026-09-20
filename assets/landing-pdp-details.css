@@ -1,0 +1,18 @@
+.pdpa-section{padding:clamp(24px,3vw,40px) clamp(20px,4vw,40px) clamp(56px,7vw,88px)}
+.pdpa-wrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+
+.pdpa-item{background:#F5F5F4;border-radius:14px;overflow:hidden;transition:background .18s}
+.pdpa-item[open]{background:#F0F0EE}
+
+.pdpa-summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 22px;font-size:16px;font-weight:500;letter-spacing:-.01em;color:#0B0B0C;cursor:pointer}
+.pdpa-summary::-webkit-details-marker{display:none}
+.pdpa-summary::marker{content:''}
+
+.pdpa-mark{font-family:'Geist Mono',monospace;font-size:16px;color:#8A8C91;transition:color .18s;flex:none}
+.pdpa-item:hover .pdpa-mark{color:#A5C8DC}
+
+.pdpa-content{padding:0 22px 20px;font-size:14.5px;line-height:1.7;color:#55565A}
+.pdpa-content p{margin:0 0 10px}
+.pdpa-content p:last-child{margin-bottom:0}
+.pdpa-content a{color:#0B0B0C;text-decoration:underline;text-underline-offset:2px}
+.pdpa-content a:hover{color:#A5C8DC !important}

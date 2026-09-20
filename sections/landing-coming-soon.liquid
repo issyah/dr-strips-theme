@@ -1,0 +1,27 @@
+{% comment %}
+  Section: Learn hub — lightweight "coming soon" placeholder page — landing-coming-soon.liquid
+  Used for Learn-menu pages that don't have real content yet (Sleep Academy, Ingredient Library, Why Oral Strips).
+{% endcomment %}
+<section id="top" class="csn-section">
+<div class="csn-wrap">
+<div data-reveal class="csn-eyebrow"><span class="csn-eyebrow-line"></span>{{ section.settings.eyebrow }}</div>
+<h1 data-reveal class="csn-heading">{{ section.settings.heading }}</h1>
+<p data-reveal class="csn-body">{{ section.settings.body }}</p>
+<a href="{{ section.settings.cta_url }}" class="hov-header-cta csn-cta-btn">{{ section.settings.cta_label }}</a>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Learn — Coming soon",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Learn" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "This page is on its way." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "We're still writing this one. Check back soon — or head over to the Science page in the meantime." },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Back to Science" },
+    { "type": "text", "id": "cta_url", "label": "CTA link", "default": "/pages/science" }
+  ],
+  "presets": [{ "name": "Learn — Coming soon" }]
+}
+{% endschema %}

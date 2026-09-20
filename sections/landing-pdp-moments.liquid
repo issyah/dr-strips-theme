@@ -1,0 +1,54 @@
+{% comment %}
+  Section: Product page — made for modern nights (use-case chips) — landing-pdp-moments.liquid
+{% endcomment %}
+<section id="moments" class="pdpm-section">
+<div class="pdpm-wrap">
+<div data-reveal class="pdpm-eyebrow">{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="pdpm-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="pdpm-subheading">{{ section.settings.subheading }}</p>
+
+<div data-reveal class="pdpm-chips">
+{%- for block in section.blocks -%}
+<span class="pdpm-chip" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+{%- endfor -%}
+</div>
+
+<p data-reveal class="pdpm-closing">{{ section.settings.closing }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "PDP — Moments",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "05 — Made for modern nights" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Wherever your evening happens." },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "A strip goes anywhere a bottle can't." },
+    { "type": "textarea", "id": "closing", "label": "Closing statement", "default": "A supplement that's easy to take is one you'll actually keep taking." }
+  ],
+  "blocks": [
+    {
+      "type": "moment",
+      "name": "Moment",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "PDP — Moments",
+      "blocks": [
+        { "type": "moment", "settings": { "text": "At home" } },
+        { "type": "moment", "settings": { "text": "Travelling" } },
+        { "type": "moment", "settings": { "text": "After a late night" } },
+        { "type": "moment", "settings": { "text": "At the hotel" } },
+        { "type": "moment", "settings": { "text": "On the sofa" } },
+        { "type": "moment", "settings": { "text": "Beside your bed" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

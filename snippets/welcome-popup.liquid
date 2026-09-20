@@ -1,0 +1,753 @@
+{% comment %}
+  Dr.Strips+ — "Beat the House" welcome popup
+  ============================================
+  A tic-tac-toe game against "the house" that ends by revealing an email
+  capture, which reveals a discount code — see WIN ODDS below for how
+  the outcome is decided.
+
+  Restyled to match the site's Geist / near-black clinical design
+  system (same fonts, colors and button conventions as the homepage
+  and Science page) instead of the original navy/lime reference.
+
+  TIMING: appears 7 seconds after page load, once per browser session
+  (sessionStorage-gated) — see SHOW_DELAY_MS / SHOW_ONCE_PER_SESSION.
+
+  The house now opens with the center square (a short "thinking" beat,
+  then an O lands in the middle) as soon as the popup appears, so it's
+  immediately obvious this is a live tic-tac-toe game against "the
+  house" rather than a static graphic — see botOpensGame().
+
+  WIN ODDS (added Sept 2026): each game rolls generous mode 75% of the
+  time and competitive mode the other 25% (see houseCompetitive /
+  botOpensGame). In generous mode the bot is provably unable to ever
+  complete three in a row — pickBotMove only considers moves that leave
+  it a guaranteed path to keep avoiding a win no matter how the visitor
+  plays (see botHasNonWinningPath), so generous games always end in a
+  player win or a draw, never a house win. In competitive mode the bot
+  plays for real — takes a winning move when it has one, blocks the
+  player otherwise — so the house has a genuine chance to win (in
+  practice, against a reasonably attentive player, a large share of
+  competitive-mode games do end in a house win or draw). Either way —
+  win, lose, or draw — finishing the game reveals the email capture,
+  which reveals the discount code; the outcome only changes the
+  messaging shown, never whether the code unlocks.
+
+  DISCOUNT CODE: displays "EARLY". Confirm a matching discount code
+  exists in Shopify admin → Discounts before relying on this in
+  production — nothing here creates the discount itself.
+
+  EMAIL CAPTURE (added Sept 2026, revised to the reload-based version):
+  submitting the email now genuinely subscribes the visitor to
+  Shopify's own marketing list, using Shopify's native newsletter
+  mechanism — the same `form` tag (type: 'customer') Dawn's own
+  footer/email-signup-banner sections use (see the hidden
+  #dsp-newsletter-form below) — which creates or updates a Shopify
+  customer flagged as accepting email marketing, tagged "newsletter".
+
+  This causes a real, brief page reload: Shopify processes the
+  subscription server-side and redirects back to the same page with
+  `?customer_posted=true` in the URL. On that reload, this script
+  detects the flag, cleans the URL back up, and reopens the popup
+  straight on the "code revealed" screen — skipping the game and the
+  7-second delay — so the visitor's flow reads as "click reveal →
+  quick refresh → here's your code" rather than losing their place.
+
+  Two things were confirmed necessary by testing directly against
+  this store, not just by reading Shopify's docs:
+  1. A plain JS fetch() POST to /contact is rejected outright with
+     "Missing CAPTCHA token" — this store has Shopify's hCaptcha bot
+     protection active on the customer/newsletter form, so a real
+     a real `form` tag (type: 'customer') has to be used instead of a hand-built
+     request.
+  2. Even a genuine form submission needs `Shopify.captcha.protect()`
+     called on it first, and to be submitted via `requestSubmit()`
+     rather than `submit()` (only `requestSubmit()` fires the 'submit'
+     event that `protect()` listens on to inject its token) — see
+     shopify.dev/docs/storefronts/themes/trust-security/captcha.
+     An earlier version of this fix tried submitting into a hidden
+     iframe to avoid the page reload entirely, keeping the whole thing
+     instant — but that path turned out unreliable in testing (the
+     invisible challenge sometimes never resolved, silently dropping
+     the signup with no way to detect it). A real top-level submission
+     (this version) was consistently reliable, so a brief reload was
+     chosen deliberately over an instant experience that could quietly
+     lose signups.
+
+  Once Klaviyo's Shopify app is connected, Klaviyo's own sync picks up
+  any customer who accepts marketing automatically, so no further
+  wiring is needed here when Klaviyo gets connected.
+{% endcomment %}
+<style>
+  #dsp-overlay * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  #dsp-overlay {
+    font-family: 'Geist', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: rgba(11, 11, 12, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  #dsp-overlay.dsp-show {
+    display: flex;
+  }
+  #dsp-overlay.dsp-visible {
+    opacity: 1;
+  }
+  #dsp-card {
+    background: #fff;
+    border: 1px solid #ecedee;
+    border-radius: 18px;
+    width: 100%;
+    max-width: 400px;
+    padding: 32px 28px;
+    position: relative;
+    transform: translateY(16px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 30px 60px rgba(11, 11, 12, 0.28);
+  }
+  #dsp-overlay.dsp-visible #dsp-card {
+    transform: translateY(0) scale(1);
+  }
+  #dsp-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: #0b0b0c;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.5;
+  }
+  #dsp-close:hover {
+    opacity: 1;
+  }
+  .dsp-eyebrow {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+    background: #0b0b0c;
+    display: inline-block;
+    padding: 5px 11px !important;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  .dsp-h1 {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #0b0b0c;
+    margin-bottom: 6px;
+  }
+  .dsp-sub {
+    font-size: 14px;
+    color: #55565a;
+    margin-bottom: 22px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  /* --- board --- */
+  #dsp-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 20px;
+  }
+  /* .dsp-cell starts out empty (no marker yet) — the base theme hides all
+     empty divs (div:empty{display:none}) for accessibility, and that
+     selector actually outranks a single class, so this needs an explicit
+     override to stay visible until a mark is placed. */
+  .dsp-cell {
+    background: #fafaf9;
+    border: 1.5px solid #ecedee;
+    border-radius: 10px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+    min-height: 142px;
+  }
+  .dsp-cell:hover:not(.dsp-taken) {
+    border-color: #0b0b0c;
+  }
+  .dsp-cell.dsp-taken {
+    cursor: default;
+  }
+  .dsp-cell svg {
+    width: 46%;
+    height: 46%;
+  }
+  .dsp-cell.dsp-win {
+    background: #0b0b0c;
+    border-color: #0b0b0c;
+  }
+  #dsp-board.dsp-thinking {
+    pointer-events: none;
+    opacity: 0.85;
+  }
+  .dsp-status {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a8c91;
+    text-align: center;
+    margin-bottom: 18px;
+    min-height: 16px;
+  }
+  /* --- email step --- */
+  #dsp-email-step {
+    display: none;
+  }
+  #dsp-email-step.dsp-active {
+    display: block;
+  }
+  #dsp-game-step.dsp-hidden {
+    display: none;
+  }
+  .dsp-win-banner {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .dsp-win-banner .dsp-h1 {
+    margin-bottom: 4px;
+  }
+  #dsp-email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #dsp-email-input {
+    font-family: 'Geist', sans-serif;
+    font-size: 15px;
+    padding: 13px 14px;
+    border: 1.5px solid #dcdddf;
+    border-radius: 9px;
+    outline: none;
+    background: #fff;
+    color: #0b0b0c;
+  }
+  #dsp-email-input:focus {
+    border-color: #0b0b0c;
+    box-shadow: 0 0 0 3px rgba(11, 11, 12, 0.08);
+  }
+  .dsp-btn {
+    font-family: 'Geist', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    background: #0b0b0c;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    padding: 14px !important;
+    cursor: pointer;
+    transition: transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.22s;
+  }
+  .dsp-btn:hover {
+    background: #2a2b2e;
+    transform: translateY(-1px);
+  }
+  .dsp-btn:active {
+    transform: scale(0.98);
+  }
+  .dsp-btn:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  .dsp-error {
+    font-size: 12px;
+    color: #c0392b;
+    min-height: 16px;
+  }
+  /* --- code reveal step --- */
+  #dsp-code-step {
+    display: none;
+    text-align: center;
+  }
+  #dsp-code-step.dsp-active {
+    display: block;
+  }
+  /* Steel-blue accent (#A5C8DC — the same tone used on the Science page's
+     comparison chart and the password page's success message) marks the
+     "prize" moment of the code reveal. */
+  .dsp-code-card {
+    background: #0b0b0c;
+    border: 1.5px dashed #a5c8dc;
+    border-radius: 14px;
+    padding: 22px;
+    margin: 18px 0;
+  }
+  .dsp-code-label {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #8a8c91;
+    margin-bottom: 8px;
+  }
+  .dsp-code {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 32px;
+    letter-spacing: 0.08em;
+    color: #fff;
+  }
+  .dsp-code-terms {
+    font-size: 12px;
+    color: #8a8c91;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+  #dsp-copy-note {
+    font-family: 'Geist Mono', ui-monospace, monospace;
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #a5c8dc;
+    margin-top: 6px;
+    min-height: 14px;
+  }
+  .dsp-visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+</style>
+{%- comment -%}
+  Hidden native Shopify newsletter form — same `form` tag (type: 'customer')
+  mechanism as Dawn's stock footer/email-signup-banner sections. A
+  real, genuine top-level submission (no iframe/target trick) is what
+  Shopify's bot protection reliably accepts — see the note above on
+  why that trade-off (a brief reload) was chosen deliberately.
+{%- endcomment -%}
+{%- form 'customer', id: 'dsp-newsletter-form', class: 'dsp-visually-hidden' -%}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  <input type="hidden" name="contact[email]" id="dsp-newsletter-email" value="">
+{%- endform -%}
+<div id="dsp-overlay">
+  <div id="dsp-card">
+    <button id="dsp-close" aria-label="Close">&times;</button>
+    <div id="dsp-game-step">
+      <div class="dsp-h1">Beat us on Tic Tac Toe &amp; get $10 off.</div>
+      <div class="dsp-sub">
+        You're the cross, we're the circle. Win, lose, or draw — you'll unlock $10 off $50 either way.
+      </div>
+      <div id="dsp-board"></div>
+      <div class="dsp-status" id="dsp-status">house moves first&hellip;</div>
+    </div>
+    <div id="dsp-email-step">
+      <div class="dsp-win-banner">
+        <span class="dsp-eyebrow" id="dsp-result-eyebrow">you won</span>
+        <div class="dsp-h1" id="dsp-result-heading">Nice round.</div>
+        <div class="dsp-sub" id="dsp-result-sub">
+          Drop your email and we'll unlock your code — just a quick refresh.
+        </div>
+      </div>
+      <form id="dsp-email-form">
+        <input type="email" id="dsp-email-input" placeholder="you@email.com" required />
+        <div class="dsp-error" id="dsp-email-error"></div>
+        <button type="submit" class="dsp-btn" id="dsp-email-submit">Reveal my code</button>
+      </form>
+    </div>
+    <div id="dsp-code-step">
+      <span class="dsp-eyebrow">get some rest</span>
+      <div class="dsp-h1">$10 off, unlocked.</div>
+      <div class="dsp-code-card">
+        <div class="dsp-code-label">Your code</div>
+        <div class="dsp-code" id="dsp-code-text">EARLY</div>
+        <div id="dsp-copy-note">&nbsp;</div>
+      </div>
+      <button class="dsp-btn" id="dsp-copy-btn">Copy code</button>
+      <div class="dsp-code-terms">$10 off orders $50+. One use per customer. Applied at checkout.</div>
+    </div>
+  </div>
+</div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap"
+  rel="stylesheet"
+>
+<script>
+  (function () {
+    // ---- CONFIG ----
+    var SHOW_DELAY_MS = 7000;
+    var SHOW_ONCE_PER_SESSION = true;
+    var DISCOUNT_CODE = 'EARLY';
+    var STORAGE_KEY = 'dsp_seen_v1';
+    var WIN_LINES = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    function checkWinner(board, mark) {
+      for (var i = 0; i < WIN_LINES.length; i++) {
+        var l = WIN_LINES[i];
+        if (board[l[0]] === mark && board[l[1]] === mark && board[l[2]] === mark) return l;
+      }
+      return null;
+    }
+    function emptyCells(board) {
+      var out = [];
+      for (var i = 0; i < 9; i++) if (!board[i]) out.push(i);
+      return out;
+    }
+    // Full look-ahead (the board has at most 9 cells, so this is cheap):
+    // returns true if, from this state, the bot can play out the rest of
+    // the game — no matter what the visitor does — without ever completing
+    // three in a row itself. Used by generous mode below so it can rule out
+    // not just an immediate win but any move that would eventually box the
+    // bot into a forced win later (a real edge case in the previous
+    // one-move-lookahead version of this function, caught during testing).
+    function botHasNonWinningPath(board, botTurn) {
+      if (checkWinner(board, 'O')) return false;
+      var empties = emptyCells(board);
+      if (checkWinner(board, 'X') || empties.length === 0) return true;
+      if (botTurn) {
+        for (var i = 0; i < empties.length; i++) {
+          var next = board.slice();
+          next[empties[i]] = 'O';
+          if (checkWinner(next, 'O')) continue;
+          if (botHasNonWinningPath(next, false)) return true;
+        }
+        return false;
+      }
+      for (var j = 0; j < empties.length; j++) {
+        var reply = board.slice();
+        reply[empties[j]] = 'X';
+        if (!botHasNonWinningPath(reply, true)) return false;
+      }
+      return true;
+    }
+    // In generous mode (75% of games, the default) the bot picks only among
+    // moves it can prove never lead to a house win, and prefers — among
+    // those — one that doesn't block the visitor's winning move, so games
+    // in this mode always end in a player win or a draw. In competitive
+    // mode (the other 25%, see houseCompetitive) the bot plays for real: it
+    // takes a winning move when it has one and blocks the player's winning
+    // move otherwise, so the house has a genuine chance to win.
+    function pickBotMove(board, competitive) {
+      var empties = emptyCells(board);
+      if (competitive) {
+        for (var w = 0; w < empties.length; w++) {
+          var testWin = board.slice();
+          testWin[empties[w]] = 'O';
+          if (checkWinner(testWin, 'O')) return empties[w]; // take the win
+        }
+        for (var b = 0; b < empties.length; b++) {
+          var testBlock = board.slice();
+          testBlock[empties[b]] = 'X';
+          if (checkWinner(testBlock, 'X')) return empties[b]; // block the player
+        }
+        var preferredOrder = [4, 0, 2, 6, 8, 1, 3, 5, 7];
+        for (var p = 0; p < preferredOrder.length; p++) {
+          if (empties.indexOf(preferredOrder[p]) !== -1) return preferredOrder[p];
+        }
+        return empties[Math.floor(Math.random() * empties.length)];
+      }
+      var candidates = empties.filter(function (i) {
+        var next = board.slice();
+        next[i] = 'O';
+        if (checkWinner(next, 'O')) return false; // never win immediately
+        return botHasNonWinningPath(next, false); // ...or ever, down this path
+      });
+      var nonBlocking = candidates.filter(function (i) {
+        var testX = board.slice();
+        testX[i] = 'X';
+        return !checkWinner(testX, 'X'); // prefer leaving the visitor's win open
+      });
+      var pool = nonBlocking.length ? nonBlocking : candidates.length ? candidates : empties;
+      return pool[Math.floor(Math.random() * pool.length)];
+    }
+    function xIcon() {
+      return '<svg viewBox="0 0 24 24" fill="none"><path d="M4 4L20 20M20 4L4 20" stroke="#0B0B0C" stroke-width="3.2" stroke-linecap="round"/></svg>';
+    }
+    function oIcon() {
+      return '<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#8A8C91" stroke-width="3.2"/></svg>';
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      var overlay = document.getElementById('dsp-overlay');
+      var boardEl = document.getElementById('dsp-board');
+      var statusEl = document.getElementById('dsp-status');
+      var gameStep = document.getElementById('dsp-game-step');
+      var emailStep = document.getElementById('dsp-email-step');
+      var codeStep = document.getElementById('dsp-code-step');
+      var closeBtn = document.getElementById('dsp-close');
+      var emailForm = document.getElementById('dsp-email-form');
+      var emailInput = document.getElementById('dsp-email-input');
+      var emailError = document.getElementById('dsp-email-error');
+      var emailSubmitBtn = document.getElementById('dsp-email-submit');
+      var copyBtn = document.getElementById('dsp-copy-btn');
+      var copyNote = document.getElementById('dsp-copy-note');
+      var codeTextEl = document.getElementById('dsp-code-text');
+      var unlockFallbackTimer = null;
+      var resultEyebrowEl = document.getElementById('dsp-result-eyebrow');
+      var resultHeadingEl = document.getElementById('dsp-result-heading');
+      var resultSubEl = document.getElementById('dsp-result-sub');
+      // Rolled fresh each game in botOpensGame(): 25% of games let the house
+      // play competitively instead of always running in generous mode. See
+      // pickBotMove and the WIN ODDS note at the top of this file.
+      var houseCompetitive = false;
+      codeTextEl.textContent = DISCOUNT_CODE;
+      var board = new Array(9).fill(null);
+      var over = false;
+      function renderBoard() {
+        boardEl.innerHTML = '';
+        board.forEach(function (mark, i) {
+          var cell = document.createElement('div');
+          cell.className = 'dsp-cell' + (mark ? ' dsp-taken' : '');
+          cell.dataset.i = i;
+          if (mark === 'X') cell.innerHTML = xIcon();
+          if (mark === 'O') cell.innerHTML = oIcon();
+          cell.addEventListener('click', onCellClick);
+          boardEl.appendChild(cell);
+        });
+      }
+      function highlightWin(line) {
+        var cells = boardEl.children;
+        line.forEach(function (i) {
+          cells[i].classList.add('dsp-win');
+        });
+      }
+      function endGame(outcome) {
+        // The code unlocks after the game regardless of outcome (see the
+        // emailForm submit handler below) — winning is just for fun, so
+        // every branch here still leads to the email step.
+        over = true;
+        if (outcome === 'house') {
+          statusEl.textContent = 'house wins this round!';
+          resultEyebrowEl.textContent = 'so close';
+          resultHeadingEl.textContent = 'So close!';
+          resultSubEl.textContent = "The house got this one — but your code's still unlocked. Drop your email below.";
+        } else if (outcome === 'draw') {
+          statusEl.textContent = "it's a draw!";
+          resultEyebrowEl.textContent = 'good game';
+          resultHeadingEl.textContent = "It's a draw.";
+          resultSubEl.textContent = "Drop your email and we'll unlock your code — just a quick refresh.";
+        } else {
+          statusEl.textContent = 'you win!';
+          resultEyebrowEl.textContent = 'you won';
+          resultHeadingEl.textContent = 'Nice round.';
+          resultSubEl.textContent = "Drop your email and we'll unlock your code — just a quick refresh.";
+        }
+        setTimeout(function () {
+          gameStep.classList.add('dsp-hidden');
+          emailStep.classList.add('dsp-active');
+          emailInput.focus();
+        }, 700);
+      }
+      // The house opens with the center square — a clear, deliberate first
+      // move so it's obvious from the moment the card appears that this is
+      // a live game against "the house" and not just a static graphic.
+      // Also where each new game's odds are rolled: 25% of the time the
+      // house plays competitively (see pickBotMove / houseCompetitive).
+      function botOpensGame() {
+        houseCompetitive = Math.random() < 0.25;
+        boardEl.classList.add('dsp-thinking');
+        setTimeout(function () {
+          board[4] = 'O';
+          renderBoard();
+          boardEl.classList.remove('dsp-thinking');
+          statusEl.textContent = 'your move';
+        }, 650);
+      }
+      function onCellClick(e) {
+        if (over) return;
+        var i = parseInt(e.currentTarget.dataset.i, 10);
+        if (board[i]) return;
+        board[i] = 'X';
+        renderBoard();
+        var winLine = checkWinner(board, 'X');
+        if (winLine) {
+          highlightWin(winLine);
+          endGame('player');
+          return;
+        }
+        if (!emptyCells(board).length) {
+          endGame('draw');
+          return;
+        }
+        boardEl.classList.add('dsp-thinking');
+        statusEl.textContent = 'house is thinking...';
+        setTimeout(function () {
+          var move = pickBotMove(board, houseCompetitive);
+          board[move] = 'O';
+          renderBoard();
+          boardEl.classList.remove('dsp-thinking');
+          var oLine = checkWinner(board, 'O');
+          if (oLine) {
+            highlightWin(oLine);
+            endGame('house');
+            return;
+          }
+          if (!emptyCells(board).length) {
+            endGame('draw');
+            return;
+          }
+          statusEl.textContent = 'your move';
+        }, 500);
+      }
+      renderBoard();
+
+      function openPopupImmediately() {
+        overlay.classList.add('dsp-show');
+        requestAnimationFrame(function () {
+          overlay.classList.add('dsp-visible');
+        });
+      }
+
+      // Genuinely subscribes the visitor to Shopify's own marketing
+      // list via a real top-level submission of the hidden native
+      // Shopify newsletter form declared near the top of this snippet.
+      // This causes a real, brief page reload — see the top-of-file
+      // comment for why that trade-off was made deliberately after an
+      // instant/hidden-iframe version proved unreliable in testing.
+      // `Shopify.captcha.protect()` + `requestSubmit()` (not `submit()`)
+      // are both required for this store's hCaptcha bot protection to
+      // accept the submission — confirmed by direct testing.
+      function subscribeToNewsletter(email) {
+        var emailField = document.getElementById('dsp-newsletter-email');
+        var form = document.getElementById('dsp-newsletter-form');
+        if (!emailField || !form) return;
+        emailField.value = email;
+        // Wrapped in try/catch: if Shopify's captcha helper throws (seen when
+        // the hCaptcha script hasn't fully initialized yet), it must not stop
+        // the form submission below from being attempted.
+        try {
+          if (window.Shopify && window.Shopify.captcha && typeof window.Shopify.captcha.protect === 'function') {
+            window.Shopify.captcha.protect(form);
+          }
+        } catch (err) {}
+        try {
+          if (form.requestSubmit) {
+            form.requestSubmit();
+          } else {
+            form.submit(); // very old browsers without requestSubmit support
+          }
+        } catch (err) {}
+      }
+
+      emailForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var val = emailInput.value.trim();
+        var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        if (!ok) {
+          emailError.textContent = 'enter a valid email to unlock your code.';
+          return;
+        }
+        emailError.textContent = '';
+        emailSubmitBtn.disabled = true;
+        emailSubmitBtn.textContent = 'Unlocking…';
+        // Mark that the popup should reopen straight on the code step
+        // after the reload this triggers, in case the redirect ever
+        // lands back here without the ?customer_posted=true query param
+        // being read in time (belt-and-braces; the query param is the
+        // primary signal, checked below).
+        try {
+          sessionStorage.setItem(STORAGE_KEY, '1');
+        } catch (err) {}
+        // Safety net: the reload above depends on Shopify's hCaptcha check
+        // completing. If that check is blocked or silently stalls (ad
+        // blockers, privacy extensions, and flaky networks are the usual
+        // causes), the page never reloads and a visitor is stuck on
+        // "Unlocking…" forever with no way out. A genuine reload tears this
+        // whole script (and this timer) down with the page, so this can only
+        // ever fire when the reload truly never happened — in that case,
+        // reveal the code anyway rather than trap the visitor.
+        clearTimeout(unlockFallbackTimer);
+        unlockFallbackTimer = setTimeout(function () {
+          emailSubmitBtn.disabled = false;
+          emailSubmitBtn.textContent = 'Reveal my code';
+          emailError.textContent = '';
+          gameStep.classList.add('dsp-hidden');
+          emailStep.classList.remove('dsp-active');
+          codeStep.classList.add('dsp-active');
+        }, 8000);
+        subscribeToNewsletter(val);
+      });
+
+      copyBtn.addEventListener('click', function () {
+        navigator.clipboard.writeText(DISCOUNT_CODE).then(function () {
+          copyNote.textContent = 'copied!';
+          setTimeout(function () {
+            copyNote.textContent = ' ';
+          }, 1500);
+        });
+      });
+      function closePopup() {
+        overlay.classList.remove('dsp-visible');
+        setTimeout(function () {
+          overlay.classList.remove('dsp-show');
+        }, 300);
+      }
+      closeBtn.addEventListener('click', closePopup);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closePopup();
+      });
+
+      // Detect returning from a successful newsletter subscribe: Shopify
+      // redirects back to the same page with ?customer_posted=true once
+      // the `form` (type: 'customer') submission above completes. When
+      // present, skip straight to the code step instead of restarting
+      // the game or waiting out the normal 7-second delay, then clean
+      // the URL so a page refresh doesn't repeat this.
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('customer_posted') === 'true') {
+        gameStep.classList.add('dsp-hidden');
+        codeStep.classList.add('dsp-active');
+        openPopupImmediately();
+        try {
+          sessionStorage.setItem(STORAGE_KEY, '1');
+        } catch (err) {}
+        params.delete('customer_posted');
+        var cleanedSearch = params.toString();
+        var cleanedUrl =
+          window.location.pathname +
+          (cleanedSearch ? '?' + cleanedSearch : '') +
+          window.location.hash.replace('#dsp-newsletter-form', '');
+        window.history.replaceState(null, '', cleanedUrl);
+        return;
+      }
+
+      var alreadySeen = SHOW_ONCE_PER_SESSION && sessionStorage.getItem(STORAGE_KEY);
+      if (!alreadySeen) {
+        setTimeout(function () {
+          openPopupImmediately();
+          botOpensGame();
+          if (SHOW_ONCE_PER_SESSION) sessionStorage.setItem(STORAGE_KEY, '1');
+        }, SHOW_DELAY_MS);
+      }
+    });
+  })();
+</script>

@@ -1,13 +1,16 @@
 {%- liquid
   assign product = all_products[section.settings.product]
   assign variant = product.selected_or_first_available_variant
-  assign sub_cents = variant.price | times: 0.85 | round
+  assign sub_cents = variant.price
+  for allocation in variant.selling_plan_allocations
+    assign sub_cents = allocation.price
+    break
+  endfor
   assign sub_per_night_cents = sub_cents | divided_by: 30.0 | round
   assign once_per_night_cents = variant.price | divided_by: 30.0 | round
 -%}
 <section id="offer" class="offer-section">
 <div class="offer-inner">
-<div data-reveal class="offer-eyebrow">{{ section.settings.eyebrow }}</div>
 <h2 data-reveal class="offer-heading">{{ section.settings.heading | newline_to_br }}</h2>
 <p data-reveal class="offer-subheading">{{ section.settings.subheading }}</p>
 <div class="offer-layout">

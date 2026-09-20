@@ -9,108 +9,573 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-product",
+    "header": {
+      "type": "landing-header",
       "blocks": {
-        "vendor": {
-          "type": "text",
+        "block_01": {
+          "type": "nav_link",
           "settings": {
-            "text": "{{ product.vendor }}",
-            "text_style": "uppercase"
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
           }
         },
-        "title": {
-          "type": "title",
-          "settings": {}
-        },
-        "price": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker": {
-          "type": "variant_picker",
+        "block_02": {
+          "type": "nav_dropdown",
           "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
           }
         },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
-        },
-        "buy_buttons": {
-          "type": "buy_buttons",
+        "block_03": {
+          "type": "nav_link",
           "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "description": {
-          "type": "description",
-          "settings": {}
-        },
-        "share": {
-          "type": "share",
-          "settings": {
-            "share_label": "Share"
+            "label": "FAQ",
+            "url": "/#faq"
           }
         }
       },
       "block_order": [
-        "vendor",
-        "title",
-        "price",
-        "variant_picker",
-        "quantity_selector",
-        "buy_buttons",
-        "description",
-        "share"
+        "block_01",
+        "block_02",
+        "block_03"
       ],
       "settings": {
-        "enable_sticky_info": true,
-        "color_scheme": "scheme-1",
-        "media_size": "large",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "gallery_layout": "stacked",
-        "mobile_thumbnails": "hide",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": true,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 12
+        "logo_alt": "Dr.Strips+ home"
       }
     },
-    "disclosures": {
-      "type": "disclosures",
+    "pdp_hero": {
+      "type": "landing-pdp-hero",
+      "blocks": {
+        "block_01": {
+          "type": "item",
+          "settings": {
+            "title": "Description",
+            "content": "<p>Dr.Strips+ Sleep is a fast-dissolving oral strip designed to fit into the wind-down you already have. One strip, on your tongue, about ten minutes before bed — no water, no capsule, nothing to swallow.</p>"
+          }
+        },
+        "block_02": {
+          "type": "item",
+          "settings": {
+            "title": "What it does",
+            "content": "<p>Each strip carries a small, considered blend of actives designed to work with your body's own wind-down signals rather than force sleep on top of it — quieting a racing mind and easing you toward rest, night after night.</p>"
+          }
+        },
+        "block_03": {
+          "type": "item",
+          "settings": {
+            "title": "Ingredients",
+            "content": "<p>Pistachio extract (a natural source of phytomelatonin), GABA, valerian root extract, passion flower and chamomile — five actives, each chosen for a specific mechanism rather than for length of label.</p><p><a href=\"/pages/ingredient-library\">See the complete ingredient breakdown →</a></p>"
+          }
+        },
+        "block_04": {
+          "type": "item",
+          "settings": {
+            "title": "Formula & When to use",
+            "content": "<p>Take one strip on your tongue about ten minutes before bed and let it dissolve on its own — no chewing, no water. One strip a night is the full dose; there's no need to increase it over time.</p>"
+          }
+        },
+        "block_05": {
+          "type": "item",
+          "settings": {
+            "title": "Shipping",
+            "content": "<p>Free shipping on one-time orders above S$100, and free on every subscription. Orders placed before the daily cut-off usually arrive within one to three working days. Singapore only, for now.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05"
+      ],
       "settings": {
-        "padding_top": 36,
-        "padding_bottom": 0
+        "product": "dr-strips-sleep",
+        "eyebrow": "Dr.Strips+ Sleep",
+        "heading": "A simpler way to end your day.",
+        "lead": "A thoughtfully formulated sleep supplement in a fast acting oral strip, designed to dissolve into the night you already have, not add a new one.",
+        "no_1": "Fast onset within 10 minutes.",
+        "no_2": "Helps you wind down naturally.",
+        "no_3": "Supports deep quality sleep.",
+        "qty_label": "30 strips / box",
+        "cta_label": "Add to bag",
+        "guarantee_text": ""
       }
     },
-    "related-products": {
-      "type": "related-products",
+    "pdp_outcomes": {
+      "type": "landing-pdp-outcomes",
+      "blocks": {
+        "block_01": {
+          "type": "stat",
+          "settings": {
+            "value": "60s",
+            "label": "Time to dissolve on your tongue",
+            "lift": "high"
+          }
+        },
+        "block_02": {
+          "type": "stat",
+          "settings": {
+            "value": "≤90%*",
+            "label": "Of the dose absorbed, skipping digestion",
+            "lift": "low"
+          }
+        },
+        "block_03": {
+          "type": "stat",
+          "settings": {
+            "value": "0mg",
+            "label": "Synthetic melatonin in the formula",
+            "lift": "highest"
+          }
+        },
+        "block_04": {
+          "type": "stat",
+          "settings": {
+            "value": "5",
+            "label": "Active ingredients, each dosed on the box",
+            "lift": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04"
+      ],
       "settings": {
-        "heading": "You may also like",
-        "heading_size": "h2",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "columns_mobile": "2",
-        "color_scheme": "scheme-1",
-        "image_ratio": "square",
-        "image_shape": "default",
-        "show_secondary_image": true,
-        "show_vendor": false,
-        "show_rating": false,
-        "padding_top": 36,
-        "padding_bottom": 28
+        "eyebrow": "Why it works",
+        "heading": "Built on what the science actually supports",
+        "subheading": "No clinical trial claims. Just the real numbers behind the formula, the format, and how it's dosed.",
+        "footnote": "*Absorption ceiling is based on ingredient bioavailability data, not a measurement of any one person on any one night."
+      }
+    },
+    "pdp_difference": {
+      "type": "landing-pdp-difference",
+      "blocks": {
+        "block_01": {
+          "type": "point",
+          "settings": {
+            "title": "No water",
+            "text": "Designed to be taken without a glass of water. Take it wherever you happen to be when it's time to wind down."
+          }
+        },
+        "block_02": {
+          "type": "point",
+          "settings": {
+            "title": "No mess.",
+            "text": "An oral strip takes up almost no space in a bag, a bedside drawer or a wash kit. No need to fuss with powders or a bulky bottle."
+          }
+        },
+        "block_03": {
+          "type": "point",
+          "settings": {
+            "title": "No new routine",
+            "text": "One small step fits into the wind-down you already do."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "eyebrow": "01 — Designed around your life",
+        "heading": "Built for the way nights actually go.",
+        "lead": "No complicated routine — just one small step that fits into the one you already have.",
+        "closing": "A supplement is only useful as part of a routine you can actually keep."
+      }
+    },
+    "pdp_how": {
+      "type": "landing-how",
+      "blocks": {
+        "block_01": {
+          "type": "step",
+          "settings": {
+            "time": "01",
+            "title": "Take",
+            "text": "Place one strip on your tongue."
+          }
+        },
+        "block_02": {
+          "type": "step",
+          "settings": {
+            "time": "02",
+            "title": "Dissolve",
+            "text": "Let it dissolve on its own. No chewing, no swallowing."
+          }
+        },
+        "block_03": {
+          "type": "step",
+          "settings": {
+            "time": "03",
+            "title": "Wind down",
+            "text": "Continue your evening as usual. For full directions and recommended use, see the product packaging."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "02 — How to use",
+        "heading": "Take. Dissolve. Wind down.",
+        "subheading": "",
+        "image_wide_placeholder_text": "Strip on tongue, mid-dissolve"
+      }
+    },
+    "pdp_format": {
+      "type": "landing-format",
+      "blocks": {
+        "block_01": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "No water needed",
+            "pill_value": "dash",
+            "pill_text": "",
+            "gummy_value": "check",
+            "gummy_text": ""
+          }
+        },
+        "block_02": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Dissolves in under a minute",
+            "pill_value": "dash",
+            "pill_text": "",
+            "gummy_value": "dash",
+            "gummy_text": ""
+          }
+        },
+        "block_03": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Fits in a pocket or wallet",
+            "pill_value": "dash",
+            "pill_text": "",
+            "gummy_value": "dash",
+            "gummy_text": ""
+          }
+        },
+        "block_04": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Nothing to swallow",
+            "pill_value": "dash",
+            "pill_text": "",
+            "gummy_value": "dash",
+            "gummy_text": ""
+          }
+        },
+        "block_05": {
+          "type": "comparison_row",
+          "settings": {
+            "feature": "Zero sugar",
+            "pill_value": "check",
+            "pill_text": "",
+            "gummy_value": "dash",
+            "gummy_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05"
+      ],
+      "disabled": true,
+      "settings": {
+        "eyebrow": "03 — Why a strip",
+        "heading": "Delivery matters\nas much as the formula.",
+        "image_placeholder_text": "Wide shot, deep blue tone — for white headline text overlay",
+        "subheading": "Gummies, capsules, powders, liquids. The supplement aisle hasn't changed much. We picked the format that gets out of the way.",
+        "compared_label": "Compared",
+        "brand_column_label": "Dr.Strips+ strip",
+        "pill_column_label": "Capsule",
+        "gummy_column_label": "Gummy",
+        "footnote": "Every format can carry the same actives. What differs is how convenient they are to actually take.",
+        "liquids_label": "And powders",
+        "liquids_text": "<p>A powder still needs to be mixed, and a liquid shot still needs to be swallowed; both take the long way through the digestive system. A strip dissolves on your tongue and absorbs directly into your bloodstream.</p>"
+      }
+    },
+    "pdp_ingredients": {
+      "type": "landing-pdp-ingredients",
+      "blocks": {
+        "block_01": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Pistachio extract",
+            "text": "One of the richest natural sources of phytomelatonin — the plant-derived form of the sleep signal your body already reads."
+          }
+        },
+        "block_02": {
+          "type": "ingredient",
+          "settings": {
+            "name": "GABA",
+            "text": "Works with your nervous system's own braking signal, associated with quieting a racing mind before sleep."
+          }
+        },
+        "block_03": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Valerian root extract",
+            "text": "Traditionally used to shorten the time it takes to fall asleep."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "eyebrow": "04 — Key ingredients",
+        "heading": "What's actually in the strip.",
+        "subheading": "Three of the five active ingredients. See the full breakdown for exact doses and the reasoning behind each one.",
+        "link_label": "See the complete ingredient breakdown →",
+        "link_url": "/pages/ingredient-library"
+      }
+    },
+    "pdp_moments": {
+      "type": "landing-pdp-moments",
+      "blocks": {
+        "block_01": {
+          "type": "moment",
+          "settings": {
+            "text": "At home"
+          }
+        },
+        "block_02": {
+          "type": "moment",
+          "settings": {
+            "text": "Travelling"
+          }
+        },
+        "block_03": {
+          "type": "moment",
+          "settings": {
+            "text": "After a late night"
+          }
+        },
+        "block_04": {
+          "type": "moment",
+          "settings": {
+            "text": "At the hotel"
+          }
+        },
+        "block_05": {
+          "type": "moment",
+          "settings": {
+            "text": "On the sofa"
+          }
+        },
+        "block_06": {
+          "type": "moment",
+          "settings": {
+            "text": "Beside your bed"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06"
+      ],
+      "settings": {
+        "eyebrow": "05 — Made for modern nights",
+        "heading": "Wherever your evening happens.",
+        "subheading": "A strip goes anywhere a bottle can't.",
+        "closing": "A supplement that's easy to take is one you'll actually keep taking."
+      }
+    },
+    "pdp_trust": {
+      "type": "landing-pdp-trust",
+      "blocks": {
+        "block_01": {
+          "type": "item",
+          "settings": {
+            "text": "Science-informed formulation"
+          }
+        },
+        "block_02": {
+          "type": "item",
+          "settings": {
+            "text": "Transparent ingredients"
+          }
+        },
+        "block_03": {
+          "type": "item",
+          "settings": {
+            "text": "Quality-controlled manufacturing"
+          }
+        },
+        "block_04": {
+          "type": "item",
+          "settings": {
+            "text": "Convenient oral-strip format"
+          }
+        },
+        "block_05": {
+          "type": "item",
+          "settings": {
+            "text": "GMP, HACCP, ISO 22000-certified facility"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05"
+      ],
+      "settings": {}
+    },
+    "pdp_faq": {
+      "type": "landing-faq",
+      "blocks": {
+        "block_01": {
+          "type": "faq_group",
+          "settings": {
+            "label": "Before you buy",
+            "count_label": "09"
+          }
+        },
+        "block_02": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is Dr.Strips+ Sleep?",
+            "answer": "<p>A sleep-focused supplement in a thin oral strip. It dissolves on your tongue and carries pistachio-derived phytomelatonin, GABA, valerian root, passion flower and chamomile toward your bloodstream — skipping the gut and the liver.</p>"
+          }
+        },
+        "block_03": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I use it?",
+            "answer": "<p>Place one strip on your tongue about ten minutes before bed and let it dissolve. No water, no chewing — just continue your evening as usual.</p>"
+          }
+        },
+        "block_04": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need water?",
+            "answer": "<p>No. The strip is designed to dissolve on its own.</p>"
+          }
+        },
+        "block_05": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When should I take it?",
+            "answer": "<p>About ten minutes before you intend to sleep, as part of the wind-down you already do.</p>"
+          }
+        },
+        "block_06": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I take it every night?",
+            "answer": "<p>Yes. The formula is calibrated for nightly use, with no dependency mechanism and no need to increase the dose over time.</p>"
+          }
+        },
+        "block_07": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it suitable for everyone?",
+            "answer": "<p>Supplements are not appropriate for everyone. If you are pregnant, breastfeeding, taking medication, managing a health condition, or unsure whether this product is right for you, speak to a doctor before use.</p>"
+          }
+        },
+        "block_08": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will it make me fall asleep immediately?",
+            "answer": "<p>We don't position it as an instant fix. Sleep is shaped by many things — routine, environment, stress, light exposure and individual biology. Our aim is a thoughtfully formulated strip that supports a broader sleep routine, not a switch you flip.</p>"
+          }
+        },
+        "block_09": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it a medicine?",
+            "answer": "<p>No. Dr.Strips+ Sleep is a food supplement and is not intended to diagnose, treat, cure or prevent any disease.</p>"
+          }
+        },
+        "block_10": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Where is it made?",
+            "answer": "<p>In a GMP, HACCP and ISO 22000-certified facility in Singapore.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06",
+        "block_07",
+        "block_08",
+        "block_09",
+        "block_10"
+      ],
+      "settings": {
+        "eyebrow": "06 — Questions",
+        "heading": "Frequently asked.",
+        "subheading": "Everything worth knowing before your first box.",
+        "disclaimer": "Health supplements in Singapore are sold without a licence but must comply with HSA guidelines, which we follow. Not intended to diagnose, treat, cure or prevent any disease."
+      }
+    },
+    "pdp_cta": {
+      "type": "landing-science-cta",
+      "settings": {
+        "product": "dr-strips-sleep",
+        "label": "One strip. Tonight.",
+        "heading": "Add it to tonight,\nnot to your to-do list.",
+        "body": "Thirty strips, thirty nights. Ten minutes before bed, one on your tongue. Because tomorrow starts tonight.",
+        "qty_label": "",
+        "cta_label": "Add to bag",
+        "guarantee_text": ""
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
       }
     }
   },
   "order": [
-    "main",
-    "disclosures",
-    "related-products"
+    "header",
+    "pdp_hero",
+    "pdp_outcomes",
+    "pdp_difference",
+    "pdp_how",
+    "pdp_format",
+    "pdp_ingredients",
+    "pdp_moments",
+    "pdp_trust",
+    "pdp_faq",
+    "pdp_cta",
+    "script"
   ]
 }

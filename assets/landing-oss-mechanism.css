@@ -1,0 +1,11 @@
+.oss-mech-section{min-height:560px;display:flex;flex-direction:column;justify-content:center;padding:clamp(80px,10vw,120px) 24px;background:#213D4B}
+.oss-mech-wrap{max-width:900px;margin:0 auto;width:100%}
+.oss-mech-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#A5C8DC;margin:0 0 22px}
+.oss-mech-giant{font-family:'Geist Mono',monospace;font-weight:600;font-size:clamp(88px,15vw,152px);line-height:.92;letter-spacing:-.01em;color:#F0F0EE;margin:0}
+.oss-mech-giant span{color:#A5C8DC}
+.oss-mech-giant-label{font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:rgba(165,200,220,.55);margin:14px 0 52px}
+.oss-mech-heading{font-size:clamp(28px,4vw,40px);line-height:1.14;font-weight:600;color:#F0F0EE;margin:0 0 16px;max-width:620px}
+.oss-mech-body{font-size:15.5px;line-height:1.65;color:rgba(240,240,238,.72);margin:0 0 48px;max-width:560px}
+.oss-mech-timebar-track{height:10px;border-radius:5px;background:rgba(255,255,255,.08);max-width:520px;overflow:hidden}
+.oss-mech-timebar-fill{height:100%;width:100%;border-radius:5px;background:#A5C8DC}
+.oss-mech-timebar-ticks{display:flex;justify-content:space-between;margin-top:10px;max-width:520px;font-family:'Geist Mono',monospace;font-size:11px;color:rgba(240,240,238,.52)}

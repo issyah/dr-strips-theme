@@ -1,0 +1,68 @@
+{% comment %}
+  Section: Why Sleep Matters page — 04 Sleep is part of the foundation — landing-sleep-foundation.liquid
+{% endcomment %}
+<section id="foundation" class="wsmf-section">
+<div class="wsmf-container">
+<div data-reveal class="wsmf-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="wsmf-intro-grid">
+<h2 data-reveal class="wsmf-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="wsmf-body">{{ section.settings.body }}</p>
+</div>
+
+<div class="wsmf-grid">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-card wsmf-card {% if block.settings.highlight %}wsmf-card--highlight{% endif %}" {{ block.shopify_attributes }}>
+<div class="wsmf-card-title">{{ block.settings.title }}</div>
+</div>
+{%- endfor -%}
+</div>
+
+<div data-reveal class="wsmf-image-frame">
+{%- if section.settings.image != blank -%}
+<img src="{{ section.settings.image | image_url: width: 1600 }}" alt="{{ section.settings.image.alt | escape }}" class="wsmf-image-img" loading="lazy" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+{%- else -%}
+<div class="img-slot">
+<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 20V10M12 20V4M20 20v-6"></path></svg>
+<span>{{ section.settings.image_placeholder_text }}</span>
+</div>
+{%- endif -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Sleep — Foundation",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "04 — The bigger picture" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Sleep is part of the foundation." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Nutrition matters. Movement matters. Mental wellbeing matters. Recovery matters. And sleep sits underneath much of it." },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Image placeholder caption", "default": "Editorial photo — calm bedroom, evening light" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "checkbox", "id": "highlight", "label": "Highlight (steel-blue border)", "default": false }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Sleep — Foundation",
+      "blocks": [
+        { "type": "pillar", "settings": { "title": "Nutrition", "highlight": false } },
+        { "type": "pillar", "settings": { "title": "Movement", "highlight": false } },
+        { "type": "pillar", "settings": { "title": "Mental wellbeing", "highlight": false } },
+        { "type": "pillar", "settings": { "title": "Recovery", "highlight": false } },
+        { "type": "pillar", "settings": { "title": "Sleep", "highlight": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

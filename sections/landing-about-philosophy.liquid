@@ -1,0 +1,74 @@
+{% comment %}
+  Section: About page — philosophy & standards — landing-about-philosophy.liquid
+{% endcomment %}
+<section id="philosophy" class="ab-phil-section">
+<div class="ab-phil-wrap">
+<div data-reveal class="ab-eyebrow"><span class="ab-eyebrow-line"></span>{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="ab-phil-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="ab-phil-lead">{{ section.settings.lead }}</p>
+<p data-reveal class="ab-statement">{{ section.settings.statement }}</p>
+
+<div data-reveal class="ab-not-list">
+{%- assign not_blocks = section.blocks | where: "type", "not_item" -%}
+{%- for block in not_blocks -%}
+<div class="ab-not-row" {{ block.shopify_attributes }}><span class="ab-not-tag">{{ block.settings.tag }}</span><span class="ab-not-text">{{ block.settings.text }}</span></div>
+{%- endfor -%}
+<div class="ab-not-row ab-not-row--but"><span class="ab-not-tag">{{ section.settings.but_tag }}</span><span class="ab-not-text">{{ section.settings.but_text }}</span></div>
+</div>
+
+<div class="ab-questions-grid">
+{%- assign q_blocks = section.blocks | where: "type", "question" -%}
+{%- for block in q_blocks -%}
+<div data-reveal class="hov-card ab-question-card" {{ block.shopify_attributes }}><div class="ab-question-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div><p class="ab-question-text">{{ block.settings.text }}</p></div>
+{%- endfor -%}
+</div>
+
+<div data-reveal class="hov-card ab-callout">
+<div class="ab-callout-label">{{ section.settings.callout_label }}</div>
+<p class="ab-callout-text">{{ section.settings.callout_text }}</p>
+</div>
+
+<div data-reveal class="ab-final">
+<p class="ab-final-statement">{{ section.settings.final_statement }}</p>
+<div class="ab-final-sign">{{ section.settings.final_sign }}</div>
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "About — Philosophy",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our philosophy" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Supplementation deserves an upgrade." },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "Science has moved forward. The way we supplement hasn't. We're still swallowing pills from plastic bottles, carrying bulky containers through airports, and trying to remember whether we've already taken today's dose. We think there's a better way." },
+    { "type": "textarea", "id": "statement", "label": "Statement", "default": "Dr.Strips+ was created to rethink the everyday experience of supplementation." },
+    { "type": "text", "id": "but_tag", "label": "\"But\" tag", "default": "But" },
+    { "type": "textarea", "id": "but_text", "label": "\"But\" text", "default": "By asking better questions." },
+    { "type": "text", "id": "callout_label", "label": "Callout label", "default": "Most importantly" },
+    { "type": "textarea", "id": "callout_text", "label": "Callout text", "default": "Does it genuinely make someone's life better?" },
+    { "type": "textarea", "id": "final_statement", "label": "Final statement", "default": "Because the future of wellness isn't about doing more. It's about doing what matters — better." },
+    { "type": "text", "id": "final_sign", "label": "Final signature line", "default": "Dr.Strips+ — the future of supplementation starts here." }
+  ],
+  "blocks": [
+    { "type": "not_item", "name": "\"Not by\" line", "settings": [ { "type": "text", "id": "tag", "label": "Tag", "default": "Not by" }, { "type": "text", "id": "text", "label": "Text" } ] },
+    { "type": "question", "name": "Question", "settings": [ { "type": "text", "id": "text", "label": "Question" } ] }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "About — Philosophy",
+      "blocks": [
+        { "type": "not_item", "settings": { "tag": "Not by", "text": "Making louder claims." } },
+        { "type": "not_item", "settings": { "tag": "Not by", "text": "Adding unnecessary ingredients." } },
+        { "type": "not_item", "settings": { "tag": "Not by", "text": "Pretending there's a shortcut to health." } },
+        { "type": "question", "settings": { "text": "Why this ingredient?" } },
+        { "type": "question", "settings": { "text": "Why this dosage?" } },
+        { "type": "question", "settings": { "text": "Why this format?" } },
+        { "type": "question", "settings": { "text": "Why does this product exist?" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

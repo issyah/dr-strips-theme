@@ -1,0 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "landing-header",
+      "blocks": {
+        "block_01": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
+          }
+        },
+        "block_02": {
+          "type": "nav_dropdown",
+          "settings": {
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
+          }
+        },
+        "block_03": {
+          "type": "nav_link",
+          "settings": {
+            "label": "FAQ",
+            "url": "/#faq"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "logo_alt": "Dr.Strips+ home"
+      }
+    },
+    "academy_hero": {
+      "type": "landing-academy-hero",
+      "settings": {
+        "eyebrow": "Learn — Sleep Academy",
+        "heading": "The Dr.Strips+ Sleep Academy",
+        "subheading": "Understand sleep. Build better nights.",
+        "lead": "Sleep is one of the most important parts of your daily life — yet most of us spend remarkably little time actually understanding it. The Sleep Academy exists to change that: a growing library of clear, practical articles on how sleep works, why it matters, and how to build a routine that actually holds up on a busy week.",
+        "compact": false,
+        "no_1": "No fear.",
+        "no_2": "No miracle hacks.",
+        "no_3": "No sensational headlines.",
+        "closing_line": "Just useful, evidence-informed information about sleep, explained in language that makes sense."
+      }
+    },
+    "academy_articles": {
+      "type": "landing-academy-articles",
+      "settings": {
+        "blog_handle": "sleep-academy",
+        "heading": "Latest articles",
+        "subheading": "",
+        "limit": 12,
+        "empty_text": "New articles are on their way — check back soon."
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "academy_hero",
+    "academy_articles",
+    "script"
+  ]
+}

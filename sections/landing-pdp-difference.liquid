@@ -1,0 +1,55 @@
+{% comment %}
+  Section: Product page — designed around your life — landing-pdp-difference.liquid
+{% endcomment %}
+<section id="difference" class="pdpd-section">
+<div class="pdpd-wrap">
+<div data-reveal class="pdpd-eyebrow">{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="pdpd-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="pdpd-lead">{{ section.settings.lead }}</p>
+
+<div class="pdpd-grid">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-card pdpd-card" {{ block.shopify_attributes }}>
+<h3 class="pdpd-card-title">{{ block.settings.title }}</h3>
+<p class="pdpd-card-text">{{ block.settings.text }}</p>
+</div>
+{%- endfor -%}
+</div>
+
+<p data-reveal class="pdpd-closing">{{ section.settings.closing }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "PDP — Difference",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "01 — Designed around your life" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built for the way nights actually go." },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "No water. No bulky bottle. No complicated routine — just one small step that fits into the one you already have." },
+    { "type": "textarea", "id": "closing", "label": "Closing statement", "default": "A supplement is only useful as part of a routine you can actually keep." }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "PDP — Difference",
+      "blocks": [
+        { "type": "point", "settings": { "title": "No water", "text": "Designed to be taken without a glass of water — wherever you happen to be when it's time to wind down." } },
+        { "type": "point", "settings": { "title": "No bulky bottle", "text": "A slim strip takes up almost no space in a bag, a bedside drawer or a wash kit." } },
+        { "type": "point", "settings": { "title": "No new routine", "text": "One small step folds into the wind-down you already do, rather than asking for a new one." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

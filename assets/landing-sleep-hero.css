@@ -1,0 +1,17 @@
+.wsmh-section{padding:clamp(96px,11vw,150px) clamp(20px,4vw,40px) clamp(60px,7vw,100px)}
+.wsmh-wrap{max-width:760px;margin:0 auto}
+
+.wsmh-eyebrow{display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.wsmh-eyebrow-line{width:22px;height:1px;background:#A5C8DC}
+
+.wsmh-heading{margin:22px 0 0;font-size:clamp(38px,5.4vw,68px);line-height:1.02;letter-spacing:-.04em;font-weight:500;color:#0B0B0C}
+
+.wsmh-lead{margin:20px 0 0;font-size:18px;line-height:1.7;color:#55565A;max-width:640px}
+
+.wsmh-cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.wsmh-cta-primary{display:inline-flex;align-items:center;border:0;background:#0B0B0C;color:#fff !important;font-family:'Geist',sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;padding:14px 22px;border-radius:9px;text-decoration:none;transition:transform .12s cubic-bezier(.22,.61,.36,1),background .22s}
+.wsmh-cta-secondary{display:inline-flex;align-items:center;border:1.5px solid #E6E7E9;background:transparent;color:#0B0B0C !important;font-family:'Geist',sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;padding:13px 22px;border-radius:9px;text-decoration:none;transition:transform .12s cubic-bezier(.22,.61,.36,1),border-color .22s}
+
+.wsmh-image-frame{margin-top:clamp(48px,6vw,80px);position:relative;height:clamp(260px,32vw,420px);border-radius:20px;overflow:hidden;background:#FAFAF9;border:1px solid #ECEDEE}
+.wsmh-image-frame .img-slot{position:absolute;inset:0}
+.wsmh-image-frame .wsmh-image-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}

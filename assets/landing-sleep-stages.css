@@ -1,0 +1,27 @@
+.wsms-section{padding:clamp(76px,9vw,140px) clamp(20px,4vw,40px);background:#FAFAF9;border-top:1px solid #ECEDEE}
+.wsms-container{max-width:1200px;margin:0 auto}
+
+.wsms-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.wsms-intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4vw,64px);margin-top:24px;align-items:start}
+
+.wsms-heading{margin:0;font-size:clamp(34px,4.4vw,58px);line-height:1.0;letter-spacing:-.04em;font-weight:500;color:#0B0B0C}
+
+.wsms-body{margin:0;font-size:17px;line-height:1.7;color:#55565A;max-width:520px}
+.wsms-body--second{margin:18px 0 0;font-size:17px;line-height:1.7;color:#55565A;max-width:520px}
+
+.wsms-chart-card{margin-top:clamp(44px,5vw,76px);background:#fff;border:1px solid #ECEDEE;border-radius:18px;padding:clamp(20px,3vw,36px) clamp(16px,3vw,32px) clamp(24px,3vw,32px)}
+.wsms-chart{width:100%;height:auto;display:block;overflow:visible}
+.wsms-grid-line{stroke:#ECEDEE;stroke-width:1;stroke-dasharray:2 5}
+.wsms-axis-label{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;fill:#8A8C91}
+.wsms-time-label{font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.06em;fill:#B9BABD}
+.wsms-path{fill:none;stroke:#0B0B0C;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.wsms-marker{fill:#A5C8DC;offset-path:path('M40,40 L70,170 L130,260 L190,260 L230,170 L260,100 L300,100 L330,170 L380,230 L420,230 L450,170 L480,100 L530,100 L560,170 L590,100 L610,100');animation:wsms-flow 13s linear infinite}
+@keyframes wsms-flow{0%{offset-distance:0%}100%{offset-distance:100%}}
+@media (prefers-reduced-motion:reduce){.wsms-marker{animation:none;offset-distance:0%}}
+.wsms-chart-caption{margin:18px 2px 0;font-size:13px;line-height:1.5;color:#8A8C91;max-width:560px}
+
+.wsms-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:20px}
+.wsms-card{background:#fff;border:1px solid #ECEDEE;border-radius:14px;padding:26px 22px 30px}
+.wsms-card-index{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#A5C8DC}
+.wsms-card-title{margin:18px 0 8px;font-size:19px;font-weight:500;letter-spacing:-.02em;color:#0B0B0C}
+.wsms-card-text{margin:0;font-size:15px;line-height:1.6;color:#55565A}

@@ -1,0 +1,81 @@
+{% comment %}
+  Section: Why Sleep Matters page — 01 What actually happens when you sleep (animated hypnogram + stage cards) — landing-sleep-stages.liquid
+{% endcomment %}
+<section id="stages" class="wsms-section">
+<div class="wsms-container">
+<div data-reveal class="wsms-eyebrow">{{ section.settings.eyebrow }}</div>
+<div class="wsms-intro-grid">
+<h2 data-reveal class="wsms-heading">{{ section.settings.heading }}</h2>
+<div>
+<p data-reveal class="wsms-body">{{ section.settings.body_1 }}</p>
+<p data-reveal class="wsms-body--second">{{ section.settings.body_2 }}</p>
+</div>
+</div>
+
+<div data-reveal class="wsms-chart-card">
+<svg class="wsms-chart" viewBox="0 0 640 320" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustrative diagram of sleep stages cycling across a night">
+<line x1="40" y1="40" x2="610" y2="40" class="wsms-grid-line"></line>
+<line x1="40" y1="100" x2="610" y2="100" class="wsms-grid-line"></line>
+<line x1="40" y1="170" x2="610" y2="170" class="wsms-grid-line"></line>
+<line x1="40" y1="260" x2="610" y2="260" class="wsms-grid-line"></line>
+<text x="8" y="44" class="wsms-axis-label">Awake</text>
+<text x="8" y="104" class="wsms-axis-label">REM</text>
+<text x="8" y="174" class="wsms-axis-label">Light</text>
+<text x="8" y="264" class="wsms-axis-label">Deep</text>
+<text x="40" y="300" class="wsms-time-label">11PM</text>
+<text x="183" y="300" class="wsms-time-label" text-anchor="middle">1AM</text>
+<text x="326" y="300" class="wsms-time-label" text-anchor="middle">3AM</text>
+<text x="469" y="300" class="wsms-time-label" text-anchor="middle">5AM</text>
+<text x="610" y="300" class="wsms-time-label" text-anchor="end">7AM</text>
+<path class="wsms-path" d="M40,40 L70,170 L130,260 L190,260 L230,170 L260,100 L300,100 L330,170 L380,230 L420,230 L450,170 L480,100 L530,100 L560,170 L590,100 L610,100"></path>
+<circle class="wsms-marker" r="5"></circle>
+</svg>
+<p class="wsms-chart-caption">{{ section.settings.chart_caption }}</p>
+</div>
+
+<div class="wsms-cards">
+{%- for block in section.blocks -%}
+<div data-reveal class="hov-card wsms-card" {{ block.shopify_attributes }}>
+<div class="wsms-card-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div>
+<div class="wsms-card-title">{{ block.settings.title }}</div>
+<p class="wsms-card-text">{{ block.settings.text }}</p>
+</div>
+{%- endfor -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Sleep — Stages",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "01 — What actually happens" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A night isn't one long blackout." },
+    { "type": "textarea", "id": "body_1", "label": "Body text 1", "default": "During sleep, your body moves through repeating cycles involving different stages of sleep — including deeper non-REM sleep and REM sleep. These stages are associated with different physiological processes involving restoration, memory, learning and emotional regulation." },
+    { "type": "textarea", "id": "body_2", "label": "Body text 2", "default": "Sleep is not simply time spent unconscious. It's time your body is designed to use." },
+    { "type": "text", "id": "chart_caption", "label": "Chart caption", "default": "Illustrative sleep-cycle pattern across a night — cycles repeat roughly every 90 minutes, with REM periods lengthening toward morning." }
+  ],
+  "blocks": [
+    {
+      "type": "stage_card",
+      "name": "Stage card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "textarea", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Sleep — Stages",
+      "blocks": [
+        { "type": "stage_card", "settings": { "title": "Light non-REM sleep", "text": "The entry stage of every cycle. Breathing and heart rate begin to slow as the body eases out of wakefulness." } },
+        { "type": "stage_card", "settings": { "title": "Deep non-REM sleep", "text": "The stage most associated with physical restoration — tissue repair, immune support and clearing the day's fatigue. It's concentrated earlier in the night." } },
+        { "type": "stage_card", "settings": { "title": "REM sleep", "text": "The stage most associated with memory consolidation, learning and emotional regulation. REM periods get longer as the night goes on." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

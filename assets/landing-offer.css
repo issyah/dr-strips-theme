@@ -72,6 +72,15 @@
   transition: border-color .22s, box-shadow .3s cubic-bezier(.22,.61,.36,1), transform .3s cubic-bezier(.22,.61,.36,1);
 }
 
+.offer-plan-btn:hover {
+  border-color: #0B0B0C;
+}
+
+.offer-plan-btn.selected {
+  border-color: #0B0B0C;
+  box-shadow: 0 0 0 1px #0B0B0C;
+}
+
 .offer-plan-row {
   display: flex;
   justify-content: space-between;
@@ -100,6 +109,12 @@
   height: 7px;
   border-radius: 50%;
   display: block;
+  background: transparent;
+  transition: background .18s;
+}
+
+.offer-plan-btn.selected .offer-plan-dot {
+  background: #0B0B0C;
 }
 
 .offer-plan-label {

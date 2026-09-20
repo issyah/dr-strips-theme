@@ -1,0 +1,6 @@
+.senr-empty { max-width: 520px; margin: 32px auto 0; text-align: center; }
+.senr-empty-heading { margin: 0 0 8px; font-size: clamp(22px,2.8vw,28px); letter-spacing: -.03em; font-weight: 500; color: #0B0B0C; }
+.senr-empty-sub { margin: 0 0 24px; font-size: 15px; color: #55565A; }
+.senr-empty-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.senr-empty-link { padding: 10px 18px; border: 1px solid #DCDDDF; border-radius: 999px; font-size: 14px; color: #0B0B0C !important; text-decoration: none; transition: border-color .18s, color .18s; }
+.senr-empty-link:hover { border-color: #A5C8DC; color: #4682B4 !important; }

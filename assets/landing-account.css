@@ -1,0 +1,109 @@
+/* ==========================================================================
+   Customer account portal — shared styles for login, register, account
+   dashboard, order detail, addresses, reset password, activate account.
+   Prefix: acct-
+   ========================================================================== */
+
+/* ---- shared layout shell ---- */
+.acct-section { padding: clamp(60px,8vw,100px) clamp(20px,4vw,40px) clamp(70px,9vw,110px); }
+
+/* ---- auth card (login / register / reset / activate) ---- */
+.acct-auth-card { max-width: 420px; margin: 0 auto 20px; background: #fff; border: 1px solid #ECEDEE; border-radius: 20px; padding: clamp(30px,4vw,44px); }
+.acct-auth-heading { margin: 0 0 10px; font-size: clamp(26px,3vw,32px); line-height: 1.08; letter-spacing: -.03em; font-weight: 500; color: #0B0B0C; text-align: center; }
+.acct-auth-subtext { margin: 0 0 28px; font-size: 14.5px; line-height: 1.6; color: #55565A; text-align: center; }
+.acct-auth-footer { max-width: 420px; margin: 0 auto; text-align: center; font-size: 14.5px; color: #55565A; }
+
+/* ---- form fields (shared across all account forms) ---- */
+.acct-field { display: grid; gap: 8px; margin-bottom: 16px; }
+.acct-field-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 16px; margin-bottom: 0; }
+.acct-field-row .acct-field { margin-bottom: 16px; }
+.acct-field label { font-family: 'Geist Mono', monospace; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: #8A8C91; }
+.acct-input { width: 100%; border: 1px solid #DCDDDF; background: #fff; border-radius: 9px; padding: 13px 15px; font-family: 'Geist', sans-serif; font-size: 15px; color: #0B0B0C; outline: none; transition: border-color .22s, box-shadow .22s; box-sizing: border-box; }
+
+.acct-submit { display: block; width: 100%; border: 0; background: #0B0B0C; color: #fff !important; font-family: 'Geist', sans-serif; font-size: 15px; font-weight: 500; padding: 15px 22px; border-radius: 9px; cursor: pointer; text-align: center; transition: background .18s; margin-top: 6px; }
+.acct-submit:hover { background: #232427; }
+
+.acct-delete-btn { border: 1px solid #ECEDEE; background: #fff; color: #B24545 !important; font-family: 'Geist', sans-serif; font-size: 14px; font-weight: 500; padding: 13px 20px; border-radius: 9px; cursor: pointer; transition: border-color .18s, background .18s; }
+.acct-delete-btn:hover { border-color: #B24545; background: #FBF3F3; }
+
+.acct-form-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+.acct-form-actions .acct-submit { width: auto; flex: 1 1 160px; }
+
+.acct-link { color: #4682B4 !important; text-decoration: none; font-weight: 500; cursor: pointer; }
+.acct-link:hover { color: #2F5E82 !important; text-decoration: underline; }
+
+.acct-form-success { color: #4682B4; font-size: 14px; line-height: 1.6; margin: 0 0 18px; }
+.acct-form-error { color: #B24545; font-size: 14px; line-height: 1.6; margin: 0 0 18px; }
+
+/* ---- login page: recover-password toggle ---- */
+.acct-recover-card { display: none; }
+.acct-recover-link { display: inline-block; margin-top: 14px; font-size: 14px; text-align: center; width: 100%; }
+
+/* ---- dashboard shell (account / order / addresses) ---- */
+.acct-dashboard { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 220px 1fr; gap: clamp(24px,4vw,48px); align-items: start; }
+.acct-sidenav { display: flex; flex-direction: column; gap: 4px; background: #F5F5F4; border-radius: 16px; padding: 14px; position: sticky; top: 88px; }
+.acct-sidenav-link { display: block; padding: 11px 14px; border-radius: 9px; font-size: 14px; font-weight: 500; color: #0B0B0C !important; text-decoration: none; transition: background .18s, color .18s; }
+.acct-sidenav-link:hover { background: #ECEDEE; text-decoration: none; }
+.acct-sidenav-link.active { background: #0B0B0C; color: #fff !important; }
+.acct-sidenav-link.active:hover { background: #0B0B0C; }
+
+.acct-main { min-width: 0; }
+.acct-heading { margin: 0 0 6px; font-size: clamp(26px,3vw,34px); letter-spacing: -.03em; font-weight: 500; color: #0B0B0C; }
+.acct-order-meta { margin: 0 0 18px; font-size: 14px; color: #8A8C91; }
+.acct-back-link { display: inline-block; margin-bottom: 18px; font-size: 14px; }
+
+.acct-card { background: #fff; border: 1px solid #ECEDEE; border-radius: 16px; padding: clamp(22px,3vw,30px); margin-bottom: 20px; }
+.acct-card-title { margin: 0 0 16px; font-size: 17px; font-weight: 500; letter-spacing: -.01em; color: #0B0B0C; }
+.acct-card-text { margin: 0 0 12px; font-size: 14.5px; line-height: 1.6; color: #55565A; }
+.acct-empty-state { margin: 0; font-size: 14.5px; color: #8A8C91; }
+
+/* ---- order history list ---- */
+.acct-order-list { display: grid; gap: 2px; }
+.acct-order-header-row { display: grid; grid-template-columns: 1fr 1.1fr 1fr 1fr .8fr .8fr; gap: 10px; padding: 0 4px 10px; font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: .09em; text-transform: uppercase; color: #8A8C91; border-bottom: 1px solid #ECEDEE; }
+.acct-order-row { display: grid; grid-template-columns: 1fr 1.1fr 1fr 1fr .8fr .8fr; gap: 10px; align-items: center; padding: 14px 4px; border-bottom: 1px solid #F0F0EF; font-size: 14px; color: #0B0B0C; }
+.acct-order-row:last-child { border-bottom: 0; }
+.acct-order-cell { min-width: 0; }
+
+@media (max-width: 720px) {
+  .acct-dashboard { grid-template-columns: 1fr; }
+  .acct-sidenav { position: static; flex-direction: row; overflow-x: auto; }
+  .acct-order-header-row { display: none; }
+  .acct-order-row { grid-template-columns: 1fr; gap: 4px; padding: 16px 4px; }
+  .acct-order-cell::before { content: attr(data-label) ": "; font-family: 'Geist Mono', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: #8A8C91; }
+}
+
+/* ---- status badges ---- */
+.acct-badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 999px; background: #F5F5F4; color: #55565A; font-size: 12px; font-weight: 500; }
+.acct-badge-default { background: #0B0B0C; color: #fff; margin-bottom: 12px; }
+
+/* ---- order detail: line items ---- */
+.acct-line-items { display: grid; gap: 16px; }
+.acct-line-item-row { display: flex; align-items: center; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid #F0F0EF; }
+.acct-line-item-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.acct-line-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 10px; border: 1px solid #ECEDEE; flex: none; background: #F5F5F4; }
+.acct-line-item-info { flex: 1; min-width: 0; }
+.acct-line-item-title { font-size: 14.5px; font-weight: 500; color: #0B0B0C; }
+.acct-line-item-variant { font-size: 13px; color: #8A8C91; margin-top: 2px; }
+.acct-line-item-qty { font-size: 13px; color: #8A8C91; margin-top: 2px; }
+.acct-line-item-price { font-size: 14.5px; font-weight: 500; color: #0B0B0C; flex: none; }
+
+.acct-address-text { font-size: 14.5px; line-height: 1.7; color: #55565A; }
+
+.acct-order-status-row { display: flex; gap: 8px; margin-bottom: 22px; }
+
+.acct-order-totals { display: grid; gap: 10px; }
+.acct-total-row { display: flex; justify-content: space-between; font-size: 14.5px; color: #55565A; }
+.acct-total-final { padding-top: 10px; border-top: 1px solid #ECEDEE; font-size: 16px; font-weight: 500; color: #0B0B0C; }
+
+/* ---- addresses page ---- */
+.acct-address-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 18px; margin-bottom: 28px; }
+.acct-address-card { margin-bottom: 0; }
+.acct-address-edit { margin-top: 14px; border-top: 1px solid #ECEDEE; padding-top: 14px; }
+.acct-address-edit summary { font-size: 14px; }
+.acct-address-edit[open] summary { margin-bottom: 16px; }
+.acct-add-address { margin-top: 8px; }
+
+/* ---- subscription placeholder callout ---- */
+.acct-subscription-note { background: #F5F5F4; border-radius: 16px; padding: clamp(22px,3vw,30px); margin-bottom: 20px; }
+.acct-subscription-heading { margin: 0 0 10px; font-size: 17px; font-weight: 500; letter-spacing: -.01em; color: #0B0B0C; }
+.acct-subscription-text { margin: 0; font-size: 14.5px; line-height: 1.65; color: #55565A; }

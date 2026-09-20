@@ -1,0 +1,45 @@
+{% comment %}
+  Section: Customer register — main-register.liquid
+  Renders at /account/register. Uses the native create_customer form.
+{% endcomment %}
+<section class="acct-section">
+<div class="acct-auth-card">
+<h1 class="acct-auth-heading">Create account</h1>
+{% form 'create_customer' %}
+{%- if form.errors -%}
+<p class="acct-form-error">{{ form.errors | default_errors }}</p>
+{%- endif -%}
+<div class="acct-field-row">
+<div class="acct-field">
+<label for="RegisterFirstName">First name</label>
+<input type="text" name="customer[first_name]" id="RegisterFirstName" class="hov-input acct-input" autocomplete="given-name" value="{% if form.first_name %}{{ form.first_name }}{% endif %}">
+</div>
+<div class="acct-field">
+<label for="RegisterLastName">Last name</label>
+<input type="text" name="customer[last_name]" id="RegisterLastName" class="hov-input acct-input" autocomplete="family-name" value="{% if form.last_name %}{{ form.last_name }}{% endif %}">
+</div>
+</div>
+<div class="acct-field">
+<label for="RegisterEmail">Email</label>
+<input type="email" name="customer[email]" id="RegisterEmail" class="hov-input acct-input" autocomplete="email" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% endif %}" required>
+</div>
+<div class="acct-field">
+<label for="RegisterPassword">Password</label>
+<input type="password" name="customer[password]" id="RegisterPassword" class="hov-input acct-input" autocomplete="new-password" required>
+</div>
+<div class="acct-field">
+<label for="RegisterPasswordConfirm">Confirm password</label>
+<input type="password" name="customer[password_confirmation]" id="RegisterPasswordConfirm" class="hov-input acct-input" autocomplete="new-password" required>
+</div>
+<button type="submit" class="acct-submit">Create account</button>
+{% endform %}
+</div>
+<p class="acct-auth-footer">Already have an account? <a href="{{ routes.account_login_url }}" class="acct-link">Sign in</a></p>
+</section>
+
+{% schema %}
+{
+  "name": "Register page",
+  "tag": "section"
+}
+{% endschema %}

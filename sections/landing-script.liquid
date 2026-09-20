@@ -1,18 +1,14 @@
 {%- liquid
   assign product = all_products[section.settings.product]
   assign variant = product.selected_or_first_available_variant
-  assign sub_cents = variant.price | times: 0.85 | round
   assign has_sub_plan = false
   assign sub_plan_id = ''
-  for group in product.selling_plan_groups
-    for plan in group.selling_plans
-      assign has_sub_plan = true
-      assign sub_plan_id = plan.id
-      break
-    endfor
-    if has_sub_plan
-      break
-    endif
+  assign sub_cents = variant.price
+  for allocation in variant.selling_plan_allocations
+    assign has_sub_plan = true
+    assign sub_plan_id = allocation.selling_plan.id
+    assign sub_cents = allocation.price
+    break
   endfor
 -%}
 <script>
@@ -28,11 +24,25 @@
   var SUB_PRICE_TEXT = "S${{ sub_cents | money | remove: '$' }} / month";
   var ONCE_PRICE_TEXT = "S${{ variant.price | money | remove: '$' }}";
 
-  var state = { plan: 'sub', bag: 0 };
-  var bagLabelEls = document.querySelectorAll('[data-bag-label]');
-  var ctaPriceEls = document.querySelectorAll('[data-cta-price]');
   var subCard = document.querySelector('[data-plan="sub"]');
   var onceCard = document.querySelector('[data-plan="once"]');
+
+  // A real subscriptions app is now installed and both the PDP
+  // (landing-pdp-hero.liquid) and the homepage offer section
+  // (landing-offer.liquid) render real [data-plan="sub"]/[data-plan="once"]
+  // selector cards. On a page that actually has that selector, default to
+  // the subscription (the better long-term value) since the shopper can see
+  // and switch the selection themselves. On any other page — the header CTA
+  // or the Science page's CTA box, neither of which has a selector — default
+  // to one-time so a stray "Add to bag" click never silently subscribes
+  // someone with no way to have seen or changed that choice.
+  var initialPlan = (HAS_SUB_PLAN && (subCard || onceCard)) ? 'sub' : 'once';
+  var state = { plan: initialPlan, qty: 1, bag: 0 };
+  var bagLabelEls = document.querySelectorAll('[data-bag-label]');
+  var ctaPriceEls = document.querySelectorAll('[data-cta-price]');
+  var qtyEl = document.querySelector('[data-pdp-qty-value]');
+  var qtyMinusBtn = document.querySelector('[data-pdp-qty-minus]');
+  var qtyPlusBtn = document.querySelector('[data-pdp-qty-plus]');
   var toastEl = document.getElementById('toast');
   var toastTextEl = document.getElementById('toastText');
   var toastBagEl = document.getElementById('toastBagLabel');
@@ -44,6 +54,9 @@
     if (onceCard) { onceCard.classList.toggle('selected', !sub); onceCard.setAttribute('aria-pressed', String(!sub)); }
     var price = sub ? SUB_PRICE_TEXT : ONCE_PRICE_TEXT;
     for (var i = 0; i < ctaPriceEls.length; i++) ctaPriceEls[i].textContent = price;
+  }
+  function renderQty(){
+    if (qtyEl) qtyEl.textContent = String(state.qty);
   }
   function renderBag(){
     var label = String(state.bag);
@@ -62,26 +75,82 @@
       .then(function(cart){ state.bag = cart.item_count; renderBag(); })
       .catch(function(){});
   }
-  function addToCart(){
-    var sub = state.plan === 'sub';
+  function refreshCartDrawer(data){
+    // Dawn's native <cart-drawer> refreshes itself via its own product-form
+    // web component, which we don't use here (add-to-bag is a plain fetch to
+    // /cart/add.js so it can run from multiple custom buttons). To keep the
+    // drawer in sync instead of showing stale/empty contents until a full
+    // page reload, we ask /cart/add.js to also render the cart-drawer section
+    // (sections/cart-drawer.liquid, requested via the `sections` param) and
+    // splice its HTML into #CartDrawer ourselves, then open the drawer.
+    // Deliberately does NOT touch the 'cart-icon-bubble' section Dawn also
+    // re-renders natively — this theme's own header bag icon (landing-header.liquid)
+    // reuses that same id="cart-icon-bubble" for its own markup, and swapping its
+    // innerHTML for Dawn's default bag-icon partial would wipe out our custom icon.
+    if (!data || !data.sections || !data.sections['cart-drawer']) return;
+    var drawerEl = document.querySelector('cart-drawer');
+    var target = document.getElementById('CartDrawer');
+    if (!drawerEl || !target) return;
+    var parsed = new DOMParser().parseFromString(data.sections['cart-drawer'], 'text/html').querySelector('#CartDrawer');
+    if (!parsed) return;
+    target.innerHTML = parsed.innerHTML;
+    // The "empty cart" layout (hidden header, squeezed grid) is driven by an
+    // `is-empty` class on this outer <cart-drawer> element itself (see
+    // component-cart-drawer.css: `cart-drawer.is-empty .drawer__inner {...}`),
+    // set server-side when the drawer was first rendered with an empty cart.
+    // The innerHTML swap above only replaces what's inside #CartDrawer, so it
+    // never touches this outer element — remove the class here or the drawer
+    // stays visually stuck in its empty state until a full page reload.
+    drawerEl.classList.remove('is-empty');
+    setTimeout(function(){
+      var overlay = drawerEl.querySelector('#CartDrawer-Overlay');
+      if (overlay) overlay.addEventListener('click', drawerEl.close.bind(drawerEl));
+      drawerEl.open();
+    });
+  }
+  function addToCart(e){
+    // The header's "Add to bag" pill (data-header-cta) is reachable from every
+    // page, including the PDP where a shopper may have already bumped the qty
+    // stepper or switched to the subscription plan via [data-pdp-qty-*] /
+    // [data-plan]. Those controls write into the same shared `state` object
+    // this function normally reads from, so without this override a stray
+    // click on the header pill would silently check out whatever plan/qty was
+    // last left on the page instead of "add one box, right now" like the
+    // button's own label promises. Force qty:1 and one-time (no selling_plan)
+    // for this specific button; the main PDP/offer buy buttons (no
+    // data-header-cta attribute) keep respecting state.plan/state.qty exactly
+    // as before.
+    var btn = e && e.currentTarget;
+    var isHeaderCta = !!(btn && btn.hasAttribute('data-header-cta'));
+    var sub = isHeaderCta ? false : state.plan === 'sub';
+    var qty = isHeaderCta ? 1 : state.qty;
     if (sub && !HAS_SUB_PLAN) {
       flash('Subscriptions launch soon — try one box for now');
       return;
     }
-    var item = { id: VARIANT_ID, quantity: 1 };
+    var item = { id: VARIANT_ID, quantity: qty };
     if (sub) item.selling_plan = SUB_PLAN_ID;
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ items: [item] })
+      body: JSON.stringify({ items: [item], sections: 'cart-drawer' })
     })
     .then(function(r){
       if (!r.ok) return r.json().then(function(e){ throw new Error((e && e.description) || 'Could not add to bag'); });
       return r.json();
     })
-    .then(function(){
-      flash(sub ? 'Sleep · monthly subscription added' : 'Sleep · 30 strips added');
+    .then(function(data){
+      var msg;
+      if (sub) {
+        msg = 'Sleep · monthly subscription added';
+      } else if (qty > 1) {
+        msg = 'Sleep · ' + qty + ' boxes added';
+      } else {
+        msg = 'Sleep · 30 strips added';
+      }
+      flash(msg);
       syncCartCount();
+      refreshCartDrawer(data);
     })
     .catch(function(err){
       flash(err.message || 'Something went wrong — try again');
@@ -89,6 +158,8 @@
   }
   if (subCard) subCard.addEventListener('click', function(){ state.plan = 'sub'; renderPlan(); });
   if (onceCard) onceCard.addEventListener('click', function(){ state.plan = 'once'; renderPlan(); });
+  if (qtyMinusBtn) qtyMinusBtn.addEventListener('click', function(){ if (state.qty > 1) { state.qty -= 1; renderQty(); } });
+  if (qtyPlusBtn) qtyPlusBtn.addEventListener('click', function(){ if (state.qty < 10) { state.qty += 1; renderQty(); } });
   var addButtons = document.querySelectorAll('[data-add-to-bag]');
   for (var ai = 0; ai < addButtons.length; ai++) {
     addButtons[ai].addEventListener('click', addToCart);
@@ -97,6 +168,7 @@
     setTimeout(function(){ flash('You’re on the list.'); }, 300);
   }
   renderPlan();
+  renderQty();
   renderBag();
   syncCartCount();
 

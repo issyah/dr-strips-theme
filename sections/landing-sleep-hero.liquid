@@ -1,0 +1,45 @@
+{% comment %}
+  Section: Why Sleep Matters page — hero — landing-sleep-hero.liquid
+{% endcomment %}
+<section id="top" class="wsmh-section">
+<div class="wsmh-wrap">
+<div data-reveal class="wsmh-eyebrow"><span class="wsmh-eyebrow-line"></span>{{ section.settings.eyebrow }}</div>
+<h1 data-reveal class="wsmh-heading">{{ section.settings.heading }}</h1>
+<p data-reveal class="wsmh-lead">{{ section.settings.lead_1 }}</p>
+<p data-reveal class="wsmh-lead">{{ section.settings.lead_2 }}</p>
+<div data-reveal class="wsmh-cta-row">
+<a href="{{ section.settings.cta1_url }}" class="hov-header-cta wsmh-cta-primary">{{ section.settings.cta1_label }}</a>
+<a href="{{ section.settings.cta2_url }}" class="hov-outline wsmh-cta-secondary">{{ section.settings.cta2_label }}</a>
+</div>
+<div data-reveal class="wsmh-image-frame">
+{%- if section.settings.image != blank -%}
+<img src="{{ section.settings.image | image_url: width: 1600 }}" alt="{{ section.settings.image.alt | escape }}" class="wsmh-image-img" loading="lazy" width="{{ section.settings.image.width }}" height="{{ section.settings.image.height }}">
+{%- else -%}
+<div class="img-slot">
+<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"></path></svg>
+<span>{{ section.settings.image_placeholder_text }}</span>
+</div>
+{%- endif -%}
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Sleep — Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Learn — Why sleep matters" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Sleep isn't downtime. It's biological maintenance." },
+    { "type": "textarea", "id": "lead_1", "label": "Lead paragraph 1", "default": "Sleep can feel like the part of the day when nothing is happening. In reality, your body and brain are doing important work." },
+    { "type": "textarea", "id": "lead_2", "label": "Lead paragraph 2", "default": "During sleep, your body moves through repeating cycles involving different stages of sleep — including deeper non-REM sleep and REM sleep. Sleep is not simply time spent unconscious. It's time your body is designed to use." },
+    { "type": "text", "id": "cta1_label", "label": "Primary CTA label", "default": "See the sleep stages" },
+    { "type": "text", "id": "cta1_url", "label": "Primary CTA link", "default": "#stages" },
+    { "type": "text", "id": "cta2_label", "label": "Secondary CTA label", "default": "Why it matters" },
+    { "type": "text", "id": "cta2_url", "label": "Secondary CTA link", "default": "#deprivation" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Image placeholder caption", "default": "Editorial photo — asleep, soft morning light" }
+  ],
+  "presets": [{ "name": "Sleep — Hero" }]
+}
+{% endschema %}

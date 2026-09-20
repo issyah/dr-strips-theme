@@ -141,7 +141,16 @@
           {%- endif -%}
         {%- endunless -%}
         {%- if search.results_count == 0 and search.filters == empty -%}
-          <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
+          <div class="senr-empty" role="status">
+            <p class="senr-empty-heading">Nothing came up.</p>
+            <p class="senr-empty-sub">Try another search. Or explore:</p>
+            <div class="senr-empty-links">
+              <a href="/products/dr-strips-sleep" class="senr-empty-link">Dr. Strips+ Sleep</a>
+              <a href="/pages/sleep-academy" class="senr-empty-link">Sleep Academy</a>
+              <a href="/pages/ingredient-library" class="senr-empty-link">Ingredient Library</a>
+              <a href="/#faq" class="senr-empty-link">FAQ</a>
+            </div>
+          </div>
         {%- endif -%}
       {%- endif -%}
     </div>
@@ -364,7 +373,7 @@
           "label": "t:sections.main-search.settings.columns_mobile.options__2.label"
         }
       ]
-    },    
+    },
     {
       "type": "header",
       "content": "t:sections.main-search.settings.header__1.content"

@@ -1,0 +1,109 @@
+{% comment %}
+  Section: Shipping & Returns page — landing-shipping-returns.liquid
+{% endcomment %}
+<section class="shr-hero">
+<div class="shr-hero-wrap">
+<div data-reveal class="shr-eyebrow"><span class="shr-eyebrow-line"></span>{{ section.settings.eyebrow }}</div>
+<h1 data-reveal class="shr-heading">{{ section.settings.heading }}</h1>
+<p data-reveal class="shr-intro">{{ section.settings.intro }}</p>
+</div>
+</section>
+
+<section id="shipping" class="shr-section">
+<div data-reveal class="shr-wrap">
+<h2 class="shr-section-heading">{{ section.settings.shipping_heading }}</h2>
+
+<div class="shr-region-grid">
+<div class="shr-region-card">
+<div class="shr-region-title">{{ section.settings.sg_title }}</div>
+<div class="shr-region-row"><span>Estimated delivery</span><strong>{{ section.settings.sg_delivery }}</strong></div>
+<div class="shr-region-row"><span>Shipping fee</span><strong>{{ section.settings.sg_fee }}</strong></div>
+<div class="shr-region-row"><span>Free shipping threshold</span><strong>{{ section.settings.sg_threshold }}</strong></div>
+</div>
+<div class="shr-region-card">
+<div class="shr-region-title">{{ section.settings.intl_title }}</div>
+<p class="shr-region-note">{{ section.settings.intl_note }}</p>
+</div>
+</div>
+
+<p class="shr-customs-note">{{ section.settings.customs_note }}</p>
+
+<div class="shr-tracking">
+<h3 class="shr-tracking-heading">{{ section.settings.tracking_heading }}</h3>
+<p class="shr-tracking-text">{{ section.settings.tracking_text }}</p>
+<p class="shr-tracking-text">{{ section.settings.tracking_process }}</p>
+</div>
+</div>
+</section>
+
+<section id="returns" class="shr-section shr-section-alt">
+<div data-reveal class="shr-wrap">
+<h2 class="shr-section-heading">{{ section.settings.returns_heading }}</h2>
+<p class="shr-returns-intro">{{ section.settings.returns_intro }}</p>
+
+<div class="shr-returns-grid">
+<div class="shr-returns-card">
+<div class="shr-returns-label">{{ section.settings.window_label }}</div>
+<p>{{ section.settings.window_text }}</p>
+</div>
+<div class="shr-returns-card">
+<div class="shr-returns-label">{{ section.settings.eligibility_label }}</div>
+<p>{{ section.settings.eligibility_text }}</p>
+</div>
+<div class="shr-returns-card">
+<div class="shr-returns-label">{{ section.settings.process_label }}</div>
+<p>{{ section.settings.process_text }}</p>
+</div>
+<div class="shr-returns-card">
+<div class="shr-returns-label">{{ section.settings.exceptions_label }}</div>
+<p>{{ section.settings.exceptions_text }}</p>
+</div>
+</div>
+
+<div class="shr-contact-callout">
+<p>{{ section.settings.contact_intro }}</p>
+<a href="mailto:{{ section.settings.contact_email }}" class="shr-contact-email">{{ section.settings.contact_email }}</a>
+<p class="shr-contact-closing">{{ section.settings.contact_closing }}</p>
+</div>
+</div>
+</section>
+{% schema %}
+{
+  "name": "Shipping & Returns page",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shipping & Returns" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shipping & Delivery" },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "We want receiving your Dr.Strips+ order to be as straightforward as buying it." },
+    { "type": "header", "content": "Shipping" },
+    { "type": "text", "id": "shipping_heading", "label": "Section heading", "default": "Shipping & Delivery" },
+    { "type": "text", "id": "sg_title", "label": "Singapore card title", "default": "Singapore" },
+    { "type": "text", "id": "sg_delivery", "label": "SG estimated delivery", "default": "1–3 working days after dispatch" },
+    { "type": "text", "id": "sg_fee", "label": "SG shipping fee", "default": "S$4.90 flat rate" },
+    { "type": "text", "id": "sg_threshold", "label": "SG free shipping threshold", "default": "Free on one-time orders of S$100+, and always free with a subscription" },
+    { "type": "text", "id": "intl_title", "label": "International card title", "default": "International" },
+    { "type": "textarea", "id": "intl_note", "label": "International note", "default": "We currently ship within Singapore only. International shipping isn't available yet — join our newsletter to be notified when this changes." },
+    { "type": "textarea", "id": "customs_note", "label": "Customs note", "default": "Please note that international orders may be subject to customs duties, taxes or import requirements imposed by the destination country." },
+    { "type": "text", "id": "tracking_heading", "label": "Tracking heading", "default": "Order tracking" },
+    { "type": "textarea", "id": "tracking_text", "label": "Tracking text", "default": "Once your order has been dispatched, you'll receive tracking information by email." },
+    { "type": "textarea", "id": "tracking_process", "label": "Tracking process", "default": "Your tracking email includes a link straight to the courier's tracking page, so you can follow your order without creating an account. You can also sign in to your Dr.Strips+ account at any time to see the status of every past order in one place." },
+    { "type": "header", "content": "Returns" },
+    { "type": "text", "id": "returns_heading", "label": "Section heading", "default": "Our returns policy" },
+    { "type": "textarea", "id": "returns_intro", "label": "Intro", "default": "We want you to feel confident ordering from Dr.Strips+. Our return policy is designed to be straightforward and transparent — backed by our 30-night guarantee." },
+    { "type": "text", "id": "window_label", "label": "Return window label", "default": "Return window" },
+    { "type": "textarea", "id": "window_text", "label": "Return window text", "default": "You have 30 nights from the date your order is delivered to decide if Dr.Strips+ Sleep is right for you." },
+    { "type": "text", "id": "eligibility_label", "label": "Eligibility label", "default": "Eligibility" },
+    { "type": "textarea", "id": "eligibility_text", "label": "Eligibility text", "default": "Just contact us within the 30-night window with your order number. One guarantee redemption per customer, per order." },
+    { "type": "text", "id": "process_label", "label": "Refund process label", "default": "Refund process" },
+    { "type": "textarea", "id": "process_text", "label": "Refund process text", "default": "Once approved, we'll refund you to your original payment method within 5–10 business days." },
+    { "type": "text", "id": "exceptions_label", "label": "Exceptions label", "default": "Opened products" },
+    { "type": "textarea", "id": "exceptions_text", "label": "Exceptions text", "default": "Opened or used strips are still covered — the guarantee exists so you can actually try the product. Final-sale items and gift cards aren't eligible, and shipping fees (if charged) aren't refundable." },
+    { "type": "textarea", "id": "contact_intro", "label": "Contact intro", "default": "If you have an issue with your order, contact us at:" },
+    { "type": "text", "id": "contact_email", "label": "Support email", "default": "support@drstrips.sg" },
+    { "type": "text", "id": "contact_closing", "label": "Contact closing", "default": "We'll do our best to make things right." }
+  ],
+  "presets": [
+    { "name": "Shipping & Returns page" }
+  ]
+}
+{% endschema %}

@@ -84,6 +84,12 @@
   font-family: 'Geist Mono', monospace;
   font-size: 16px;
   color: #8A8C91;
+  transition: color .18s;
+}
+
+/* Steel-blue accent (see landing-header.css) — a small contrasting cue on the +/- toggle mark when a question is hovered. */
+.faq-question:hover .faq-mark {
+  color: #A5C8DC;
 }
 
 .faq-answer {

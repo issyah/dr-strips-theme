@@ -1,0 +1,31 @@
+{% comment %}
+  Section: Activate account — main-activate-account.liquid
+  Renders at /account/activate/{id}/{token} for invited/activated accounts.
+{% endcomment %}
+<section class="acct-section">
+<div class="acct-auth-card">
+<h1 class="acct-auth-heading">Activate your account</h1>
+<p class="acct-auth-subtext">Create a password to activate your account.</p>
+{% form 'activate_customer_password' %}
+{%- if form.errors -%}
+<p class="acct-form-error">{{ form.errors | default_errors }}</p>
+{%- endif -%}
+<div class="acct-field">
+<label for="ActivatePassword">Password</label>
+<input type="password" name="customer[password]" id="ActivatePassword" class="hov-input acct-input" autocomplete="new-password" required>
+</div>
+<div class="acct-field">
+<label for="ActivatePasswordConfirm">Confirm password</label>
+<input type="password" name="customer[password_confirmation]" id="ActivatePasswordConfirm" class="hov-input acct-input" autocomplete="new-password" required>
+</div>
+<button type="submit" class="acct-submit">Activate account</button>
+{% endform %}
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Activate account",
+  "tag": "section"
+}
+{% endschema %}

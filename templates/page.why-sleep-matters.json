@@ -1,0 +1,338 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "landing-header",
+      "blocks": {
+        "block_01": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
+          }
+        },
+        "block_02": {
+          "type": "nav_dropdown",
+          "settings": {
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
+          }
+        },
+        "block_03": {
+          "type": "nav_link",
+          "settings": {
+            "label": "FAQ",
+            "url": "/#faq"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "logo_alt": "Dr.Strips+ home"
+      }
+    },
+    "sleep_hero": {
+      "type": "landing-sleep-hero",
+      "settings": {
+        "eyebrow": "Learn — Why sleep matters",
+        "heading": "Sleep isn't downtime. It's biological maintenance.",
+        "lead_1": "Sleep can feel like the part of the day when nothing is happening. In reality, your body and brain are doing important work.",
+        "lead_2": "During sleep, your body moves through repeating cycles involving different stages of sleep — including deeper non-REM sleep and REM sleep. Sleep is not simply time spent unconscious. It's time your body is designed to use.",
+        "cta1_label": "See the sleep stages",
+        "cta1_url": "#stages",
+        "cta2_label": "Why it matters",
+        "cta2_url": "#deprivation",
+        "image": "shopify://shop_images/DRstrip_12of37.jpg",
+        "image_placeholder_text": "Editorial photo — asleep, soft morning light"
+      }
+    },
+    "sleep_stages": {
+      "type": "landing-sleep-stages",
+      "blocks": {
+        "block_01": {
+          "type": "stage_card",
+          "settings": {
+            "title": "Light non-REM sleep",
+            "text": "The entry stage of every cycle. Breathing and heart rate begin to slow as the body eases out of wakefulness."
+          }
+        },
+        "block_02": {
+          "type": "stage_card",
+          "settings": {
+            "title": "Deep non-REM sleep",
+            "text": "The stage most associated with physical restoration — tissue repair, immune support and clearing the day's fatigue. It's concentrated earlier in the night."
+          }
+        },
+        "block_03": {
+          "type": "stage_card",
+          "settings": {
+            "title": "REM sleep",
+            "text": "The stage most associated with memory consolidation, learning and emotional regulation. REM periods get longer as the night goes on."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "eyebrow": "01 — What actually happens",
+        "heading": "A night isn't one long blackout.",
+        "body_1": "During sleep, your body moves through repeating cycles involving different stages of sleep — including deeper non-REM sleep and REM sleep. These stages are associated with different physiological processes involving restoration, memory, learning and emotional regulation.",
+        "body_2": "Sleep is not simply time spent unconscious. It's time your body is designed to use.",
+        "chart_caption": "Illustrative sleep-cycle pattern across a night — cycles repeat roughly every 90 minutes, with REM periods lengthening toward morning."
+      }
+    },
+    "sleep_sacrifice": {
+      "type": "landing-sleep-sacrifice",
+      "blocks": {
+        "block_01": {
+          "type": "one_more",
+          "settings": {
+            "tag": "One more",
+            "text": "episode."
+          }
+        },
+        "block_02": {
+          "type": "one_more",
+          "settings": {
+            "tag": "One more",
+            "text": "email."
+          }
+        },
+        "block_03": {
+          "type": "one_more",
+          "settings": {
+            "tag": "One more",
+            "text": "scroll."
+          }
+        },
+        "block_04": {
+          "type": "one_more",
+          "settings": {
+            "tag": "One more",
+            "text": "late night."
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04"
+      ],
+      "settings": {
+        "eyebrow": "02 — Why we sacrifice it anyway",
+        "heading": "It's usually the first thing to go.",
+        "until_line": "Until \"I'll catch up tomorrow\" becomes part of the routine.",
+        "body": "The problem isn't that people don't know sleep is important. Most people do. The problem is that modern life makes consistently good sleep difficult."
+      }
+    },
+    "sleep_deprivation": {
+      "type": "landing-sleep-deprivation",
+      "blocks": {
+        "block_01": {
+          "type": "effect_card",
+          "settings": {
+            "title": "Attention"
+          }
+        },
+        "block_02": {
+          "type": "effect_card",
+          "settings": {
+            "title": "Cognitive performance"
+          }
+        },
+        "block_03": {
+          "type": "effect_card",
+          "settings": {
+            "title": "Mood"
+          }
+        },
+        "block_04": {
+          "type": "effect_card",
+          "settings": {
+            "title": "Metabolic health"
+          }
+        },
+        "block_05": {
+          "type": "effect_card",
+          "settings": {
+            "title": "Immune function"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05"
+      ],
+      "settings": {
+        "eyebrow": "03 — What happens when you don't sleep enough",
+        "heading": "One short night can feel manageable.",
+        "body_1": "You might feel slower. Less focused. More irritable. More dependent on caffeine. But sleep loss isn't only about how tired you feel.",
+        "body_2": "When insufficient sleep becomes a pattern, research has associated inadequate sleep with changes across several areas of health and function:",
+        "callout_label": "The tricky part",
+        "callout_text": "You don't always notice the change immediately. You can become accustomed to functioning below your best — which is why sleep shouldn't only be treated as something to think about when you're exhausted. It's something worth protecting before you reach that point.",
+        "disclaimer": "This page provides general education on sleep science and is not medical advice. It does not diagnose, treat, cure or prevent any disease. If sleep problems are persistent or affecting your daily life, speak to a doctor."
+      }
+    },
+    "sleep_foundation": {
+      "type": "landing-sleep-foundation",
+      "blocks": {
+        "block_01": {
+          "type": "pillar",
+          "settings": {
+            "title": "Nutrition",
+            "highlight": false
+          }
+        },
+        "block_02": {
+          "type": "pillar",
+          "settings": {
+            "title": "Movement",
+            "highlight": false
+          }
+        },
+        "block_03": {
+          "type": "pillar",
+          "settings": {
+            "title": "Mental wellbeing",
+            "highlight": false
+          }
+        },
+        "block_04": {
+          "type": "pillar",
+          "settings": {
+            "title": "Recovery",
+            "highlight": false
+          }
+        },
+        "block_05": {
+          "type": "pillar",
+          "settings": {
+            "title": "Sleep",
+            "highlight": true
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05"
+      ],
+      "settings": {
+        "eyebrow": "04 — The bigger picture",
+        "heading": "Sleep is part of the foundation.",
+        "body": "Nutrition matters. Movement matters. Mental wellbeing matters. Recovery matters. And sleep sits underneath much of it.",
+        "image": "shopify://shop_images/DRstrip_31of37.jpg",
+        "image_placeholder_text": "Editorial photo — calm bedroom, evening light"
+      }
+    },
+    "sleep_basics": {
+      "type": "landing-sleep-basics",
+      "blocks": {
+        "block_01": {
+          "type": "basic",
+          "settings": {
+            "text": "A consistent sleep schedule"
+          }
+        },
+        "block_02": {
+          "type": "basic",
+          "settings": {
+            "text": "A calmer wind-down"
+          }
+        },
+        "block_03": {
+          "type": "basic",
+          "settings": {
+            "text": "Less stimulating light late at night"
+          }
+        },
+        "block_04": {
+          "type": "basic",
+          "settings": {
+            "text": "A bedroom that supports sleep"
+          }
+        },
+        "block_05": {
+          "type": "basic",
+          "settings": {
+            "text": "A routine simple enough to repeat"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05"
+      ],
+      "settings": {
+        "eyebrow": "05 — Where to start",
+        "heading": "You don't need a perfect bedtime routine.",
+        "lead": "You don't need to transform your entire life overnight. Start with the basics.",
+        "closing": "Better nights are built, not hacked."
+      }
+    },
+    "sleep_cta": {
+      "type": "landing-science-cta",
+      "settings": {
+        "product": "dr-strips-sleep",
+        "label": "Put it into practice",
+        "heading": "Better nights start tonight.",
+        "body": "Everything above is why Dr.Strips+ Sleep exists — a simple part of the routine you're already building.",
+        "qty_label": "30 strips",
+        "cta_label": "Add to bag",
+        "guarantee_text": "30-night guarantee"
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "sleep_hero",
+    "sleep_stages",
+    "sleep_sacrifice",
+    "sleep_deprivation",
+    "sleep_foundation",
+    "sleep_basics",
+    "sleep_cta",
+    "script"
+  ]
+}

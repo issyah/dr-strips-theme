@@ -1,0 +1,101 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "landing-header",
+      "blocks": {
+        "block_01": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
+          }
+        },
+        "block_02": {
+          "type": "nav_dropdown",
+          "settings": {
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
+          }
+        },
+        "block_03": {
+          "type": "nav_link",
+          "settings": {
+            "label": "FAQ",
+            "url": "/#faq"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "logo_alt": "Dr.Strips+ home"
+      }
+    },
+    "shipping_returns_main": {
+      "type": "landing-shipping-returns",
+      "settings": {
+        "eyebrow": "Shipping & Returns",
+        "heading": "Shipping & Delivery",
+        "intro": "We want receiving your Dr.Strips+ order to be as straightforward as buying it.",
+        "shipping_heading": "Shipping & Delivery",
+        "sg_title": "Singapore",
+        "sg_delivery": "1–3 working days after dispatch",
+        "sg_fee": "S$4.90 flat rate",
+        "sg_threshold": "Free on one-time orders of S$100+, and always free with a subscription",
+        "intl_title": "International",
+        "intl_note": "We currently ship within Singapore only. International shipping isn't available yet — join our newsletter to be notified when this changes.",
+        "customs_note": "Please note that international orders may be subject to customs duties, taxes or import requirements imposed by the destination country.",
+        "tracking_heading": "Order tracking",
+        "tracking_text": "Once your order has been dispatched, you'll receive tracking information by email.",
+        "tracking_process": "Your tracking email includes a link straight to the courier's tracking page, so you can follow your order without creating an account. You can also sign in to your Dr.Strips+ account at any time to see the status of every past order in one place.",
+        "returns_heading": "Our returns policy",
+        "returns_intro": "We want you to feel confident ordering from Dr.Strips+. Our return policy is designed to be straightforward and transparent — backed by our 30-night guarantee.",
+        "window_label": "Return window",
+        "window_text": "You have 30 nights from the date your order is delivered to decide if Dr.Strips+ Sleep is right for you.",
+        "eligibility_label": "Eligibility",
+        "eligibility_text": "Just contact us within the 30-night window with your order number. One guarantee redemption per customer, per order.",
+        "process_label": "Refund process",
+        "process_text": "Once approved, we'll refund you to your original payment method within 5–10 business days.",
+        "exceptions_label": "Opened products",
+        "exceptions_text": "Opened or used strips are still covered — the guarantee exists so you can actually try the product. Final-sale items and gift cards aren't eligible, and shipping fees (if charged) aren't refundable.",
+        "contact_intro": "If you have an issue with your order, contact us at:",
+        "contact_email": "support@drstrips.sg",
+        "contact_closing": "We'll do our best to make things right."
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "shipping_returns_main",
+    "script"
+  ]
+}

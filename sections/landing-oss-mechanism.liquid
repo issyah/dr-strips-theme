@@ -1,0 +1,31 @@
+<section id="oss-mechanism" class="oss-mech-section">
+<div class="oss-mech-wrap">
+<p data-reveal class="oss-mech-eyebrow">{{ section.settings.eyebrow }}</p>
+<p data-reveal class="oss-mech-giant">{{ section.settings.value }}<span>{{ section.settings.value_suffix }}</span></p>
+<p data-reveal class="oss-mech-giant-label">{{ section.settings.giant_label }}</p>
+
+<h2 data-reveal class="oss-mech-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="oss-mech-body">{{ section.settings.body }}</p>
+
+<div data-reveal class="oss-mech-timebar-track"><div class="oss-mech-timebar-fill"></div></div>
+<div class="oss-mech-timebar-ticks"><span>0s</span><span>15s</span><span>30s</span><span>45s</span><span>{{ section.settings.value }}{{ section.settings.value_suffix }} — gone</span></div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "OSS — Mechanism",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Speed" },
+    { "type": "text", "id": "value", "label": "Big number", "default": "60" },
+    { "type": "text", "id": "value_suffix", "label": "Big number suffix", "default": "s" },
+    { "type": "text", "id": "giant_label", "label": "Label under the big number", "default": "Time to dissolve" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gone before you'd notice it was there." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "Place it on your tongue and go about your day. No water, no chewing, nothing left behind." }
+  ],
+  "presets": [
+    { "name": "OSS — Mechanism" }
+  ]
+}
+{% endschema %}

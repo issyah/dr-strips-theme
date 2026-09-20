@@ -1,0 +1,67 @@
+<section id="oss-bioavailability" class="oss-bio-section">
+<div class="oss-bio-wrap">
+<p data-reveal class="oss-bio-eyebrow">{{ section.settings.eyebrow }}</p>
+<p data-reveal class="oss-bio-giant">≤<span>{{ section.blocks.first.settings.percent }}</span>%</p>
+<p data-reveal class="oss-bio-giant-label">{{ section.settings.giant_label }}</p>
+
+<h2 data-reveal class="oss-bio-heading">{{ section.settings.heading | newline_to_br }}</h2>
+<p data-reveal class="oss-bio-body">{{ section.settings.body }}</p>
+
+<div data-reveal class="oss-bio-bars">
+{%- for block in section.blocks -%}
+<div class="oss-bio-bar-row" {{ block.shopify_attributes }}>
+<div class="oss-bio-bar-labels">
+<span class="oss-bio-bar-label{% if forloop.first %} oss-bio-bar-label--primary{% endif %}">{{ block.settings.label }}</span>
+<span class="oss-bio-bar-sub">{{ block.settings.sublabel }}</span>
+</div>
+<div class="oss-bio-bar-track"><div class="oss-bio-bar-fill{% if forloop.first %} oss-bio-bar-fill--primary{% endif %}" style="width:{{ block.settings.percent }}%"></div></div>
+{%- if forloop.first -%}
+<span class="oss-bio-bar-right oss-bio-bar-right--primary">≤{{ block.settings.percent }}%</span>
+{%- else -%}
+<span class="oss-bio-bar-right">{{ block.settings.right_label }}</span>
+{%- endif -%}
+</div>
+{%- endfor -%}
+</div>
+
+<p class="oss-bio-footnote">{{ section.settings.footnote }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "OSS — Bioavailability",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The science" },
+    { "type": "text", "id": "giant_label", "label": "Label under the big number", "default": "Bioavailability ceiling" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks become <br>)", "default": "Same actives.\nDifferent arrival." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "A capsule, a gummy and a film can carry an identical ingredient panel. Two of them take the route through the gut and the liver. The third skips it entirely." },
+    { "type": "textarea", "id": "footnote", "label": "Footnote", "default": "The lower bars carry no percentage on purpose. Published bioavailability for swallowed compounds varies too much by molecule, meal and person to state as one tidy number — the same reasoning already published on the Dr.Strips+ Science page. Ours is stated as a ceiling, with an asterisk, for the same reason." }
+  ],
+  "blocks": [
+    {
+      "type": "bar",
+      "name": "Bar row",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label" },
+        { "type": "text", "id": "sublabel", "label": "Sublabel" },
+        { "type": "range", "id": "percent", "label": "Bar percent", "min": 0, "max": 100, "step": 1, "default": 50 },
+        { "type": "text", "id": "right_label", "label": "Right-side label (used for all rows except the first)", "default": "A fraction" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "OSS — Bioavailability",
+      "blocks": [
+        { "type": "bar", "settings": { "label": "Strip2Cell film", "sublabel": "Mucosa → bloodstream", "percent": 90 } },
+        { "type": "bar", "settings": { "label": "Capsule or tablet", "sublabel": "Gut → liver → bloodstream", "percent": 34, "right_label": "A fraction" } },
+        { "type": "bar", "settings": { "label": "Gummy", "sublabel": "The same route, plus sugar", "percent": 38, "right_label": "A fraction" } },
+        { "type": "bar", "settings": { "label": "Liquid", "sublabel": "Faster to the gut, same liver", "percent": 45, "right_label": "A fraction" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

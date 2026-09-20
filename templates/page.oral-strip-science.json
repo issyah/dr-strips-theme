@@ -1,0 +1,159 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "header": {
+      "type": "landing-header",
+      "blocks": {
+        "block_01": {
+          "type": "nav_link",
+          "settings": {
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
+          }
+        },
+        "block_02": {
+          "type": "nav_dropdown",
+          "settings": {
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
+          }
+        },
+        "block_03": {
+          "type": "nav_link",
+          "settings": {
+            "label": "FAQ",
+            "url": "/#faq"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "logo_alt": "Dr.Strips+ home"
+      }
+    },
+    "oss_hero": {
+      "type": "landing-oss-hero",
+      "settings": {
+        "eyebrow": "The technology",
+        "heading": "One thin film.\nA different way in.",
+        "subheading": "Every Dr.Strips+ product starts with the same delivery format: a fast-dissolving oral strip built to work with your body's own chemistry, not around it."
+      }
+    },
+    "oss_absorption": {
+      "type": "landing-oss-absorption",
+      "settings": {
+        "para_1": "The floor of your mouth is one of the most permeable surfaces in the body. Unlike skin, the oral mucosa has no thick outer barrier — it's thin enough for small molecules to pass straight through.",
+        "para_2": "Just beneath it sits a dense bed of capillaries that drain into the jugular vein — a direct line into circulation that never touches the stomach or the liver.",
+        "para_3": "A swallowed dose takes the longer route. Everything absorbed in the gut passes through the liver first, where enzymes break down a variable share of it before it reaches the bloodstream — oral melatonin is a well-documented example of just how variable that loss can be.",
+        "para_4": "An oral strip is built to dissolve on the tongue in about 60 seconds, releasing its dose straight onto the mucosa — skipping that route, and that variability, entirely.",
+        "heading_before": "Reaches your bloodstream in",
+        "heading_highlight": "minutes",
+        "heading_after": "— not after digestion.",
+        "subheading": "Blood concentration over time: an oral strip vs. a typical swallowed dose.",
+        "footnote": "Curve shapes are illustrative — drawn from published onset-time ranges for sublingual vs. swallowed dosing, not lab-measured on any specific product. Sources: J Clin Endocrinol Metab, 1985 · N Engl J Med, 1997."
+      }
+    },
+    "oss_bioavailability": {
+      "type": "landing-oss-bioavailability",
+      "blocks": {
+        "block_01": {
+          "type": "bar",
+          "settings": {
+            "label": "Strip2Cell film",
+            "sublabel": "Mucosa → bloodstream",
+            "percent": 90,
+            "right_label": "A fraction"
+          }
+        },
+        "block_02": {
+          "type": "bar",
+          "settings": {
+            "label": "Capsule or tablet",
+            "sublabel": "Gut → liver → bloodstream",
+            "percent": 34,
+            "right_label": "A fraction"
+          }
+        },
+        "block_03": {
+          "type": "bar",
+          "settings": {
+            "label": "Gummy",
+            "sublabel": "The same route, plus sugar",
+            "percent": 38,
+            "right_label": "A fraction"
+          }
+        },
+        "block_04": {
+          "type": "bar",
+          "settings": {
+            "label": "Liquid",
+            "sublabel": "Faster to the gut, same liver",
+            "percent": 45,
+            "right_label": "A fraction"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03",
+        "block_04"
+      ],
+      "settings": {
+        "eyebrow": "The science",
+        "giant_label": "Bioavailability ceiling",
+        "heading": "Same actives.\nDifferent arrival.",
+        "body": "A capsule, a gummy and a film can carry an identical ingredient panel. Two of them take the route through the gut and the liver. The third skips it entirely.",
+        "footnote": "The lower bars carry no percentage on purpose. Published bioavailability for swallowed compounds varies too much by molecule, meal and person to state as one tidy number — the same reasoning already published on the Dr.Strips+ Science page. Ours is stated as a ceiling, with an asterisk, for the same reason."
+      }
+    },
+    "oss_mechanism": {
+      "type": "landing-oss-mechanism",
+      "settings": {
+        "eyebrow": "Speed",
+        "value": "60",
+        "value_suffix": "s",
+        "giant_label": "Time to dissolve",
+        "heading": "Gone before you'd notice it was there.",
+        "body": "Place it on your tongue and go about your day. No water, no chewing, nothing left behind."
+      }
+    },
+    "script": {
+      "type": "landing-script",
+      "settings": {
+        "product": "dr-strips-sleep"
+      }
+    }
+  },
+  "order": [
+    "header",
+    "oss_hero",
+    "oss_absorption",
+    "oss_bioavailability",
+    "oss_mechanism",
+    "script"
+  ]
+}

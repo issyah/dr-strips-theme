@@ -1,0 +1,23 @@
+<section id="oss-hero" class="oss-hero-section">
+<div class="oss-hero-glow"></div>
+<div class="oss-hero-wrap">
+<p data-reveal class="oss-hero-eyebrow">{{ section.settings.eyebrow }}</p>
+<h1 data-reveal class="oss-hero-heading">{{ section.settings.heading | newline_to_br }}</h1>
+<p data-reveal class="oss-hero-subheading">{{ section.settings.subheading }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "OSS — Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The technology" },
+    { "type": "textarea", "id": "heading", "label": "Heading (line breaks become <br>)", "default": "One thin film.\nA different way in." },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Every Dr.Strips+ product starts with the same delivery format: a fast-dissolving oral strip built to work with your body's own chemistry, not around it." }
+  ],
+  "presets": [
+    { "name": "OSS — Hero" }
+  ]
+}
+{% endschema %}

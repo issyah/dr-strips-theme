@@ -9,15 +9,92 @@
   margin: 0 auto;
 }
 
+.ftr-newsletter {
+  max-width: 640px;
+  margin: 0 0 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #232427;
+}
+
+.ftr-newsletter-heading {
+  margin: 0;
+  font-size: clamp(22px,2.6vw,30px);
+  line-height: 1.15;
+  letter-spacing: -.03em;
+  font-weight: 500;
+  color: #fff;
+}
+
+.ftr-newsletter-text {
+  margin: 12px 0 20px;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #A9ABAF;
+  max-width: 480px;
+}
+
+.ftr-newsletter-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: 420px;
+}
+
+.ftr-newsletter-input {
+  flex: 1;
+  min-width: 190px;
+  border: 1px solid #35363a;
+  background: #151517;
+  border-radius: 9px;
+  padding: 13px 15px;
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  color: #fff;
+  outline: none;
+  transition: border-color .22s, box-shadow .22s;
+}
+
+.ftr-newsletter-input::placeholder {
+  color: #6E7075;
+}
+
+.ftr-newsletter-button {
+  border: 0;
+  background: #fff;
+  color: #0B0B0C;
+  font-family: 'Geist', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 13px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .18s;
+}
+
+.ftr-newsletter-button:hover {
+  background: #A5C8DC;
+}
+
+.ftr-newsletter-success {
+  margin: 0 0 14px;
+  font-size: 13.5px;
+  color: #A5C8DC;
+}
+
 .ftr-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
   gap: 36px;
   align-items: start;
 }
 
+.ftr-brand {
+  grid-column: span 1;
+}
+
 .ftr-logo {
-  height: 22px;
+  height: 44px;
   display: block;
 }
 
@@ -27,6 +104,28 @@
   line-height: 1.65;
   color: #A9ABAF;
   max-width: 300px;
+}
+
+.ftr-social {
+  display: flex;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.ftr-social-link {
+  color: #A9ABAF !important;
+  display: inline-flex;
+  transition: color .18s;
+}
+
+.ftr-social-link:hover {
+  color: #A5C8DC !important;
+}
+
+.ftr-social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 .ftr-link-column {
@@ -39,8 +138,19 @@
   color: #A9ABAF;
 }
 
+.ftr-link-column-heading {
+  color: #fff !important;
+  margin-bottom: 2px;
+}
+
+/* Fix: `#MainContent a{color:#0B0B0C}` (assets/landing-header.css) is an ID selector and otherwise beats this inherited color, silently turning the footer nav links invisible — black text on the footer's black background. !important restores the intended light gray; hover picks up the steel-blue accent. */
 .ftr-link {
-  color: inherit;
+  color: inherit !important;
+  transition: color .18s;
+}
+
+.ftr-link:hover {
+  color: #A5C8DC !important;
 }
 
 .ftr-bottom {

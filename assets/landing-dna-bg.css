@@ -1,0 +1,75 @@
+/*
+  Subtle animated background motif for the homepage only — a faint, light-gray
+  "DNA strand" pattern drifting slowly behind all homepage sections. Purely
+  decorative (aria-hidden, pointer-events: none), sits behind everything via
+  z-index, and is disabled entirely for anyone who has asked their system for
+  reduced motion.
+
+  The actual image URL is supplied via the --dna-bg-image custom property,
+  set inline in layout/theme.liquid (homepage only) since Shopify's asset_url
+  filter needs Liquid, which this plain .css file doesn't get processed for.
+*/
+.dna-bg {
+  /* The theme's base.css hides all empty elements (div:empty, etc.) with
+     display: none — and since this div is intentionally childless (its
+     content is a CSS background-image), it matches that rule. !important
+     overrides it regardless of stylesheet order/specificity. */
+  display: block !important;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--dna-bg-image);
+  background-repeat: repeat;
+  background-position: 0 0;
+  background-size: 480px 480px;
+  opacity: 0.55;
+  animation: dna-bg-drift 70s linear infinite;
+  will-change: background-position;
+}
+
+/* #MainContent stacks above the fixed background layer; position: relative
+   with no offsets does not move the element, so this has no other layout
+   impact on any page (not just the homepage). */
+#MainContent {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes dna-bg-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    /* Exactly one tile height — the pattern repeats at this interval, so the
+       loop point is visually seamless. */
+    background-position: 0 480px;
+  }
+}
+
+/* Separate, smaller-tile animation for narrow screens — a distinct keyframes
+   name (rather than redefining dna-bg-drift) so the loop distance always
+   matches the mobile background-size exactly, with no ambiguity about which
+   @keyframes rule wins across breakpoint changes. */
+@keyframes dna-bg-drift-mobile {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 320px;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .dna-bg {
+    background-size: 320px 320px;
+    opacity: 0.45;
+    animation-name: dna-bg-drift-mobile;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dna-bg {
+    animation: none;
+  }
+}

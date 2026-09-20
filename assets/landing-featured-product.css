@@ -1,0 +1,341 @@
+/* ==========================================================================
+   Product Feature — full-bleed editorial split layout
+   Restyles Dawn's stock `featured-product` section to match the site's
+   Geist / near-black design system, and turns the boxed default layout
+   into an edge-to-edge image (left) + spacious copy (right) split.
+   Structural reference: secondkind.com hero. Typography/content: this site.
+   ========================================================================== */
+
+:root {
+  --fp-ink: #0B0B0C;
+  --fp-muted: #55565A;
+  --fp-faint: #8A8C91;
+  --fp-border: #E6E7E9;
+  --fp-border-soft: #ECEDEE;
+  --fp-surface: #F6F6F5;
+}
+
+.dsp-fp-section > .page-width {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.dsp-fp-section .featured-product.grid {
+  gap: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  background: #fff;
+}
+
+@media screen and (min-width: 750px) {
+  .dsp-fp-section .featured-product.grid.grid--2-col-tablet {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: stretch;
+    min-height: clamp(520px, 56vw, 760px);
+  }
+}
+
+.dsp-fp-section .product__media-wrapper {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  aspect-ratio: 4 / 5;
+}
+
+@media screen and (min-width: 750px) {
+  .dsp-fp-section .product__media-wrapper {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+.dsp-fp-section .product__media-wrapper,
+.dsp-fp-section .product__info-wrapper {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.dsp-fp-section media-gallery,
+.dsp-fp-section product-media-gallery,
+.dsp-fp-section .product__media-wrapper > * {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.dsp-fp-section media-gallery > slider-component:first-of-type,
+.dsp-fp-section media-gallery > .product__media-list:first-of-type {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.dsp-fp-section .product__media-item:not(.is-active) {
+  display: none !important;
+}
+
+.dsp-fp-section .product__media-item.is-active {
+  display: block !important;
+}
+
+.dsp-fp-section .product__media-list,
+.dsp-fp-section .product__media-item,
+.dsp-fp-section .product-media-container,
+.dsp-fp-section .product-media-container .media,
+.dsp-fp-section .product__modal-opener {
+  height: 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.dsp-fp-section .product-media-container .media img,
+.dsp-fp-section .product-media-container .media video,
+.dsp-fp-section .product-media-container .media model-viewer,
+.dsp-fp-section .product-media-container .deferred-media__poster img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+}
+
+.dsp-fp-section .product__modal-opener .product__media-icon,
+.dsp-fp-section .thumbnail__badge {
+  display: none;
+}
+
+.dsp-fp-section media-gallery > .thumbnail-slider {
+  flex: 0 0 auto;
+  height: auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 14px clamp(16px, 2.4vw, 28px) !important;
+  background: #fff;
+  border-top: 1px solid var(--fp-border-soft);
+}
+
+.dsp-fp-section .thumbnail-list {
+  display: flex !important;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dsp-fp-section .thumbnail-list::-webkit-scrollbar {
+  display: none;
+}
+
+.dsp-fp-section .thumbnail-slider .slider-button {
+  display: none !important;
+}
+
+.dsp-fp-section .thumbnail-list__item {
+  position: relative;
+  flex: 0 0 56px;
+  width: 56px;
+}
+
+.dsp-fp-section .thumbnail-list__item::before {
+  padding-bottom: 100%;
+}
+
+.dsp-fp-section .thumbnail {
+  border: 1px solid var(--fp-border-soft);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.dsp-fp-section .thumbnail:hover {
+  opacity: 1;
+  border-color: var(--fp-ink);
+}
+
+.dsp-fp-section .thumbnail[aria-current] {
+  border-color: var(--fp-ink);
+  box-shadow: 0 0 0 1px var(--fp-ink);
+}
+
+.dsp-fp-section .thumbnail img {
+  border-radius: 0;
+}
+
+@media screen and (max-width: 749px) {
+  .dsp-fp-section .thumbnail-list__item {
+    flex-basis: 48px;
+    width: 48px;
+  }
+}
+
+.dsp-fp-section .product__info-wrapper {
+  padding: 40px 20px 48px !important;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 750px) {
+  .dsp-fp-section .product__info-wrapper {
+    padding: clamp(48px, 6vw, 96px) clamp(40px, 6vw, 88px) !important;
+  }
+}
+
+.dsp-fp-section .product__info-container {
+  max-width: 460px;
+  width: 100%;
+}
+
+.dsp-fp-section .product__info-container > * + * {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.dsp-fp-section .product__title {
+  font-family: 'Geist', sans-serif;
+  font-size: clamp(32px, 3.6vw, 52px);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  color: var(--fp-ink);
+  text-wrap: balance;
+  margin: 0;
+}
+
+.dsp-fp-section .product__text {
+  font-family: 'Geist', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--fp-muted);
+}
+
+.dsp-fp-section .product__text.caption-with-letter-spacing {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fp-faint);
+}
+
+.dsp-fp-section .price {
+  font-family: 'Geist Mono', monospace;
+}
+
+.dsp-fp-section .price .price-item--regular,
+.dsp-fp-section .price .price-item--sale {
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: var(--fp-ink);
+}
+
+.dsp-fp-section .price .price-item--regular.price-item--last {
+  color: var(--fp-faint);
+  text-decoration: line-through;
+  font-size: 16px;
+}
+
+.dsp-fp-section .price .badge {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--fp-ink);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 5px 10px;
+}
+
+.dsp-fp-section .product-form__quantity {
+  max-width: 220px;
+}
+
+.dsp-fp-section .quantity__label,
+.dsp-fp-section .form__label {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fp-faint);
+}
+
+.dsp-fp-section .quantity {
+  border: 1px solid var(--fp-border);
+  border-radius: 999px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.dsp-fp-section .quantity__button {
+  color: var(--fp-ink);
+}
+
+.dsp-fp-section .quantity__input {
+  font-family: 'Geist', sans-serif;
+  color: var(--fp-ink);
+}
+
+.dsp-fp-section .product-form__buttons {
+  max-width: none;
+}
+
+.dsp-fp-section .product-form__submit {
+  font-family: 'Geist', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  background: var(--fp-ink) !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 11px;
+  padding: 18px 24px;
+  min-height: 0;
+  transition: transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.dsp-fp-section .product-form__submit:hover {
+  transform: translateY(-1px);
+}
+
+.dsp-fp-section .shopify-payment-button__button--unbranded {
+  background: #fff;
+  color: var(--fp-ink);
+  border: 1px solid var(--fp-border);
+  border-radius: 11px;
+}
+
+.dsp-fp-section .shopify-payment-button__more-options {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fp-faint);
+}
+
+.dsp-fp-section .product__view-details {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fp-ink);
+}
+
+.dsp-fp-section .product__view-details .icon {
+  fill: var(--fp-ink);
+}
+
+.dsp-fp-section .volume-pricing-note,
+.dsp-fp-section .product__tax {
+  font-size: 13px;
+  color: var(--fp-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dsp-fp-section .product-form__submit {
+    transition: none;
+  }
+}

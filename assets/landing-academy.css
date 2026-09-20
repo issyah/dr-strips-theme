@@ -1,0 +1,86 @@
+/* Sleep Academy hub + article — landing-academy.css (prefix: acy- / art-) */
+
+/* ---------- Hero (used on the Academy hub Page, compact on Blog listing) ---------- */
+.acy-hero-section{padding:clamp(96px,11vw,150px) clamp(20px,4vw,40px) clamp(56px,7vw,90px)}
+.acy-hero-section.acy-compact{padding:clamp(64px,8vw,110px) clamp(20px,4vw,40px) clamp(36px,4vw,56px)}
+.acy-wrap{max-width:760px;margin:0 auto}
+
+.acy-eyebrow{display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.acy-eyebrow-line{width:22px;height:1px;background:#A5C8DC}
+
+.acy-heading{margin:22px 0 0;font-size:clamp(36px,5.2vw,64px);line-height:1.03;letter-spacing:-.04em;font-weight:500;color:#0B0B0C}
+.acy-hero-section.acy-compact .acy-heading{margin-top:14px;font-size:clamp(28px,3.6vw,42px)}
+
+.acy-subheading{margin:14px 0 0;font-size:17px;font-weight:500;color:#4682B4}
+
+.acy-lead{margin:18px 0 0;font-size:16.5px;line-height:1.7;color:#55565A;max-width:640px}
+
+.acy-no-list{display:flex;flex-wrap:wrap;gap:10px 22px;margin:28px 0 0}
+.acy-no-item{display:flex;align-items:center;gap:7px;font-family:'Geist Mono',monospace;font-size:12.5px;letter-spacing:.05em;color:#8A8C91}
+.acy-no-item::before{content:'×';color:#B9BABD;font-size:13px}
+
+.acy-closing{margin:20px 0 0;font-size:16.5px;line-height:1.7;color:#0B0B0C;max-width:640px;font-weight:500}
+
+/* ---------- Article grid (hub Page + Blog listing) ---------- */
+.acy-grid-section{padding:clamp(40px,5vw,64px) clamp(20px,4vw,40px) clamp(96px,10vw,140px)}
+.acy-grid-wrap{max-width:1100px;margin:0 auto}
+.acy-grid-head{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:32px}
+.acy-grid-heading{margin:0;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.02em;font-weight:500;color:#0B0B0C}
+.acy-grid-sub{margin:0;font-size:14px;color:#8A8C91}
+
+.acy-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+
+.acy-card{display:flex;flex-direction:column;padding:26px 24px 24px;border:1px solid #ECEDEE;border-radius:14px;background:#fff;text-decoration:none !important;transition:transform .18s cubic-bezier(.22,.61,.36,1),border-color .18s,box-shadow .18s}
+.acy-card:hover{transform:translateY(-2px);border-color:#D8DADD;box-shadow:0 10px 28px rgba(11,11,12,.06)}
+.acy-card-num{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;color:#B9BABD;margin-bottom:14px}
+.acy-card-title{margin:0 0 10px;font-size:19px;line-height:1.3;letter-spacing:-.015em;font-weight:500;color:#0B0B0C !important}
+.acy-card-excerpt{margin:0;font-size:14.5px;line-height:1.6;color:#55565A;flex:1}
+.acy-card-meta{display:flex;align-items:center;gap:8px;margin-top:18px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8A8C91}
+.acy-card-meta-dot{width:3px;height:3px;border-radius:50%;background:#D8DADD}
+.acy-card-link{margin-top:16px;display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:500;color:#4682B4 !important}
+.acy-card:hover .acy-card-link{color:#2F5E82 !important}
+
+.acy-empty{padding:48px 24px;text-align:center;border:1px dashed #E6E7E9;border-radius:14px;color:#8A8C91;font-size:15px}
+
+/* ---------- Article page ---------- */
+.art-section{padding:clamp(90px,10vw,140px) clamp(20px,4vw,40px) clamp(30px,4vw,50px)}
+.art-wrap{max-width:700px;margin:0 auto}
+
+.art-back{display:inline-flex;align-items:center;gap:6px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8A8C91 !important;text-decoration:none !important;margin-bottom:28px}
+.art-back:hover{color:#4682B4 !important}
+
+.art-eyebrow{display:flex;align-items:center;gap:10px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91;margin-bottom:16px}
+.art-eyebrow-line{width:22px;height:1px;background:#A5C8DC}
+
+.art-heading{margin:0 0 16px;font-size:clamp(30px,4.4vw,46px);line-height:1.08;letter-spacing:-.035em;font-weight:500;color:#0B0B0C}
+
+.art-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:#8A8C91;margin-bottom:44px;padding-bottom:24px;border-bottom:1px solid #ECEDEE}
+.art-meta-dot{width:3px;height:3px;border-radius:50%;background:#D8DADD}
+
+/* Prose typography for article.content */
+.acy-prose{font-size:16px;line-height:1.8;color:#38393D}
+.acy-prose h2{margin:44px 0 14px;font-size:22px;letter-spacing:-.02em;font-weight:500;color:#0B0B0C}
+.acy-prose h2:first-child{margin-top:0}
+.acy-prose h3{margin:0 0 8px;font-size:17px;letter-spacing:-.01em;font-weight:500;color:#0B0B0C}
+.acy-prose p{margin:0 0 18px}
+.acy-prose ul,.acy-prose ol{margin:0 0 18px;padding-left:22px}
+.acy-prose li{margin:0 0 8px}
+.acy-prose a{color:#0B0B0C !important;text-decoration:underline;text-underline-offset:2px}
+.acy-prose a:hover{color:#4682B4 !important}
+.acy-prose strong{color:#0B0B0C;font-weight:600}
+
+.acy-disclaimer{margin-top:36px !important;padding-top:20px;border-top:1px solid #ECEDEE;font-size:13px;line-height:1.6;color:#8A8C91;font-style:italic}
+
+/* Numbered step list (used in "Build a better night" article body) */
+.acy-steps{margin:28px 0;display:flex;flex-direction:column;gap:0}
+.acy-step{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid #ECEDEE}
+.acy-step:first-child{padding-top:6px}
+.acy-step:last-child{border-bottom:none}
+.acy-step-num{flex:none;font-family:'Geist Mono',monospace;font-size:13px;letter-spacing:.08em;color:#A5C8DC;padding-top:2px}
+.acy-step-body h3{margin:0 0 6px}
+.acy-step-body p{margin:0}
+
+/* "More from the Academy" related row on article pages */
+.art-related-section{padding:0 clamp(20px,4vw,40px) clamp(90px,10vw,130px)}
+.art-related-wrap{max-width:1100px;margin:0 auto;padding-top:56px;border-top:1px solid #ECEDEE}
+.art-related-heading{margin:0 0 24px;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#8A8C91}

@@ -15,32 +15,29 @@
         "block_01": {
           "type": "nav_link",
           "settings": {
-            "label": "Home",
-            "url": "/#top"
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
           }
         },
         "block_02": {
-          "type": "nav_link",
+          "type": "nav_dropdown",
           "settings": {
-            "label": "Science",
-            "url": "/pages/science"
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
           }
         },
         "block_03": {
-          "type": "nav_link",
-          "settings": {
-            "label": "How It Works",
-            "url": "/#how"
-          }
-        },
-        "block_04": {
-          "type": "nav_link",
-          "settings": {
-            "label": "Reviews",
-            "url": "/#reviews"
-          }
-        },
-        "block_05": {
           "type": "nav_link",
           "settings": {
             "label": "FAQ",
@@ -51,12 +48,62 @@
       "block_order": [
         "block_01",
         "block_02",
-        "block_03",
-        "block_04",
-        "block_05"
+        "block_03"
       ],
       "settings": {
         "logo_alt": "Dr.Strips+ home"
+      }
+    },
+    "image_banner_jDM7bx": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_XnmG9d": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "text_T7iq39": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_qVHhGL": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_XnmG9d",
+        "text_T7iq39",
+        "buttons_qVHhGL"
+      ],
+      "name": "Hero Image",
+      "settings": {
+        "image": "shopify://shop_images/DRstrip_46of134.jpg",
+        "image_mobile": "shopify://shop_images/DRstrip_36of134.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "large",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "mobile_content_alignment": "center",
+        "show_text_below": true
       }
     },
     "hero": {
@@ -79,7 +126,7 @@
             "decimals": 0,
             "prefix": "≤",
             "suffix": "%",
-            "label": "Absorbed*"
+            "label": "Absorbed"
           }
         },
         "block_03": {
@@ -98,7 +145,7 @@
             "value": "30",
             "decimals": 0,
             "prefix": "",
-            "suffix": "s",
+            "suffix": "",
             "label": "Strips / box"
           }
         }
@@ -111,21 +158,52 @@
       ],
       "settings": {
         "product": "dr-strips-sleep",
-        "eyebrow": "Strip2Cell Technology",
-        "heading": "60 seconds\non your\ntongue.",
-        "body": "<p>One strip. No water, no swallowing, no waiting. It dissolves on your tongue and our Strip2Cell delivery system carries the actives straight into your bloodstream — up to 90%* of the dose, skipping the gut and the liver entirely.</p>",
+        "eyebrow": "",
+        "heading": "Sleep better\nin just\n60 seconds.",
+        "body": "<p><strong>One strip. No water, no swallowing, no waiting.</strong><br/>It dissolves on your tongue and carries <em>90% of the active ingredients</em> straight into your bloodstream, skipping the digestion process entirely.</p>",
         "cta_label": "Add to bag",
         "secondary_label": "See the science",
         "secondary_link": "/pages/science",
         "badge": "Melatonin-free",
+        "image": "shopify://shop_images/DRstrip_109of134.jpg",
         "image_placeholder_text": "Pack shot on white — Dr.Strips+ Sleep, 30 strips"
       }
+    },
+    "promo_marquee": {
+      "type": "landing-pdp-trust",
+      "blocks": {
+        "block_01": {
+          "type": "item",
+          "settings": {
+            "text": "Launch Offer · S$39.90"
+          }
+        },
+        "block_02": {
+          "type": "item",
+          "settings": {
+            "text": "No Discount Code Needed"
+          }
+        },
+        "block_03": {
+          "type": "item",
+          "settings": {
+            "text": "Ends 15.10.26"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {}
     },
     "familiar": {
       "type": "landing-familiar",
       "blocks": {
         "block_01": {
           "type": "timeline_item",
+          "disabled": true,
           "settings": {
             "time": "11:54 PM",
             "text": "You promised yourself an early night. But you are still scrolling."
@@ -133,13 +211,15 @@
         },
         "block_02": {
           "type": "timeline_item",
+          "disabled": true,
           "settings": {
             "time": "2:07 AM",
-            "text": "Your mind replays tomorrow's meeting, then starts the maths on how many hours are left."
+            "text": "Your mind replays tomorrow's to-do list, then starts the maths on how many hours are left."
           }
         },
         "block_03": {
           "type": "timeline_item",
+          "disabled": true,
           "settings": {
             "time": "6:30 AM",
             "text": "The alarm wins again. You start the day already behind on rest."
@@ -152,7 +232,7 @@
             "decimals": 0,
             "prefix": "",
             "suffix": "%",
-            "description": "Of adults here sleep less than seven hours a night. The highest rate of 17 markets surveyed."
+            "description": "Of Singaporean adults  sleep less than seven hours a night."
           }
         },
         "block_05": {
@@ -162,35 +242,35 @@
             "decimals": 1,
             "prefix": "",
             "suffix": "h",
-            "description": "The average Singapore night, against the 7 to 9 hours a body is built for."
+            "description": "The average Singapore night, against the 7 to 9 hours needed."
           }
         },
         "block_06": {
           "type": "impact_card",
           "settings": {
             "label": "Day 1",
-            "text": "Reactions start to slow, cravings climb and patience thins."
+            "text": "• Slower reactions\n<br>\n• Increased cravings\n<br>\n• Mood imbalance"
           }
         },
         "block_07": {
           "type": "impact_card",
           "settings": {
             "label": "Day 7",
-            "text": "Memory dips, blood pressure sits higher, and the waste your brain clears at night backs up."
+            "text": "• Memory lapses\n<br>\n• Elevated blood pressure\n<br>\n• Severe mood imbalance"
           }
         },
         "block_08": {
           "type": "impact_card",
           "settings": {
             "label": "Day 30",
-            "text": "Immunity weakens, anxiety sits higher and skin recovers more slowly."
+            "text": "• Weaker immunity <br> \n• Anxiety hit stronger \n<br>\n• Premature ageing"
           }
         },
         "block_09": {
           "type": "impact_card",
           "settings": {
             "label": "Day 180",
-            "text": "Up to 3x heart disease risk, a 57% higher type-2 diabetes risk and roughly 2x the risk of depression."
+            "text": "• 3x risk of heart disease\n<br>\n• 57% higher risk of diabetes <br>\n• 2x risk of depression"
           }
         }
       },
@@ -206,12 +286,78 @@
         "block_09"
       ],
       "settings": {
-        "eyebrow": "01 — The problem you know",
-        "heading_1": "Your body is tired. Your mind hasn't noticed.",
-        "body_1": "The day ends, but the momentum doesn't. You are not lazy and you are not broken — Singapore is one of the most sleep-deprived places in the world, and the way we live makes winding down genuinely hard.",
+        "eyebrow": "",
+        "heading_1": "Your eyes are closed, but your mind is still running.",
+        "body_1": "",
         "sources_text": "Sources: YouGov Global Sleep Study, 2024 (17 markets surveyed); Singapore average nightly sleep duration, published market research.",
-        "heading_2": "Sleep debt adds up.",
-        "closing_text": "Rest responds quickly. Better sleep can start tonight."
+        "heading_2": "Make the change tonight.",
+        "closing_text": ""
+      }
+    },
+    "featured_product_ziWpwA": {
+      "type": "featured-product",
+      "blocks": {
+        "title_qgFiwc": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_rkkVYd": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_wMbrrg": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_YaqhXh": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_3VjWG4": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_6kMVRD": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "title_qgFiwc",
+        "price_rkkVYd",
+        "variant_picker_wMbrrg",
+        "quantity_selector_YaqhXh",
+        "buy_buttons_3VjWG4",
+        "share_6kMVRD"
+      ],
+      "name": "t:sections.featured-product.presets.name",
+      "settings": {
+        "product": "dr-strips-sleep",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": false,
+        "media_fit": "cover",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "how": {
@@ -222,7 +368,7 @@
           "settings": {
             "time": "0:00",
             "title": "Open",
-            "text": "Tear the sachet. One strip, one dose — nothing to measure, nothing to count."
+            "text": "Tear the foil. One strip, one dose. No mess, no fuss."
           }
         },
         "block_02": {
@@ -230,15 +376,15 @@
           "settings": {
             "time": "0:05",
             "title": "Place",
-            "text": "On your tongue. No water, no chewing, no aftertaste."
+            "text": "On your tongue. No water, no chewing, no swallowing."
           }
         },
         "block_03": {
           "type": "step",
           "settings": {
             "time": "0:60",
-            "title": "Dissolve",
-            "text": "Gone in under a minute, absorbed on the way."
+            "title": "Dissolve in 60s",
+            "text": "Absorbed directly into your bloodstream."
           }
         }
       },
@@ -248,11 +394,11 @@
         "block_03"
       ],
       "settings": {
-        "eyebrow": "02 — The ritual",
-        "heading": "Open. Place. Dissolve.",
-        "subheading": "Ten minutes before bedtime. One strip out of a single-dose sachet, onto your tongue. Then put your phone down.",
-        "image_wide_placeholder_text": "Macro — strip on the tongue, mid-dissolve",
-        "image_square_placeholder_text": "Real bedroom, low light, 9:16 crop ok"
+        "eyebrow": "",
+        "heading": "Strip up.",
+        "subheading": "10 minutes before bedtime. Feel it in 5.",
+        "image_wide": "shopify://shop_images/hf_20260610_154438_1d2bbad7-7e5b-49c6-b2fd-40dab2217f17.png",
+        "image_wide_placeholder_text": "Macro — strip on the tongue, mid-dissolve"
       }
     },
     "format": {
@@ -271,7 +417,7 @@
         "block_02": {
           "type": "comparison_row",
           "settings": {
-            "feature": "Strip2Cell absorption, skipping gut & liver",
+            "feature": "Direct absorption, skipping gut & liver",
             "pill_value": "dash",
             "pill_text": "",
             "gummy_value": "dash",
@@ -328,16 +474,18 @@
         "block_06"
       ],
       "settings": {
-        "eyebrow": "03 — Format",
-        "heading": "Same night.\nThree formats.",
-        "subheading": "Every format can carry the same active ingredients. What differs is how much of them ever arrives.",
+        "eyebrow": "",
+        "heading": "85% of supplements never reach your bloodstream.",
+        "image": "shopify://shop_images/ChatGPT_Image_Sep_16_2026_at_12_21_13_PM.png",
+        "image_placeholder_text": "Wide shot, deep blue tone — for white headline text overlay",
+        "subheading": "Every format can carry the same active ingredients. What differs is how much is actually absorbed.",
         "compared_label": "Compared",
-        "brand_column_label": "Dr.Strips+ film",
+        "brand_column_label": "Dr.Strips+",
         "pill_column_label": "Pill",
         "gummy_column_label": "Gummy",
         "footnote": "",
-        "liquids_label": "And liquids",
-        "liquids_text": "<p>A liquid shot is mostly water and flavouring. Read the panel and the actives are usually a fraction of what the bottle implies — and you still swallow it, so it still takes the long way through the gut and the liver. You pay for volume, not for dose.</p>"
+        "liquids_label": "",
+        "liquids_text": ""
       }
     },
     "formula": {
@@ -372,7 +520,7 @@
           "settings": {
             "dose": "10mg",
             "name": "Chamomile",
-            "text": "Apigenin, the compound behind the cup — at a dose a cup can't reach."
+            "text": "Contains Apigenin, at a higher dosage than your regular cup of chamomile tea."
           }
         },
         "block_05": {
@@ -393,7 +541,7 @@
           "type": "reason",
           "settings": {
             "heading": "Non-habit forming",
-            "text": "No dependency, no escalating dose. Night thirty works like night three."
+            "text": "No dependency, no escalating dose. Same dosage, same efficacy whether it's day 3 or day 300."
           }
         }
       },
@@ -407,14 +555,15 @@
         "block_07"
       ],
       "settings": {
-        "eyebrow": "04 — The formula",
-        "heading": "Pistachio, not a synthetic molecule.",
+        "eyebrow": "",
+        "heading": "Pistachio, not synthetic melatonin.",
         "subheading": "Five active ingredients, each chosen for a specific job.",
+        "lead_image": "shopify://shop_images/pistachio_extract_100mg.png",
         "lead_image_placeholder_text": "Ingredient still — pistachios, single-source light",
         "lead_eyebrow": "Lead active",
         "lead_dose": "100mg",
         "lead_name": "Pistachio extract",
-        "lead_text": "One of the richest natural sources of phytomelatonin — the plant-derived form of the same sleep signal your body already reads. It works with your rhythm instead of overriding it.",
+        "lead_text": "One of the richest natural sources of phytomelatonin. It works with your rhythm instead of overriding it.",
         "why_label": "Why melatonin-free",
         "disclaimer": ""
       }
@@ -425,29 +574,29 @@
         "block_01": {
           "type": "testimonial",
           "settings": {
-            "date": "8 Mar 2026",
-            "title": "Down before my scroll ended",
-            "text": "Two weeks in. I used to lie there until one in the morning rearranging tomorrow. Now the lights go off and that is the end of it.",
+            "date": "8 Aug 2026",
+            "title": "No more doomscrolling",
+            "text": "Usually I'd lie down in bed for more than an hour just scrolling through my feed, or reading emails or just adding random things to cart. With this sleep strips, I don't even have to try hard to fall asleep. 10-15 minutes in, I'm asleep till the next morning.",
             "initials": "CW",
             "name": "Clarissa W.",
-            "category": "Sleep"
+            "category": ""
           }
         },
         "block_02": {
           "type": "testimonial",
           "settings": {
-            "date": "19 Jan 2026",
-            "title": "No morning tax",
-            "text": "Capsules always left me heavy until lunch. This does not. Same depth of sleep, none of the drag afterwards.",
+            "date": "19 Aug 2026",
+            "title": "No morning grogginess",
+            "text": "I've been taking melatonin capsules for the longest time ever, and I've always woken up groggy or feeling lethargic. Not with this strips, I woke up fresh and ready to go every morning.",
             "initials": "HR",
             "name": "Haziq R.",
-            "category": "Sleep"
+            "category": ""
           }
         },
         "block_03": {
           "type": "testimonial",
           "settings": {
-            "date": "15 Mar 2026",
+            "date": "15 Aug 2026",
             "title": "Nothing to swallow",
             "text": "That was the whole reason I tried it. One strip, gone in a minute, no glass of water at midnight.",
             "initials": "JT",
@@ -458,7 +607,7 @@
         "block_04": {
           "type": "testimonial",
           "settings": {
-            "date": "16 Jul 2026",
+            "date": "16 Aug 2026",
             "title": "Works around my shifts",
             "text": "My hours move every week. Took one at eight in the morning after a night shift and slept straight through to the afternoon.",
             "initials": "RL",
@@ -474,8 +623,8 @@
         "block_04"
       ],
       "settings": {
-        "eyebrow": "05 — Proof",
-        "rating": "4.7",
+        "eyebrow": "",
+        "rating": "5.0",
         "subcaption": "Third-party lab tested, every batch"
       }
     },
@@ -485,7 +634,51 @@
         "number": "30",
         "number_label": "Nights",
         "heading": "Sleep better, or it's free.",
-        "text": "Take it for thirty nights — the full box. If nothing changes, we refund you — no return, no forms, no questions. All of the upside, none of the risk."
+        "text": "If nothing changes, we'll refund you. Terms & conditions apply."
+      }
+    },
+    "offer": {
+      "type": "landing-offer",
+      "blocks": {
+        "block_01": {
+          "type": "footnote",
+          "disabled": true,
+          "settings": {
+            "text": "Ships from Singapore"
+          }
+        },
+        "block_02": {
+          "type": "footnote",
+          "disabled": true,
+          "settings": {
+            "text": "30-night guarantee"
+          }
+        },
+        "block_03": {
+          "type": "footnote",
+          "disabled": true,
+          "settings": {
+            "text": "Zero sugar"
+          }
+        }
+      },
+      "block_order": [
+        "block_01",
+        "block_02",
+        "block_03"
+      ],
+      "settings": {
+        "product": "dr-strips-sleep",
+        "eyebrow": "",
+        "heading": "Thirty nights of quality sleep.\nStart tonight.",
+        "subheading": "Great sleep from just a S$1.13 a night.",
+        "image": "shopify://shop_images/DRstrip_2of2.jpg",
+        "image_placeholder_text": "Pack shot on white — box + open sachet",
+        "sub_label": "Subscribe monthly",
+        "sub_badge": "Save 15%",
+        "once_label": "One box",
+        "once_badge": "Launch price",
+        "cta_label": "Add to bag"
       }
     },
     "transparency": {
@@ -495,7 +688,7 @@
           "type": "item",
           "settings": {
             "heading": "Every dose on the box",
-            "text": "Each active listed at its milligram figure. No ranges, no asterisks pointing nowhere."
+            "text": "Each active listed at its milligram figure."
           }
         },
         "block_02": {
@@ -509,7 +702,7 @@
           "type": "item",
           "settings": {
             "heading": "Lab tested every batch",
-            "text": "Third-party tested for potency and purity, batch by batch — not once at launch."
+            "text": "Third-party tested for potency and purity, batch by batch."
           }
         },
         "block_04": {
@@ -530,7 +723,7 @@
           "type": "item",
           "settings": {
             "heading": "Engineered in Singapore",
-            "text": "Formulated and engineered here, for the hours people here actually keep."
+            "text": "Formulated and engineered here, for the lifestyle Singaporeans actually lead."
           }
         }
       },
@@ -543,52 +736,12 @@
         "block_06"
       ],
       "settings": {
-        "eyebrow": "06 — Transparency",
-        "heading": "Nothing hidden behind a blend.",
-        "body": "Every active and every dose is printed on the box and on this page. Nothing is buried in a proprietary mix, and no batch ships without a third-party test against the label. If it is in the strip, you can read it.",
-        "cta_text": "Certificate of analysis available on request — quote the batch number printed on your box and we will send the report for that batch.",
-        "cta_link_label": "Request a report →",
+        "eyebrow": "",
+        "heading": "We don't hide anything.",
+        "body": "",
+        "cta_text": "",
+        "cta_link_label": "",
         "cta_link_url": "/#faq"
-      }
-    },
-    "offer": {
-      "type": "landing-offer",
-      "blocks": {
-        "block_01": {
-          "type": "footnote",
-          "settings": {
-            "text": "Ships from Singapore"
-          }
-        },
-        "block_02": {
-          "type": "footnote",
-          "settings": {
-            "text": "30-night guarantee"
-          }
-        },
-        "block_03": {
-          "type": "footnote",
-          "settings": {
-            "text": "Zero sugar"
-          }
-        }
-      },
-      "block_order": [
-        "block_01",
-        "block_02",
-        "block_03"
-      ],
-      "settings": {
-        "product": "dr-strips-sleep",
-        "eyebrow": "07 — The offer",
-        "heading": "Thirty nights of quality sleep.\nStart tonight.",
-        "subheading": "About a dollar a night. A good night's sleep? Priceless",
-        "image_placeholder_text": "Pack shot on white — box + open sachet",
-        "sub_label": "Subscribe monthly",
-        "sub_badge": "Save 15%",
-        "once_label": "One box",
-        "once_badge": "Launch price",
-        "cta_label": "Add to bag"
       }
     },
     "faq": {
@@ -612,7 +765,7 @@
           "type": "faq_item",
           "settings": {
             "question": "When and how do I take it?",
-            "answer": "<p>Ten minutes before bedtime. One strip on your tongue, let it dissolve, no water. Avoid eating or drinking for a couple of minutes afterwards. One strip a night.</p>"
+            "answer": "<p>Ten minutes before bedtime. One strip on your tongue, let it dissolve without water. Take one strip a night.</p>"
           }
         },
         "block_04": {
@@ -626,7 +779,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Is it habit-forming?",
-            "answer": "<p>No. There is no dependency mechanism and no need to escalate the dose. Night thirty behaves like night three.</p>"
+            "answer": "<p>No. There is no dependency mechanism and no need to increase the dose. Same dosage, same efficacy whether it's day 3 or day 300.</p>"
           }
         },
         "block_06": {
@@ -682,7 +835,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How quickly does it arrive?",
-            "answer": "<p>Orders placed before the daily cut-off leave the same or next working day and usually land within one to three working days.</p>"
+            "answer": "<p>Orders placed before the daily cut-off of 3pm leave the same or next working day and usually land within one to three working days.</p>"
           }
         },
         "block_14": {
@@ -703,7 +856,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How does the 30-night guarantee work?",
-            "answer": "<p>Take it for thirty nights — the full box. If nothing changes, email us and we refund it. No return, no forms, no questions.</p>"
+            "answer": "<p>Take the full box for thirty nights. If nothing changes, email us at hello@drstrips.sg with proof that you actually took the supplements, and we'll refund you after due process.</p>"
           }
         },
         "block_17": {
@@ -717,7 +870,7 @@
           "type": "faq_item",
           "settings": {
             "question": "My box arrived damaged or wrong.",
-            "answer": "<p>Send us your order number and a photo within seven days of delivery and we will replace it or refund it at no cost to you.</p>"
+            "answer": "<p>Send us your order number and a photo within seven days of delivery to hello@drstrips.sg and we will replace it or refund it at no cost to you.</p>"
           }
         },
         "block_19": {
@@ -756,55 +909,6 @@
         "disclaimer": "Health supplements in Singapore are sold without a licence but must comply with HSA guidelines, which we follow. Not intended to diagnose, treat, cure or prevent any disease."
       }
     },
-    "newsletter": {
-      "type": "landing-newsletter",
-      "settings": {
-        "heading": "Get the delivery science, once a month.",
-        "text": "What we tested, what we shipped, and never the word \"biohack.\" One email, unsubscribe any time.",
-        "email_placeholder": "you@email.com",
-        "button_label": "Join"
-      }
-    },
-    "footer": {
-      "type": "landing-footer",
-      "blocks": {
-        "block_01": {
-          "type": "link_column",
-          "settings": {
-            "link_1_label": "Science",
-            "link_1_url": "/pages/science",
-            "link_2_label": "How it works",
-            "link_2_url": "/#how",
-            "link_3_label": "Formula",
-            "link_3_url": "/#formula",
-            "link_4_label": "Buy",
-            "link_4_url": "/#offer"
-          }
-        },
-        "block_02": {
-          "type": "link_column",
-          "settings": {
-            "link_1_label": "FAQ",
-            "link_1_url": "/#faq",
-            "link_2_label": "Shipping",
-            "link_2_url": "/#offer",
-            "link_3_label": "Refunds",
-            "link_3_url": "/#offer",
-            "link_4_label": "Contact",
-            "link_4_url": "/#top"
-          }
-        }
-      },
-      "block_order": [
-        "block_01",
-        "block_02"
-      ],
-      "settings": {
-        "tagline": "absorbed, not swallowed. <br>precision, delivered. <br>science, dissolved.",
-        "copyright": "© 2026 DR.strips+ · Singapore",
-        "disclaimer": "Not intended to diagnose, treat, cure or prevent any disease"
-      }
-    },
     "script": {
       "type": "landing-script",
       "settings": {
@@ -814,18 +918,19 @@
   },
   "order": [
     "header",
+    "image_banner_jDM7bx",
     "hero",
+    "promo_marquee",
     "familiar",
+    "featured_product_ziWpwA",
     "how",
     "format",
     "formula",
     "reviews",
     "guarantee",
-    "transparency",
     "offer",
+    "transparency",
     "faq",
-    "newsletter",
-    "footer",
     "script"
   ]
 }

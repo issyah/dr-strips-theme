@@ -1,0 +1,51 @@
+{% comment %}
+  Section: Why Sleep Matters page — 05 Where to start — landing-sleep-basics.liquid
+{% endcomment %}
+<section id="basics" class="wsmb-section">
+<div class="wsmb-container">
+<div data-reveal class="wsmb-eyebrow">{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="wsmb-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="wsmb-lead">{{ section.settings.lead }}</p>
+<div class="wsmb-grid">
+{%- for block in section.blocks -%}
+<div data-reveal class="wsmb-item" {{ block.shopify_attributes }}><div class="wsmb-item-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div><div class="wsmb-item-text">{{ block.settings.text }}</div></div>
+{%- endfor -%}
+</div>
+<p data-reveal class="wsmb-closing">{{ section.settings.closing }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Sleep — Basics",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "05 — Where to start" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "You don't need a perfect bedtime routine." },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "You don't need to transform your entire life overnight. Start with the basics." },
+    { "type": "textarea", "id": "closing", "label": "Closing statement", "default": "Better nights are built, not hacked." }
+  ],
+  "blocks": [
+    {
+      "type": "basic",
+      "name": "Basic",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Sleep — Basics",
+      "blocks": [
+        { "type": "basic", "settings": { "text": "A consistent sleep schedule" } },
+        { "type": "basic", "settings": { "text": "A calmer wind-down" } },
+        { "type": "basic", "settings": { "text": "Less stimulating light late at night" } },
+        { "type": "basic", "settings": { "text": "A bedroom that supports sleep" } },
+        { "type": "basic", "settings": { "text": "A routine simple enough to repeat" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+{% comment %}
+  Section: Product page — details accordion — landing-pdp-details.liquid
+{% endcomment %}
+<section class="pdpa-section">
+<div class="pdpa-wrap">
+{%- for block in section.blocks -%}
+<details data-faq class="pdpa-item" {{ block.shopify_attributes }}>
+<summary class="pdpa-summary">{{ block.settings.title }}<span data-faq-mark class="pdpa-mark">+</span></summary>
+<div class="pdpa-content">{{ block.settings.content }}</div>
+</details>
+{%- endfor -%}
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "PDP — Details",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "richtext", "id": "content", "label": "Content" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "PDP — Details",
+      "blocks": [
+        { "type": "item", "settings": { "title": "Description", "content": "<p>Dr.Strips+ Sleep is a fast-dissolving oral strip designed to fit into the wind-down you already have. One strip, on your tongue, about ten minutes before bed — no water, no capsule, nothing to swallow.</p>" } },
+        { "type": "item", "settings": { "title": "What it does", "content": "<p>Each strip carries a small, considered blend of actives designed to work with your body's own wind-down signals rather than force sleep on top of it — quieting a racing mind and easing you toward rest, night after night.</p>" } },
+        { "type": "item", "settings": { "title": "Ingredients", "content": "<p>Pistachio extract (a natural source of phytomelatonin), GABA, valerian root extract, passion flower and chamomile — five actives, each chosen for a specific mechanism rather than for length of label.</p><p><a href=\"/pages/ingredient-library\">See the complete ingredient breakdown →</a></p>" } },
+        { "type": "item", "settings": { "title": "Formula & When to use", "content": "<p>Take one strip on your tongue about ten minutes before bed and let it dissolve on its own — no chewing, no water. One strip a night is the full dose; there's no need to increase it over time.</p>" } },
+        { "type": "item", "settings": { "title": "Shipping", "content": "<p>Free shipping on one-time orders above S$100, and free on every subscription. Orders placed before the daily cut-off usually arrive within one to three working days. Singapore only, for now.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

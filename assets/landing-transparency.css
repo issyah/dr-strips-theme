@@ -58,10 +58,11 @@
   padding: 28px 26px 32px;
 }
 
+/* Steel-blue accent (see landing-header.css) — the numbered index on each Transparency feature card. */
 .trans-card-num {
   font-family: 'Geist Mono', monospace;
   font-size: 12.5px;
-  color: #6E7075;
+  color: #A5C8DC;
 }
 
 .trans-card-heading {
@@ -96,12 +97,19 @@
   max-width: 620px;
 }
 
+/* Fix: `#MainContent a{color:#0B0B0C}` (assets/landing-header.css) is an ID selector and otherwise beats this class-level white, silently turning the link invisible — black text on the section's black background. !important restores it; hover picks up the steel-blue accent. */
 .trans-footer-link {
-  color: #fff;
+  color: #fff !important;
   font-family: 'Geist Mono', monospace;
   font-size: 12px;
   letter-spacing: .16em;
   text-transform: uppercase;
   border-bottom: 1px solid #3E4044;
   padding-bottom: 3px;
+  transition: color .18s, border-color .18s;
+}
+
+.trans-footer-link:hover {
+  color: #A5C8DC !important;
+  border-color: #A5C8DC;
 }

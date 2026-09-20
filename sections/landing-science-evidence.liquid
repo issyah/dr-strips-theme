@@ -1,0 +1,57 @@
+{% comment %}
+  Section: Science page — 09 Our standard (evidence approach) — landing-science-evidence.liquid
+{% endcomment %}
+<section id="evidence" class="se-section">
+<div class="se-container">
+<div data-reveal class="se-eyebrow">{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="se-heading">{{ section.settings.heading }}</h2>
+<p data-reveal class="se-statement">{{ section.settings.statement }}</p>
+<p data-reveal class="se-lead">{{ section.settings.lead }}</p>
+<p data-reveal class="se-sublead">{{ section.settings.sublead }}</p>
+<div class="se-grid">
+{%- for block in section.blocks -%}
+<div data-reveal class="se-item" {{ block.shopify_attributes }}><div class="se-item-index">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</div><div class="se-item-text">{{ block.settings.text }}</div></div>
+{%- endfor -%}
+</div>
+<p data-reveal class="se-closing">{{ section.settings.closing }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Science — Evidence",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "09 — Our standard" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "The science behind better supplementation." },
+    { "type": "textarea", "id": "statement", "label": "Statement", "default": "Science isn't a badge. It's a process." },
+    { "type": "textarea", "id": "lead", "label": "Lead paragraph", "default": "At Dr.Strips+, we use evidence to guide how we think about ingredients, formulations and product claims." },
+    { "type": "text", "id": "sublead", "label": "Sub-lead", "default": "We look beyond headlines. We look at:" },
+    { "type": "textarea", "id": "closing", "label": "Closing statement", "default": "Because a scientific ingredient doesn't automatically make a scientific product. The details matter." }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Science — Evidence",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Study design" } },
+        { "type": "item", "settings": { "text": "Dosage" } },
+        { "type": "item", "settings": { "text": "Population" } },
+        { "type": "item", "settings": { "text": "Outcomes" } },
+        { "type": "item", "settings": { "text": "Consistency" } },
+        { "type": "item", "settings": { "text": "Limitations" } },
+        { "type": "item", "settings": { "text": "Whether it applies to this product" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

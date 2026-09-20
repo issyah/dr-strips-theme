@@ -15,12 +15,31 @@
 
 <div class="sm-content-grid">
 <div data-reveal class="hov-card sm-image-card">
-<div class="sm-image-wrap">
-{%- if section.settings.image != blank -%}
-<img src="{{ section.settings.image | image_url: width: 700 }}" alt="{{ section.settings.image.alt | escape }}" class="sm-image" loading="lazy" width="700" height="481">
-{%- else -%}
-<div class="img-slot"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg><span>{{ section.settings.image_placeholder_text }}</span></div>
-{%- endif -%}
+<div class="sm-image-wrap sm-absorb-wrap">
+{%- comment -%} Animated absorption diagram — replaces the static photo placeholder. Film dissolves, its actives cross the mucosa, and flow directly into circulating capillaries (no gut, no liver). Pure SVG + CSS; respects prefers-reduced-motion via the sitewide rule in landing-header.css. {%- endcomment -%}
+<svg viewBox="0 0 640 440" preserveAspectRatio="xMidYMid slice" class="sm-absorb-svg" role="img" aria-label="Diagram: the film dissolving under the tongue, its actives crossing the mucosa and entering the bloodstream directly, bypassing the stomach and liver.">
+<line x1="0" y1="140" x2="640" y2="140" class="sm-absorb-divider"></line>
+<line x1="0" y1="190" x2="640" y2="190" class="sm-absorb-divider"></line>
+<text x="20" y="26" class="sm-absorb-label">Film</text>
+<text x="20" y="171" class="sm-absorb-label">Mucosa</text>
+<text x="20" y="214" class="sm-absorb-label">Bloodstream</text>
+<line x1="0" y1="165" x2="640" y2="165" class="sm-absorb-mucosa-line"></line>
+<path d="M -20 260 C 100 230 200 290 320 260 C 440 230 540 290 660 260" class="sm-absorb-vessel-guide"></path>
+<path d="M -20 340 C 120 310 220 370 340 340 C 460 310 560 370 660 340" class="sm-absorb-vessel-guide"></path>
+<rect x="230" y="55" width="180" height="38" rx="19" class="sm-absorb-film"></rect>
+<circle cx="270" cy="93" r="3" class="sm-absorb-release sm-absorb-release-a"></circle>
+<circle cx="320" cy="93" r="3" class="sm-absorb-release sm-absorb-release-b"></circle>
+<circle cx="370" cy="93" r="3" class="sm-absorb-release sm-absorb-release-c"></circle>
+<circle r="3.5" class="sm-absorb-particle sm-absorb-particle--v1 sm-absorb-p1"></circle>
+<circle r="3.5" class="sm-absorb-particle sm-absorb-particle--v1 sm-absorb-p2"></circle>
+<circle r="3.5" class="sm-absorb-particle sm-absorb-particle--v1 sm-absorb-p3"></circle>
+<circle r="3.5" class="sm-absorb-particle sm-absorb-particle--v1 sm-absorb-p4"></circle>
+<circle r="3" class="sm-absorb-particle sm-absorb-particle--v2 sm-absorb-p5"></circle>
+<circle r="3" class="sm-absorb-particle sm-absorb-particle--v2 sm-absorb-p6"></circle>
+<circle r="3" class="sm-absorb-particle sm-absorb-particle--v2 sm-absorb-p7"></circle>
+<circle r="3" class="sm-absorb-particle sm-absorb-particle--v2 sm-absorb-p8"></circle>
+<text x="620" y="424" class="sm-absorb-caption">&#8594; systemic circulation</text>
+</svg>
 </div>
 <div class="sm-image-card-body">
 <div class="sm-image-card-label">{{ section.settings.image_card_label }}</div>
@@ -54,8 +73,9 @@
     { "type": "textarea", "id": "body_1", "label": "Body text 1", "default": "The floor of your mouth is one of the most permeable surfaces on the body: a thin, non-keratinised membrane sitting directly over a dense bed of capillaries. Anything that crosses it enters the veins draining the head and neck — which feed general circulation without passing through the liver." },
     { "type": "textarea", "id": "body_2", "label": "Body text 2", "default": "No stomach. No gut wall. No first pass. Delivered this way, compounds suited to the route reach far more of the bloodstream than the same compounds swallowed." },
     { "type": "text", "id": "citation", "label": "Citation", "default": "British Journal of Clinical Pharmacology, 2018" },
-    { "type": "image_picker", "id": "image", "label": "Image" },
-    { "type": "text", "id": "image_placeholder_text", "label": "Image placeholder caption", "default": "Macro — strip on the tongue, mid-dissolve, single-source light" },
+    { "type": "paragraph", "content": "This card now shows an animated absorption diagram instead of a photo — the image setting below is unused." },
+    { "type": "image_picker", "id": "image", "label": "Image (unused — see note above)" },
+    { "type": "text", "id": "image_placeholder_text", "label": "Image placeholder caption (unused)", "default": "Macro — strip on the tongue, mid-dissolve, single-source light" },
     { "type": "text", "id": "image_card_label", "label": "Image card label", "default": "Where it happens" },
     { "type": "text", "id": "image_card_title", "label": "Image card title", "default": "A membrane, then blood" },
     { "type": "textarea", "id": "image_card_text", "label": "Image card text", "default": "The film holds itself against the mucosa while it dissolves, so the actives are released exactly where the tissue is thinnest and the capillaries are closest." },

@@ -1,0 +1,13 @@
+.wsmc-section{padding:clamp(76px,9vw,140px) clamp(20px,4vw,40px)}
+.wsmc-wrap{max-width:720px;margin:0 auto}
+
+.wsmc-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.wsmc-heading{margin:18px 0 0;font-size:clamp(30px,3.6vw,46px);line-height:1.08;letter-spacing:-.03em;font-weight:500;color:#0B0B0C}
+
+.wsmc-list{margin-top:clamp(32px,4vw,48px);border-top:1px solid #ECEDEE}
+.wsmc-row{display:flex;align-items:baseline;gap:14px;padding:16px 2px;border-bottom:1px solid #ECEDEE}
+.wsmc-tag{flex:none;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A5C8DC}
+.wsmc-text{font-size:20px;font-weight:500;letter-spacing:-.02em;color:#0B0B0C}
+
+.wsmc-until{margin:clamp(32px,4vw,44px) 0 0;font-size:19px;line-height:1.5;letter-spacing:-.01em;font-weight:500;color:#0B0B0C}
+.wsmc-body{margin:14px 0 0;font-size:17px;line-height:1.7;color:#55565A}

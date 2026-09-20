@@ -1,0 +1,51 @@
+{% comment %}
+  Section: Why Sleep Matters page — 02 Why we sacrifice it anyway — landing-sleep-sacrifice.liquid
+{% endcomment %}
+<section id="sacrifice" class="wsmc-section">
+<div class="wsmc-wrap">
+<div data-reveal class="wsmc-eyebrow">{{ section.settings.eyebrow }}</div>
+<h2 data-reveal class="wsmc-heading">{{ section.settings.heading }}</h2>
+<div data-reveal class="wsmc-list">
+{%- for block in section.blocks -%}
+<div class="wsmc-row" {{ block.shopify_attributes }}><span class="wsmc-tag">{{ block.settings.tag }}</span><span class="wsmc-text">{{ block.settings.text }}</span></div>
+{%- endfor -%}
+</div>
+<p data-reveal class="wsmc-until">{{ section.settings.until_line }}</p>
+<p data-reveal class="wsmc-body">{{ section.settings.body }}</p>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Sleep — Sacrifice",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "02 — Why we sacrifice it anyway" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "It's usually the first thing to go." },
+    { "type": "text", "id": "until_line", "label": "\"Until...\" line", "default": "Until \"I'll catch up tomorrow\" becomes part of the routine." },
+    { "type": "textarea", "id": "body", "label": "Body text", "default": "The problem isn't that people don't know sleep is important. Most people do. The problem is that modern life makes consistently good sleep difficult." }
+  ],
+  "blocks": [
+    {
+      "type": "one_more",
+      "name": "\"One more\" line",
+      "settings": [
+        { "type": "text", "id": "tag", "label": "Tag", "default": "One more" },
+        { "type": "text", "id": "text", "label": "Text" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Sleep — Sacrifice",
+      "blocks": [
+        { "type": "one_more", "settings": { "tag": "One more", "text": "episode." } },
+        { "type": "one_more", "settings": { "tag": "One more", "text": "email." } },
+        { "type": "one_more", "settings": { "tag": "One more", "text": "scroll." } },
+        { "type": "one_more", "settings": { "tag": "One more", "text": "late night." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

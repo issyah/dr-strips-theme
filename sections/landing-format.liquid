@@ -1,10 +1,17 @@
 <section id="format" class="fmt-section">
 <div class="fmt-wrap">
-<div data-reveal class="fmt-eyebrow">{{ section.settings.eyebrow }}</div>
-<div class="fmt-head-row">
-<h2 data-reveal class="fmt-heading">{{ section.settings.heading | newline_to_br }}</h2>
-<p data-reveal class="fmt-subheading">{{ section.settings.subheading }}</p>
+
+<div data-reveal class="fmt-hero">
+{%- if section.settings.image != blank -%}
+<img src="{{ section.settings.image | image_url: width: 1600 }}" alt="{{ section.settings.image.alt | escape }}" class="fmt-hero-img" loading="lazy" width="1600" height="{{ 1600 | divided_by: section.settings.image.aspect_ratio | ceil }}">
+{%- else -%}
+<div class="img-slot"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg><span>{{ section.settings.image_placeholder_text }}</span></div>
+{%- endif -%}
+<div class="fmt-hero-scrim" aria-hidden="true"></div>
+<h2 class="fmt-hero-heading">{{ section.settings.heading | newline_to_br }}</h2>
 </div>
+
+<p data-reveal class="fmt-subheading">{{ section.settings.subheading }}</p>
 
 <div data-reveal class="fmt-table-wrap">
 <div class="fmt-table-head">
@@ -35,10 +42,12 @@
 {%- endfor -%}
 </div>
 <p class="fmt-footnote">{{ section.settings.footnote }}</p>
+{%- if section.settings.liquids_label != blank or section.settings.liquids_text != blank -%}
 <div data-reveal class="fmt-callout">
 <div class="fmt-callout-label">{{ section.settings.liquids_label }}</div>
 <div class="fmt-callout-text">{{ section.settings.liquids_text }}</div>
 </div>
+{%- endif -%}
 </div>
 </section>
 
@@ -47,8 +56,10 @@
   "name": "Landing format",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "04 — Format" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow (no longer displayed — kept for reference)", "default": "04 — Format" },
     { "type": "textarea", "id": "heading", "label": "Heading (line breaks preserved)", "default": "Same night.\nThree formats." },
+    { "type": "image_picker", "id": "image", "label": "Headline image", "info": "Heading text overlays this image in white — best with a darker or richly-coloured photo for contrast." },
+    { "type": "text", "id": "image_placeholder_text", "label": "Headline image placeholder caption", "default": "Wide shot, deep blue tone — for white headline text overlay" },
     { "type": "text", "id": "subheading", "label": "Subheading", "default": "Pills are legacy. Gummies are candy with a wellness label. We picked the format that gets out of the way." },
     { "type": "text", "id": "compared_label", "label": "Table header — row label column", "default": "Compared" },
     { "type": "text", "id": "brand_column_label", "label": "Table header — brand column", "default": "Dr.Strips+ film" },

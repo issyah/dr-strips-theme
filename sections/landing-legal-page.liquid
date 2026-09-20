@@ -1,0 +1,25 @@
+{% comment %}
+  Section: Generic legal/policy page renderer (used for custom Pages like Cookie Policy) — landing-legal-page.liquid
+{% endcomment %}
+<section class="lgl-section">
+<div class="lgl-wrap">
+<div data-reveal class="lgl-eyebrow"><span class="lgl-eyebrow-line"></span>Legal</div>
+<h1 data-reveal class="lgl-heading">{{ page.title }}</h1>
+{%- if section.settings.updated_note != blank -%}<p class="lgl-updated">{{ section.settings.updated_note }}</p>{%- endif -%}
+<div data-reveal class="lgl-prose">
+{{ page.content }}
+</div>
+</div>
+</section>
+{% schema %}
+{
+  "name": "Legal page",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "updated_note", "label": "Last updated note (optional)" }
+  ],
+  "presets": [
+    { "name": "Legal page" }
+  ]
+}
+{% endschema %}

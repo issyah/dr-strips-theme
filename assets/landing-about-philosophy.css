@@ -1,0 +1,29 @@
+.ab-phil-section{padding:clamp(72px,8vw,120px) clamp(20px,4vw,40px);background:#FAFAF9;border-top:1px solid #ECEDEE;border-bottom:1px solid #ECEDEE}
+.ab-phil-wrap{max-width:820px;margin:0 auto}
+
+.ab-phil-heading{margin:22px 0 0;font-size:clamp(34px,4.4vw,58px);line-height:1.02;letter-spacing:-.04em;font-weight:500;color:#0B0B0C}
+
+.ab-phil-lead{margin:24px 0 0;font-size:17px;line-height:1.7;color:#55565A;max-width:680px}
+
+.ab-statement{margin:26px 0 0;font-size:19px;line-height:1.55;letter-spacing:-.01em;font-weight:500;color:#0B0B0C;max-width:680px}
+
+/* "Not by X. Not by Y. Not by Z. But by asking better questions." — same rejection-then-resolution rhetorical pattern as the hero section above, styled a shade quieter (smaller type, no steel-blue) since the hero already spent that accent; the closing "But by" line still picks up steel blue to mark the turn. */
+.ab-not-list{margin-top:clamp(28px,3.6vw,40px);border-top:1px solid #E6E7E9}
+.ab-not-row{display:flex;align-items:baseline;gap:16px;padding:16px 0;border-bottom:1px solid #E6E7E9}
+.ab-not-tag{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8A8C91;flex:none;min-width:56px}
+.ab-not-text{font-size:16.5px;line-height:1.55;color:#55565A}
+.ab-not-row--but .ab-not-tag{color:#A5C8DC}
+.ab-not-row--but .ab-not-text{color:#0B0B0C;font-weight:500}
+
+.ab-questions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:clamp(36px,4.4vw,56px)}
+.ab-question-card{border:1px solid #E6E7E9;border-radius:14px;padding:22px 22px 24px;background:#fff;box-shadow:0 1px 2px rgba(25,15,110,.04)}
+.ab-question-index{font-family:'Geist Mono',monospace;font-size:12px;color:#8A8C91}
+.ab-question-text{margin:12px 0 0;font-size:17px;font-weight:500;letter-spacing:-.015em;color:#0B0B0C;line-height:1.4}
+
+.ab-callout{margin-top:clamp(28px,3.6vw,40px);border:1px solid #E6E7E9;border-radius:14px;padding:26px 28px;background:#fff;box-shadow:0 1px 2px rgba(25,15,110,.04)}
+.ab-callout-label{font-family:'Geist Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#8A8C91}
+.ab-callout-text{margin:12px 0 0;font-size:19px;line-height:1.5;letter-spacing:-.01em;font-weight:500;color:#0B0B0C}
+
+.ab-final{margin-top:clamp(40px,5vw,60px);padding-top:clamp(28px,3.4vw,40px);border-top:1px solid #E6E7E9}
+.ab-final-statement{margin:0;font-size:clamp(22px,2.6vw,30px);line-height:1.35;letter-spacing:-.02em;font-weight:500;color:#0B0B0C;max-width:680px}
+.ab-final-sign{margin:18px 0 0;font-family:'Geist Mono',monospace;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8C91}

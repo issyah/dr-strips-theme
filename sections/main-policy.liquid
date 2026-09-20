@@ -1,0 +1,21 @@
+{% comment %}
+  Section: Native Shopify policy page (Privacy/Terms/Refund/Shipping) — main-policy.liquid
+  Restyled to match the Geist/landing-* design system. Content itself is edited
+  in Shopify Admin → Settings → Policies, not in the theme editor.
+{% endcomment %}
+<section class="lgl-section">
+<div class="lgl-wrap">
+<div data-reveal class="lgl-eyebrow"><span class="lgl-eyebrow-line"></span>Legal</div>
+<h1 data-reveal class="lgl-heading">{{ shop.policy.title }}</h1>
+<div data-reveal class="lgl-prose">
+{{ shop.policy.body }}
+</div>
+</div>
+</section>
+{% schema %}
+{
+  "name": "Policy page",
+  "tag": "section",
+  "class": "section"
+}
+{% endschema %}

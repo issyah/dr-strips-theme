@@ -1,0 +1,157 @@
+{% comment %}
+  Section: Addresses — main-addresses.liquid
+  Renders at /account/addresses. Native customer_address forms; edit forms
+  are revealed with a <details> disclosure (no JS required), matching the
+  theme's existing #MainContent summary { list-style:none } convention.
+{% endcomment %}
+<section class="acct-section">
+<div class="acct-dashboard">
+<nav class="acct-sidenav">
+<a href="{{ routes.account_url }}" class="acct-sidenav-link">Account</a>
+<a href="{{ routes.account_addresses_url }}" class="acct-sidenav-link active">Addresses</a>
+<a href="{{ routes.account_logout_url }}" class="acct-sidenav-link">Sign out</a>
+</nav>
+<div class="acct-main">
+<h1 class="acct-heading">Addresses</h1>
+
+{%- if customer.addresses_count > 0 -%}
+<div class="acct-address-grid">
+{%- for address in customer.addresses -%}
+<div class="acct-card acct-address-card">
+{%- if customer.default_address.id == address.id -%}
+<span class="acct-badge acct-badge-default">Default</span>
+{%- endif -%}
+<div class="acct-address-text">
+{{ address.first_name }} {{ address.last_name }}<br>
+{%- if address.company != blank %}{{ address.company }}<br>{% endif -%}
+{{ address.address1 }}<br>
+{%- if address.address2 != blank %}{{ address.address2 }}<br>{% endif -%}
+{{ address.city }}{% if address.province != blank %}, {{ address.province }}{% endif %} {{ address.zip }}<br>
+{{ address.country }}
+{%- if address.phone != blank %}<br>{{ address.phone }}{% endif -%}
+</div>
+<details class="acct-address-edit">
+<summary class="acct-link">Edit</summary>
+{% form 'customer_address', address %}
+<div class="acct-field-row">
+<div class="acct-field">
+<label for="AddressFirstName_{{ form.id }}">First name</label>
+<input type="text" name="address[first_name]" id="AddressFirstName_{{ form.id }}" class="hov-input acct-input" value="{{ address.first_name }}">
+</div>
+<div class="acct-field">
+<label for="AddressLastName_{{ form.id }}">Last name</label>
+<input type="text" name="address[last_name]" id="AddressLastName_{{ form.id }}" class="hov-input acct-input" value="{{ address.last_name }}">
+</div>
+</div>
+<div class="acct-field">
+<label for="AddressCompany_{{ form.id }}">Company</label>
+<input type="text" name="address[company]" id="AddressCompany_{{ form.id }}" class="hov-input acct-input" value="{{ address.company }}">
+</div>
+<div class="acct-field">
+<label for="AddressAddress1_{{ form.id }}">Address</label>
+<input type="text" name="address[address1]" id="AddressAddress1_{{ form.id }}" class="hov-input acct-input" value="{{ address.address1 }}">
+</div>
+<div class="acct-field">
+<label for="AddressAddress2_{{ form.id }}">Apartment, suite, etc.</label>
+<input type="text" name="address[address2]" id="AddressAddress2_{{ form.id }}" class="hov-input acct-input" value="{{ address.address2 }}">
+</div>
+<div class="acct-field-row">
+<div class="acct-field">
+<label for="AddressCity_{{ form.id }}">City</label>
+<input type="text" name="address[city]" id="AddressCity_{{ form.id }}" class="hov-input acct-input" value="{{ address.city }}">
+</div>
+<div class="acct-field">
+<label for="AddressZip_{{ form.id }}">Postal / zip code</label>
+<input type="text" name="address[zip]" id="AddressZip_{{ form.id }}" class="hov-input acct-input" value="{{ address.zip }}">
+</div>
+</div>
+<div class="acct-field-row">
+<div class="acct-field">
+<label for="AddressProvince_{{ form.id }}">Province / state</label>
+<input type="text" name="address[province]" id="AddressProvince_{{ form.id }}" class="hov-input acct-input" value="{{ address.province }}">
+</div>
+<div class="acct-field">
+<label for="AddressCountry_{{ form.id }}">Country</label>
+<input type="text" name="address[country]" id="AddressCountry_{{ form.id }}" class="hov-input acct-input" value="{{ address.country }}">
+</div>
+</div>
+<div class="acct-field">
+<label for="AddressPhone_{{ form.id }}">Phone</label>
+<input type="tel" name="address[phone]" id="AddressPhone_{{ form.id }}" class="hov-input acct-input" value="{{ address.phone }}">
+</div>
+<div class="acct-form-actions">
+<button type="submit" class="acct-submit">Save</button>
+<button type="submit" name="_method" value="delete" class="acct-delete-btn" onclick="return confirm('Delete this address?')">Delete</button>
+</div>
+{% endform %}
+</details>
+</div>
+{%- endfor -%}
+</div>
+{%- else -%}
+<p class="acct-empty-state" style="margin-bottom:28px;">You don't have any saved addresses yet.</p>
+{%- endif -%}
+
+<div class="acct-card acct-add-address">
+<h2 class="acct-card-title">Add a new address</h2>
+{% form 'customer_address', customer.new_address %}
+<div class="acct-field-row">
+<div class="acct-field">
+<label for="AddressFirstNameNew">First name</label>
+<input type="text" name="address[first_name]" id="AddressFirstNameNew" class="hov-input acct-input">
+</div>
+<div class="acct-field">
+<label for="AddressLastNameNew">Last name</label>
+<input type="text" name="address[last_name]" id="AddressLastNameNew" class="hov-input acct-input">
+</div>
+</div>
+<div class="acct-field">
+<label for="AddressCompanyNew">Company</label>
+<input type="text" name="address[company]" id="AddressCompanyNew" class="hov-input acct-input">
+</div>
+<div class="acct-field">
+<label for="AddressAddress1New">Address</label>
+<input type="text" name="address[address1]" id="AddressAddress1New" class="hov-input acct-input">
+</div>
+<div class="acct-field">
+<label for="AddressAddress2New">Apartment, suite, etc.</label>
+<input type="text" name="address[address2]" id="AddressAddress2New" class="hov-input acct-input">
+</div>
+<div class="acct-field-row">
+<div class="acct-field">
+<label for="AddressCityNew">City</label>
+<input type="text" name="address[city]" id="AddressCityNew" class="hov-input acct-input">
+</div>
+<div class="acct-field">
+<label for="AddressZipNew">Postal / zip code</label>
+<input type="text" name="address[zip]" id="AddressZipNew" class="hov-input acct-input">
+</div>
+</div>
+<div class="acct-field-row">
+<div class="acct-field">
+<label for="AddressProvinceNew">Province / state</label>
+<input type="text" name="address[province]" id="AddressProvinceNew" class="hov-input acct-input">
+</div>
+<div class="acct-field">
+<label for="AddressCountryNew">Country</label>
+<input type="text" name="address[country]" id="AddressCountryNew" class="hov-input acct-input">
+</div>
+</div>
+<div class="acct-field">
+<label for="AddressPhoneNew">Phone</label>
+<input type="tel" name="address[phone]" id="AddressPhoneNew" class="hov-input acct-input">
+</div>
+<button type="submit" class="acct-submit">Add address</button>
+{% endform %}
+</div>
+
+</div>
+</div>
+</section>
+
+{% schema %}
+{
+  "name": "Addresses",
+  "tag": "section"
+}
+{% endschema %}

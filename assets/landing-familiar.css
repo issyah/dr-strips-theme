@@ -131,3 +131,8 @@
   line-height: 1.7;
   color: #55565A;
 }
+
+/* Mobile: the DAY 1/7/30/180 impact cards use the same auto-fit/minmax pattern as the hero stats — force a deterministic 2x2 grid on phones instead of an uneven wrap. */
+@media (max-width:640px){
+  .fam-impact-grid{grid-template-columns:repeat(2,1fr)}
+}

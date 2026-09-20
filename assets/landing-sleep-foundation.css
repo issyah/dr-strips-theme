@@ -1,0 +1,16 @@
+.wsmf-section{padding:clamp(76px,9vw,140px) clamp(20px,4vw,40px)}
+.wsmf-container{max-width:1200px;margin:0 auto}
+
+.wsmf-eyebrow{font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8A8C91}
+.wsmf-intro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,4vw,64px);margin-top:24px;align-items:start}
+.wsmf-heading{margin:0;font-size:clamp(34px,4.4vw,58px);line-height:1.0;letter-spacing:-.04em;font-weight:500;color:#0B0B0C}
+.wsmf-body{margin:0;font-size:17px;line-height:1.7;color:#55565A;max-width:480px}
+
+.wsmf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:clamp(36px,4.5vw,56px)}
+.wsmf-card{background:#fff;border:1px solid #ECEDEE;border-radius:14px;padding:26px 20px;text-align:center}
+.wsmf-card--highlight{border:1.5px solid #A5C8DC;background:#F5FAFC}
+.wsmf-card-title{font-size:17px;font-weight:500;letter-spacing:-.015em;color:#0B0B0C}
+
+.wsmf-image-frame{margin-top:clamp(36px,4.5vw,56px);position:relative;height:clamp(220px,26vw,340px);border-radius:20px;overflow:hidden;background:#FAFAF9;border:1px solid #ECEDEE}
+.wsmf-image-frame .img-slot{position:absolute;inset:0}
+.wsmf-image-frame .wsmf-image-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}

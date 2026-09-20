@@ -12,20 +12,62 @@
   "type": "footer",
   "sections": {
     "footer": {
-      "type": "footer",
+      "type": "landing-footer",
+      "blocks": {
+        "link_list_8MbtP7": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Shop",
+            "link_list": "shop-footer-menu"
+          }
+        },
+        "link_list_Q8yWM4": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Learn",
+            "link_list": "learn-footer-menu"
+          }
+        },
+        "link_list_UrGMXx": {
+          "type": "link_list",
+          "settings": {
+            "heading": "About",
+            "link_list": "about"
+          }
+        },
+        "link_list_VW33nC": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Help",
+            "link_list": "help-footer-menu"
+          }
+        },
+        "link_list_QHKjLN": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Legal",
+            "link_list": "legal-footer-menu"
+          }
+        }
+      },
+      "block_order": [
+        "link_list_8MbtP7",
+        "link_list_Q8yWM4",
+        "link_list_UrGMXx",
+        "link_list_VW33nC",
+        "link_list_QHKjLN"
+      ],
       "settings": {
-        "color_scheme": "scheme-1",
-        "newsletter_enable": true,
-        "newsletter_heading": "Subscribe to our emails",
-        "enable_follow_on_shop": true,
-        "show_social": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
-        "payment_enable": true,
-        "show_policy": true,
-        "margin_top": 0,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "tagline": "science, dissolved.",
+        "copyright": "© 2026 DR.strips+ · Singapore",
+        "disclaimer": "Not intended to diagnose, treat, cure or prevent any disease",
+        "newsletter_heading": "Better nights start with better information.",
+        "newsletter_text": "Get practical sleep education, product updates and occasional offers. No spam. No nonsense. Just useful things worth knowing.",
+        "newsletter_email_placeholder": "you@email.com",
+        "newsletter_button_label": "Join",
+        "instagram_url": "",
+        "tiktok_url": "",
+        "facebook_url": ""
       }
     }
   },

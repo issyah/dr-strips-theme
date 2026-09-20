@@ -15,32 +15,29 @@
         "block_01": {
           "type": "nav_link",
           "settings": {
-            "label": "Home",
-            "url": "/#top"
+            "label": "Shop",
+            "url": "/products/dr-strips-sleep"
           }
         },
         "block_02": {
-          "type": "nav_link",
+          "type": "nav_dropdown",
           "settings": {
-            "label": "Science",
-            "url": "/pages/science"
+            "label": "Learn",
+            "link_1_label": "Why Sleep Matters",
+            "link_1_url": "/pages/why-sleep-matters",
+            "link_2_label": "Sleep Academy",
+            "link_2_url": "/pages/sleep-academy",
+            "link_3_label": "Science",
+            "link_3_url": "/pages/science",
+            "link_4_label": "Ingredient Library",
+            "link_4_url": "/pages/ingredient-library",
+            "link_5_label": "Why Oral Strips",
+            "link_5_url": "/pages/why-oral-strips",
+            "link_6_label": "How Oral Strips Work",
+            "link_6_url": "/pages/oral-strip-science"
           }
         },
         "block_03": {
-          "type": "nav_link",
-          "settings": {
-            "label": "How It Works",
-            "url": "/#how"
-          }
-        },
-        "block_04": {
-          "type": "nav_link",
-          "settings": {
-            "label": "Reviews",
-            "url": "/#reviews"
-          }
-        },
-        "block_05": {
           "type": "nav_link",
           "settings": {
             "label": "FAQ",
@@ -51,9 +48,7 @@
       "block_order": [
         "block_01",
         "block_02",
-        "block_03",
-        "block_04",
-        "block_05"
+        "block_03"
       ],
       "settings": {
         "logo_alt": "Dr.Strips+ home"
@@ -61,7 +56,20 @@
     },
     "science_hero": {
       "type": "landing-science-hero",
-      "settings": {}
+      "settings": {
+        "eyebrow": "The delivery science",
+        "heading": "The dose on\nthe box,\ndelivered.",
+        "intro_text": "Every supplement is sold on what goes into it. The number that decides whether it works is how much of that ever reaches your blood. This page is the physiology of that gap, the route we take instead, and the limits of what either can tell you.",
+        "cta1_label": "Start with the route",
+        "cta1_url": "#route",
+        "cta2_label": "Jump to the sources",
+        "cta2_url": "#sources",
+        "panel_label": "Dose still intact on arrival",
+        "swallow_label": "Swallowed",
+        "swallow_text": "A fraction of the label. How much depends on the compound.",
+        "film_label": "Strip2Cell film",
+        "panel_footnote": "*Up to 90% is the ceiling of the sublingual route for actives suited to it, drawn from published pharmacology — not a claim about a specific outcome. We publish no figure for pills or gummies, because it changes with the compound."
+      }
     },
     "science_route": {
       "type": "landing-science-route",
@@ -96,7 +104,13 @@
         "block_02",
         "block_03"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "01 — The problem",
+        "heading": "Your liver gets first pick.",
+        "body_1": "Anything you swallow takes the long route. It has to survive the stomach, cross the wall of the small intestine, and then pass through the liver — where enzymes metabolise a share of it — before a single molecule reaches general circulation. Pharmacologists call that last step first-pass metabolism.",
+        "body_2": "It is why the figure printed on a panel and the figure in your blood are two different numbers. Not a defect in the formula. A property of the route.",
+        "citation": "Goodman & Gilman · The Pharmacological Basis of Therapeutics"
+      }
     },
     "science_mucosa": {
       "type": "landing-science-mucosa",
@@ -128,7 +142,19 @@
         "block_02",
         "block_03"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "02 — The shortcut",
+        "heading": "The tissue under your tongue was built for this.",
+        "body_1": "The floor of your mouth is one of the most permeable surfaces on the body: a thin, non-keratinised membrane sitting directly over a dense bed of capillaries. Anything that crosses it enters the veins draining the head and neck — which feed general circulation without passing through the liver.",
+        "body_2": "No stomach. No gut wall. No first pass. Delivered this way, compounds suited to the route reach far more of the bloodstream than the same compounds swallowed.",
+        "citation": "British Journal of Clinical Pharmacology, 2018",
+        "image_placeholder_text": "Macro — strip on the tongue, mid-dissolve, single-source light",
+        "image_card_label": "Where it happens",
+        "image_card_title": "A membrane, then blood",
+        "image_card_text": "The film holds itself against the mucosa while it dissolves, so the actives are released exactly where the tissue is thinnest and the capillaries are closest.",
+        "borrowed_label": "Borrowed, not invented",
+        "borrowed_text": "Medicine has used this route for decades: nitroglycerin placed under the tongue for angina, sublingual B12, prescription oral films. We did not discover the shortcut. We built a nightly supplement around it."
+      }
     },
     "science_format": {
       "type": "landing-science-format",
@@ -138,7 +164,8 @@
           "settings": {
             "label": "Strip2Cell film",
             "sublabel": "Mucosa → bloodstream",
-            "percent": 90
+            "percent": 90,
+            "right_label": "A fraction"
           }
         },
         "block_02": {
@@ -175,7 +202,16 @@
         "block_03",
         "block_04"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "03 — Format",
+        "heading": "Same actives.\nDifferent arrival.",
+        "body": "A capsule, a gummy and a film can carry an identical ingredient panel. Two of them take the route through the gut and the liver, so what arrives is decided by physiology rather than by the label. The third does not take that route at all.",
+        "bars_caption": "Bar length = dose reaching the bloodstream",
+        "bars_legend": "Steel = the swallowed route",
+        "image": "shopify://shop_images/DRstrip_132of134.jpg",
+        "image_placeholder_text": "Macro — the film mid-dissolve, cobalt gel light, crushed blacks",
+        "footnote": "The two lower bars carry no percentage on purpose. Published bioavailability for swallowed compounds spans a wide range depending on the molecule, the meal and the person, so a single tidy percentage would be a design decision rather than a fact. Ours is stated as a ceiling, with an asterisk, for the same reason."
+      }
     },
     "science_signal": {
       "type": "landing-science-signal",
@@ -207,7 +243,13 @@
         "block_02",
         "block_03"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "04 — The signal",
+        "heading": "A plant signal, not a synthetic dose.",
+        "body_1": "Melatonin is not a sedative. It is a timing cue — the molecule that tells your body which part of the day it is. Plants make the same compound, and pistachios are among the richest natural sources of it. That plant-derived form is phytomelatonin, and it arrives with the cofactors the nut carries rather than isolated in a lab.",
+        "body_2": "The heaviness people associate with sleep aids is largely a dosing artefact: a cue delivered too strongly, or too late, is still in your system at seven in the morning. Research on low, well-timed doses finds circadian phase shifts without next-day grogginess.",
+        "citation": "Cell Reports Medicine, 2023"
+      }
     },
     "science_formula": {
       "type": "landing-science-formula",
@@ -305,7 +347,14 @@
         "block_07",
         "block_08"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "05 — The formula, by mechanism",
+        "heading": "Three ways a night fails.",
+        "body": "A sleepless night is rarely one problem. There is the mind that will not stop, the body that will not drop off, and the morning that arrives heavier than it should. Each active in the strip is there for one of those three.",
+        "image": "shopify://shop_images/DRstrip_113of134.jpg",
+        "image_placeholder_text": "Ingredient still life — pistachios, valerian root, chamomile, single-source light",
+        "disclaimer": "Doses are per strip, as printed on the box. Other ingredients: Pullulan, Monk Fruit Extract, Cellulose, Lecithin, Mixed Berry Flavour, Sorbitol Syrup, Steviol Glycosides. Zero sugar."
+      }
     },
     "science_standards": {
       "type": "landing-science-standards",
@@ -396,7 +445,13 @@
         "block_10",
         "block_11"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "06 — Manufacturing & testing",
+        "heading": "Held to the dose on the box.",
+        "body": "A delivery claim is only worth what the manufacturing behind it is worth. Every batch is made in a certified facility, cast and cut so each strip carries the same dose, and tested by a third party against the printed panel before it ships.",
+        "image": "shopify://shop_images/DRstrip_14of134.jpg",
+        "image_placeholder_text": "Manufacturing — film casting or cutting line, clinical light"
+      }
     },
     "science_limits": {
       "type": "landing-science-limits",
@@ -436,7 +491,12 @@
         "block_03",
         "block_04"
       ],
-      "settings": {}
+      "settings": {
+        "eyebrow": "07 — Limits",
+        "heading": "What we don't claim.",
+        "body": "A science page that only argues one way is marketing. Here is the other half — the things the evidence does not let us say, stated plainly so you can weigh the rest.",
+        "disclaimer": "Dr.Strips+ Sleep is a health supplement, not a medicine, and is not intended to diagnose, treat, cure or prevent any disease. Statements on this page have not been evaluated by the HSA. If you are pregnant, breastfeeding, on medication or under medical care, speak to your doctor first."
+      }
     },
     "science_sources": {
       "type": "landing-science-sources",
@@ -492,52 +552,86 @@
         "block_05",
         "block_06"
       ],
-      "settings": {}
-    },
-    "science_cta": {
-      "type": "landing-science-cta",
       "settings": {
-        "product": "dr-strips-sleep"
+        "eyebrow": "08 — The receipts",
+        "heading": "Where the science comes from.",
+        "body": "Each claim above, and the published work it rests on. Bioavailability figures are compound-dependent ranges from the literature, not outcomes measured on this product."
       }
     },
-    "footer": {
-      "type": "landing-footer",
+    "science_evidence": {
+      "type": "landing-science-evidence",
       "blocks": {
         "block_01": {
-          "type": "link_column",
+          "type": "item",
           "settings": {
-            "link_1_label": "Science",
-            "link_1_url": "/pages/science",
-            "link_2_label": "How it works",
-            "link_2_url": "/#how",
-            "link_3_label": "Formula",
-            "link_3_url": "/#formula",
-            "link_4_label": "Buy",
-            "link_4_url": "/#offer"
+            "text": "Study design"
           }
         },
         "block_02": {
-          "type": "link_column",
+          "type": "item",
           "settings": {
-            "link_1_label": "FAQ",
-            "link_1_url": "/#faq",
-            "link_2_label": "Shipping",
-            "link_2_url": "/#offer",
-            "link_3_label": "Refunds",
-            "link_3_url": "/#offer",
-            "link_4_label": "Contact",
-            "link_4_url": "/#top"
+            "text": "Dosage"
+          }
+        },
+        "block_03": {
+          "type": "item",
+          "settings": {
+            "text": "Population"
+          }
+        },
+        "block_04": {
+          "type": "item",
+          "settings": {
+            "text": "Outcomes"
+          }
+        },
+        "block_05": {
+          "type": "item",
+          "settings": {
+            "text": "Consistency"
+          }
+        },
+        "block_06": {
+          "type": "item",
+          "settings": {
+            "text": "Limitations"
+          }
+        },
+        "block_07": {
+          "type": "item",
+          "settings": {
+            "text": "Whether it applies to this product"
           }
         }
       },
       "block_order": [
         "block_01",
-        "block_02"
+        "block_02",
+        "block_03",
+        "block_04",
+        "block_05",
+        "block_06",
+        "block_07"
       ],
       "settings": {
-        "tagline": "absorbed, not swallowed. <br>precision, delivered. <br>science, dissolved.",
-        "copyright": "© 2026 DR.strips+ · Singapore",
-        "disclaimer": "Not intended to diagnose, treat, cure or prevent any disease"
+        "eyebrow": "09 — Our standard",
+        "heading": "The science behind better supplementation.",
+        "statement": "Science isn't a badge. It's a process.",
+        "lead": "At Dr.Strips+, we use evidence to guide how we think about ingredients, formulations and product claims.",
+        "sublead": "We look beyond headlines. We look at:",
+        "closing": "Because a scientific ingredient doesn't automatically make a scientific product. The details matter."
+      }
+    },
+    "science_cta": {
+      "type": "landing-science-cta",
+      "settings": {
+        "product": "dr-strips-sleep",
+        "label": "The whole point",
+        "heading": "Read it once.\nThen just sleep.",
+        "body": "Thirty strips, thirty nights. Ten minutes before bed, one on your tongue, and none of this to think about again.",
+        "qty_label": "30 strips",
+        "cta_label": "Add to bag",
+        "guarantee_text": "30-night guarantee"
       }
     },
     "script": {
@@ -558,8 +652,8 @@
     "science_standards",
     "science_limits",
     "science_sources",
+    "science_evidence",
     "science_cta",
-    "footer",
     "script"
   ]
 }
