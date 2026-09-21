@@ -36,42 +36,20 @@
   exists in Shopify admin → Discounts before relying on this in
   production — nothing here creates the discount itself.
 
-  EMAIL CAPTURE (added Sept 2026, revised to the reload-based version):
-  submitting the email now genuinely subscribes the visitor to
-  Shopify's own marketing list, using Shopify's native newsletter
-  mechanism — the same `form` tag (type: 'customer') Dawn's own
-  footer/email-signup-banner sections use (see the hidden
-  #dsp-newsletter-form below) — which creates or updates a Shopify
-  customer flagged as accepting email marketing, tagged "newsletter".
+  EMAIL CAPTURE: the visible email input lives inside a native Shopify
+  `form 'customer'` (#dsp-email-form) — the same mechanism as
+  sections/landing-footer.liquid — which creates/updates a customer
+  flagged as accepting email marketing, tagged "newsletter,welcome-popup".
+  The visitor's own click submits it, so Shopify's automatic hCaptcha
+  handling applies; do NOT switch this back to a scripted/hidden form or
+  a fetch() POST (that failed with "Missing CAPTCHA token" or stalled
+  behind ad blockers).
 
-  This causes a real, brief page reload: Shopify processes the
-  subscription server-side and redirects back to the same page with
-  `?customer_posted=true` in the URL. On that reload, this script
-  detects the flag, cleans the URL back up, and reopens the popup
-  straight on the "code revealed" screen — skipping the game and the
-  7-second delay — so the visitor's flow reads as "click reveal →
-  quick refresh → here's your code" rather than losing their place.
-
-  Two things were confirmed necessary by testing directly against
-  this store, not just by reading Shopify's docs:
-  1. A plain JS fetch() POST to /contact is rejected outright with
-     "Missing CAPTCHA token" — this store has Shopify's hCaptcha bot
-     protection active on the customer/newsletter form, so a real
-     a real `form` tag (type: 'customer') has to be used instead of a hand-built
-     request.
-  2. Even a genuine form submission needs `Shopify.captcha.protect()`
-     called on it first, and to be submitted via `requestSubmit()`
-     rather than `submit()` (only `requestSubmit()` fires the 'submit'
-     event that `protect()` listens on to inject its token) — see
-     shopify.dev/docs/storefronts/themes/trust-security/captcha.
-     An earlier version of this fix tried submitting into a hidden
-     iframe to avoid the page reload entirely, keeping the whole thing
-     instant — but that path turned out unreliable in testing (the
-     invisible challenge sometimes never resolved, silently dropping
-     the signup with no way to detect it). A real top-level submission
-     (this version) was consistently reliable, so a brief reload was
-     chosen deliberately over an instant experience that could quietly
-     lose signups.
+  The submit causes a brief page reload: Shopify redirects back with
+  `?customer_posted=true`. On that reload this script cleans the URL and
+  reopens the popup on the "code revealed" screen. If Shopify rejects the
+  signup (`form.errors`), the popup reopens on the email step with the
+  address restored, an error, and a "Play again" link.
 
   Once Klaviyo's Shopify app is connected, Klaviyo's own sync picks up
   any customer who accepts marketing automatically, so no further
@@ -261,6 +239,7 @@
     border-radius: 9px;
     padding: 14px !important;
     cursor: pointer;
+    margin-bottom: 14px !important;
     transition: transform 0.12s cubic-bezier(0.22, 0.61, 0.36, 1), background 0.22s;
   }
   .dsp-btn:hover {
@@ -273,6 +252,21 @@
   .dsp-btn:disabled {
     opacity: 0.5;
     cursor: default;
+  }
+  .dsp-replay {
+    font-family: 'Geist', sans-serif;
+    font-size: 13px;
+    background: none;
+    border: none;
+    color: #5c5e63;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+  }
+  .dsp-replay[hidden] {
+    display: none;
   }
   .dsp-error {
     font-size: 12px;
@@ -294,8 +288,8 @@
     background: #0b0b0c;
     border: 1.5px dashed #a5c8dc;
     border-radius: 14px;
-    padding: 22px;
-    margin: 18px 0;
+    padding: 22px !important;
+    margin: 18px 0 !important;
   }
   .dsp-code-label {
     font-family: 'Geist Mono', ui-monospace, monospace;
@@ -339,17 +333,6 @@
     border: 0 !important;
   }
 </style>
-{%- comment -%}
-  Hidden native Shopify newsletter form — same `form` tag (type: 'customer')
-  mechanism as Dawn's stock footer/email-signup-banner sections. A
-  real, genuine top-level submission (no iframe/target trick) is what
-  Shopify's bot protection reliably accepts — see the note above on
-  why that trade-off (a brief reload) was chosen deliberately.
-{%- endcomment -%}
-{%- form 'customer', id: 'dsp-newsletter-form', class: 'dsp-visually-hidden' -%}
-  <input type="hidden" name="contact[tags]" value="newsletter">
-  <input type="hidden" name="contact[email]" id="dsp-newsletter-email" value="">
-{%- endform -%}
 <div id="dsp-overlay">
   <div id="dsp-card">
     <button id="dsp-close" aria-label="Close">&times;</button>
@@ -369,11 +352,20 @@
           Drop your email and we'll unlock your code — just a quick refresh.
         </div>
       </div>
-      <form id="dsp-email-form">
-        <input type="email" id="dsp-email-input" placeholder="you@email.com" required />
+      {%- comment -%}
+        The visible form IS Shopify's native newsletter form (same as the
+        landing footer), so the visitor's own click triggers Shopify's
+        automatic captcha handling — no scripted submit or manual
+        Shopify.captcha.protect().
+      {%- endcomment -%}
+      {%- form 'customer', id: 'dsp-email-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter,welcome-popup">
+        {%- if form.errors -%}<input type="hidden" id="dsp-newsletter-errored" value="1">{%- endif -%}
+        <input type="email" id="dsp-email-input" name="contact[email]" placeholder="you@email.com" required />
         <div class="dsp-error" id="dsp-email-error"></div>
         <button type="submit" class="dsp-btn" id="dsp-email-submit">Reveal my code</button>
-      </form>
+      {%- endform -%}
+      <button type="button" class="dsp-replay" id="dsp-replay" hidden>Play again</button>
     </div>
     <div id="dsp-code-step">
       <span class="dsp-eyebrow">get some rest</span>
@@ -381,7 +373,7 @@
       <div class="dsp-code-card">
         <div class="dsp-code-label">Your code</div>
         <div class="dsp-code" id="dsp-code-text">EARLY</div>
-        <div id="dsp-copy-note">&nbsp;</div>
+        {% comment %} <div id="dsp-copy-note">&nbsp;</div> {% endcomment %}
       </div>
       <button class="dsp-btn" id="dsp-copy-btn">Copy code</button>
       <div class="dsp-code-terms">$10 off orders $50+. One use per customer. Applied at checkout.</div>
@@ -401,6 +393,7 @@
     var SHOW_ONCE_PER_SESSION = true;
     var DISCOUNT_CODE = 'EARLY';
     var STORAGE_KEY = 'dsp_seen_v1';
+    var PENDING_KEY = 'dsp_pending_email';
     var WIN_LINES = [
       [0, 1, 2],
       [3, 4, 5],
@@ -508,6 +501,7 @@
       var emailInput = document.getElementById('dsp-email-input');
       var emailError = document.getElementById('dsp-email-error');
       var emailSubmitBtn = document.getElementById('dsp-email-submit');
+      var replayBtn = document.getElementById('dsp-replay');
       var copyBtn = document.getElementById('dsp-copy-btn');
       var copyNote = document.getElementById('dsp-copy-note');
       var codeTextEl = document.getElementById('dsp-code-text');
@@ -620,6 +614,24 @@
       }
       renderBoard();
 
+      // Back to a fresh game — used by "Play again" when a signup fails, so a
+      // visitor isn't stuck on the email step with no way to start over.
+      function resetGame() {
+        board = new Array(9).fill(null);
+        over = false;
+        clearTimeout(unlockFallbackTimer);
+        emailSubmitBtn.disabled = false;
+        emailSubmitBtn.textContent = 'Reveal my code';
+        emailError.textContent = '';
+        replayBtn.hidden = true;
+        emailStep.classList.remove('dsp-active');
+        gameStep.classList.remove('dsp-hidden');
+        statusEl.textContent = 'house moves first\u2026';
+        renderBoard();
+        botOpensGame();
+      }
+      replayBtn.addEventListener('click', resetGame);
+
       function openPopupImmediately() {
         overlay.classList.add('dsp-show');
         requestAnimationFrame(function () {
@@ -627,74 +639,42 @@
         });
       }
 
-      // Genuinely subscribes the visitor to Shopify's own marketing
-      // list via a real top-level submission of the hidden native
-      // Shopify newsletter form declared near the top of this snippet.
-      // This causes a real, brief page reload — see the top-of-file
-      // comment for why that trade-off was made deliberately after an
-      // instant/hidden-iframe version proved unreliable in testing.
-      // `Shopify.captcha.protect()` + `requestSubmit()` (not `submit()`)
-      // are both required for this store's hCaptcha bot protection to
-      // accept the submission — confirmed by direct testing.
-      function subscribeToNewsletter(email) {
-        var emailField = document.getElementById('dsp-newsletter-email');
-        var form = document.getElementById('dsp-newsletter-form');
-        if (!emailField || !form) return;
-        emailField.value = email;
-        // Wrapped in try/catch: if Shopify's captcha helper throws (seen when
-        // the hCaptcha script hasn't fully initialized yet), it must not stop
-        // the form submission below from being attempted.
-        try {
-          if (window.Shopify && window.Shopify.captcha && typeof window.Shopify.captcha.protect === 'function') {
-            window.Shopify.captcha.protect(form);
-          }
-        } catch (err) {}
-        try {
-          if (form.requestSubmit) {
-            form.requestSubmit();
-          } else {
-            form.submit(); // very old browsers without requestSubmit support
-          }
-        } catch (err) {}
+      function showEmailError(msg) {
+        emailSubmitBtn.disabled = false;
+        emailSubmitBtn.textContent = 'Reveal my code';
+        emailError.textContent = msg;
+        replayBtn.hidden = false;
       }
 
+      // Native submit: on a valid email we do NOT preventDefault — the form
+      // posts to Shopify (via its own captcha handling) and the page reloads
+      // with ?customer_posted=true, exactly like the landing footer signup.
       emailForm.addEventListener('submit', function (e) {
-        e.preventDefault();
         var val = emailInput.value.trim();
         var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
         if (!ok) {
+          e.preventDefault();
           emailError.textContent = 'enter a valid email to unlock your code.';
           return;
         }
         emailError.textContent = '';
-        emailSubmitBtn.disabled = true;
-        emailSubmitBtn.textContent = 'Unlocking…';
-        // Mark that the popup should reopen straight on the code step
-        // after the reload this triggers, in case the redirect ever
-        // lands back here without the ?customer_posted=true query param
-        // being read in time (belt-and-braces; the query param is the
-        // primary signal, checked below).
+        // Remember the email so it can be restored if Shopify rejects it.
         try {
-          sessionStorage.setItem(STORAGE_KEY, '1');
+          sessionStorage.setItem(PENDING_KEY, val);
         } catch (err) {}
-        // Safety net: the reload above depends on Shopify's hCaptcha check
-        // completing. If that check is blocked or silently stalls (ad
-        // blockers, privacy extensions, and flaky networks are the usual
-        // causes), the page never reloads and a visitor is stuck on
-        // "Unlocking…" forever with no way out. A genuine reload tears this
-        // whole script (and this timer) down with the page, so this can only
-        // ever fire when the reload truly never happened — in that case,
-        // reveal the code anyway rather than trap the visitor.
+        // Disable after the submit has been dispatched, not during it.
+        setTimeout(function () {
+          emailSubmitBtn.disabled = true;
+          emailSubmitBtn.textContent = 'Unlocking…';
+        }, 0);
+        // Stall guard: if the captcha check is blocked the page never
+        // reloads. A real reload tears this timer down with the page.
         clearTimeout(unlockFallbackTimer);
         unlockFallbackTimer = setTimeout(function () {
-          emailSubmitBtn.disabled = false;
-          emailSubmitBtn.textContent = 'Reveal my code';
-          emailError.textContent = '';
-          gameStep.classList.add('dsp-hidden');
-          emailStep.classList.remove('dsp-active');
-          codeStep.classList.add('dsp-active');
-        }, 8000);
-        subscribeToNewsletter(val);
+          showEmailError(
+            "We couldn't save your email — check your connection (or pause any ad blocker) and try again."
+          );
+        }, 12000);
       });
 
       copyBtn.addEventListener('click', function () {
@@ -723,7 +703,33 @@
       // the game or waiting out the normal 7-second delay, then clean
       // the URL so a page refresh doesn't repeat this.
       var params = new URLSearchParams(window.location.search);
+      var submissionFailed = !!document.getElementById('dsp-newsletter-errored');
+      if (submissionFailed) {
+        // Shopify rejected the last signup (e.g. captcha failed). Reopen on the
+        // email step with the address restored so the visitor can retry
+        // instead of the signup vanishing silently.
+        var pending = '';
+        try {
+          pending = sessionStorage.getItem(PENDING_KEY) || '';
+        } catch (err) {}
+        emailInput.value = pending;
+        gameStep.classList.add('dsp-hidden');
+        emailStep.classList.add('dsp-active');
+        resultEyebrowEl.textContent = 'almost there';
+        resultHeadingEl.textContent = "That didn't go through.";
+        resultSubEl.textContent = 'Try your email again, or play another round.';
+        showEmailError("We couldn't save your email — pause any ad blocker and try again.");
+        // Un-mark the session so the game also comes back on the next page.
+        try {
+          sessionStorage.removeItem(STORAGE_KEY);
+        } catch (err) {}
+        openPopupImmediately();
+        return;
+      }
       if (params.get('customer_posted') === 'true') {
+        try {
+          sessionStorage.removeItem(PENDING_KEY);
+        } catch (err) {}
         gameStep.classList.add('dsp-hidden');
         codeStep.classList.add('dsp-active');
         openPopupImmediately();
@@ -735,7 +741,7 @@
         var cleanedUrl =
           window.location.pathname +
           (cleanedSearch ? '?' + cleanedSearch : '') +
-          window.location.hash.replace('#dsp-newsletter-form', '');
+          window.location.hash.replace('#dsp-email-form', '');
         window.history.replaceState(null, '', cleanedUrl);
         return;
       }
