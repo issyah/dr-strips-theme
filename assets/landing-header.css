@@ -391,6 +391,10 @@ html {
   transition: box-shadow .22s cubic-bezier(.22, .61, .36, 1)
 }
 
+.hdr-bar a {
+  text-decoration: none;
+}
+
 .hdr-inner {
   max-width: 1200px;
   margin: 0 auto;
@@ -459,6 +463,14 @@ html {
   white-space: nowrap
 }
 
+/* hide the cta button on the navbar */
+
+@media screen and (max-width: 768px) {
+  .hdr-cta-btn {
+    display: none;
+  }
+}
+
 .hdr-mobile-nav-inner {
   display: flex;
   flex-direction: column;
@@ -490,12 +502,11 @@ html {
 
 .hdr-dropdown-panel {
   position: absolute;
-  top: 100%;
+  top: 16px;
   left: 50%;
   transform: translate(-50%, 6px);
   min-width: 220px;
   padding: 10px;
-  margin-top: 14px;
   background: #16171A;
   border: 1px solid #2A2B2E;
   border-radius: 12px;
