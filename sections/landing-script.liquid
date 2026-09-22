@@ -43,9 +43,6 @@
   var qtyEl = document.querySelector('[data-pdp-qty-value]');
   var qtyMinusBtn = document.querySelector('[data-pdp-qty-minus]');
   var qtyPlusBtn = document.querySelector('[data-pdp-qty-plus]');
-  var toastEl = document.getElementById('toast');
-  var toastTextEl = document.getElementById('toastText');
-  var toastBagEl = document.getElementById('toastBagLabel');
   var toastTimer = null;
 
   function renderPlan(){
@@ -63,8 +60,16 @@
     for (var i = 0; i < bagLabelEls.length; i++) bagLabelEls[i].textContent = label;
   }
   function flash(text){
+    // toast markup lives in the footer group (sections/landing-footer.liquid),
+    // which Dawn renders after content_for_layout — i.e. after this section's
+    // own <script> runs. Elements looked up once at load time would still be
+    // null here, so look them up lazily on each call instead of caching them.
+    var toastEl = document.getElementById('toast');
+    var toastTextEl = document.getElementById('toastText');
+    var toastBagEl = document.getElementById('toastBagLabel');
+    if (!toastEl || !toastTextEl || !toastBagEl) return;
     if (toastTimer) clearTimeout(toastTimer);
-    toastTextEl.textContent = text;
+    toastTextEl.textContent = text || 'Added to bag';
     toastBagEl.textContent = 'Bag · ' + state.bag;
     toastEl.classList.add('show');
     toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
@@ -379,9 +384,7 @@
 {
   "name": "Landing scripts",
   "tag": "section",
-  "settings": [
-    { "type": "product", "id": "product", "label": "Product" }
-  ],
+  "settings": [{ "type": "product", "id": "product", "label": "Product" }],
   "presets": [{ "name": "Landing scripts" }]
 }
 {% endschema %}
